@@ -1,0 +1,4276 @@
+[
+  {
+    "drug": "RIF",
+    "name": "Rifampicin",
+    "low_data": false,
+    "unseen_countries": {
+      "n": 10396,
+      "n_resistant": 4334,
+      "model": {
+        "sensitivity": 0.9397784956160591,
+        "specificity": 0.9691520950181458,
+        "tp": 4073,
+        "fn": 261,
+        "tn": 5875,
+        "fp": 187,
+        "auc": 0.9664588439075257
+      },
+      "who_catalogue": {
+        "sensitivity": 0.9566220581449008,
+        "specificity": 0.9511712306169581,
+        "tp": 4146,
+        "fn": 188,
+        "tn": 5766,
+        "fp": 296,
+        "uncertain_fraction": 0.02250865717583686
+      },
+      "cryptic_catalogue": {
+        "sensitivity": 0.9513151822796493,
+        "specificity": 0.9508413064995052,
+        "tp": 4123,
+        "fn": 211,
+        "tn": 5764,
+        "fp": 298,
+        "uncertain_fraction": 0.2220084647941516
+      }
+    },
+    "by_country": {
+      "Brazil": {
+        "n": 275,
+        "n_resistant": 74,
+        "model": {
+          "sensitivity": 0.8918918918918919,
+          "specificity": 1.0,
+          "tp": 66,
+          "fn": 8,
+          "tn": 201,
+          "fp": 0,
+          "auc": 0.9560306575231947
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9054054054054054,
+          "specificity": 0.9353233830845771,
+          "tp": 67,
+          "fn": 7,
+          "tn": 188,
+          "fp": 13,
+          "uncertain_fraction": 0.014545454545454545
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9054054054054054,
+          "specificity": 0.9353233830845771,
+          "tp": 67,
+          "fn": 7,
+          "tn": 188,
+          "fp": 13,
+          "uncertain_fraction": 0.3054545454545455
+        }
+      },
+      "China": {
+        "n": 990,
+        "n_resistant": 241,
+        "model": {
+          "sensitivity": 0.8506224066390041,
+          "specificity": 0.986648865153538,
+          "tp": 205,
+          "fn": 36,
+          "tn": 739,
+          "fp": 10,
+          "auc": 0.9299370114509524
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8962655601659751,
+          "specificity": 0.9786381842456608,
+          "tp": 216,
+          "fn": 25,
+          "tn": 733,
+          "fp": 16,
+          "uncertain_fraction": 0.031313131313131314
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8879668049792531,
+          "specificity": 0.9706275033377837,
+          "tp": 214,
+          "fn": 27,
+          "tn": 727,
+          "fp": 22,
+          "uncertain_fraction": 0.16767676767676767
+        }
+      },
+      "Germany": {
+        "n": 837,
+        "n_resistant": 368,
+        "model": {
+          "sensitivity": 0.9755434782608695,
+          "specificity": 0.9466950959488273,
+          "tp": 359,
+          "fn": 9,
+          "tn": 444,
+          "fp": 25,
+          "auc": 0.9723046259386299
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9809782608695652,
+          "specificity": 0.9360341151385928,
+          "tp": 361,
+          "fn": 7,
+          "tn": 439,
+          "fp": 30,
+          "uncertain_fraction": 0.021505376344086023
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9809782608695652,
+          "specificity": 0.9402985074626866,
+          "tp": 361,
+          "fn": 7,
+          "tn": 441,
+          "fp": 28,
+          "uncertain_fraction": 0.27837514934289126
+        }
+      },
+      "India": {
+        "n": 1319,
+        "n_resistant": 725,
+        "model": {
+          "sensitivity": 0.9489655172413793,
+          "specificity": 0.9511784511784511,
+          "tp": 688,
+          "fn": 37,
+          "tn": 565,
+          "fp": 29,
+          "auc": 0.9516300940438872
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9558620689655173,
+          "specificity": 0.9377104377104377,
+          "tp": 693,
+          "fn": 32,
+          "tn": 557,
+          "fp": 37,
+          "uncertain_fraction": 0.016679302501895376
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9544827586206897,
+          "specificity": 0.9377104377104377,
+          "tp": 692,
+          "fn": 33,
+          "tn": 557,
+          "fp": 37,
+          "uncertain_fraction": 0.18347232752084913
+        }
+      },
+      "Italy": {
+        "n": 1523,
+        "n_resistant": 913,
+        "model": {
+          "sensitivity": 0.9331872946330778,
+          "specificity": 0.9459016393442623,
+          "tp": 852,
+          "fn": 61,
+          "tn": 577,
+          "fp": 33,
+          "auc": 0.961637907816063
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9529025191675794,
+          "specificity": 0.9098360655737705,
+          "tp": 870,
+          "fn": 43,
+          "tn": 555,
+          "fp": 55,
+          "uncertain_fraction": 0.009192383453709783
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9397590361445783,
+          "specificity": 0.9114754098360656,
+          "tp": 858,
+          "fn": 55,
+          "tn": 556,
+          "fp": 54,
+          "uncertain_fraction": 0.17662508207485225
+        }
+      },
+      "Peru": {
+        "n": 2297,
+        "n_resistant": 786,
+        "model": {
+          "sensitivity": 0.9656488549618321,
+          "specificity": 0.972203838517538,
+          "tp": 759,
+          "fn": 27,
+          "tn": 1469,
+          "fp": 42,
+          "auc": 0.9732024525826719
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9732824427480916,
+          "specificity": 0.9662475181998676,
+          "tp": 765,
+          "fn": 21,
+          "tn": 1460,
+          "fp": 51,
+          "uncertain_fraction": 0.04005224205485416
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9707379134860051,
+          "specificity": 0.9662475181998676,
+          "tp": 763,
+          "fn": 23,
+          "tn": 1460,
+          "fp": 51,
+          "uncertain_fraction": 0.31214627775359166
+        }
+      },
+      "South Africa": {
+        "n": 1645,
+        "n_resistant": 627,
+        "model": {
+          "sensitivity": 0.9186602870813397,
+          "specificity": 0.9833005893909627,
+          "tp": 576,
+          "fn": 51,
+          "tn": 1001,
+          "fp": 17,
+          "auc": 0.97596061953419
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9521531100478469,
+          "specificity": 0.9508840864440079,
+          "tp": 597,
+          "fn": 30,
+          "tn": 968,
+          "fp": 50,
+          "uncertain_fraction": 0.01762917933130699
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.94896331738437,
+          "specificity": 0.9518664047151277,
+          "tp": 595,
+          "fn": 32,
+          "tn": 969,
+          "fp": 49,
+          "uncertain_fraction": 0.15683890577507598
+        }
+      },
+      "Sweden": {
+        "n": 354,
+        "n_resistant": 331,
+        "model": {
+          "sensitivity": 0.9879154078549849,
+          "specificity": 0.08695652173913043,
+          "tp": 327,
+          "fn": 4,
+          "tn": 2,
+          "fp": 21,
+          "auc": 0.48968869039800345
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9879154078549849,
+          "specificity": 0.0,
+          "tp": 327,
+          "fn": 4,
+          "tn": 0,
+          "fp": 23,
+          "uncertain_fraction": 0.0
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9879154078549849,
+          "specificity": 0.0,
+          "tp": 327,
+          "fn": 4,
+          "tn": 0,
+          "fp": 23,
+          "uncertain_fraction": 0.0
+        }
+      },
+      "Vietnam": {
+        "n": 1071,
+        "n_resistant": 187,
+        "model": {
+          "sensitivity": 0.8823529411764706,
+          "specificity": 0.9898190045248869,
+          "tp": 165,
+          "fn": 22,
+          "tn": 875,
+          "fp": 9,
+          "auc": 0.9535654656761924
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9090909090909091,
+          "specificity": 0.9773755656108597,
+          "tp": 170,
+          "fn": 17,
+          "tn": 864,
+          "fp": 20,
+          "uncertain_fraction": 0.022408963585434174
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.893048128342246,
+          "specificity": 0.9773755656108597,
+          "tp": 167,
+          "fn": 20,
+          "tn": 864,
+          "fp": 20,
+          "uncertain_fraction": 0.3127917833800187
+        }
+      }
+    },
+    "other_studies": {
+      "n": 25571,
+      "n_resistant": 6403,
+      "model": {
+        "sensitivity": 0.8980165547399657,
+        "specificity": 0.9933743739565943,
+        "tp": 5750,
+        "fn": 653,
+        "tn": 19041,
+        "fp": 127,
+        "auc": 0.9547407714572965
+      },
+      "who_catalogue": {
+        "sensitivity": 0.9297204435420896,
+        "specificity": 0.9871139398998331,
+        "tp": 5953,
+        "fn": 450,
+        "tn": 18921,
+        "fp": 247,
+        "uncertain_fraction": 0.02479371162645184
+      },
+      "cryptic_catalogue": {
+        "sensitivity": 0.9239419022333282,
+        "specificity": 0.9865400667779632,
+        "tp": 5916,
+        "fn": 487,
+        "tn": 18910,
+        "fp": 258,
+        "uncertain_fraction": 0.3471510695709984
+      }
+    },
+    "by_study": {
+      "CLIRES2020": {
+        "n": 1094,
+        "n_resistant": 510,
+        "model": {
+          "sensitivity": 0.7274509803921568,
+          "specificity": 0.9537671232876712,
+          "tp": 371,
+          "fn": 139,
+          "tn": 557,
+          "fp": 27,
+          "auc": 0.8270799758259467
+        },
+        "who_catalogue": {
+          "sensitivity": 0.7352941176470589,
+          "specificity": 0.946917808219178,
+          "tp": 375,
+          "fn": 135,
+          "tn": 553,
+          "fp": 31,
+          "uncertain_fraction": 0.0356489945155393
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.7333333333333333,
+          "specificity": 0.946917808219178,
+          "tp": 374,
+          "fn": 136,
+          "tn": 553,
+          "fp": 31,
+          "uncertain_fraction": 0.27239488117001825
+        }
+      },
+      "LID2015": {
+        "n": 3337,
+        "n_resistant": 395,
+        "model": {
+          "sensitivity": 0.9012658227848102,
+          "specificity": 0.9942216179469748,
+          "tp": 356,
+          "fn": 39,
+          "tn": 2925,
+          "fp": 17,
+          "auc": 0.9514955812372536
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9392405063291139,
+          "specificity": 0.9850441876274643,
+          "tp": 371,
+          "fn": 24,
+          "tn": 2898,
+          "fp": 44,
+          "uncertain_fraction": 0.022475277195085405
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9341772151898734,
+          "specificity": 0.9850441876274643,
+          "tp": 369,
+          "fn": 26,
+          "tn": 2898,
+          "fp": 44,
+          "uncertain_fraction": 0.34851663170512437
+        }
+      },
+      "MUMBAI2018": {
+        "n": 169,
+        "n_resistant": 123,
+        "model": {
+          "sensitivity": 0.983739837398374,
+          "specificity": 0.8695652173913043,
+          "tp": 121,
+          "fn": 2,
+          "tn": 40,
+          "fp": 6,
+          "auc": 0.9152527394839165
+        },
+        "who_catalogue": {
+          "sensitivity": 0.991869918699187,
+          "specificity": 0.8478260869565217,
+          "tp": 122,
+          "fn": 1,
+          "tn": 39,
+          "fp": 7,
+          "uncertain_fraction": 0.0
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.991869918699187,
+          "specificity": 0.8478260869565217,
+          "tp": 122,
+          "fn": 1,
+          "tn": 39,
+          "fp": 7,
+          "uncertain_fraction": 0.09467455621301775
+        }
+      },
+      "NEJM2018": {
+        "n": 9497,
+        "n_resistant": 2395,
+        "model": {
+          "sensitivity": 0.9118997912317328,
+          "specificity": 0.9942269783159673,
+          "tp": 2184,
+          "fn": 211,
+          "tn": 7061,
+          "fp": 41,
+          "auc": 0.962701911720007
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9511482254697285,
+          "specificity": 0.9888763728527176,
+          "tp": 2278,
+          "fn": 117,
+          "tn": 7023,
+          "fp": 79,
+          "uncertain_fraction": 0.019795724965778666
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9402922755741128,
+          "specificity": 0.9883131512250071,
+          "tp": 2252,
+          "fn": 143,
+          "tn": 7019,
+          "fp": 83,
+          "uncertain_fraction": 0.32241760555965043
+        }
+      },
+      "PHE2019": {
+        "n": 3977,
+        "n_resistant": 123,
+        "model": {
+          "sensitivity": 0.9186991869918699,
+          "specificity": 0.9994810586403736,
+          "tp": 113,
+          "fn": 10,
+          "tn": 3852,
+          "fp": 2,
+          "auc": 0.9771560325878298
+        },
+        "who_catalogue": {
+          "sensitivity": 0.959349593495935,
+          "specificity": 0.9945511157239232,
+          "tp": 118,
+          "fn": 5,
+          "tn": 3833,
+          "fp": 21,
+          "uncertain_fraction": 0.04073422177520744
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.967479674796748,
+          "specificity": 0.9940321743642968,
+          "tp": 119,
+          "fn": 4,
+          "tn": 3831,
+          "fp": 23,
+          "uncertain_fraction": 0.44329896907216493
+        }
+      },
+      "SEQTREAT2020": {
+        "n": 5740,
+        "n_resistant": 2480,
+        "model": {
+          "sensitivity": 0.9197580645161291,
+          "specificity": 0.993558282208589,
+          "tp": 2281,
+          "fn": 199,
+          "tn": 3239,
+          "fp": 21,
+          "auc": 0.9632906194339995
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9455645161290323,
+          "specificity": 0.9874233128834355,
+          "tp": 2345,
+          "fn": 135,
+          "tn": 3219,
+          "fp": 41,
+          "uncertain_fraction": 0.023519163763066203
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9423387096774194,
+          "specificity": 0.9858895705521472,
+          "tp": 2337,
+          "fn": 143,
+          "tn": 3214,
+          "fp": 46,
+          "uncertain_fraction": 0.30714285714285716
+        }
+      },
+      "WHO2019": {
+        "n": 1757,
+        "n_resistant": 377,
+        "model": {
+          "sensitivity": 0.8594164456233422,
+          "specificity": 0.9905797101449275,
+          "tp": 324,
+          "fn": 53,
+          "tn": 1367,
+          "fp": 13,
+          "auc": 0.9583323722754008
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9124668435013262,
+          "specificity": 0.9826086956521739,
+          "tp": 344,
+          "fn": 33,
+          "tn": 1356,
+          "fp": 24,
+          "uncertain_fraction": 0.0199203187250996
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9098143236074271,
+          "specificity": 0.9826086956521739,
+          "tp": 343,
+          "fn": 34,
+          "tn": 1356,
+          "fp": 24,
+          "uncertain_fraction": 0.46215139442231074
+        }
+      }
+    }
+  },
+  {
+    "drug": "INH",
+    "name": "Isoniazid",
+    "low_data": false,
+    "unseen_countries": {
+      "n": 10432,
+      "n_resistant": 4889,
+      "model": {
+        "sensitivity": 0.9384332174268767,
+        "specificity": 0.9862890131697637,
+        "tp": 4588,
+        "fn": 301,
+        "tn": 5467,
+        "fp": 76,
+        "auc": 0.9624125180301633
+      },
+      "who_catalogue": {
+        "sensitivity": 0.9296379627735734,
+        "specificity": 0.9853869745625112,
+        "tp": 4545,
+        "fn": 344,
+        "tn": 5462,
+        "fp": 81,
+        "uncertain_fraction": 0.031058282208588958
+      },
+      "cryptic_catalogue": {
+        "sensitivity": 0.939865003068112,
+        "specificity": 0.9830416741836551,
+        "tp": 4595,
+        "fn": 294,
+        "tn": 5449,
+        "fp": 94,
+        "uncertain_fraction": 0.22986963190184048
+      }
+    },
+    "by_country": {
+      "Brazil": {
+        "n": 243,
+        "n_resistant": 82,
+        "model": {
+          "sensitivity": 0.8780487804878049,
+          "specificity": 0.9875776397515528,
+          "tp": 72,
+          "fn": 10,
+          "tn": 159,
+          "fp": 2,
+          "auc": 0.9369413725193153
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8658536585365854,
+          "specificity": 0.9937888198757764,
+          "tp": 71,
+          "fn": 11,
+          "tn": 160,
+          "fp": 1,
+          "uncertain_fraction": 0.02880658436213992
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8658536585365854,
+          "specificity": 0.9875776397515528,
+          "tp": 71,
+          "fn": 11,
+          "tn": 159,
+          "fp": 2,
+          "uncertain_fraction": 0.1440329218106996
+        }
+      },
+      "China": {
+        "n": 961,
+        "n_resistant": 270,
+        "model": {
+          "sensitivity": 0.8407407407407408,
+          "specificity": 0.9855282199710564,
+          "tp": 227,
+          "fn": 43,
+          "tn": 681,
+          "fp": 10,
+          "auc": 0.9229163316717586
+        },
+        "who_catalogue": {
+          "sensitivity": 0.7962962962962963,
+          "specificity": 0.9898697539797395,
+          "tp": 215,
+          "fn": 55,
+          "tn": 684,
+          "fp": 7,
+          "uncertain_fraction": 0.045785639958376693
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8222222222222222,
+          "specificity": 0.9869753979739508,
+          "tp": 222,
+          "fn": 48,
+          "tn": 682,
+          "fp": 9,
+          "uncertain_fraction": 0.5671175858480749
+        }
+      },
+      "Germany": {
+        "n": 1000,
+        "n_resistant": 470,
+        "model": {
+          "sensitivity": 0.9723404255319149,
+          "specificity": 0.9943396226415094,
+          "tp": 457,
+          "fn": 13,
+          "tn": 527,
+          "fp": 3,
+          "auc": 0.9838177438779607
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9723404255319149,
+          "specificity": 0.9943396226415094,
+          "tp": 457,
+          "fn": 13,
+          "tn": 527,
+          "fp": 3,
+          "uncertain_fraction": 0.025
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9744680851063829,
+          "specificity": 0.9943396226415094,
+          "tp": 458,
+          "fn": 12,
+          "tn": 527,
+          "fp": 3,
+          "uncertain_fraction": 0.187
+        }
+      },
+      "India": {
+        "n": 1271,
+        "n_resistant": 720,
+        "model": {
+          "sensitivity": 0.9472222222222222,
+          "specificity": 0.9655172413793104,
+          "tp": 682,
+          "fn": 38,
+          "tn": 532,
+          "fp": 19,
+          "auc": 0.9583850070578745
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9458333333333333,
+          "specificity": 0.9655172413793104,
+          "tp": 681,
+          "fn": 39,
+          "tn": 532,
+          "fp": 19,
+          "uncertain_fraction": 0.022029897718332022
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9472222222222222,
+          "specificity": 0.9637023593466425,
+          "tp": 682,
+          "fn": 38,
+          "tn": 531,
+          "fp": 20,
+          "uncertain_fraction": 0.12745869394177814
+        }
+      },
+      "Italy": {
+        "n": 1532,
+        "n_resistant": 933,
+        "model": {
+          "sensitivity": 0.9185423365487674,
+          "specificity": 0.9849749582637729,
+          "tp": 857,
+          "fn": 76,
+          "tn": 590,
+          "fp": 9,
+          "auc": 0.9435804941068268
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9185423365487674,
+          "specificity": 0.9816360601001669,
+          "tp": 857,
+          "fn": 76,
+          "tn": 588,
+          "fp": 11,
+          "uncertain_fraction": 0.038511749347258484
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9228295819935691,
+          "specificity": 0.9799666110183639,
+          "tp": 861,
+          "fn": 72,
+          "tn": 587,
+          "fp": 12,
+          "uncertain_fraction": 0.1174934725848564
+        }
+      },
+      "Peru": {
+        "n": 2242,
+        "n_resistant": 933,
+        "model": {
+          "sensitivity": 0.9603429796355841,
+          "specificity": 0.9923605805958747,
+          "tp": 896,
+          "fn": 37,
+          "tn": 1299,
+          "fp": 10,
+          "auc": 0.9798365999425203
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9571275455519829,
+          "specificity": 0.9893048128342246,
+          "tp": 893,
+          "fn": 40,
+          "tn": 1295,
+          "fp": 14,
+          "uncertain_fraction": 0.022747546833184657
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9657020364415863,
+          "specificity": 0.9877769289533995,
+          "tp": 901,
+          "fn": 32,
+          "tn": 1293,
+          "fp": 16,
+          "uncertain_fraction": 0.1672613737734166
+        }
+      },
+      "South Africa": {
+        "n": 1699,
+        "n_resistant": 618,
+        "model": {
+          "sensitivity": 0.9061488673139159,
+          "specificity": 0.9898242368177613,
+          "tp": 560,
+          "fn": 58,
+          "tn": 1070,
+          "fp": 11,
+          "auc": 0.9546019956351096
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8673139158576052,
+          "specificity": 0.9888991674375578,
+          "tp": 536,
+          "fn": 82,
+          "tn": 1069,
+          "fp": 12,
+          "uncertain_fraction": 0.04237786933490288
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9093851132686084,
+          "specificity": 0.9851988899167438,
+          "tp": 562,
+          "fn": 56,
+          "tn": 1065,
+          "fp": 16,
+          "uncertain_fraction": 0.316656856974691
+        }
+      },
+      "Vietnam": {
+        "n": 1035,
+        "n_resistant": 421,
+        "model": {
+          "sensitivity": 0.9477434679334917,
+          "specificity": 0.9804560260586319,
+          "tp": 399,
+          "fn": 22,
+          "tn": 602,
+          "fp": 12,
+          "auc": 0.9716917994228105
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9382422802850356,
+          "specificity": 0.9771986970684039,
+          "tp": 395,
+          "fn": 26,
+          "tn": 600,
+          "fp": 14,
+          "uncertain_fraction": 0.034782608695652174
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9477434679334917,
+          "specificity": 0.9739413680781759,
+          "tp": 399,
+          "fn": 22,
+          "tn": 598,
+          "fp": 16,
+          "uncertain_fraction": 0.36038647342995167
+        }
+      }
+    },
+    "other_studies": {
+      "n": 25469,
+      "n_resistant": 7916,
+      "model": {
+        "sensitivity": 0.917256189994947,
+        "specificity": 0.9888907878995044,
+        "tp": 7261,
+        "fn": 655,
+        "tn": 17358,
+        "fp": 195,
+        "auc": 0.9609552130389081
+      },
+      "who_catalogue": {
+        "sensitivity": 0.9015917129863568,
+        "specificity": 0.9911126303196035,
+        "tp": 7137,
+        "fn": 779,
+        "tn": 17397,
+        "fp": 156,
+        "uncertain_fraction": 0.03733951077780832
+      },
+      "cryptic_catalogue": {
+        "sensitivity": 0.9242041435068217,
+        "specificity": 0.9879792628040791,
+        "tp": 7316,
+        "fn": 600,
+        "tn": 17342,
+        "fp": 211,
+        "uncertain_fraction": 0.2132396246417213
+      }
+    },
+    "by_study": {
+      "CLIRES2020": {
+        "n": 1094,
+        "n_resistant": 585,
+        "model": {
+          "sensitivity": 0.8991452991452992,
+          "specificity": 0.9214145383104125,
+          "tp": 526,
+          "fn": 59,
+          "tn": 469,
+          "fp": 40,
+          "auc": 0.9166439977834869
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8957264957264958,
+          "specificity": 0.925343811394892,
+          "tp": 524,
+          "fn": 61,
+          "tn": 471,
+          "fp": 38,
+          "uncertain_fraction": 0.031078610603290677
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9008547008547009,
+          "specificity": 0.9233791748526523,
+          "tp": 527,
+          "fn": 58,
+          "tn": 470,
+          "fp": 39,
+          "uncertain_fraction": 0.13345521023765997
+        }
+      },
+      "LID2015": {
+        "n": 3368,
+        "n_resistant": 649,
+        "model": {
+          "sensitivity": 0.8659476117103235,
+          "specificity": 0.9900698786318499,
+          "tp": 562,
+          "fn": 87,
+          "tn": 2692,
+          "fp": 27,
+          "auc": 0.938962309967353
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8567026194144838,
+          "specificity": 0.9893343140860611,
+          "tp": 556,
+          "fn": 93,
+          "tn": 2690,
+          "fp": 29,
+          "uncertain_fraction": 0.03859857482185273
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9044684129429892,
+          "specificity": 0.9874954027215889,
+          "tp": 587,
+          "fn": 62,
+          "tn": 2685,
+          "fp": 34,
+          "uncertain_fraction": 0.17963182897862232
+        }
+      },
+      "MUMBAI2018": {
+        "n": 215,
+        "n_resistant": 171,
+        "model": {
+          "sensitivity": 0.9766081871345029,
+          "specificity": 0.75,
+          "tp": 167,
+          "fn": 4,
+          "tn": 33,
+          "fp": 11,
+          "auc": 0.8846358320042531
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9824561403508771,
+          "specificity": 0.75,
+          "tp": 168,
+          "fn": 3,
+          "tn": 33,
+          "fp": 11,
+          "uncertain_fraction": 0.004651162790697674
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9824561403508771,
+          "specificity": 0.75,
+          "tp": 168,
+          "fn": 3,
+          "tn": 33,
+          "fp": 11,
+          "uncertain_fraction": 0.05116279069767442
+        }
+      },
+      "NEJM2018": {
+        "n": 9371,
+        "n_resistant": 2774,
+        "model": {
+          "sensitivity": 0.9188896899783706,
+          "specificity": 0.9916628770653327,
+          "tp": 2549,
+          "fn": 225,
+          "tn": 6542,
+          "fp": 55,
+          "auc": 0.961840162648487
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8950973323720259,
+          "specificity": 0.9951493102925573,
+          "tp": 2483,
+          "fn": 291,
+          "tn": 6565,
+          "fp": 32,
+          "uncertain_fraction": 0.03916337637391954
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9300648882480173,
+          "specificity": 0.990450204638472,
+          "tp": 2580,
+          "fn": 194,
+          "tn": 6534,
+          "fp": 63,
+          "uncertain_fraction": 0.2409561412869491
+        }
+      },
+      "PHE2019": {
+        "n": 3964,
+        "n_resistant": 565,
+        "model": {
+          "sensitivity": 0.9451327433628318,
+          "specificity": 0.9952927331568108,
+          "tp": 534,
+          "fn": 31,
+          "tn": 3383,
+          "fp": 16,
+          "auc": 0.9805947610827757
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9362831858407079,
+          "specificity": 0.9982347749338041,
+          "tp": 529,
+          "fn": 36,
+          "tn": 3393,
+          "fp": 6,
+          "uncertain_fraction": 0.042885973763874874
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.952212389380531,
+          "specificity": 0.9970579582230068,
+          "tp": 538,
+          "fn": 27,
+          "tn": 3389,
+          "fp": 10,
+          "uncertain_fraction": 0.2194752774974773
+        }
+      },
+      "SEQTREAT2020": {
+        "n": 5700,
+        "n_resistant": 2676,
+        "model": {
+          "sensitivity": 0.9245142002989537,
+          "specificity": 0.9910714285714286,
+          "tp": 2474,
+          "fn": 202,
+          "tn": 2997,
+          "fp": 27,
+          "auc": 0.9625190800452385
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9076980568011959,
+          "specificity": 0.9920634920634921,
+          "tp": 2429,
+          "fn": 247,
+          "tn": 3000,
+          "fp": 24,
+          "uncertain_fraction": 0.03192982456140351
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9204035874439462,
+          "specificity": 0.9884259259259259,
+          "tp": 2463,
+          "fn": 213,
+          "tn": 2989,
+          "fp": 35,
+          "uncertain_fraction": 0.193859649122807
+        }
+      },
+      "WHO2019": {
+        "n": 1757,
+        "n_resistant": 496,
+        "model": {
+          "sensitivity": 0.905241935483871,
+          "specificity": 0.9849325931800159,
+          "tp": 449,
+          "fn": 47,
+          "tn": 1242,
+          "fp": 19,
+          "auc": 0.9702768859839861
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9032258064516129,
+          "specificity": 0.9873116574147502,
+          "tp": 448,
+          "fn": 48,
+          "tn": 1245,
+          "fp": 16,
+          "uncertain_fraction": 0.03813318155947638
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9133064516129032,
+          "specificity": 0.9849325931800159,
+          "tp": 453,
+          "fn": 43,
+          "tn": 1242,
+          "fp": 19,
+          "uncertain_fraction": 0.24815025611838362
+        }
+      }
+    }
+  },
+  {
+    "drug": "EMB",
+    "name": "Ethambutol",
+    "low_data": false,
+    "unseen_countries": {
+      "n": 7755,
+      "n_resistant": 1817,
+      "model": {
+        "sensitivity": 0.9152449091909741,
+        "specificity": 0.9430784776018861,
+        "tp": 1663,
+        "fn": 154,
+        "tn": 5600,
+        "fp": 338,
+        "auc": 0.9573979738901691
+      },
+      "who_catalogue": {
+        "sensitivity": 0.8855255916345625,
+        "specificity": 0.9371842371168744,
+        "tp": 1609,
+        "fn": 208,
+        "tn": 5565,
+        "fp": 373,
+        "uncertain_fraction": 0.04977433913604126
+      },
+      "cryptic_catalogue": {
+        "sensitivity": 0.8458998348926803,
+        "specificity": 0.9336476928258673,
+        "tp": 1537,
+        "fn": 280,
+        "tn": 5544,
+        "fp": 394,
+        "uncertain_fraction": 0.25673758865248225
+      }
+    },
+    "by_country": {
+      "Brazil": {
+        "n": 203,
+        "n_resistant": 23,
+        "model": {
+          "sensitivity": 0.9565217391304348,
+          "specificity": 0.9944444444444445,
+          "tp": 22,
+          "fn": 1,
+          "tn": 179,
+          "fp": 1,
+          "auc": 0.9858695652173913
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9565217391304348,
+          "specificity": 0.9944444444444445,
+          "tp": 22,
+          "fn": 1,
+          "tn": 179,
+          "fp": 1,
+          "uncertain_fraction": 0.009852216748768473
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9565217391304348,
+          "specificity": 0.9944444444444445,
+          "tp": 22,
+          "fn": 1,
+          "tn": 179,
+          "fp": 1,
+          "uncertain_fraction": 0.13793103448275862
+        }
+      },
+      "China": {
+        "n": 845,
+        "n_resistant": 146,
+        "model": {
+          "sensitivity": 0.8287671232876712,
+          "specificity": 0.9914163090128756,
+          "tp": 121,
+          "fn": 25,
+          "tn": 693,
+          "fp": 6,
+          "auc": 0.9225998001058264
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8356164383561644,
+          "specificity": 0.9928469241773963,
+          "tp": 122,
+          "fn": 24,
+          "tn": 694,
+          "fp": 5,
+          "uncertain_fraction": 0.06390532544378698
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8082191780821918,
+          "specificity": 0.9914163090128756,
+          "tp": 118,
+          "fn": 28,
+          "tn": 693,
+          "fp": 6,
+          "uncertain_fraction": 0.2650887573964497
+        }
+      },
+      "Germany": {
+        "n": 620,
+        "n_resistant": 84,
+        "model": {
+          "sensitivity": 0.9642857142857143,
+          "specificity": 0.8917910447761194,
+          "tp": 81,
+          "fn": 3,
+          "tn": 478,
+          "fp": 58,
+          "auc": 0.9840418443496802
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9404761904761905,
+          "specificity": 0.8843283582089553,
+          "tp": 79,
+          "fn": 5,
+          "tn": 474,
+          "fp": 62,
+          "uncertain_fraction": 0.04516129032258064
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9523809523809523,
+          "specificity": 0.8544776119402985,
+          "tp": 80,
+          "fn": 4,
+          "tn": 458,
+          "fp": 78,
+          "uncertain_fraction": 0.29838709677419356
+        }
+      },
+      "India": {
+        "n": 974,
+        "n_resistant": 461,
+        "model": {
+          "sensitivity": 0.9370932754880694,
+          "specificity": 0.9122807017543859,
+          "tp": 432,
+          "fn": 29,
+          "tn": 468,
+          "fp": 45,
+          "auc": 0.9561636073794996
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8438177874186551,
+          "specificity": 0.9122807017543859,
+          "tp": 389,
+          "fn": 72,
+          "tn": 468,
+          "fp": 45,
+          "uncertain_fraction": 0.07186858316221766
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.913232104121475,
+          "specificity": 0.9122807017543859,
+          "tp": 421,
+          "fn": 40,
+          "tn": 468,
+          "fp": 45,
+          "uncertain_fraction": 0.4086242299794661
+        }
+      },
+      "Italy": {
+        "n": 1016,
+        "n_resistant": 216,
+        "model": {
+          "sensitivity": 0.9398148148148148,
+          "specificity": 0.86875,
+          "tp": 203,
+          "fn": 13,
+          "tn": 695,
+          "fp": 105,
+          "auc": 0.957488425925926
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8611111111111112,
+          "specificity": 0.87375,
+          "tp": 186,
+          "fn": 30,
+          "tn": 699,
+          "fp": 101,
+          "uncertain_fraction": 0.09055118110236221
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8657407407407407,
+          "specificity": 0.86,
+          "tp": 187,
+          "fn": 29,
+          "tn": 688,
+          "fp": 112,
+          "uncertain_fraction": 0.3110236220472441
+        }
+      },
+      "Peru": {
+        "n": 1698,
+        "n_resistant": 328,
+        "model": {
+          "sensitivity": 0.8810975609756098,
+          "specificity": 0.962043795620438,
+          "tp": 289,
+          "fn": 39,
+          "tn": 1318,
+          "fp": 52,
+          "auc": 0.9617166636994838
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9207317073170732,
+          "specificity": 0.9576642335766423,
+          "tp": 302,
+          "fn": 26,
+          "tn": 1312,
+          "fp": 58,
+          "uncertain_fraction": 0.037102473498233215
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.5914634146341463,
+          "specificity": 0.9671532846715328,
+          "tp": 194,
+          "fn": 134,
+          "tn": 1325,
+          "fp": 45,
+          "uncertain_fraction": 0.24617196702002356
+        }
+      },
+      "South Africa": {
+        "n": 1456,
+        "n_resistant": 302,
+        "model": {
+          "sensitivity": 0.9403973509933775,
+          "specificity": 0.9826689774696707,
+          "tp": 284,
+          "fn": 18,
+          "tn": 1134,
+          "fp": 20,
+          "auc": 0.9691212253377255
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9205298013245033,
+          "specificity": 0.9835355285961872,
+          "tp": 278,
+          "fn": 24,
+          "tn": 1135,
+          "fp": 19,
+          "uncertain_fraction": 0.019917582417582416
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9370860927152318,
+          "specificity": 0.9818024263431543,
+          "tp": 283,
+          "fn": 19,
+          "tn": 1133,
+          "fp": 21,
+          "uncertain_fraction": 0.11057692307692307
+        }
+      },
+      "Sweden": {
+        "n": 239,
+        "n_resistant": 170,
+        "model": {
+          "sensitivity": 0.9,
+          "specificity": 0.6376811594202898,
+          "tp": 153,
+          "fn": 17,
+          "tn": 44,
+          "fp": 25,
+          "auc": 0.8557971014492755
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9235294117647059,
+          "specificity": 0.14492753623188406,
+          "tp": 157,
+          "fn": 13,
+          "tn": 10,
+          "fp": 59,
+          "uncertain_fraction": 0.058577405857740586
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9470588235294117,
+          "specificity": 0.11594202898550725,
+          "tp": 161,
+          "fn": 9,
+          "tn": 8,
+          "fp": 61,
+          "uncertain_fraction": 0.04184100418410042
+        }
+      },
+      "United States": {
+        "n": 57,
+        "n_resistant": 25,
+        "model": {
+          "sensitivity": 1.0,
+          "specificity": 0.84375,
+          "tp": 25,
+          "fn": 0,
+          "tn": 27,
+          "fp": 5,
+          "auc": 0.995625
+        },
+        "who_catalogue": {
+          "sensitivity": 0.96,
+          "specificity": 0.875,
+          "tp": 24,
+          "fn": 1,
+          "tn": 28,
+          "fp": 4,
+          "uncertain_fraction": 0.03508771929824561
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.96,
+          "specificity": 0.84375,
+          "tp": 24,
+          "fn": 1,
+          "tn": 27,
+          "fp": 5,
+          "uncertain_fraction": 0.24561403508771928
+        }
+      },
+      "Vietnam": {
+        "n": 647,
+        "n_resistant": 62,
+        "model": {
+          "sensitivity": 0.8548387096774194,
+          "specificity": 0.9641025641025641,
+          "tp": 53,
+          "fn": 9,
+          "tn": 564,
+          "fp": 21,
+          "auc": 0.918513923352633
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8064516129032258,
+          "specificity": 0.9675213675213675,
+          "tp": 50,
+          "fn": 12,
+          "tn": 566,
+          "fp": 19,
+          "uncertain_fraction": 0.04945904173106646
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.7580645161290323,
+          "specificity": 0.9658119658119658,
+          "tp": 47,
+          "fn": 15,
+          "tn": 565,
+          "fp": 20,
+          "uncertain_fraction": 0.366306027820711
+        }
+      }
+    },
+    "other_studies": {
+      "n": 23741,
+      "n_resistant": 3161,
+      "model": {
+        "sensitivity": 0.8158810503005378,
+        "specificity": 0.9551506316812439,
+        "tp": 2579,
+        "fn": 582,
+        "tn": 19657,
+        "fp": 923,
+        "auc": 0.9413690802845295
+      },
+      "who_catalogue": {
+        "sensitivity": 0.8260044289781715,
+        "specificity": 0.9552964042759962,
+        "tp": 2611,
+        "fn": 550,
+        "tn": 19660,
+        "fp": 920,
+        "uncertain_fraction": 0.058169411566488353
+      },
+      "cryptic_catalogue": {
+        "sensitivity": 0.8421385637456501,
+        "specificity": 0.9525267249757046,
+        "tp": 2662,
+        "fn": 499,
+        "tn": 19603,
+        "fp": 977,
+        "uncertain_fraction": 0.39602375637083526
+      }
+    },
+    "by_study": {
+      "LID2015": {
+        "n": 3360,
+        "n_resistant": 239,
+        "model": {
+          "sensitivity": 0.8200836820083682,
+          "specificity": 0.9644344761294457,
+          "tp": 196,
+          "fn": 43,
+          "tn": 3010,
+          "fp": 111,
+          "auc": 0.9648400161411627
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8075313807531381,
+          "specificity": 0.9641140660044858,
+          "tp": 193,
+          "fn": 46,
+          "tn": 3009,
+          "fp": 112,
+          "uncertain_fraction": 0.04732142857142857
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8619246861924686,
+          "specificity": 0.962512015379686,
+          "tp": 206,
+          "fn": 33,
+          "tn": 3004,
+          "fp": 117,
+          "uncertain_fraction": 0.3672619047619048
+        }
+      },
+      "MUMBAI2018": {
+        "n": 93,
+        "n_resistant": 43,
+        "model": {
+          "sensitivity": 0.9767441860465116,
+          "specificity": 0.82,
+          "tp": 42,
+          "fn": 1,
+          "tn": 41,
+          "fp": 9,
+          "auc": 0.9511627906976744
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9534883720930233,
+          "specificity": 0.84,
+          "tp": 41,
+          "fn": 2,
+          "tn": 42,
+          "fp": 8,
+          "uncertain_fraction": 0.06451612903225806
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9767441860465116,
+          "specificity": 0.82,
+          "tp": 42,
+          "fn": 1,
+          "tn": 41,
+          "fp": 9,
+          "uncertain_fraction": 0.3870967741935484
+        }
+      },
+      "NEJM2018": {
+        "n": 9180,
+        "n_resistant": 1301,
+        "model": {
+          "sensitivity": 0.8693312836279785,
+          "specificity": 0.9496128950374413,
+          "tp": 1131,
+          "fn": 170,
+          "tn": 7482,
+          "fp": 397,
+          "auc": 0.9506179114370027
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8478093774019985,
+          "specificity": 0.9510090112958497,
+          "tp": 1103,
+          "fn": 198,
+          "tn": 7493,
+          "fp": 386,
+          "uncertain_fraction": 0.04422657952069717
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8531898539584934,
+          "specificity": 0.9499936540170072,
+          "tp": 1110,
+          "fn": 191,
+          "tn": 7485,
+          "fp": 394,
+          "uncertain_fraction": 0.375599128540305
+        }
+      },
+      "PHE2019": {
+        "n": 3952,
+        "n_resistant": 101,
+        "model": {
+          "sensitivity": 0.7722772277227723,
+          "specificity": 0.9942871981303557,
+          "tp": 78,
+          "fn": 23,
+          "tn": 3829,
+          "fp": 22,
+          "auc": 0.9395746507914878
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8415841584158416,
+          "specificity": 0.9950662165671255,
+          "tp": 85,
+          "fn": 16,
+          "tn": 3832,
+          "fp": 19,
+          "uncertain_fraction": 0.05895748987854251
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8514851485148515,
+          "specificity": 0.9945468709426123,
+          "tp": 86,
+          "fn": 15,
+          "tn": 3830,
+          "fp": 21,
+          "uncertain_fraction": 0.5060728744939271
+        }
+      },
+      "SEQTREAT2020": {
+        "n": 5399,
+        "n_resistant": 1229,
+        "model": {
+          "sensitivity": 0.7713588283157038,
+          "specificity": 0.9258992805755396,
+          "tp": 948,
+          "fn": 281,
+          "tn": 3861,
+          "fp": 309,
+          "auc": 0.9164359318078491
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8291293734743694,
+          "specificity": 0.9247002398081535,
+          "tp": 1019,
+          "fn": 210,
+          "tn": 3856,
+          "fp": 314,
+          "uncertain_fraction": 0.08205223189479534
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8372660699755899,
+          "specificity": 0.915347721822542,
+          "tp": 1029,
+          "fn": 200,
+          "tn": 3817,
+          "fp": 353,
+          "uncertain_fraction": 0.34006297462493057
+        }
+      },
+      "WHO2019": {
+        "n": 1757,
+        "n_resistant": 248,
+        "model": {
+          "sensitivity": 0.7419354838709677,
+          "specificity": 0.9502982107355865,
+          "tp": 184,
+          "fn": 64,
+          "tn": 1434,
+          "fp": 75,
+          "auc": 0.9024054597148292
+        },
+        "who_catalogue": {
+          "sensitivity": 0.6854838709677419,
+          "specificity": 0.9463220675944334,
+          "tp": 170,
+          "fn": 78,
+          "tn": 1428,
+          "fp": 81,
+          "uncertain_fraction": 0.07626636311895275
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.7620967741935484,
+          "specificity": 0.9449966865473823,
+          "tp": 189,
+          "fn": 59,
+          "tn": 1426,
+          "fp": 83,
+          "uncertain_fraction": 0.48264086511098464
+        }
+      }
+    }
+  },
+  {
+    "drug": "LEV",
+    "name": "Levofloxacin",
+    "low_data": false,
+    "unseen_countries": {
+      "n": 9174,
+      "n_resistant": 1615,
+      "model": {
+        "sensitivity": 0.8346749226006192,
+        "specificity": 0.9714247916391057,
+        "tp": 1348,
+        "fn": 267,
+        "tn": 7343,
+        "fp": 216,
+        "auc": 0.8952892764739878
+      },
+      "who_catalogue": {
+        "sensitivity": 0.8402476780185758,
+        "specificity": 0.9710279137452044,
+        "tp": 1357,
+        "fn": 258,
+        "tn": 7340,
+        "fp": 219,
+        "uncertain_fraction": 0.07346849792892958
+      },
+      "cryptic_catalogue": {
+        "sensitivity": 0.8191950464396285,
+        "specificity": 0.9734091811086123,
+        "tp": 1323,
+        "fn": 292,
+        "tn": 7358,
+        "fp": 201,
+        "uncertain_fraction": 0.1301504251144539
+      }
+    },
+    "by_country": {
+      "China": {
+        "n": 892,
+        "n_resistant": 117,
+        "model": {
+          "sensitivity": 0.6752136752136753,
+          "specificity": 0.9948387096774194,
+          "tp": 79,
+          "fn": 38,
+          "tn": 771,
+          "fp": 4,
+          "auc": 0.8505541770057898
+        },
+        "who_catalogue": {
+          "sensitivity": 0.6752136752136753,
+          "specificity": 0.9948387096774194,
+          "tp": 79,
+          "fn": 38,
+          "tn": 771,
+          "fp": 4,
+          "uncertain_fraction": 0.053811659192825115
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.6410256410256411,
+          "specificity": 0.9948387096774194,
+          "tp": 75,
+          "fn": 42,
+          "tn": 771,
+          "fp": 4,
+          "uncertain_fraction": 0.05829596412556054
+        }
+      },
+      "Germany": {
+        "n": 863,
+        "n_resistant": 180,
+        "model": {
+          "sensitivity": 0.9,
+          "specificity": 0.9619326500732065,
+          "tp": 162,
+          "fn": 18,
+          "tn": 657,
+          "fp": 26,
+          "auc": 0.931495038230031
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8944444444444445,
+          "specificity": 0.9619326500732065,
+          "tp": 161,
+          "fn": 19,
+          "tn": 657,
+          "fp": 26,
+          "uncertain_fraction": 0.06373117033603708
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8944444444444445,
+          "specificity": 0.9619326500732065,
+          "tp": 161,
+          "fn": 19,
+          "tn": 657,
+          "fp": 26,
+          "uncertain_fraction": 0.09038238702201622
+        }
+      },
+      "India": {
+        "n": 1054,
+        "n_resistant": 385,
+        "model": {
+          "sensitivity": 0.8935064935064935,
+          "specificity": 0.9282511210762332,
+          "tp": 344,
+          "fn": 41,
+          "tn": 621,
+          "fp": 48,
+          "auc": 0.9065362141595326
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9012987012987013,
+          "specificity": 0.9237668161434978,
+          "tp": 347,
+          "fn": 38,
+          "tn": 618,
+          "fp": 51,
+          "uncertain_fraction": 0.0777988614800759
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8805194805194805,
+          "specificity": 0.9342301943198804,
+          "tp": 339,
+          "fn": 46,
+          "tn": 625,
+          "fp": 44,
+          "uncertain_fraction": 0.150853889943074
+        }
+      },
+      "Italy": {
+        "n": 1397,
+        "n_resistant": 312,
+        "model": {
+          "sensitivity": 0.7724358974358975,
+          "specificity": 0.9769585253456221,
+          "tp": 241,
+          "fn": 71,
+          "tn": 1060,
+          "fp": 25,
+          "auc": 0.8800794635472056
+        },
+        "who_catalogue": {
+          "sensitivity": 0.7788461538461539,
+          "specificity": 0.9741935483870968,
+          "tp": 243,
+          "fn": 69,
+          "tn": 1057,
+          "fp": 28,
+          "uncertain_fraction": 0.08088761632068718
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.7724358974358975,
+          "specificity": 0.9769585253456221,
+          "tp": 241,
+          "fn": 71,
+          "tn": 1060,
+          "fp": 25,
+          "uncertain_fraction": 0.1231209735146743
+        }
+      },
+      "Peru": {
+        "n": 2158,
+        "n_resistant": 137,
+        "model": {
+          "sensitivity": 0.656934306569343,
+          "specificity": 0.9896091044037605,
+          "tp": 90,
+          "fn": 47,
+          "tn": 2000,
+          "fp": 21,
+          "auc": 0.8127832936646959
+        },
+        "who_catalogue": {
+          "sensitivity": 0.656934306569343,
+          "specificity": 0.991588322612568,
+          "tp": 90,
+          "fn": 47,
+          "tn": 2004,
+          "fp": 17,
+          "uncertain_fraction": 0.0871177015755329
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.6204379562043796,
+          "specificity": 0.9930727362691737,
+          "tp": 85,
+          "fn": 52,
+          "tn": 2007,
+          "fp": 14,
+          "uncertain_fraction": 0.10658016682113068
+        }
+      },
+      "South Africa": {
+        "n": 1379,
+        "n_resistant": 231,
+        "model": {
+          "sensitivity": 0.8701298701298701,
+          "specificity": 0.9912891986062717,
+          "tp": 201,
+          "fn": 30,
+          "tn": 1138,
+          "fp": 10,
+          "auc": 0.9391789975413669
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8831168831168831,
+          "specificity": 0.9886759581881533,
+          "tp": 204,
+          "fn": 27,
+          "tn": 1135,
+          "fp": 13,
+          "uncertain_fraction": 0.06961566352429296
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8528138528138528,
+          "specificity": 0.9912891986062717,
+          "tp": 197,
+          "fn": 34,
+          "tn": 1138,
+          "fp": 10,
+          "uncertain_fraction": 0.2828136330674402
+        }
+      },
+      "Sweden": {
+        "n": 352,
+        "n_resistant": 219,
+        "model": {
+          "sensitivity": 0.9497716894977168,
+          "specificity": 0.42105263157894735,
+          "tp": 208,
+          "fn": 11,
+          "tn": 56,
+          "fp": 77,
+          "auc": 0.6493459676588733
+        },
+        "who_catalogue": {
+          "sensitivity": 0.958904109589041,
+          "specificity": 0.42105263157894735,
+          "tp": 210,
+          "fn": 9,
+          "tn": 56,
+          "fp": 77,
+          "uncertain_fraction": 0.03977272727272727
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9315068493150684,
+          "specificity": 0.42857142857142855,
+          "tp": 204,
+          "fn": 15,
+          "tn": 57,
+          "fp": 76,
+          "uncertain_fraction": 0.05965909090909091
+        }
+      }
+    },
+    "other_studies": {
+      "n": 536,
+      "n_resistant": 222,
+      "model": {
+        "sensitivity": 0.8063063063063063,
+        "specificity": 0.8980891719745223,
+        "tp": 179,
+        "fn": 43,
+        "tn": 282,
+        "fp": 32,
+        "auc": 0.8645779537499283
+      },
+      "who_catalogue": {
+        "sensitivity": 0.7972972972972973,
+        "specificity": 0.9076433121019108,
+        "tp": 177,
+        "fn": 45,
+        "tn": 285,
+        "fp": 29,
+        "uncertain_fraction": 0.026119402985074626
+      },
+      "cryptic_catalogue": {
+        "sensitivity": 0.7792792792792793,
+        "specificity": 0.9267515923566879,
+        "tp": 173,
+        "fn": 49,
+        "tn": 291,
+        "fp": 23,
+        "uncertain_fraction": 0.05970149253731343
+      }
+    },
+    "by_study": {
+      "SEQTREAT2020": {
+        "n": 436,
+        "n_resistant": 160,
+        "model": {
+          "sensitivity": 0.89375,
+          "specificity": 0.9311594202898551,
+          "tp": 143,
+          "fn": 17,
+          "tn": 257,
+          "fp": 19,
+          "auc": 0.9334352355072463
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9,
+          "specificity": 0.9384057971014492,
+          "tp": 144,
+          "fn": 16,
+          "tn": 259,
+          "fp": 17,
+          "uncertain_fraction": 0.022935779816513763
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.875,
+          "specificity": 0.9565217391304348,
+          "tp": 140,
+          "fn": 20,
+          "tn": 264,
+          "fp": 12,
+          "uncertain_fraction": 0.05504587155963303
+        }
+      }
+    }
+  },
+  {
+    "drug": "MXF",
+    "name": "Moxifloxacin",
+    "low_data": false,
+    "unseen_countries": {
+      "n": 8184,
+      "n_resistant": 1336,
+      "model": {
+        "sensitivity": 0.8630239520958084,
+        "specificity": 0.9392523364485982,
+        "tp": 1153,
+        "fn": 183,
+        "tn": 6432,
+        "fp": 416,
+        "auc": 0.9044865147042364
+      },
+      "who_catalogue": {
+        "sensitivity": 0.8607784431137725,
+        "specificity": 0.9386682242990654,
+        "tp": 1150,
+        "fn": 186,
+        "tn": 6428,
+        "fp": 420,
+        "uncertain_fraction": 0.07209188660801565
+      },
+      "cryptic_catalogue": {
+        "sensitivity": 0.8053892215568862,
+        "specificity": 0.9443633177570093,
+        "tp": 1076,
+        "fn": 260,
+        "tn": 6467,
+        "fp": 381,
+        "uncertain_fraction": 0.13147605083088953
+      }
+    },
+    "by_country": {
+      "China": {
+        "n": 882,
+        "n_resistant": 105,
+        "model": {
+          "sensitivity": 0.7047619047619048,
+          "specificity": 0.9897039897039897,
+          "tp": 74,
+          "fn": 31,
+          "tn": 769,
+          "fp": 8,
+          "auc": 0.8651222651222651
+        },
+        "who_catalogue": {
+          "sensitivity": 0.7142857142857143,
+          "specificity": 0.9858429858429858,
+          "tp": 75,
+          "fn": 30,
+          "tn": 766,
+          "fp": 11,
+          "uncertain_fraction": 0.05782312925170068
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.6857142857142857,
+          "specificity": 0.990990990990991,
+          "tp": 72,
+          "fn": 33,
+          "tn": 770,
+          "fp": 7,
+          "uncertain_fraction": 0.06575963718820861
+        }
+      },
+      "Germany": {
+        "n": 732,
+        "n_resistant": 121,
+        "model": {
+          "sensitivity": 0.8925619834710744,
+          "specificity": 0.911620294599018,
+          "tp": 108,
+          "fn": 13,
+          "tn": 557,
+          "fp": 54,
+          "auc": 0.9291028120815354
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8760330578512396,
+          "specificity": 0.9132569558101473,
+          "tp": 106,
+          "fn": 15,
+          "tn": 558,
+          "fp": 53,
+          "uncertain_fraction": 0.060109289617486336
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8677685950413223,
+          "specificity": 0.9132569558101473,
+          "tp": 105,
+          "fn": 16,
+          "tn": 558,
+          "fp": 53,
+          "uncertain_fraction": 0.08743169398907104
+        }
+      },
+      "India": {
+        "n": 1057,
+        "n_resistant": 355,
+        "model": {
+          "sensitivity": 0.9464788732394366,
+          "specificity": 0.8746438746438746,
+          "tp": 336,
+          "fn": 19,
+          "tn": 614,
+          "fp": 88,
+          "auc": 0.9348762088198708
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9295774647887324,
+          "specificity": 0.8732193732193733,
+          "tp": 330,
+          "fn": 25,
+          "tn": 613,
+          "fp": 89,
+          "uncertain_fraction": 0.06717123935666983
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8985915492957747,
+          "specificity": 0.8831908831908832,
+          "tp": 319,
+          "fn": 36,
+          "tn": 620,
+          "fp": 82,
+          "uncertain_fraction": 0.13812677388836328
+        }
+      },
+      "Italy": {
+        "n": 1251,
+        "n_resistant": 181,
+        "model": {
+          "sensitivity": 0.8011049723756906,
+          "specificity": 0.9,
+          "tp": 145,
+          "fn": 36,
+          "tn": 963,
+          "fp": 107,
+          "auc": 0.8604326947901068
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8011049723756906,
+          "specificity": 0.8981308411214953,
+          "tp": 145,
+          "fn": 36,
+          "tn": 961,
+          "fp": 109,
+          "uncertain_fraction": 0.08553157474020784
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.7569060773480663,
+          "specificity": 0.9102803738317757,
+          "tp": 137,
+          "fn": 44,
+          "tn": 974,
+          "fp": 96,
+          "uncertain_fraction": 0.1286970423661071
+        }
+      },
+      "Peru": {
+        "n": 1752,
+        "n_resistant": 127,
+        "model": {
+          "sensitivity": 0.6929133858267716,
+          "specificity": 0.9827692307692307,
+          "tp": 88,
+          "fn": 39,
+          "tn": 1597,
+          "fp": 28,
+          "auc": 0.8291387038158691
+        },
+        "who_catalogue": {
+          "sensitivity": 0.6929133858267716,
+          "specificity": 0.9846153846153847,
+          "tp": 88,
+          "fn": 39,
+          "tn": 1600,
+          "fp": 25,
+          "uncertain_fraction": 0.08789954337899543
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.6220472440944882,
+          "specificity": 0.9876923076923076,
+          "tp": 79,
+          "fn": 48,
+          "tn": 1605,
+          "fp": 20,
+          "uncertain_fraction": 0.1095890410958904
+        }
+      },
+      "South Africa": {
+        "n": 1247,
+        "n_resistant": 229,
+        "model": {
+          "sensitivity": 0.8864628820960698,
+          "specificity": 0.9793713163064833,
+          "tp": 203,
+          "fn": 26,
+          "tn": 997,
+          "fp": 21,
+          "auc": 0.9348967493415464
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8864628820960698,
+          "specificity": 0.9764243614931237,
+          "tp": 203,
+          "fn": 26,
+          "tn": 994,
+          "fp": 24,
+          "uncertain_fraction": 0.07217321571772253
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.777292576419214,
+          "specificity": 0.9803536345776032,
+          "tp": 178,
+          "fn": 51,
+          "tn": 998,
+          "fp": 20,
+          "uncertain_fraction": 0.2822774659182037
+        }
+      },
+      "Sweden": {
+        "n": 353,
+        "n_resistant": 189,
+        "model": {
+          "sensitivity": 0.9470899470899471,
+          "specificity": 0.35365853658536583,
+          "tp": 179,
+          "fn": 10,
+          "tn": 58,
+          "fp": 106,
+          "auc": 0.659875467802297
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9682539682539683,
+          "specificity": 0.3597560975609756,
+          "tp": 183,
+          "fn": 6,
+          "tn": 59,
+          "fp": 105,
+          "uncertain_fraction": 0.039660056657223795
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8888888888888888,
+          "specificity": 0.3902439024390244,
+          "tp": 168,
+          "fn": 21,
+          "tn": 64,
+          "fp": 100,
+          "uncertain_fraction": 0.09631728045325778
+        }
+      }
+    },
+    "other_studies": {
+      "n": 6053,
+      "n_resistant": 1100,
+      "model": {
+        "sensitivity": 0.8672727272727273,
+        "specificity": 0.9267110841913991,
+        "tp": 954,
+        "fn": 146,
+        "tn": 4590,
+        "fp": 363,
+        "auc": 0.9160173815685625
+      },
+      "who_catalogue": {
+        "sensitivity": 0.86,
+        "specificity": 0.9277205733898647,
+        "tp": 946,
+        "fn": 154,
+        "tn": 4595,
+        "fp": 358,
+        "uncertain_fraction": 0.07318684949611763
+      },
+      "cryptic_catalogue": {
+        "sensitivity": 0.8163636363636364,
+        "specificity": 0.9345850999394306,
+        "tp": 898,
+        "fn": 202,
+        "tn": 4629,
+        "fp": 324,
+        "uncertain_fraction": 0.1419131009416818
+      }
+    },
+    "by_study": {
+      "CLIRES2020": {
+        "n": 2297,
+        "n_resistant": 657,
+        "model": {
+          "sensitivity": 0.9162861491628614,
+          "specificity": 0.8390243902439024,
+          "tp": 602,
+          "fn": 55,
+          "tn": 1376,
+          "fp": 264,
+          "auc": 0.9067699632475776
+        },
+        "who_catalogue": {
+          "sensitivity": 0.91324200913242,
+          "specificity": 0.8408536585365853,
+          "tp": 600,
+          "fn": 57,
+          "tn": 1379,
+          "fp": 261,
+          "uncertain_fraction": 0.07096212451023073
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8873668188736682,
+          "specificity": 0.848780487804878,
+          "tp": 583,
+          "fn": 74,
+          "tn": 1392,
+          "fp": 248,
+          "uncertain_fraction": 0.14018284719198956
+        }
+      },
+      "LID2015": {
+        "n": 582,
+        "n_resistant": 22,
+        "model": {
+          "sensitivity": 0.8181818181818182,
+          "specificity": 0.9875,
+          "tp": 18,
+          "fn": 4,
+          "tn": 553,
+          "fp": 7,
+          "auc": 0.8877840909090909
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8181818181818182,
+          "specificity": 0.9910714285714286,
+          "tp": 18,
+          "fn": 4,
+          "tn": 555,
+          "fp": 5,
+          "uncertain_fraction": 0.06701030927835051
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.7727272727272727,
+          "specificity": 0.9928571428571429,
+          "tp": 17,
+          "fn": 5,
+          "tn": 556,
+          "fp": 4,
+          "uncertain_fraction": 0.32130584192439865
+        }
+      },
+      "NEJM2018": {
+        "n": 868,
+        "n_resistant": 215,
+        "model": {
+          "sensitivity": 0.7302325581395349,
+          "specificity": 0.9693721286370597,
+          "tp": 157,
+          "fn": 58,
+          "tn": 633,
+          "fp": 20,
+          "auc": 0.8770469033797501
+        },
+        "who_catalogue": {
+          "sensitivity": 0.7069767441860465,
+          "specificity": 0.9739663093415007,
+          "tp": 152,
+          "fn": 63,
+          "tn": 636,
+          "fp": 17,
+          "uncertain_fraction": 0.05184331797235023
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.6232558139534884,
+          "specificity": 0.9846860643185299,
+          "tp": 134,
+          "fn": 81,
+          "tn": 643,
+          "fp": 10,
+          "uncertain_fraction": 0.0944700460829493
+        }
+      },
+      "PHE2019": {
+        "n": 192,
+        "n_resistant": 37,
+        "model": {
+          "sensitivity": 0.8108108108108109,
+          "specificity": 0.9612903225806452,
+          "tp": 30,
+          "fn": 7,
+          "tn": 149,
+          "fp": 6,
+          "auc": 0.8958151700087184
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8108108108108109,
+          "specificity": 0.9419354838709677,
+          "tp": 30,
+          "fn": 7,
+          "tn": 146,
+          "fp": 9,
+          "uncertain_fraction": 0.15625
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.7837837837837838,
+          "specificity": 0.967741935483871,
+          "tp": 29,
+          "fn": 8,
+          "tn": 150,
+          "fp": 5,
+          "uncertain_fraction": 0.18229166666666666
+        }
+      },
+      "SEQTREAT2020": {
+        "n": 684,
+        "n_resistant": 152,
+        "model": {
+          "sensitivity": 0.8618421052631579,
+          "specificity": 0.9097744360902256,
+          "tp": 131,
+          "fn": 21,
+          "tn": 484,
+          "fp": 48,
+          "auc": 0.9142696379105658
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8618421052631579,
+          "specificity": 0.9097744360902256,
+          "tp": 131,
+          "fn": 21,
+          "tn": 484,
+          "fp": 48,
+          "uncertain_fraction": 0.049707602339181284
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.7894736842105263,
+          "specificity": 0.9191729323308271,
+          "tp": 120,
+          "fn": 32,
+          "tn": 489,
+          "fp": 43,
+          "uncertain_fraction": 0.08771929824561403
+        }
+      }
+    }
+  },
+  {
+    "drug": "AMI",
+    "name": "Amikacin",
+    "low_data": false,
+    "unseen_countries": {
+      "n": 10414,
+      "n_resistant": 764,
+      "model": {
+        "sensitivity": 0.7892670157068062,
+        "specificity": 0.9772020725388602,
+        "tp": 603,
+        "fn": 161,
+        "tn": 9430,
+        "fp": 220,
+        "auc": 0.9030746954941269
+      },
+      "who_catalogue": {
+        "sensitivity": 0.7958115183246073,
+        "specificity": 0.9858031088082901,
+        "tp": 608,
+        "fn": 156,
+        "tn": 9513,
+        "fp": 137,
+        "uncertain_fraction": 0.05771077395813328
+      },
+      "cryptic_catalogue": {
+        "sensitivity": 0.7761780104712042,
+        "specificity": 0.9923316062176166,
+        "tp": 593,
+        "fn": 171,
+        "tn": 9576,
+        "fp": 74,
+        "uncertain_fraction": 0.9328788169771461
+      }
+    },
+    "by_country": {
+      "China": {
+        "n": 986,
+        "n_resistant": 44,
+        "model": {
+          "sensitivity": 0.45454545454545453,
+          "specificity": 0.9893842887473461,
+          "tp": 20,
+          "fn": 24,
+          "tn": 932,
+          "fp": 10,
+          "auc": 0.7319412275622466
+        },
+        "who_catalogue": {
+          "sensitivity": 0.45454545454545453,
+          "specificity": 1.0,
+          "tp": 20,
+          "fn": 24,
+          "tn": 942,
+          "fp": 0,
+          "uncertain_fraction": 0.0821501014198783
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.45454545454545453,
+          "specificity": 1.0,
+          "tp": 20,
+          "fn": 24,
+          "tn": 942,
+          "fp": 0,
+          "uncertain_fraction": 0.9776876267748479
+        }
+      },
+      "Germany": {
+        "n": 1025,
+        "n_resistant": 45,
+        "model": {
+          "sensitivity": 0.7555555555555555,
+          "specificity": 0.939795918367347,
+          "tp": 34,
+          "fn": 11,
+          "tn": 921,
+          "fp": 59,
+          "auc": 0.9080045351473922
+        },
+        "who_catalogue": {
+          "sensitivity": 0.7555555555555555,
+          "specificity": 0.9714285714285714,
+          "tp": 34,
+          "fn": 11,
+          "tn": 952,
+          "fp": 28,
+          "uncertain_fraction": 0.07609756097560975
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.7111111111111111,
+          "specificity": 0.9887755102040816,
+          "tp": 32,
+          "fn": 13,
+          "tn": 969,
+          "fp": 11,
+          "uncertain_fraction": 0.9570731707317073
+        }
+      },
+      "India": {
+        "n": 1339,
+        "n_resistant": 92,
+        "model": {
+          "sensitivity": 0.5978260869565217,
+          "specificity": 0.9807538091419407,
+          "tp": 55,
+          "fn": 37,
+          "tn": 1223,
+          "fp": 24,
+          "auc": 0.8444396987552735
+        },
+        "who_catalogue": {
+          "sensitivity": 0.5978260869565217,
+          "specificity": 0.9879711307137129,
+          "tp": 55,
+          "fn": 37,
+          "tn": 1232,
+          "fp": 15,
+          "uncertain_fraction": 0.07244212098581031
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.5869565217391305,
+          "specificity": 0.9943865276663993,
+          "tp": 54,
+          "fn": 38,
+          "tn": 1240,
+          "fp": 7,
+          "uncertain_fraction": 0.9514563106796117
+        }
+      },
+      "Italy": {
+        "n": 1487,
+        "n_resistant": 116,
+        "model": {
+          "sensitivity": 0.8017241379310345,
+          "specificity": 0.9715536105032823,
+          "tp": 93,
+          "fn": 23,
+          "tn": 1332,
+          "fp": 39,
+          "auc": 0.9166823863779271
+        },
+        "who_catalogue": {
+          "sensitivity": 0.7931034482758621,
+          "specificity": 0.9890590809628009,
+          "tp": 92,
+          "fn": 24,
+          "tn": 1356,
+          "fp": 15,
+          "uncertain_fraction": 0.0699394754539341
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.7758620689655172,
+          "specificity": 0.9963530269876003,
+          "tp": 90,
+          "fn": 26,
+          "tn": 1366,
+          "fp": 5,
+          "uncertain_fraction": 0.933422999327505
+        }
+      },
+      "Peru": {
+        "n": 2399,
+        "n_resistant": 144,
+        "model": {
+          "sensitivity": 0.875,
+          "specificity": 0.991130820399113,
+          "tp": 126,
+          "fn": 18,
+          "tn": 2235,
+          "fp": 20,
+          "auc": 0.9510516752894801
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8888888888888888,
+          "specificity": 0.9920177383592018,
+          "tp": 128,
+          "fn": 16,
+          "tn": 2237,
+          "fp": 18,
+          "uncertain_fraction": 0.020842017507294707
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8611111111111112,
+          "specificity": 0.9933481152993349,
+          "tp": 124,
+          "fn": 20,
+          "tn": 2240,
+          "fp": 15,
+          "uncertain_fraction": 0.9378907878282617
+        }
+      },
+      "South Africa": {
+        "n": 1494,
+        "n_resistant": 220,
+        "model": {
+          "sensitivity": 0.9227272727272727,
+          "specificity": 0.9921507064364207,
+          "tp": 203,
+          "fn": 17,
+          "tn": 1264,
+          "fp": 10,
+          "auc": 0.9716033966033967
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9272727272727272,
+          "specificity": 0.9968602825745683,
+          "tp": 204,
+          "fn": 16,
+          "tn": 1270,
+          "fp": 4,
+          "uncertain_fraction": 0.05689424364123159
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9227272727272727,
+          "specificity": 0.9968602825745683,
+          "tp": 203,
+          "fn": 17,
+          "tn": 1270,
+          "fp": 4,
+          "uncertain_fraction": 0.857429718875502
+        }
+      },
+      "Sweden": {
+        "n": 354,
+        "n_resistant": 82,
+        "model": {
+          "sensitivity": 0.8170731707317073,
+          "specificity": 0.8455882352941176,
+          "tp": 67,
+          "fn": 15,
+          "tn": 230,
+          "fp": 42,
+          "auc": 0.8698439741750358
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8658536585365854,
+          "specificity": 0.7904411764705882,
+          "tp": 71,
+          "fn": 11,
+          "tn": 215,
+          "fp": 57,
+          "uncertain_fraction": 0.022598870056497175
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8048780487804879,
+          "specificity": 0.8823529411764706,
+          "tp": 66,
+          "fn": 16,
+          "tn": 240,
+          "fp": 32,
+          "uncertain_fraction": 0.7231638418079096
+        }
+      }
+    },
+    "other_studies": {
+      "n": 7915,
+      "n_resistant": 659,
+      "model": {
+        "sensitivity": 0.6904400606980273,
+        "specificity": 0.9911797133406836,
+        "tp": 455,
+        "fn": 204,
+        "tn": 7192,
+        "fp": 64,
+        "auc": 0.8822694796666628
+      },
+      "who_catalogue": {
+        "sensitivity": 0.7465857359635811,
+        "specificity": 0.9856670341786108,
+        "tp": 492,
+        "fn": 167,
+        "tn": 7152,
+        "fp": 104,
+        "uncertain_fraction": 0.09084017687934302
+      },
+      "cryptic_catalogue": {
+        "sensitivity": 0.6949924127465857,
+        "specificity": 0.9958654906284454,
+        "tp": 458,
+        "fn": 201,
+        "tn": 7226,
+        "fp": 30,
+        "uncertain_fraction": 0.9370814908401769
+      }
+    },
+    "by_study": {
+      "CLIRES2020": {
+        "n": 2166,
+        "n_resistant": 130,
+        "model": {
+          "sensitivity": 0.5846153846153846,
+          "specificity": 0.9837917485265226,
+          "tp": 76,
+          "fn": 54,
+          "tn": 2003,
+          "fp": 33,
+          "auc": 0.8641963880912801
+        },
+        "who_catalogue": {
+          "sensitivity": 0.5923076923076923,
+          "specificity": 0.9911591355599214,
+          "tp": 77,
+          "fn": 53,
+          "tn": 2018,
+          "fp": 18,
+          "uncertain_fraction": 0.06509695290858726
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.5692307692307692,
+          "specificity": 0.9931237721021611,
+          "tp": 74,
+          "fn": 56,
+          "tn": 2022,
+          "fp": 14,
+          "uncertain_fraction": 0.9584487534626038
+        }
+      },
+      "LID2015": {
+        "n": 770,
+        "n_resistant": 61,
+        "model": {
+          "sensitivity": 0.639344262295082,
+          "specificity": 0.998589562764457,
+          "tp": 39,
+          "fn": 22,
+          "tn": 708,
+          "fp": 1,
+          "auc": 0.884586926865361
+        },
+        "who_catalogue": {
+          "sensitivity": 0.6557377049180327,
+          "specificity": 0.9887165021156559,
+          "tp": 40,
+          "fn": 21,
+          "tn": 701,
+          "fp": 8,
+          "uncertain_fraction": 0.06753246753246753
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.639344262295082,
+          "specificity": 0.998589562764457,
+          "tp": 39,
+          "fn": 22,
+          "tn": 708,
+          "fp": 1,
+          "uncertain_fraction": 0.948051948051948
+        }
+      },
+      "NEJM2018": {
+        "n": 2031,
+        "n_resistant": 171,
+        "model": {
+          "sensitivity": 0.631578947368421,
+          "specificity": 0.9946236559139785,
+          "tp": 108,
+          "fn": 63,
+          "tn": 1850,
+          "fp": 10,
+          "auc": 0.8711988304093568
+        },
+        "who_catalogue": {
+          "sensitivity": 0.695906432748538,
+          "specificity": 0.9833333333333333,
+          "tp": 119,
+          "fn": 52,
+          "tn": 1829,
+          "fp": 31,
+          "uncertain_fraction": 0.13884785819793205
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.6549707602339181,
+          "specificity": 0.9973118279569892,
+          "tp": 112,
+          "fn": 59,
+          "tn": 1855,
+          "fp": 5,
+          "uncertain_fraction": 0.9414081733136386
+        }
+      },
+      "SEQTREAT2020": {
+        "n": 1923,
+        "n_resistant": 241,
+        "model": {
+          "sensitivity": 0.7468879668049793,
+          "specificity": 0.9898929845422116,
+          "tp": 180,
+          "fn": 61,
+          "tn": 1665,
+          "fp": 17,
+          "auc": 0.9100729718128489
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8464730290456431,
+          "specificity": 0.9797859690844233,
+          "tp": 204,
+          "fn": 37,
+          "tn": 1648,
+          "fp": 34,
+          "uncertain_fraction": 0.0873634945397816
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.7551867219917012,
+          "specificity": 0.9958382877526754,
+          "tp": 182,
+          "fn": 59,
+          "tn": 1675,
+          "fp": 7,
+          "uncertain_fraction": 0.9006760270410816
+        }
+      },
+      "WHO2019": {
+        "n": 840,
+        "n_resistant": 44,
+        "model": {
+          "sensitivity": 0.9090909090909091,
+          "specificity": 0.9962311557788944,
+          "tp": 40,
+          "fn": 4,
+          "tn": 793,
+          "fp": 3,
+          "auc": 0.9853243490178164
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9090909090909091,
+          "specificity": 0.9861809045226131,
+          "tp": 40,
+          "fn": 4,
+          "tn": 785,
+          "fp": 11,
+          "uncertain_fraction": 0.058333333333333334
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9090909090909091,
+          "specificity": 0.9962311557788944,
+          "tp": 40,
+          "fn": 4,
+          "tn": 793,
+          "fp": 3,
+          "uncertain_fraction": 0.9452380952380952
+        }
+      }
+    }
+  },
+  {
+    "drug": "KAN",
+    "name": "Kanamycin",
+    "low_data": false,
+    "unseen_countries": {
+      "n": 10793,
+      "n_resistant": 990,
+      "model": {
+        "sensitivity": 0.795959595959596,
+        "specificity": 0.9513414260940528,
+        "tp": 788,
+        "fn": 202,
+        "tn": 9326,
+        "fp": 477,
+        "auc": 0.8857842940266689
+      },
+      "who_catalogue": {
+        "sensitivity": 0.7929292929292929,
+        "specificity": 0.9716413342854229,
+        "tp": 785,
+        "fn": 205,
+        "tn": 9525,
+        "fp": 278,
+        "uncertain_fraction": 0.06105809320856111
+      },
+      "cryptic_catalogue": {
+        "sensitivity": 0.7111111111111111,
+        "specificity": 0.9887789452208507,
+        "tp": 704,
+        "fn": 286,
+        "tn": 9693,
+        "fp": 110,
+        "uncertain_fraction": 0.9214305568423978
+      }
+    },
+    "by_country": {
+      "China": {
+        "n": 984,
+        "n_resistant": 42,
+        "model": {
+          "sensitivity": 0.5714285714285714,
+          "specificity": 0.9957537154989384,
+          "tp": 24,
+          "fn": 18,
+          "tn": 938,
+          "fp": 4,
+          "auc": 0.8400692548781721
+        },
+        "who_catalogue": {
+          "sensitivity": 0.5714285714285714,
+          "specificity": 0.9989384288747346,
+          "tp": 24,
+          "fn": 18,
+          "tn": 941,
+          "fp": 1,
+          "uncertain_fraction": 0.08739837398373984
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.5714285714285714,
+          "specificity": 0.9989384288747346,
+          "tp": 24,
+          "fn": 18,
+          "tn": 941,
+          "fp": 1,
+          "uncertain_fraction": 0.9715447154471545
+        }
+      },
+      "Germany": {
+        "n": 999,
+        "n_resistant": 80,
+        "model": {
+          "sensitivity": 0.85,
+          "specificity": 0.9357997823721437,
+          "tp": 68,
+          "fn": 12,
+          "tn": 860,
+          "fp": 59,
+          "auc": 0.937227965179543
+        },
+        "who_catalogue": {
+          "sensitivity": 0.85,
+          "specificity": 0.9347116430903155,
+          "tp": 68,
+          "fn": 12,
+          "tn": 859,
+          "fp": 60,
+          "uncertain_fraction": 0.06406406406406406
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.7375,
+          "specificity": 0.9608269858541894,
+          "tp": 59,
+          "fn": 21,
+          "tn": 883,
+          "fp": 36,
+          "uncertain_fraction": 0.9039039039039038
+        }
+      },
+      "India": {
+        "n": 1309,
+        "n_resistant": 112,
+        "model": {
+          "sensitivity": 0.6428571428571429,
+          "specificity": 0.985797827903091,
+          "tp": 72,
+          "fn": 40,
+          "tn": 1180,
+          "fp": 17,
+          "auc": 0.841952351115885
+        },
+        "who_catalogue": {
+          "sensitivity": 0.6517857142857143,
+          "specificity": 0.9682539682539683,
+          "tp": 73,
+          "fn": 39,
+          "tn": 1159,
+          "fp": 38,
+          "uncertain_fraction": 0.07410236822001529
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.5803571428571429,
+          "specificity": 0.9941520467836257,
+          "tp": 65,
+          "fn": 47,
+          "tn": 1190,
+          "fp": 7,
+          "uncertain_fraction": 0.9427043544690603
+        }
+      },
+      "Italy": {
+        "n": 1543,
+        "n_resistant": 171,
+        "model": {
+          "sensitivity": 0.8245614035087719,
+          "specificity": 0.9620991253644315,
+          "tp": 141,
+          "fn": 30,
+          "tn": 1320,
+          "fp": 52,
+          "auc": 0.9232669258179462
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8187134502923976,
+          "specificity": 0.9766763848396501,
+          "tp": 140,
+          "fn": 31,
+          "tn": 1340,
+          "fp": 32,
+          "uncertain_fraction": 0.07193778353856124
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.6140350877192983,
+          "specificity": 0.9919825072886297,
+          "tp": 105,
+          "fn": 66,
+          "tn": 1361,
+          "fp": 11,
+          "uncertain_fraction": 0.9215813350615684
+        }
+      },
+      "Peru": {
+        "n": 2423,
+        "n_resistant": 175,
+        "model": {
+          "sensitivity": 0.8571428571428571,
+          "specificity": 0.9070284697508897,
+          "tp": 150,
+          "fn": 25,
+          "tn": 2039,
+          "fp": 209,
+          "auc": 0.937591509913574
+        },
+        "who_catalogue": {
+          "sensitivity": 0.84,
+          "specificity": 0.9906583629893239,
+          "tp": 147,
+          "fn": 28,
+          "tn": 2227,
+          "fp": 21,
+          "uncertain_fraction": 0.01939744118860916
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8114285714285714,
+          "specificity": 0.9915480427046264,
+          "tp": 142,
+          "fn": 33,
+          "tn": 2229,
+          "fp": 19,
+          "uncertain_fraction": 0.9290136194799835
+        }
+      },
+      "South Africa": {
+        "n": 1702,
+        "n_resistant": 273,
+        "model": {
+          "sensitivity": 0.7655677655677655,
+          "specificity": 0.9944016794961511,
+          "tp": 209,
+          "fn": 64,
+          "tn": 1421,
+          "fp": 8,
+          "auc": 0.8768113155796851
+        },
+        "who_catalogue": {
+          "sensitivity": 0.7655677655677655,
+          "specificity": 0.9958012596221134,
+          "tp": 209,
+          "fn": 64,
+          "tn": 1423,
+          "fp": 6,
+          "uncertain_fraction": 0.07109283196239718
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.7472527472527473,
+          "specificity": 0.9972008397480756,
+          "tp": 204,
+          "fn": 69,
+          "tn": 1425,
+          "fp": 4,
+          "uncertain_fraction": 0.8736780258519389
+        }
+      },
+      "Sweden": {
+        "n": 353,
+        "n_resistant": 126,
+        "model": {
+          "sensitivity": 0.9285714285714286,
+          "specificity": 0.4801762114537445,
+          "tp": 117,
+          "fn": 9,
+          "tn": 109,
+          "fp": 118,
+          "auc": 0.8492063492063492
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9285714285714286,
+          "specificity": 0.4801762114537445,
+          "tp": 117,
+          "fn": 9,
+          "tn": 109,
+          "fp": 118,
+          "uncertain_fraction": 0.014164305949008499
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.7777777777777778,
+          "specificity": 0.8590308370044053,
+          "tp": 98,
+          "fn": 28,
+          "tn": 195,
+          "fp": 32,
+          "uncertain_fraction": 0.6317280453257791
+        }
+      }
+    },
+    "other_studies": {
+      "n": 6475,
+      "n_resistant": 594,
+      "model": {
+        "sensitivity": 0.6666666666666666,
+        "specificity": 0.977894915830641,
+        "tp": 396,
+        "fn": 198,
+        "tn": 5751,
+        "fp": 130,
+        "auc": 0.8828557925225159
+      },
+      "who_catalogue": {
+        "sensitivity": 0.7171717171717171,
+        "specificity": 0.9797653460295868,
+        "tp": 426,
+        "fn": 168,
+        "tn": 5762,
+        "fp": 119,
+        "uncertain_fraction": 0.07444015444015444
+      },
+      "cryptic_catalogue": {
+        "sensitivity": 0.5925925925925926,
+        "specificity": 0.9933684747491923,
+        "tp": 352,
+        "fn": 242,
+        "tn": 5842,
+        "fp": 39,
+        "uncertain_fraction": 0.9383783783783783
+      }
+    },
+    "by_study": {
+      "CLIRES2020": {
+        "n": 2528,
+        "n_resistant": 227,
+        "model": {
+          "sensitivity": 0.5198237885462555,
+          "specificity": 0.9708822251195133,
+          "tp": 118,
+          "fn": 109,
+          "tn": 2234,
+          "fp": 67,
+          "auc": 0.8256590220302608
+        },
+        "who_catalogue": {
+          "sensitivity": 0.6123348017621145,
+          "specificity": 0.963928726640591,
+          "tp": 139,
+          "fn": 88,
+          "tn": 2218,
+          "fp": 83,
+          "uncertain_fraction": 0.06645569620253164
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.4713656387665198,
+          "specificity": 0.9900043459365493,
+          "tp": 107,
+          "fn": 120,
+          "tn": 2278,
+          "fp": 23,
+          "uncertain_fraction": 0.9477848101265823
+        }
+      },
+      "NEJM2018": {
+        "n": 1513,
+        "n_resistant": 182,
+        "model": {
+          "sensitivity": 0.7417582417582418,
+          "specificity": 0.9827197595792637,
+          "tp": 135,
+          "fn": 47,
+          "tn": 1308,
+          "fp": 23,
+          "auc": 0.8982236771492971
+        },
+        "who_catalogue": {
+          "sensitivity": 0.7747252747252747,
+          "specificity": 0.9932381667918858,
+          "tp": 141,
+          "fn": 41,
+          "tn": 1322,
+          "fp": 9,
+          "uncertain_fraction": 0.0680766688697951
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.7307692307692307,
+          "specificity": 0.9984973703981969,
+          "tp": 133,
+          "fn": 49,
+          "tn": 1329,
+          "fp": 2,
+          "uncertain_fraction": 0.9094514210178454
+        }
+      },
+      "SEQTREAT2020": {
+        "n": 598,
+        "n_resistant": 59,
+        "model": {
+          "sensitivity": 0.6779661016949152,
+          "specificity": 0.9628942486085343,
+          "tp": 40,
+          "fn": 19,
+          "tn": 519,
+          "fp": 20,
+          "auc": 0.8722052765636301
+        },
+        "who_catalogue": {
+          "sensitivity": 0.711864406779661,
+          "specificity": 0.974025974025974,
+          "tp": 42,
+          "fn": 17,
+          "tn": 525,
+          "fp": 14,
+          "uncertain_fraction": 0.1254180602006689
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.5423728813559322,
+          "specificity": 0.9833024118738405,
+          "tp": 32,
+          "fn": 27,
+          "tn": 530,
+          "fp": 9,
+          "uncertain_fraction": 0.931438127090301
+        }
+      },
+      "WHO2019": {
+        "n": 1099,
+        "n_resistant": 95,
+        "model": {
+          "sensitivity": 0.8210526315789474,
+          "specificity": 0.9870517928286853,
+          "tp": 78,
+          "fn": 17,
+          "tn": 991,
+          "fp": 13,
+          "auc": 0.9473474522960788
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8315789473684211,
+          "specificity": 0.9880478087649402,
+          "tp": 79,
+          "fn": 16,
+          "tn": 992,
+          "fp": 12,
+          "uncertain_fraction": 0.056414922656960874
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.5894736842105263,
+          "specificity": 0.9950199203187251,
+          "tp": 56,
+          "fn": 39,
+          "tn": 999,
+          "fp": 5,
+          "uncertain_fraction": 0.9417652411282984
+        }
+      }
+    }
+  },
+  {
+    "drug": "ETH",
+    "name": "Ethionamide",
+    "low_data": false,
+    "unseen_countries": {
+      "n": 9508,
+      "n_resistant": 1532,
+      "model": {
+        "sensitivity": 0.7460835509138382,
+        "specificity": 0.9642678034102307,
+        "tp": 1143,
+        "fn": 389,
+        "tn": 7691,
+        "fp": 285,
+        "auc": 0.8666054053151622
+      },
+      "who_catalogue": {
+        "sensitivity": 0.685378590078329,
+        "specificity": 0.9700351053159478,
+        "tp": 1050,
+        "fn": 482,
+        "tn": 7737,
+        "fp": 239,
+        "uncertain_fraction": 0.1393563315103071
+      },
+      "cryptic_catalogue": {
+        "sensitivity": 0.5887728459530026,
+        "specificity": 0.9899699097291875,
+        "tp": 902,
+        "fn": 630,
+        "tn": 7896,
+        "fp": 80,
+        "uncertain_fraction": 0.5224021876314683
+      }
+    },
+    "by_country": {
+      "Brazil": {
+        "n": 251,
+        "n_resistant": 39,
+        "model": {
+          "sensitivity": 1.0,
+          "specificity": 0.9905660377358491,
+          "tp": 39,
+          "fn": 0,
+          "tn": 210,
+          "fp": 2,
+          "auc": 0.9996371552975327
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9230769230769231,
+          "specificity": 0.9952830188679245,
+          "tp": 36,
+          "fn": 3,
+          "tn": 211,
+          "fp": 1,
+          "uncertain_fraction": 0.043824701195219126
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9230769230769231,
+          "specificity": 0.9952830188679245,
+          "tp": 36,
+          "fn": 3,
+          "tn": 211,
+          "fp": 1,
+          "uncertain_fraction": 0.3904382470119522
+        }
+      },
+      "China": {
+        "n": 955,
+        "n_resistant": 69,
+        "model": {
+          "sensitivity": 0.5507246376811594,
+          "specificity": 0.9875846501128668,
+          "tp": 38,
+          "fn": 31,
+          "tn": 875,
+          "fp": 11,
+          "auc": 0.8172784375306703
+        },
+        "who_catalogue": {
+          "sensitivity": 0.6231884057971014,
+          "specificity": 0.9875846501128668,
+          "tp": 43,
+          "fn": 26,
+          "tn": 875,
+          "fp": 11,
+          "uncertain_fraction": 0.2
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.37681159420289856,
+          "specificity": 0.9988713318284425,
+          "tp": 26,
+          "fn": 43,
+          "tn": 885,
+          "fp": 1,
+          "uncertain_fraction": 0.6492146596858639
+        }
+      },
+      "Germany": {
+        "n": 832,
+        "n_resistant": 100,
+        "model": {
+          "sensitivity": 0.65,
+          "specificity": 0.9781420765027322,
+          "tp": 65,
+          "fn": 35,
+          "tn": 716,
+          "fp": 16,
+          "auc": 0.9114344262295082
+        },
+        "who_catalogue": {
+          "sensitivity": 0.54,
+          "specificity": 0.976775956284153,
+          "tp": 54,
+          "fn": 46,
+          "tn": 715,
+          "fp": 17,
+          "uncertain_fraction": 0.17067307692307693
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.56,
+          "specificity": 0.9972677595628415,
+          "tp": 56,
+          "fn": 44,
+          "tn": 730,
+          "fp": 2,
+          "uncertain_fraction": 0.59375
+        }
+      },
+      "India": {
+        "n": 1171,
+        "n_resistant": 245,
+        "model": {
+          "sensitivity": 0.6653061224489796,
+          "specificity": 0.8844492440604752,
+          "tp": 163,
+          "fn": 82,
+          "tn": 819,
+          "fp": 107,
+          "auc": 0.8132542865958479
+        },
+        "who_catalogue": {
+          "sensitivity": 0.6081632653061224,
+          "specificity": 0.9384449244060475,
+          "tp": 149,
+          "fn": 96,
+          "tn": 869,
+          "fp": 57,
+          "uncertain_fraction": 0.20836891545687447
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.5428571428571428,
+          "specificity": 0.9751619870410367,
+          "tp": 133,
+          "fn": 112,
+          "tn": 903,
+          "fp": 23,
+          "uncertain_fraction": 0.5072587532023911
+        }
+      },
+      "Italy": {
+        "n": 1454,
+        "n_resistant": 235,
+        "model": {
+          "sensitivity": 0.6851063829787234,
+          "specificity": 0.9696472518457753,
+          "tp": 161,
+          "fn": 74,
+          "tn": 1182,
+          "fp": 37,
+          "auc": 0.8623217496029184
+        },
+        "who_catalogue": {
+          "sensitivity": 0.676595744680851,
+          "specificity": 0.9598031173092699,
+          "tp": 159,
+          "fn": 76,
+          "tn": 1170,
+          "fp": 49,
+          "uncertain_fraction": 0.10041265474552957
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.5872340425531914,
+          "specificity": 0.9876948318293683,
+          "tp": 138,
+          "fn": 97,
+          "tn": 1204,
+          "fp": 15,
+          "uncertain_fraction": 0.40096286107290235
+        }
+      },
+      "Peru": {
+        "n": 2111,
+        "n_resistant": 266,
+        "model": {
+          "sensitivity": 0.7330827067669173,
+          "specificity": 0.9826558265582656,
+          "tp": 195,
+          "fn": 71,
+          "tn": 1813,
+          "fp": 32,
+          "auc": 0.8631935529881615
+        },
+        "who_catalogue": {
+          "sensitivity": 0.706766917293233,
+          "specificity": 0.9777777777777777,
+          "tp": 188,
+          "fn": 78,
+          "tn": 1804,
+          "fp": 41,
+          "uncertain_fraction": 0.12790146849834202
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.6654135338345865,
+          "specificity": 0.994579945799458,
+          "tp": 177,
+          "fn": 89,
+          "tn": 1835,
+          "fp": 10,
+          "uncertain_fraction": 0.47465656087162483
+        }
+      },
+      "South Africa": {
+        "n": 1541,
+        "n_resistant": 293,
+        "model": {
+          "sensitivity": 0.8225255972696246,
+          "specificity": 0.9743589743589743,
+          "tp": 241,
+          "fn": 52,
+          "tn": 1216,
+          "fp": 32,
+          "auc": 0.8987485779294654
+        },
+        "who_catalogue": {
+          "sensitivity": 0.7235494880546075,
+          "specificity": 0.9783653846153846,
+          "tp": 212,
+          "fn": 81,
+          "tn": 1221,
+          "fp": 27,
+          "uncertain_fraction": 0.09474367293964958
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.5255972696245734,
+          "specificity": 0.9887820512820513,
+          "tp": 154,
+          "fn": 139,
+          "tn": 1234,
+          "fp": 14,
+          "uncertain_fraction": 0.45425048669695
+        }
+      },
+      "Sweden": {
+        "n": 244,
+        "n_resistant": 179,
+        "model": {
+          "sensitivity": 0.9050279329608939,
+          "specificity": 0.4307692307692308,
+          "tp": 162,
+          "fn": 17,
+          "tn": 28,
+          "fp": 37,
+          "auc": 0.7972067039106144
+        },
+        "who_catalogue": {
+          "sensitivity": 0.7653631284916201,
+          "specificity": 0.5538461538461539,
+          "tp": 137,
+          "fn": 42,
+          "tn": 36,
+          "fp": 29,
+          "uncertain_fraction": 0.24180327868852458
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.6089385474860335,
+          "specificity": 0.8769230769230769,
+          "tp": 109,
+          "fn": 70,
+          "tn": 57,
+          "fp": 8,
+          "uncertain_fraction": 0.4959016393442623
+        }
+      },
+      "Vietnam": {
+        "n": 870,
+        "n_resistant": 87,
+        "model": {
+          "sensitivity": 0.7011494252873564,
+          "specificity": 0.9897828863346104,
+          "tp": 61,
+          "fn": 26,
+          "tn": 775,
+          "fp": 8,
+          "auc": 0.8033719411047988
+        },
+        "who_catalogue": {
+          "sensitivity": 0.632183908045977,
+          "specificity": 0.9936143039591315,
+          "tp": 55,
+          "fn": 32,
+          "tn": 778,
+          "fp": 5,
+          "uncertain_fraction": 0.1206896551724138
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.6436781609195402,
+          "specificity": 0.9936143039591315,
+          "tp": 56,
+          "fn": 31,
+          "tn": 778,
+          "fp": 5,
+          "uncertain_fraction": 0.8172413793103448
+        }
+      }
+    },
+    "other_studies": {
+      "n": 2702,
+      "n_resistant": 785,
+      "model": {
+        "sensitivity": 0.5337579617834395,
+        "specificity": 0.8768909754825248,
+        "tp": 419,
+        "fn": 366,
+        "tn": 1681,
+        "fp": 236,
+        "auc": 0.7718296568749606
+      },
+      "who_catalogue": {
+        "sensitivity": 0.48152866242038217,
+        "specificity": 0.8894105372978612,
+        "tp": 378,
+        "fn": 407,
+        "tn": 1705,
+        "fp": 212,
+        "uncertain_fraction": 0.21687638786084382
+      },
+      "cryptic_catalogue": {
+        "sensitivity": 0.38471337579617837,
+        "specificity": 0.9061032863849765,
+        "tp": 302,
+        "fn": 483,
+        "tn": 1737,
+        "fp": 180,
+        "uncertain_fraction": 0.4848260547742413
+      }
+    },
+    "by_study": {
+      "CLIRES2020": {
+        "n": 2202,
+        "n_resistant": 699,
+        "model": {
+          "sensitivity": 0.530758226037196,
+          "specificity": 0.9434464404524284,
+          "tp": 371,
+          "fn": 328,
+          "tn": 1418,
+          "fp": 85,
+          "auc": 0.8006704759294001
+        },
+        "who_catalogue": {
+          "sensitivity": 0.4892703862660944,
+          "specificity": 0.9554224883566201,
+          "tp": 342,
+          "fn": 357,
+          "tn": 1436,
+          "fp": 67,
+          "uncertain_fraction": 0.21071752951861944
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.3791130185979971,
+          "specificity": 0.9660678642714571,
+          "tp": 265,
+          "fn": 434,
+          "tn": 1452,
+          "fp": 51,
+          "uncertain_fraction": 0.4913714804722979
+        }
+      },
+      "SEQTREAT2020": {
+        "n": 478,
+        "n_resistant": 74,
+        "model": {
+          "sensitivity": 0.5,
+          "specificity": 0.6287128712871287,
+          "tp": 37,
+          "fn": 37,
+          "tn": 254,
+          "fp": 150,
+          "auc": 0.6461399518330211
+        },
+        "who_catalogue": {
+          "sensitivity": 0.40540540540540543,
+          "specificity": 0.6435643564356436,
+          "tp": 30,
+          "fn": 44,
+          "tn": 260,
+          "fp": 144,
+          "uncertain_fraction": 0.2405857740585774
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.35135135135135137,
+          "specificity": 0.6831683168316832,
+          "tp": 26,
+          "fn": 48,
+          "tn": 276,
+          "fp": 128,
+          "uncertain_fraction": 0.4665271966527197
+        }
+      }
+    }
+  },
+  {
+    "drug": "RFB",
+    "name": "Rifabutin",
+    "low_data": false,
+    "unseen_countries": {
+      "n": 11500,
+      "n_resistant": 4069,
+      "model": {
+        "sensitivity": 0.9252887687392479,
+        "specificity": 0.9535728704077513,
+        "tp": 3765,
+        "fn": 304,
+        "tn": 7086,
+        "fp": 345,
+        "auc": 0.9645710802345452
+      },
+      "who_catalogue": null,
+      "cryptic_catalogue": null
+    },
+    "by_country": {
+      "Brazil": {
+        "n": 321,
+        "n_resistant": 72,
+        "model": {
+          "sensitivity": 0.8472222222222222,
+          "specificity": 0.9879518072289156,
+          "tp": 61,
+          "fn": 11,
+          "tn": 246,
+          "fp": 3,
+          "auc": 0.948711512717537
+        },
+        "who_catalogue": null,
+        "cryptic_catalogue": null
+      },
+      "China": {
+        "n": 1002,
+        "n_resistant": 223,
+        "model": {
+          "sensitivity": 0.8385650224215246,
+          "specificity": 0.9833119383825417,
+          "tp": 187,
+          "fn": 36,
+          "tn": 766,
+          "fp": 13,
+          "auc": 0.9348020055607683
+        },
+        "who_catalogue": null,
+        "cryptic_catalogue": null
+      },
+      "Germany": {
+        "n": 1043,
+        "n_resistant": 402,
+        "model": {
+          "sensitivity": 0.9776119402985075,
+          "specificity": 0.9703588143525741,
+          "tp": 393,
+          "fn": 9,
+          "tn": 622,
+          "fp": 19,
+          "auc": 0.9844634083870816
+        },
+        "who_catalogue": null,
+        "cryptic_catalogue": null
+      },
+      "India": {
+        "n": 1393,
+        "n_resistant": 664,
+        "model": {
+          "sensitivity": 0.9518072289156626,
+          "specificity": 0.9286694101508917,
+          "tp": 632,
+          "fn": 32,
+          "tn": 677,
+          "fp": 52,
+          "auc": 0.9479223478275242
+        },
+        "who_catalogue": null,
+        "cryptic_catalogue": null
+      },
+      "Italy": {
+        "n": 1677,
+        "n_resistant": 842,
+        "model": {
+          "sensitivity": 0.9156769596199525,
+          "specificity": 0.9377245508982036,
+          "tp": 771,
+          "fn": 71,
+          "tn": 783,
+          "fp": 52,
+          "auc": 0.9636074644061045
+        },
+        "who_catalogue": null,
+        "cryptic_catalogue": null
+      },
+      "Peru": {
+        "n": 2448,
+        "n_resistant": 604,
+        "model": {
+          "sensitivity": 0.9536423841059603,
+          "specificity": 0.9105206073752712,
+          "tp": 576,
+          "fn": 28,
+          "tn": 1679,
+          "fp": 165,
+          "auc": 0.9702745435347861
+        },
+        "who_catalogue": null,
+        "cryptic_catalogue": null
+      },
+      "South Africa": {
+        "n": 1960,
+        "n_resistant": 604,
+        "model": {
+          "sensitivity": 0.8791390728476821,
+          "specificity": 0.9786135693215339,
+          "tp": 531,
+          "fn": 73,
+          "tn": 1327,
+          "fp": 29,
+          "auc": 0.9639253550567504
+        },
+        "who_catalogue": null,
+        "cryptic_catalogue": null
+      },
+      "Vietnam": {
+        "n": 1195,
+        "n_resistant": 209,
+        "model": {
+          "sensitivity": 0.8755980861244019,
+          "specificity": 0.9929006085192698,
+          "tp": 183,
+          "fn": 26,
+          "tn": 979,
+          "fp": 7,
+          "auc": 0.9598518008094179
+        },
+        "who_catalogue": null,
+        "cryptic_catalogue": null
+      }
+    },
+    "other_studies": {
+      "n": 229,
+      "n_resistant": 131,
+      "model": {
+        "sensitivity": 0.9694656488549618,
+        "specificity": 0.8367346938775511,
+        "tp": 127,
+        "fn": 4,
+        "tn": 82,
+        "fp": 16,
+        "auc": 0.9522121825829568
+      },
+      "who_catalogue": null,
+      "cryptic_catalogue": null
+    },
+    "by_study": {
+      "SEQTREAT2020": {
+        "n": 162,
+        "n_resistant": 76,
+        "model": {
+          "sensitivity": 0.9736842105263158,
+          "specificity": 0.872093023255814,
+          "tp": 74,
+          "fn": 2,
+          "tn": 75,
+          "fp": 11,
+          "auc": 0.961750305997552
+        },
+        "who_catalogue": null,
+        "cryptic_catalogue": null
+      }
+    }
+  },
+  {
+    "drug": "BDQ",
+    "name": "Bedaquiline",
+    "low_data": true,
+    "unseen_countries": {
+      "n": 9982,
+      "n_resistant": 94,
+      "model": {
+        "sensitivity": 0.5106382978723404,
+        "specificity": 0.8305016181229773,
+        "tp": 48,
+        "fn": 46,
+        "tn": 8212,
+        "fp": 1676,
+        "auc": 0.6271097999724575
+      },
+      "who_catalogue": {
+        "sensitivity": 0.05319148936170213,
+        "specificity": 0.997876213592233,
+        "tp": 5,
+        "fn": 89,
+        "tn": 9867,
+        "fp": 21,
+        "uncertain_fraction": 0.037868162692847124
+      },
+      "cryptic_catalogue": null
+    },
+    "by_country": {
+      "South Africa": {
+        "n": 1753,
+        "n_resistant": 32,
+        "model": {
+          "sensitivity": 0.5625,
+          "specificity": 0.8657757117954678,
+          "tp": 18,
+          "fn": 14,
+          "tn": 1490,
+          "fp": 231,
+          "auc": 0.7315786606624055
+        },
+        "who_catalogue": {
+          "sensitivity": 0.09375,
+          "specificity": 0.9976757699012202,
+          "tp": 3,
+          "fn": 29,
+          "tn": 1717,
+          "fp": 4,
+          "uncertain_fraction": 0.03365658870507701
+        },
+        "cryptic_catalogue": null
+      }
+    },
+    "other_studies": {
+      "n": 96,
+      "n_resistant": 3,
+      "model": {
+        "sensitivity": 0.3333333333333333,
+        "specificity": 0.9247311827956989,
+        "tp": 1,
+        "fn": 2,
+        "tn": 86,
+        "fp": 7,
+        "auc": 0.5985663082437276
+      },
+      "who_catalogue": {
+        "sensitivity": 0.0,
+        "specificity": 1.0,
+        "tp": 0,
+        "fn": 3,
+        "tn": 93,
+        "fp": 0,
+        "uncertain_fraction": 0.03125
+      },
+      "cryptic_catalogue": null
+    },
+    "by_study": {}
+  },
+  {
+    "drug": "LZD",
+    "name": "Linezolid",
+    "low_data": true,
+    "unseen_countries": {
+      "n": 8575,
+      "n_resistant": 93,
+      "model": {
+        "sensitivity": 0.34408602150537637,
+        "specificity": 0.9522518273991983,
+        "tp": 32,
+        "fn": 61,
+        "tn": 8077,
+        "fp": 405,
+        "auc": 0.6248532629502577
+      },
+      "who_catalogue": {
+        "sensitivity": 0.34408602150537637,
+        "specificity": 0.9992926196651734,
+        "tp": 32,
+        "fn": 61,
+        "tn": 8476,
+        "fp": 6,
+        "uncertain_fraction": 0.07148688046647231
+      },
+      "cryptic_catalogue": null
+    },
+    "by_country": {
+      "India": {
+        "n": 1112,
+        "n_resistant": 20,
+        "model": {
+          "sensitivity": 0.65,
+          "specificity": 0.847985347985348,
+          "tp": 13,
+          "fn": 7,
+          "tn": 926,
+          "fp": 166,
+          "auc": 0.7886217948717948
+        },
+        "who_catalogue": {
+          "sensitivity": 0.55,
+          "specificity": 0.9972527472527473,
+          "tp": 11,
+          "fn": 9,
+          "tn": 1089,
+          "fp": 3,
+          "uncertain_fraction": 0.03597122302158273
+        },
+        "cryptic_catalogue": null
+      },
+      "South Africa": {
+        "n": 1331,
+        "n_resistant": 25,
+        "model": {
+          "sensitivity": 0.32,
+          "specificity": 0.9923430321592649,
+          "tp": 8,
+          "fn": 17,
+          "tn": 1296,
+          "fp": 10,
+          "auc": 0.6617304747320061
+        },
+        "who_catalogue": {
+          "sensitivity": 0.36,
+          "specificity": 1.0,
+          "tp": 9,
+          "fn": 16,
+          "tn": 1306,
+          "fp": 0,
+          "uncertain_fraction": 0.06686701728024042
+        },
+        "cryptic_catalogue": null
+      }
+    },
+    "other_studies": {
+      "n": 3591,
+      "n_resistant": 46,
+      "model": {
+        "sensitivity": 0.7608695652173914,
+        "specificity": 0.8770098730606488,
+        "tp": 35,
+        "fn": 11,
+        "tn": 3109,
+        "fp": 436,
+        "auc": 0.884227632305145
+      },
+      "who_catalogue": {
+        "sensitivity": 0.6956521739130435,
+        "specificity": 0.9949224259520452,
+        "tp": 32,
+        "fn": 14,
+        "tn": 3527,
+        "fp": 18,
+        "uncertain_fraction": 0.04928989139515455
+      },
+      "cryptic_catalogue": null
+    },
+    "by_study": {
+      "CLIRES2020": {
+        "n": 2311,
+        "n_resistant": 36,
+        "model": {
+          "sensitivity": 0.8055555555555556,
+          "specificity": 0.8514285714285714,
+          "tp": 29,
+          "fn": 7,
+          "tn": 1937,
+          "fp": 338,
+          "auc": 0.9058547008547008
+        },
+        "who_catalogue": {
+          "sensitivity": 0.75,
+          "specificity": 0.9925274725274725,
+          "tp": 27,
+          "fn": 9,
+          "tn": 2258,
+          "fp": 17,
+          "uncertain_fraction": 0.040242319342276074
+        },
+        "cryptic_catalogue": null
+      }
+    }
+  },
+  {
+    "drug": "DLM",
+    "name": "Delamanid",
+    "low_data": true,
+    "unseen_countries": {
+      "n": 9496,
+      "n_resistant": 99,
+      "model": {
+        "sensitivity": 0.5656565656565656,
+        "specificity": 0.612323081834628,
+        "tp": 56,
+        "fn": 43,
+        "tn": 5754,
+        "fp": 3643,
+        "auc": 0.5809015987264364
+      },
+      "who_catalogue": {
+        "sensitivity": 0.1111111111111111,
+        "specificity": 0.9998935830584229,
+        "tp": 11,
+        "fn": 88,
+        "tn": 9396,
+        "fp": 1,
+        "uncertain_fraction": 0.23241364785172705
+      },
+      "cryptic_catalogue": null
+    },
+    "by_country": {
+      "China": {
+        "n": 980,
+        "n_resistant": 25,
+        "model": {
+          "sensitivity": 0.8,
+          "specificity": 0.22408376963350785,
+          "tp": 20,
+          "fn": 5,
+          "tn": 214,
+          "fp": 741,
+          "auc": 0.5486492146596859
+        },
+        "who_catalogue": {
+          "sensitivity": 0.04,
+          "specificity": 1.0,
+          "tp": 1,
+          "fn": 24,
+          "tn": 955,
+          "fp": 0,
+          "uncertain_fraction": 0.15306122448979592
+        },
+        "cryptic_catalogue": null
+      }
+    },
+    "other_studies": {
+      "n": 97,
+      "n_resistant": 2,
+      "model": {
+        "sensitivity": 0.5,
+        "specificity": 0.4105263157894737,
+        "tp": 1,
+        "fn": 1,
+        "tn": 39,
+        "fp": 56,
+        "auc": 0.3894736842105263
+      },
+      "who_catalogue": {
+        "sensitivity": 0.0,
+        "specificity": 1.0,
+        "tp": 0,
+        "fn": 2,
+        "tn": 95,
+        "fp": 0,
+        "uncertain_fraction": 0.1134020618556701
+      },
+      "cryptic_catalogue": null
+    },
+    "by_study": {}
+  },
+  {
+    "drug": "CFZ",
+    "name": "Clofazimine",
+    "low_data": true,
+    "unseen_countries": {
+      "n": 9198,
+      "n_resistant": 139,
+      "model": {
+        "sensitivity": 0.41007194244604317,
+        "specificity": 0.8757037200574015,
+        "tp": 57,
+        "fn": 82,
+        "tn": 7933,
+        "fp": 1126,
+        "auc": 0.6273704515800098
+      },
+      "who_catalogue": {
+        "sensitivity": 0.02158273381294964,
+        "specificity": 0.9980130257202782,
+        "tp": 3,
+        "fn": 136,
+        "tn": 9041,
+        "fp": 18,
+        "uncertain_fraction": 0.03522504892367906
+      },
+      "cryptic_catalogue": null
+    },
+    "by_country": {
+      "China": {
+        "n": 885,
+        "n_resistant": 26,
+        "model": {
+          "sensitivity": 0.6923076923076923,
+          "specificity": 0.7590221187427241,
+          "tp": 18,
+          "fn": 8,
+          "tn": 652,
+          "fp": 207,
+          "auc": 0.7493731530402076
+        },
+        "who_catalogue": {
+          "sensitivity": 0.0,
+          "specificity": 1.0,
+          "tp": 0,
+          "fn": 26,
+          "tn": 859,
+          "fp": 0,
+          "uncertain_fraction": 0.02937853107344633
+        },
+        "cryptic_catalogue": null
+      },
+      "Italy": {
+        "n": 1302,
+        "n_resistant": 23,
+        "model": {
+          "sensitivity": 0.08695652173913043,
+          "specificity": 0.9530883502736512,
+          "tp": 2,
+          "fn": 21,
+          "tn": 1219,
+          "fp": 60,
+          "auc": 0.6155794268620185
+        },
+        "who_catalogue": {
+          "sensitivity": 0.08695652173913043,
+          "specificity": 0.9921813917122753,
+          "tp": 2,
+          "fn": 21,
+          "tn": 1269,
+          "fp": 10,
+          "uncertain_fraction": 0.042242703533026116
+        },
+        "cryptic_catalogue": null
+      },
+      "South Africa": {
+        "n": 1289,
+        "n_resistant": 63,
+        "model": {
+          "sensitivity": 0.4603174603174603,
+          "specificity": 0.8939641109298532,
+          "tp": 29,
+          "fn": 34,
+          "tn": 1096,
+          "fp": 130,
+          "auc": 0.7049897718739481
+        },
+        "who_catalogue": {
+          "sensitivity": 0.015873015873015872,
+          "specificity": 0.9975530179445351,
+          "tp": 1,
+          "fn": 62,
+          "tn": 1223,
+          "fp": 3,
+          "uncertain_fraction": 0.02948021722265322
+        },
+        "cryptic_catalogue": null
+      }
+    },
+    "other_studies": {
+      "n": 2245,
+      "n_resistant": 20,
+      "model": {
+        "sensitivity": 0.05,
+        "specificity": 0.64,
+        "tp": 1,
+        "fn": 19,
+        "tn": 1424,
+        "fp": 801,
+        "auc": 0.3680337078651686
+      },
+      "who_catalogue": {
+        "sensitivity": 0.05,
+        "specificity": 0.9959550561797753,
+        "tp": 1,
+        "fn": 19,
+        "tn": 2216,
+        "fp": 9,
+        "uncertain_fraction": 0.028953229398663696
+      },
+      "cryptic_catalogue": null
+    },
+    "by_study": {}
+  }
+]

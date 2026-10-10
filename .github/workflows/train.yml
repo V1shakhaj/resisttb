@@ -1,4 +1,4 @@
-name: Train TB resistance model
+name: Train and validate TB resistance model
 
 # Run from the Actions tab ("Run workflow"), or automatically when the training code changes.
 on:
@@ -7,6 +7,7 @@ on:
     branches: [main]
     paths:
       - train.py
+      - evaluate.py
       - requirements.txt
 
 permissions:
@@ -40,21 +41,28 @@ jobs:
         uses: actions/cache@v4
         with:
           path: data
-          key: cryptic-release-june2022-v1
+          key: cryptic-release-june2022-who-v2.1
 
-      - name: Download CRyPTIC data (~196 MB)
+      - name: Download CRyPTIC data and WHO catalogue (~205 MB)
         if: steps.data-cache.outputs.cache-hit != 'true'
         run: |
           mkdir -p data
           BASE=https://ftp.ebi.ac.uk/pub/databases/cryptic/release_june2022/reproducibility/data_tables/cryptic-analysis-group
           curl -fsSL --retry 3 -o data/UKMYC_PHENOTYPES.csv.gz "$BASE/UKMYC_PHENOTYPES.csv.gz"
           curl -fsSL --retry 3 -o data/EFFECTS.csv.gz "$BASE/EFFECTS.csv.gz"
+          curl -fsSL --retry 3 -o data/DST_MEASUREMENTS.csv.gz "$BASE/DST_MEASUREMENTS.csv.gz"
+          curl -fsSL --retry 3 -o data/SITES.csv "$BASE/SITES.csv"
+          curl -fsSL --retry 3 -o data/WHO_catalogue_v2.1.csv \
+            https://raw.githubusercontent.com/oxfordmmm/tuberculosis_amr_catalogues/public/catalogues/NC_000962.3/NC_000962.3_WHO-UCN-TB-2023.5_v2.1_GARC1_RFUS.csv
 
       - name: Train and evaluate
         run: python train.py --data data --out results
 
+      - name: Validate on unseen countries and other studies, benchmark against the WHO catalogue
+        run: python evaluate.py --data data --out results
+
       - name: Show results in the run summary
-        run: cat results/report.md >> "$GITHUB_STEP_SUMMARY"
+        run: cat results/report.md results/validation.md >> "$GITHUB_STEP_SUMMARY"
 
       - name: Save results to the repository
         id: commit

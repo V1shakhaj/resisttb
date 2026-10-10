@@ -100,6 +100,13 @@ td.drug small { display: block; font-weight: 400; color: var(--muted); font: 11p
 .prob.low { color: var(--muted); font-weight: 400; }
 .prob small { font: 400 11px var(--font-body); color: var(--muted); }
 .modelinfo { font-size: 13px; color: var(--muted); }
+.val { display: grid; gap: 12px; }
+.val .tablewrap { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; }
+.val td, .val th { font-variant-numeric: tabular-nums; }
+.val td.num { white-space: nowrap; }
+.val td.num b { font-weight: 600; }
+.val td.num span { color: var(--muted); font-size: 12px; }
+.val .lead { color: var(--muted); max-width: 72ch; font-size: 14px; }
 .key { display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: 12.5px; color: var(--muted); align-items: center; }
 </style>
 </head>
@@ -147,6 +154,18 @@ td.drug small { display: block; font-weight: 400; color: var(--muted); font: 11p
     </section>
   </div>
 
+  <section class="val" id="validation" hidden>
+    <h2>How well does it hold up on new data?</h2>
+    <p class="lead">Sensitivity is the share of truly resistant samples caught; specificity (smaller number) is the share of susceptible samples correctly cleared. <b>Unseen countries:</b> each country was predicted by a model trained only on the other countries. <b>Other studies:</b> samples from 7 independent studies using different lab methods. The WHO catalogue (2023) is the rule set TB-Profiler uses. It was partly built from these same datasets, so its numbers are optimistic.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Drug</th><th>Unseen countries<br>AI model</th><th>Unseen countries<br>WHO catalogue</th><th>Other studies<br>AI model</th><th>Other studies<br>WHO catalogue</th></tr></thead>
+        <tbody id="valrows"></tbody>
+      </table>
+    </div>
+    <p class="modelinfo">Full results by country and by study: <a href="https://github.com/V1shakhaj/resisttb/blob/main/results/validation.md">validation report</a>.</p>
+  </section>
+
   <section style="display:grid;gap:12px">
     <h2>Where this fits in a real product</h2>
     <div class="pipeline">
@@ -172,7 +191,8 @@ td.drug small { display: block; font-weight: 400; color: var(--muted); font: 11p
       <h2>Next steps</h2>
       <ul>
         <li>Done: a model trained on CRyPTIC data, about 12,000 TB genomes with lab-measured resistance to 13 drugs.</li>
-        <li>Test on data from other countries and studies, and benchmark against TB-Profiler and the full WHO catalogue.</li>
+        <li>Done: tested on unseen countries and 7 other studies, and benchmarked against the WHO catalogue used by TB-Profiler.</li>
+        <li>Test by strain lineage, and on raw sequencing reads with TB-Profiler itself.</li>
         <li>Collect more resistant samples for bedaquiline and linezolid, where the model is weakest.</li>
         <li>Add a full pipeline so users can upload raw sequencing files (FASTQ) instead of mutation lists.</li>
         <li>Plan for regulatory approval (CE-IVD / FDA) and WHO guidance before any clinical use.</li>
@@ -350,6 +370,16 @@ document.querySelectorAll("#samples button").forEach(b => b.addEventListener("cl
 $("muts").addEventListener("input", () => { currentId = "Custom"; document.querySelectorAll("#samples button").forEach(b => b.setAttribute("aria-pressed", "false")); });
 $("run").addEventListener("click", render);
 load(SAMPLES[1]);
+
+const ss = r => r ? `<b>${Math.round(r.sensitivity * 100)}%</b> <span>/ ${Math.round(r.specificity * 100)}%</span>` : `<span>no rules</span>`;
+fetch("results/validation.json").then(r => r.json()).then(rows => {
+  $("valrows").innerHTML = rows.filter(r => !r.low_data).map(r => {
+    const u = r.unseen_countries, o = r.other_studies;
+    return `<tr><td class="drug">${r.name}</td><td class="num">${ss(u.model)}</td><td class="num">${ss(u.who_catalogue)}</td>` +
+      `<td class="num">${o ? ss(o.model) : "<span>no data</span>"}</td><td class="num">${o ? ss(o.who_catalogue) : "<span>no data</span>"}</td></tr>`;
+  }).join("");
+  $("validation").hidden = false;
+}).catch(() => {});
 
 Promise.all([fetch("results/model.json").then(r => r.json()), fetch("results/metrics.json").then(r => r.json())])
   .then(([model, metrics]) => {

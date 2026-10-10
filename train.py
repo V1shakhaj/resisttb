@@ -31,6 +31,11 @@ LOW_DATA = 200  # fewer resistant samples than this is flagged as unreliable in 
 MIN_SAMPLES = 3  # a mutation must appear in at least this many training samples to become a feature
 
 
+def new_model():
+    """L1 logistic regression: keeps only informative mutations, one weight per mutation."""
+    return LogisticRegression(penalty="l1", solver="liblinear", C=1.0, class_weight="balanced", max_iter=2000)
+
+
 def load_effects(path):
     """Read the default-catalogue rows only, in chunks so it fits on a small cloud machine."""
     cols = ["UNIQUEID", "DRUG", "GENE", "MUTATION", "PREDICTION", "DEFAULT_CATALOGUE"]
@@ -84,7 +89,7 @@ def train_drug(drug, effects, pheno):
     y = labels.loc[ids].to_numpy()
     tr = np.array([row[u] for u in train_ids]); te = np.array([row[u] for u in test_ids])
 
-    model = LogisticRegression(penalty="l1", solver="liblinear", C=1.0, class_weight="balanced", max_iter=2000)
+    model = new_model()
     model.fit(X[tr], y[tr])
     prob = model.predict_proba(X[te])[:, 1]
     ml = sens_spec(y[te], (prob >= 0.5).astype(int))
