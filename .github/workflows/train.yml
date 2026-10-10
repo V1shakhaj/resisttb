@@ -1,0 +1,79 @@
+name: Train TB resistance model
+
+# Run from the Actions tab ("Run workflow"), or automatically when the training code changes.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - train.py
+      - requirements.txt
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: train
+  cancel-in-progress: false
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install packages
+        run: pip install -r requirements.txt
+
+      - name: Cache CRyPTIC data
+        id: data-cache
+        uses: actions/cache@v4
+        with:
+          path: data
+          key: cryptic-release-june2022-v1
+
+      - name: Download CRyPTIC data (~196 MB)
+        if: steps.data-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p data
+          BASE=https://ftp.ebi.ac.uk/pub/databases/cryptic/release_june2022/reproducibility/data_tables/cryptic-analysis-group
+          curl -fsSL --retry 3 -o data/UKMYC_PHENOTYPES.csv.gz "$BASE/UKMYC_PHENOTYPES.csv.gz"
+          curl -fsSL --retry 3 -o data/EFFECTS.csv.gz "$BASE/EFFECTS.csv.gz"
+
+      - name: Train and evaluate
+        run: python train.py --data data --out results
+
+      - name: Show results in the run summary
+        run: cat results/report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Save results to the repository
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "Update model results"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Pushes made by this workflow may not rebuild the site on their own, so request a rebuild.
+      - name: Rebuild web page
+        if: steps.commit.outputs.changed == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds"

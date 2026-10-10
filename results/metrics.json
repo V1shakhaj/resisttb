@@ -1,0 +1,899 @@
+[
+  {
+    "drug": "RIF",
+    "name": "Rifampicin",
+    "n_samples": 10396,
+    "n_resistant": 4334,
+    "n_test": 2080,
+    "n_features": 297,
+    "n_features_used": 83,
+    "model": {
+      "sensitivity": 0.9504036908881199,
+      "specificity": 0.9719703215169002,
+      "tp": 824,
+      "fn": 43,
+      "tn": 1179,
+      "fp": 34,
+      "auc": 0.9723383073223468
+    },
+    "catalogue": {
+      "sensitivity": 0.9584775086505191,
+      "specificity": 0.9521846661170651,
+      "tp": 831,
+      "fn": 36,
+      "tn": 1155,
+      "fp": 58,
+      "unknown_only_fraction": 0.22548076923076923
+    },
+    "top_resistance_mutations": [
+      [
+        "rpoB@H445D",
+        6.99
+      ],
+      [
+        "rpoB@S450L",
+        6.727
+      ],
+      [
+        "rpoB@D435V",
+        6.624
+      ],
+      [
+        "rpoB@H445Y",
+        6.535
+      ],
+      [
+        "rpoB@S450W",
+        6.04
+      ],
+      [
+        "rpoB@V170F",
+        5.986
+      ],
+      [
+        "rpoB@S450F",
+        5.9
+      ],
+      [
+        "rpoB@Q432P",
+        5.887
+      ],
+      [
+        "rpoB@H445R",
+        5.461
+      ],
+      [
+        "rpoB@Q432K",
+        5.257
+      ]
+    ]
+  },
+  {
+    "drug": "INH",
+    "name": "Isoniazid",
+    "n_samples": 10432,
+    "n_resistant": 4889,
+    "n_test": 2087,
+    "n_features": 188,
+    "n_features_used": 47,
+    "model": {
+      "sensitivity": 0.9314928425357873,
+      "specificity": 0.9846708746618575,
+      "tp": 911,
+      "fn": 67,
+      "tn": 1092,
+      "fp": 17,
+      "auc": 0.968649790430038
+    },
+    "catalogue": {
+      "sensitivity": 0.9355828220858896,
+      "specificity": 0.9801623083859333,
+      "tp": 915,
+      "fn": 63,
+      "tn": 1087,
+      "fp": 22,
+      "unknown_only_fraction": 0.21082894106372785
+    },
+    "top_resistance_mutations": [
+      [
+        "katG@S315T",
+        7.203
+      ],
+      [
+        "katG@S315N",
+        5.209
+      ],
+      [
+        "ahpC@c-54t",
+        4.859
+      ],
+      [
+        "ahpC@c-57t",
+        4.785
+      ],
+      [
+        "fabG1@c-15t",
+        4.712
+      ],
+      [
+        "ahpC@g-51a",
+        3.991
+      ],
+      [
+        "fabG1@L203L",
+        3.83
+      ],
+      [
+        "ahpC@c-52t",
+        3.773
+      ],
+      [
+        "katG@P232A",
+        3.77
+      ],
+      [
+        "ahpC@c-72t",
+        3.648
+      ]
+    ]
+  },
+  {
+    "drug": "EMB",
+    "name": "Ethambutol",
+    "n_samples": 7755,
+    "n_resistant": 1817,
+    "n_test": 1551,
+    "n_features": 278,
+    "n_features_used": 87,
+    "model": {
+      "sensitivity": 0.9008264462809917,
+      "specificity": 0.9503367003367004,
+      "tp": 327,
+      "fn": 36,
+      "tn": 1129,
+      "fp": 59,
+      "auc": 0.963541521737114
+    },
+    "catalogue": {
+      "sensitivity": 0.837465564738292,
+      "specificity": 0.9368686868686869,
+      "tp": 304,
+      "fn": 59,
+      "tn": 1113,
+      "fp": 75,
+      "unknown_only_fraction": 0.2559638942617666
+    },
+    "top_resistance_mutations": [
+      [
+        "embB@M306V",
+        6.065
+      ],
+      [
+        "embB@E405D",
+        5.84
+      ],
+      [
+        "embB@Y319S",
+        5.718
+      ],
+      [
+        "embB@Q497R",
+        5.675
+      ],
+      [
+        "embB@Q445R",
+        5.486
+      ],
+      [
+        "embB@M306L",
+        4.961
+      ],
+      [
+        "embB@D328Y",
+        4.932
+      ],
+      [
+        "embB@F330S",
+        4.52
+      ],
+      [
+        "embB@D354A",
+        4.443
+      ],
+      [
+        "embB@M306I",
+        4.401
+      ]
+    ]
+  },
+  {
+    "drug": "LEV",
+    "name": "Levofloxacin",
+    "n_samples": 9174,
+    "n_resistant": 1615,
+    "n_test": 1835,
+    "n_features": 138,
+    "n_features_used": 58,
+    "model": {
+      "sensitivity": 0.8204334365325078,
+      "specificity": 0.9715608465608465,
+      "tp": 265,
+      "fn": 58,
+      "tn": 1469,
+      "fp": 43,
+      "auc": 0.9094324864448703
+    },
+    "catalogue": {
+      "sensitivity": 0.8142414860681114,
+      "specificity": 0.9728835978835979,
+      "tp": 263,
+      "fn": 60,
+      "tn": 1471,
+      "fp": 41,
+      "unknown_only_fraction": 0.12970027247956403
+    },
+    "top_resistance_mutations": [
+      [
+        "gyrA@D94Y",
+        5.651
+      ],
+      [
+        "gyrA@D94H",
+        5.473
+      ],
+      [
+        "gyrB@D461N",
+        5.399
+      ],
+      [
+        "gyrA@G88C",
+        5.308
+      ],
+      [
+        "gyrA@D94G",
+        5.291
+      ],
+      [
+        "gyrA@S91P",
+        5.214
+      ],
+      [
+        "gyrA@A90V",
+        5.17
+      ],
+      [
+        "gyrA@D94N",
+        5.167
+      ],
+      [
+        "gyrB@N499D",
+        4.476
+      ],
+      [
+        "gyrA@D94A",
+        4.391
+      ]
+    ]
+  },
+  {
+    "drug": "MXF",
+    "name": "Moxifloxacin",
+    "n_samples": 8184,
+    "n_resistant": 1336,
+    "n_test": 1637,
+    "n_features": 115,
+    "n_features_used": 47,
+    "model": {
+      "sensitivity": 0.8876404494382022,
+      "specificity": 0.9416058394160584,
+      "tp": 237,
+      "fn": 30,
+      "tn": 1290,
+      "fp": 80,
+      "auc": 0.9302249924820251
+    },
+    "catalogue": {
+      "sensitivity": 0.8314606741573034,
+      "specificity": 0.9452554744525548,
+      "tp": 222,
+      "fn": 45,
+      "tn": 1295,
+      "fp": 75,
+      "unknown_only_fraction": 0.1264508246792914
+    },
+    "top_resistance_mutations": [
+      [
+        "gyrA@D94Y",
+        5.096
+      ],
+      [
+        "gyrA@D94G",
+        5.007
+      ],
+      [
+        "gyrA@D94N",
+        4.847
+      ],
+      [
+        "gyrA@G88C",
+        4.821
+      ],
+      [
+        "gyrA@D94H",
+        4.456
+      ],
+      [
+        "gyrB@N499D",
+        4.44
+      ],
+      [
+        "gyrB@E501D",
+        4.249
+      ],
+      [
+        "gyrA@S91P",
+        4.157
+      ],
+      [
+        "gyrA@A90V",
+        3.809
+      ],
+      [
+        "gyrA@D89N",
+        3.72
+      ]
+    ]
+  },
+  {
+    "drug": "AMI",
+    "name": "Amikacin",
+    "n_samples": 10414,
+    "n_resistant": 764,
+    "n_test": 2083,
+    "n_features": 393,
+    "n_features_used": 98,
+    "model": {
+      "sensitivity": 0.7908496732026143,
+      "specificity": 0.9642487046632124,
+      "tp": 121,
+      "fn": 32,
+      "tn": 1861,
+      "fp": 69,
+      "auc": 0.9064716041857156
+    },
+    "catalogue": {
+      "sensitivity": 0.7581699346405228,
+      "specificity": 0.9911917098445596,
+      "tp": 116,
+      "fn": 37,
+      "tn": 1913,
+      "fp": 17,
+      "unknown_only_fraction": 0.9323091694671147
+    },
+    "top_resistance_mutations": [
+      [
+        "rrs@a1401g",
+        6.265
+      ],
+      [
+        "gid@P75R",
+        3.56
+      ],
+      [
+        "eis@c-14t",
+        3.273
+      ],
+      [
+        "gid@A80P",
+        3.042
+      ],
+      [
+        "gid@L26F",
+        2.92
+      ],
+      [
+        "tlyA@464_indel",
+        2.91
+      ],
+      [
+        "rrs@g1484t",
+        2.837
+      ],
+      [
+        "aftB@L266P",
+        2.689
+      ],
+      [
+        "tlyA@197_indel",
+        2.61
+      ],
+      [
+        "fprA@564_indel",
+        2.583
+      ]
+    ]
+  },
+  {
+    "drug": "KAN",
+    "name": "Kanamycin",
+    "n_samples": 10793,
+    "n_resistant": 990,
+    "n_test": 2159,
+    "n_features": 384,
+    "n_features_used": 98,
+    "model": {
+      "sensitivity": 0.797979797979798,
+      "specificity": 0.9678735339112697,
+      "tp": 158,
+      "fn": 40,
+      "tn": 1898,
+      "fp": 63,
+      "auc": 0.9288538109292825
+    },
+    "catalogue": {
+      "sensitivity": 0.696969696969697,
+      "specificity": 0.9923508414074452,
+      "tp": 138,
+      "fn": 60,
+      "tn": 1946,
+      "fp": 15,
+      "unknown_only_fraction": 0.9258916164891153
+    },
+    "top_resistance_mutations": [
+      [
+        "rrs@a1401g",
+        6.014
+      ],
+      [
+        "eis@c-14t",
+        5.049
+      ],
+      [
+        "eis@g-37t",
+        4.149
+      ],
+      [
+        "eis@g-10a",
+        3.897
+      ],
+      [
+        "rrs@c1402t",
+        3.859
+      ],
+      [
+        "rrs@g1484t",
+        3.258
+      ],
+      [
+        "whiB6@R96R",
+        3.16
+      ],
+      [
+        "eis@c-12t",
+        2.701
+      ],
+      [
+        "gid@G73R",
+        2.622
+      ],
+      [
+        "whiB7@t-57g",
+        2.616
+      ]
+    ]
+  },
+  {
+    "drug": "ETH",
+    "name": "Ethionamide",
+    "n_samples": 9508,
+    "n_resistant": 1532,
+    "n_test": 1902,
+    "n_features": 190,
+    "n_features_used": 96,
+    "model": {
+      "sensitivity": 0.7745098039215687,
+      "specificity": 0.9705513784461153,
+      "tp": 237,
+      "fn": 69,
+      "tn": 1549,
+      "fp": 47,
+      "auc": 0.9032497501924747
+    },
+    "catalogue": {
+      "sensitivity": 0.5947712418300654,
+      "specificity": 0.9880952380952381,
+      "tp": 182,
+      "fn": 124,
+      "tn": 1577,
+      "fp": 19,
+      "unknown_only_fraction": 0.5205047318611987
+    },
+    "top_resistance_mutations": [
+      [
+        "fabG1@c-15t",
+        5.869
+      ],
+      [
+        "fabG1@L203L",
+        5.009
+      ],
+      [
+        "ethA@L35R",
+        4.433
+      ],
+      [
+        "fabG1@c-34g",
+        4.306
+      ],
+      [
+        "fabG1@V221V",
+        4.244
+      ],
+      [
+        "ethA@1055_indel",
+        3.658
+      ],
+      [
+        "fabG1@t-8c",
+        3.544
+      ],
+      [
+        "ethA@T88P",
+        3.523
+      ],
+      [
+        "ethA@a-11g",
+        3.474
+      ],
+      [
+        "ethA@367_indel",
+        3.448
+      ]
+    ]
+  },
+  {
+    "drug": "RFB",
+    "name": "Rifabutin",
+    "n_samples": 11500,
+    "n_resistant": 4069,
+    "n_test": 2300,
+    "n_features": 319,
+    "n_features_used": 78,
+    "model": {
+      "sensitivity": 0.9496314496314496,
+      "specificity": 0.9562584118438762,
+      "tp": 773,
+      "fn": 41,
+      "tn": 1421,
+      "fp": 65,
+      "auc": 0.9759317925535961
+    },
+    "catalogue": {
+      "sensitivity": 0.0,
+      "specificity": 1.0,
+      "tp": 0,
+      "fn": 814,
+      "tn": 1486,
+      "fp": 0,
+      "unknown_only_fraction": 0.6639130434782609
+    },
+    "top_resistance_mutations": [
+      [
+        "rpoB@H445D",
+        7.458
+      ],
+      [
+        "rpoB@S450L",
+        7.215
+      ],
+      [
+        "rpoB@H445Y",
+        7.199
+      ],
+      [
+        "rpoB@S450W",
+        6.253
+      ],
+      [
+        "rpoB@S450F",
+        6.119
+      ],
+      [
+        "rpoB@Q432L",
+        5.879
+      ],
+      [
+        "rpoB@V170F",
+        5.723
+      ],
+      [
+        "rpoB@Q432P",
+        5.287
+      ],
+      [
+        "rpoB@S450M",
+        5.014
+      ],
+      [
+        "rpoB@Q432K",
+        4.906
+      ]
+    ]
+  },
+  {
+    "drug": "BDQ",
+    "name": "Bedaquiline",
+    "n_samples": 9982,
+    "n_resistant": 94,
+    "n_test": 1997,
+    "n_features": 137,
+    "n_features_used": 80,
+    "model": {
+      "sensitivity": 0.6842105263157895,
+      "specificity": 0.8099089989888777,
+      "tp": 13,
+      "fn": 6,
+      "tn": 1602,
+      "fp": 376,
+      "auc": 0.7464876802724708
+    },
+    "catalogue": {
+      "sensitivity": 0.0,
+      "specificity": 1.0,
+      "tp": 0,
+      "fn": 19,
+      "tn": 1978,
+      "fp": 0,
+      "unknown_only_fraction": 0.9969954932398598
+    },
+    "top_resistance_mutations": [
+      [
+        "atpE@E61D",
+        3.783
+      ],
+      [
+        "Rv0678@141_indel",
+        2.847
+      ],
+      [
+        "Rv0678@M139I",
+        2.578
+      ],
+      [
+        "Rv0678@Q51R",
+        1.966
+      ],
+      [
+        "mmpL3@L528L",
+        1.804
+      ],
+      [
+        "mmpL5@A298A",
+        1.757
+      ],
+      [
+        "mmpL5@T794I",
+        1.654
+      ],
+      [
+        "mmpL5@G246S",
+        1.633
+      ],
+      [
+        "pepQ@818_indel",
+        1.555
+      ],
+      [
+        "Rv1816@Q16R",
+        1.536
+      ]
+    ]
+  },
+  {
+    "drug": "LZD",
+    "name": "Linezolid",
+    "n_samples": 8575,
+    "n_resistant": 93,
+    "n_test": 1715,
+    "n_features": 89,
+    "n_features_used": 49,
+    "model": {
+      "sensitivity": 0.5789473684210527,
+      "specificity": 0.9457547169811321,
+      "tp": 11,
+      "fn": 8,
+      "tn": 1604,
+      "fp": 92,
+      "auc": 0.7916770109235352
+    },
+    "catalogue": {
+      "sensitivity": 0.0,
+      "specificity": 1.0,
+      "tp": 0,
+      "fn": 19,
+      "tn": 1696,
+      "fp": 0,
+      "unknown_only_fraction": 0.30029154518950435
+    },
+    "top_resistance_mutations": [
+      [
+        "rplC@C154R",
+        6.927
+      ],
+      [
+        "rrl@g2814t",
+        4.88
+      ],
+      [
+        "rrl@g2270t",
+        3.763
+      ],
+      [
+        "Rv1816@V57A",
+        1.988
+      ],
+      [
+        "mmpL3@R923R",
+        0.961
+      ],
+      [
+        "rrl@g1052t",
+        0.808
+      ],
+      [
+        "rrl@c344t",
+        0.351
+      ],
+      [
+        "rrl@c1822t",
+        -0.074
+      ],
+      [
+        "rrl@c1847a",
+        -0.074
+      ],
+      [
+        "mmpL3@G772R",
+        -0.081
+      ]
+    ]
+  },
+  {
+    "drug": "DLM",
+    "name": "Delamanid",
+    "n_samples": 9496,
+    "n_resistant": 99,
+    "n_test": 1900,
+    "n_features": 154,
+    "n_features_used": 86,
+    "model": {
+      "sensitivity": 0.5,
+      "specificity": 0.6398936170212766,
+      "tp": 10,
+      "fn": 10,
+      "tn": 1203,
+      "fp": 677,
+      "auc": 0.5876994680851064
+    },
+    "catalogue": {
+      "sensitivity": 0.0,
+      "specificity": 1.0,
+      "tp": 0,
+      "fn": 20,
+      "tn": 1880,
+      "fp": 0,
+      "unknown_only_fraction": 0.4321052631578947
+    },
+    "top_resistance_mutations": [
+      [
+        "ddn@362_indel",
+        5.204
+      ],
+      [
+        "ddn@L49P",
+        4.375
+      ],
+      [
+        "ddn@G34R",
+        3.901
+      ],
+      [
+        "ddn@Y65S",
+        3.393
+      ],
+      [
+        "Rv1816@V57A",
+        2.753
+      ],
+      [
+        "fbiC@V713L",
+        2.749
+      ],
+      [
+        "fbiA@L113L",
+        1.467
+      ],
+      [
+        "fbiA@V5V",
+        1.32
+      ],
+      [
+        "Rv1816@L191R",
+        1.002
+      ],
+      [
+        "fgd1@F320F",
+        0.398
+      ]
+    ]
+  },
+  {
+    "drug": "CFZ",
+    "name": "Clofazimine",
+    "n_samples": 9198,
+    "n_resistant": 139,
+    "n_test": 1840,
+    "n_features": 156,
+    "n_features_used": 80,
+    "model": {
+      "sensitivity": 0.6428571428571429,
+      "specificity": 0.7985651214128036,
+      "tp": 18,
+      "fn": 10,
+      "tn": 1447,
+      "fp": 365,
+      "auc": 0.7822256385998108
+    },
+    "catalogue": {
+      "sensitivity": 0.0,
+      "specificity": 1.0,
+      "tp": 0,
+      "fn": 28,
+      "tn": 1812,
+      "fp": 0,
+      "unknown_only_fraction": 0.9983695652173913
+    },
+    "top_resistance_mutations": [
+      [
+        "mmpL3@T284A",
+        4.393
+      ],
+      [
+        "Rv3249c@A17A",
+        3.281
+      ],
+      [
+        "Rv0678@L117R",
+        2.769
+      ],
+      [
+        "pepQ@V45L",
+        2.264
+      ],
+      [
+        "mmpL5@Y300!",
+        2.048
+      ],
+      [
+        "Rv0678@192_indel",
+        1.861
+      ],
+      [
+        "Rv1979c@R409Q",
+        1.765
+      ],
+      [
+        "mmpL5@P355P",
+        1.749
+      ],
+      [
+        "Rv1816@c-53t",
+        1.667
+      ],
+      [
+        "mmpL5@T794I",
+        1.645
+      ]
+    ]
+  }
+]

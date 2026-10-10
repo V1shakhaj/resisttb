@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ResistTB Predictor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: lab-report workbench. Sample input on the left, printed-style resistance report on the right, pipeline + limits below. */
+:root {
+  --bg: #f3f5f7;
+  --paper: #ffffff;
+  --ink: #17212b;
+  --muted: #5a6b7b;
+  --line: #d7dee5;
+  --accent: #0f6b74;
+  --accent-soft: #e2f1f2;
+  --r: #b42318; --r-bg: #fde8e6;
+  --lr: #a15c00; --lr-bg: #fdf0db;
+  --u: #5b4fa8; --u-bg: #ece9fb;
+  --s: #1d7a46; --s-bg: #e1f3e8;
+  --font-body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1418; --paper: #172027; --ink: #e4eaef; --muted: #93a3b1; --line: #2a3640;
+  --accent: #5cc2cb; --accent-soft: #15333a;
+  --r: #ff8a80; --r-bg: #3a1a18; --lr: #f2b45a; --lr-bg: #3a2a12;
+  --u: #b3a8f5; --u-bg: #262245; --s: #6fd39a; --s-bg: #15301f;
+  color-scheme: dark;
+} }
+:root[data-theme="dark"] {
+  --bg: #0f1418; --paper: #172027; --ink: #e4eaef; --muted: #93a3b1; --line: #2a3640;
+  --accent: #5cc2cb; --accent-soft: #15333a;
+  --r: #ff8a80; --r-bg: #3a1a18; --lr: #f2b45a; --lr-bg: #3a2a12;
+  --u: #b3a8f5; --u-bg: #262245; --s: #6fd39a; --s-bg: #15301f;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-inline: 20px; padding-block: 28px 48px; display: grid; gap: 28px; }
+header { display: grid; gap: 6px; }
+.eyebrow { font: 600 12px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+h1 { font-size: clamp(26px, 4vw, 34px); line-height: 1.15; margin: 0; letter-spacing: -.01em; text-wrap: balance; }
+h2 { font-size: 17px; margin: 0; }
+p { margin: 0; }
+.lede { color: var(--muted); max-width: 68ch; }
+.warn { font-size: 13px; color: var(--lr); background: var(--lr-bg); padding: 8px 12px; border-radius: 6px; max-width: fit-content; }
+.grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px; align-items: start; }
+@media (max-width: 860px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+.panel { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 20px; display: grid; gap: 14px; min-width: 0; }
+.label { font: 600 11px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.samples { display: flex; flex-wrap: wrap; gap: 8px; }
+.samples button { font: 500 13px var(--font-body); border: 1px solid var(--line); background: var(--bg); color: var(--ink); border-radius: 999px; padding: 6px 12px; cursor: pointer; }
+.samples button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+.samples button:focus-visible, textarea:focus-visible, .run:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+textarea { width: 100%; min-height: 190px; resize: vertical; font: 13px/1.6 var(--font-mono); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+.hint { font-size: 13px; color: var(--muted); }
+.hint code, td code, .mut { font-family: var(--font-mono); font-size: 12.5px; }
+.run { justify-self: start; font: 600 14px var(--font-body); background: var(--accent); color: var(--paper); border: 0; border-radius: 8px; padding: 10px 18px; cursor: pointer; }
+.report-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; border-bottom: 1px dashed var(--line); padding-bottom: 12px; }
+.report-head .mono { font: 12px var(--font-mono); color: var(--muted); }
+.verdict { border-radius: 8px; padding: 14px 16px; display: grid; gap: 4px; }
+.verdict .big { font-size: 22px; font-weight: 700; }
+.verdict.r { background: var(--r-bg); color: var(--r); }
+.verdict.lr { background: var(--lr-bg); color: var(--lr); }
+.verdict.s { background: var(--s-bg); color: var(--s); }
+.verdict .sub { color: var(--ink); font-size: 14px; }
+.tablewrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; font: 600 11px var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); padding: 6px 8px; border-bottom: 1px solid var(--line); }
+td { padding: 9px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+td.drug { font-weight: 600; white-space: nowrap; }
+td.drug small { display: block; font-weight: 400; color: var(--muted); font: 11px var(--font-mono); }
+.pill { display: inline-block; font: 600 12px var(--font-body); border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
+.pill.r { background: var(--r-bg); color: var(--r); }
+.pill.lr { background: var(--lr-bg); color: var(--lr); }
+.pill.u { background: var(--u-bg); color: var(--u); }
+.pill.s { background: var(--s-bg); color: var(--s); }
+.why { color: var(--muted); font-size: 13px; }
+.why .mut { color: var(--ink); }
+.notes { display: grid; gap: 6px; font-size: 13px; color: var(--muted); }
+.notes li { margin-left: 18px; }
+.notes ul { margin: 0; padding: 0; }
+.pipeline { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 760px) { .pipeline { grid-template-columns: minmax(0, 1fr); } }
+.step { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 4px; align-content: start; min-width: 0; }
+.step.here { border-color: var(--accent); background: var(--accent-soft); }
+.step .n { font: 600 11px var(--font-mono); color: var(--accent); }
+.step b { font-size: 14px; }
+.step span { font-size: 13px; color: var(--muted); }
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+@media (max-width: 760px) { .cols { grid-template-columns: minmax(0, 1fr); } }
+.cols ul { margin: 6px 0 0; padding-left: 18px; color: var(--muted); font-size: 14px; display: grid; gap: 4px; }
+.prob { display: grid; gap: 4px; min-width: 90px; font: 600 12.5px var(--font-mono); font-variant-numeric: tabular-nums; }
+.bar { height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--accent); }
+.prob.low { color: var(--muted); font-weight: 400; }
+.prob small { font: 400 11px var(--font-body); color: var(--muted); }
+.modelinfo { font-size: 13px; color: var(--muted); }
+.key { display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: 12.5px; color: var(--muted); align-items: center; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Prototype · M. tuberculosis genomic resistance</div>
+    <h1>ResistTB Predictor</h1>
+    <p class="lede">Paste the mutations found when a TB sample's DNA is sequenced. Two methods check each one: a catalogue of known resistance mutations, and a machine-learning model trained on about 12,000 lab-tested TB genomes from the CRyPTIC project. The report shows which drugs are likely to fail and the evidence behind each call.</p>
+    <p class="warn">Research prototype with example patients. Not for clinical use.</p>
+  </header>
+
+  <div class="grid">
+    <section class="panel" aria-labelledby="in-h">
+      <h2 id="in-h">1 · Sample input</h2>
+      <div class="label">Load an example patient</div>
+      <div class="samples" id="samples"></div>
+      <label class="label" for="muts">Mutations detected (one per line)</label>
+      <textarea id="muts" spellcheck="false"></textarea>
+      <p class="hint">Format: gene then change, e.g. <code>rpoB S450L</code>, <code>katG p.Ser315Thr</code>, <code>fabG1 c.-15C&gt;T</code>, <code>pncA c.192delG</code>.</p>
+      <button class="run" id="run">Predict resistance</button>
+    </section>
+
+    <section class="panel" aria-labelledby="out-h" aria-live="polite">
+      <div class="report-head">
+        <h2 id="out-h">2 · Resistance report</h2>
+        <span class="mono" id="meta"></span>
+      </div>
+      <div class="verdict" id="verdict"></div>
+      <div class="key">
+        <span class="pill r">Resistant</span>
+        <span class="pill lr">Likely resistant</span>
+        <span class="pill u">Uncertain</span>
+        <span class="pill s">No resistance found</span>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Drug</th><th>Prediction</th><th>AI model</th><th>Catalogue evidence</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <div class="notes" id="notes"></div>
+      <p class="modelinfo" id="modelinfo">Loading AI model…</p>
+    </section>
+  </div>
+
+  <section style="display:grid;gap:12px">
+    <h2>Where this fits in a real product</h2>
+    <div class="pipeline">
+      <div class="step"><span class="n">STEP 1</span><b>Sputum sample</b><span>Collected from the patient at a clinic.</span></div>
+      <div class="step"><span class="n">STEP 2</span><b>DNA sequencing</b><span>Targeted or whole-genome sequencing (e.g. Illumina, Oxford Nanopore).</span></div>
+      <div class="step"><span class="n">STEP 3</span><b>Variant calling</b><span>Software compares the DNA to the reference TB genome and lists mutations.</span></div>
+      <div class="step here"><span class="n">STEP 4 · THIS DEMO</span><b>Resistance prediction</b><span>Catalogue rules plus a trained model turn mutations into a per-drug call.</span></div>
+      <div class="step"><span class="n">STEP 5</span><b>Clinician report</b><span>Guides the choice of treatment regimen, with lab confirmation.</span></div>
+    </div>
+  </section>
+
+  <section class="cols">
+    <div class="panel">
+      <h2>How the prediction works today</h2>
+      <ul>
+        <li><b>Resistant:</b> the catalogue lists the mutation as well established to cause resistance.</li>
+        <li><b>Likely resistant:</b> the AI model gives a resistance probability of 50% or more, or the catalogue evidence is still emerging.</li>
+        <li><b>Uncertain:</b> a mutation in a resistance gene that neither method can call.</li>
+        <li>The AI model learned a weight for each mutation from CRyPTIC lab results. Drugs with fewer than 200 resistant training samples are shown for reference only and don't change the prediction.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h2>Next steps</h2>
+      <ul>
+        <li>Done: a model trained on CRyPTIC data, about 12,000 TB genomes with lab-measured resistance to 13 drugs.</li>
+        <li>Test on data from other countries and studies, and benchmark against TB-Profiler and the full WHO catalogue.</li>
+        <li>Collect more resistant samples for bedaquiline and linezolid, where the model is weakest.</li>
+        <li>Add a full pipeline so users can upload raw sequencing files (FASTQ) instead of mutation lists.</li>
+        <li>Plan for regulatory approval (CE-IVD / FDA) and WHO guidance before any clinical use.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<script>
+const DRUGS = [
+  ["RIF","Rifampicin","First-line"],["INH","Isoniazid","First-line"],["EMB","Ethambutol","First-line"],["PZA","Pyrazinamide","First-line"],
+  ["LFX","Levofloxacin","Fluoroquinolone"],["MFX","Moxifloxacin","Fluoroquinolone"],["BDQ","Bedaquiline","Group A"],["LZD","Linezolid","Group A"],
+  ["AMK","Amikacin","Injectable"],["ETO","Ethionamide","Second-line"]
+];
+const FQ = ["LFX","MFX"];
+// Simplified subset of published resistance mutations. grade 1 = established, 2 = interim / emerging, 0 = lineage marker (neutral)
+const CAT = {};
+function add(gene, changes, drugs, grade) { changes.forEach(c => CAT[gene.toLowerCase()+" "+c.toUpperCase()] = { drugs, grade }); }
+add("rpoB", ["S450L","S450W","H445Y","H445D","H445R","D435V","D435Y","L452P"], ["RIF"], 1);
+add("katG", ["S315T","S315N"], ["INH"], 1);
+add("fabG1", ["c.-15C>T","c.-8T>C"], ["INH","ETO"], 1);
+add("inhA", ["S94A"], ["INH","ETO"], 1);
+add("embB", ["M306V","M306I","Q497R","G406A","G406D"], ["EMB"], 1);
+add("pncA", ["H57D","Q10P","D12A","V139A"], ["PZA"], 1);
+add("gyrA", ["A90V","S91P","D94G","D94A","D94N","D94Y","D94H"], FQ, 1);
+add("rrs", ["n.1401A>G","n.1484G>T"], ["AMK"], 1);
+add("atpE", ["A63P"], ["BDQ"], 2);
+add("rplC", ["C154R"], ["LZD"], 2);
+add("gyrA", ["E21Q","S95T","G668D"], [], 0);
+add("katG", ["R463L"], [], 0);
+add("embB", ["E378A"], [], 0);
+// Genes where a broken (loss-of-function) gene causes resistance
+const LOF = { katg: [["INH"],1], pnca: [["PZA"],1], rv0678: [["BDQ"],2], etha: [["ETO"],1] };
+// Genes linked to resistance, used to flag unknown mutations as uncertain
+const GENES = { rpob:["RIF"], katg:["INH"], inha:["INH","ETO"], fabg1:["INH","ETO"], embb:["EMB"], pnca:["PZA"], gyra:FQ, gyrb:FQ, rrs:["AMK"], rv0678:["BDQ"], atpe:["BDQ"], rplc:["LZD"], rrl:["LZD"], etha:["ETO"] };
+const ALIAS = { mmpr5: "rv0678" };
+const AA = {ALA:"A",ARG:"R",ASN:"N",ASP:"D",CYS:"C",GLN:"Q",GLU:"E",GLY:"G",HIS:"H",ILE:"I",LEU:"L",LYS:"K",MET:"M",PHE:"F",PRO:"P",SER:"S",THR:"T",TRP:"W",TYR:"Y",VAL:"V",TER:"*"};
+
+const SAMPLES = [
+  { id: "P-0142", name: "Drug-susceptible", muts: ["gyrA E21Q","gyrA S95T","katG R463L"] },
+  { id: "P-0207", name: "MDR-TB", muts: ["rpoB S450L","katG S315T","embB M306V","gyrA S95T"] },
+  { id: "P-0318", name: "Pre-XDR", muts: ["rpoB H445Y","katG S315T","fabG1 c.-15C>T","gyrA D94G","pncA Q10P"] },
+  { id: "P-0451", name: "XDR (provisional)", muts: ["rpoB S450L","katG p.Ser315Thr","gyrA A90V","Rv0678 c.141_142insC","rplC C154R","embB D1024N"] }
+];
+
+function parse(line) {
+  const t = line.trim().replace(/^([A-Za-z0-9]+)_/, "$1 ").replace(/\s+/g, " ");
+  if (!t) return null;
+  const sp = t.indexOf(" ");
+  if (sp < 0) return { raw: t, gene: t, change: "" };
+  let gene = t.slice(0, sp), change = t.slice(sp + 1).replace(/\s/g, "");
+  let g = gene.toLowerCase(); g = ALIAS[g] || g;
+  const m = change.match(/^p\.([A-Za-z]{3})(\d+)([A-Za-z]{3}|\*)$/);
+  if (m) {
+    const a = AA[m[1].toUpperCase()], b = m[3] === "*" ? "*" : AA[m[3].toUpperCase()];
+    if (a && b) change = a + m[2] + b;
+  } else change = change.replace(/^p\./, "");
+  return { raw: t, gene, g, change };
+}
+
+// Demo drug code -> CRyPTIC model code (no pyrazinamide model: not on the UKMYC plates)
+const MODEL_CODE = { RIF: "RIF", INH: "INH", EMB: "EMB", PZA: null, LFX: "LEV", MFX: "MXF", BDQ: "BDQ", LZD: "LZD", AMK: "AMI", ETO: "ETH" };
+const LOW_DATA = 200;
+let MODEL = null, METRICS = {};
+
+// Convert a mutation to the CRyPTIC (GARC) spelling the model was trained on
+function toGarc(change) {
+  let m = change.match(/^[cn]\.(-?\d+)([ACGT])>([ACGT])$/i);
+  if (m) return m[2].toLowerCase() + m[1] + m[3].toLowerCase();
+  m = change.match(/^[cn]\.(-?\d+)(?:_-?\d+)?(?:del|ins|dup)/i);
+  if (m) return m[1] + "_indel";
+  return change.replace("*", "!");
+}
+
+function modelProb(code, parsed) {
+  const mc = MODEL_CODE[code];
+  if (!MODEL || !mc || !MODEL.models[mc]) return null;
+  const md = MODEL.models[mc];
+  let z = md.intercept; const used = [];
+  parsed.forEach(p => {
+    const w = md.weights[p.gene + "@" + toGarc(p.change)] ?? md.weights[p.gene + "@" + p.change];
+    if (w !== undefined) { z += w; if (w >= 0.5) used.push(p.gene + " " + p.change); }
+  });
+  const met = METRICS[mc];
+  return { p: 1 / (1 + Math.exp(-z)), used, lowData: !met || met.n_resistant < LOW_DATA, met };
+}
+
+const RANK = { s: 0, u: 1, lr: 2, r: 3 };
+function predict(lines) {
+  const res = {}; DRUGS.forEach(([c]) => res[c] = { level: "s", ev: [] });
+  const ignored = [], unknownGene = [];
+  const hit = (drugs, level, text) => drugs.forEach(d => {
+    if (RANK[level] > RANK[res[d].level]) res[d].level = level;
+    res[d].ev.push({ level, text });
+  });
+  const parsed = lines.map(parse).filter(Boolean);
+  parsed.forEach(p => {
+    const label = p.gene + " " + p.change;
+    const entry = CAT[p.g + " " + p.change.toUpperCase()];
+    if (entry) {
+      if (entry.grade === 0) { ignored.push(label); return; }
+      hit(entry.drugs, entry.grade === 1 ? "r" : "lr", label + (entry.grade === 1 ? " · established" : " · emerging evidence"));
+      return;
+    }
+    const lof = /(FS|\*|DEL|INS|DUP|STOP)/i.test(p.change);
+    if (lof && LOF[p.g]) { const [d, gr] = LOF[p.g]; hit(d, gr === 1 ? "r" : "lr", label + " · gene disrupted"); return; }
+    if (GENES[p.g]) { hit(GENES[p.g], "u", label + " · not in catalogue"); return; }
+    unknownGene.push(label);
+  });
+  // Combine: established catalogue call wins; otherwise a confident model call raises the level
+  DRUGS.forEach(([c]) => {
+    const m = modelProb(c, parsed);
+    res[c].model = m;
+    if (m && !m.lowData && m.p >= 0.5 && RANK[res[c].level] < RANK.lr) res[c].level = "lr";
+  });
+  return { res, ignored, unknownGene, count: lines.filter(l => l.trim()).length };
+}
+
+function classify(res) {
+  const R = d => RANK[res[d].level] >= 2, firm = d => res[d].level === "r";
+  const rr = R("RIF"), inh = R("INH"), fq = FQ.some(R), grpA = R("BDQ") || R("LZD");
+  const provisional = ["RIF","INH",...FQ,"BDQ","LZD"].some(d => R(d) && !firm(d));
+  let big, sub, cls;
+  if (rr && fq && grpA) { big = "XDR-TB"; sub = "Resistant to rifampicin, a fluoroquinolone, and bedaquiline or linezolid. Very limited treatment options."; cls = "r"; }
+  else if (rr && fq) { big = "Pre-XDR-TB"; sub = "Rifampicin-resistant plus fluoroquinolone resistance."; cls = "r"; }
+  else if (rr && inh) { big = "MDR-TB"; sub = "Resistant to both rifampicin and isoniazid, the two most important first-line drugs."; cls = "r"; }
+  else if (rr) { big = "RR-TB"; sub = "Rifampicin-resistant TB. Managed like MDR-TB."; cls = "r"; }
+  else if (inh) { big = "Isoniazid-resistant TB"; sub = "Rifampicin still works. A modified first-line regimen is usually used."; cls = "lr"; }
+  else if (Object.values(res).some(x => RANK[x.level] >= 2)) { big = "Other drug resistance"; sub = "Resistance detected to drugs outside the main categories."; cls = "lr"; }
+  else { big = "No resistance detected"; sub = "No known resistance mutations among the drugs tested."; cls = "s"; }
+  if (provisional && cls === "r") sub += " Part of this call rests on emerging evidence, so confirm with lab testing.";
+  return { big, sub, cls };
+}
+
+const LABEL = { r: "Resistant", lr: "Likely resistant", u: "Uncertain", s: "No resistance found" };
+const esc = s => s.replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+const $ = id => document.getElementById(id);
+let currentId = "Custom";
+
+function render() {
+  const lines = $("muts").value.split(/[\n,;]+/);
+  const { res, ignored, unknownGene, count } = predict(lines);
+  const v = classify(res);
+  $("meta").textContent = `Sample ${currentId} · ${count} mutation${count === 1 ? "" : "s"}`;
+  $("verdict").className = "verdict " + v.cls;
+  $("verdict").innerHTML = `<span class="big">${v.big}</span><span class="sub">${v.sub}</span>`;
+  $("rows").innerHTML = DRUGS.map(([c, name, grp]) => {
+    const r = res[c];
+    const ev = r.ev.length ? r.ev.map(e => { const [m, why] = e.text.split(" · "); return `<span class="mut">${esc(m)}</span> <span>${why}</span>`; }).join("<br>") : "—";
+    const m = r.model;
+    let mc = `<span class="prob low">${MODEL ? "No model" : "…"}</span>`;
+    if (m) {
+      const pc = Math.round(m.p * 100);
+      const note = m.lowData ? "low data, reference only" : (m.used.length ? "driven by " + m.used.map(esc).join(", ") : "no informative mutations");
+      mc = `<div class="prob${m.lowData ? " low" : ""}">${pc}% resistant<div class="bar"><i style="width:${pc}%"></i></div><small>${note}</small></div>`;
+    }
+    return `<tr><td class="drug">${name}<small>${c} · ${grp}</small></td><td><span class="pill ${r.level}">${LABEL[r.level]}</span></td><td>${mc}</td><td class="why">${ev}</td></tr>`;
+  }).join("");
+  const notes = [];
+  if (ignored.length) notes.push(`Ignored as harmless lineage markers: <span class="mut">${ignored.map(esc).join(", ")}</span>`);
+  if (unknownGene.length) notes.push(`Not in a known resistance gene, skipped: <span class="mut">${unknownGene.map(esc).join(", ")}</span>`);
+  notes.push("Confirm every result with phenotypic drug-susceptibility testing before changing treatment.");
+  $("notes").innerHTML = `<ul>${notes.map(n => `<li>${n}</li>`).join("")}</ul>`;
+}
+
+function load(s) {
+  currentId = s.id;
+  $("muts").value = s.muts.join("\n");
+  document.querySelectorAll("#samples button").forEach(b => b.setAttribute("aria-pressed", b.dataset.id === s.id));
+  render();
+}
+
+$("samples").innerHTML = SAMPLES.map(s => `<button type="button" data-id="${s.id}" aria-pressed="false">${s.name}</button>`).join("");
+document.querySelectorAll("#samples button").forEach(b => b.addEventListener("click", () => load(SAMPLES.find(s => s.id === b.dataset.id))));
+$("muts").addEventListener("input", () => { currentId = "Custom"; document.querySelectorAll("#samples button").forEach(b => b.setAttribute("aria-pressed", "false")); });
+$("run").addEventListener("click", render);
+load(SAMPLES[1]);
+
+Promise.all([fetch("results/model.json").then(r => r.json()), fetch("results/metrics.json").then(r => r.json())])
+  .then(([model, metrics]) => {
+    MODEL = model;
+    metrics.forEach(m => { METRICS[m.drug] = m; });
+    const rif = METRICS.RIF;
+    $("modelinfo").textContent = `AI model: logistic regression per drug, trained on CRyPTIC data. On held-out test samples it caught ${Math.round(rif.model.sensitivity * 100)}% of rifampicin-resistant cases with ${Math.round(rif.model.specificity * 100)}% specificity.`;
+    render();
+  })
+  .catch(() => { $("modelinfo").textContent = "AI model could not be loaded, so predictions use the catalogue only."; render(); });
+</script>
+</body>
+</html>
