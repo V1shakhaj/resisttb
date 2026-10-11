@@ -592,7 +592,7 @@
       "model": {
         "essential_agreement": 0.9113913043478261,
         "essential_agreement_resistant": 0.8341115753256328,
-        "exact_agreement": 0.8127826086956522,
+        "exact_agreement": 0.812695652173913,
         "category_agreement": 0.9425217391304348,
         "very_major_error": 0.06832145490292456,
         "major_error": 0.05154084241690217
