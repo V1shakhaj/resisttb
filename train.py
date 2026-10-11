@@ -1,9 +1,14 @@
 """Train per-drug resistance models on CRyPTIC TB genomes and compare them with the catalogue.
 
+Each drug's model only uses mutations in the genes the WHO catalogue links to resistance for that drug.
+Without this, models learned strain markers and mutations that merely travel with multidrug resistance
+(e.g. rpsL K43R for amikacin), which failed on strain lineages they had not seen.
+
 Inputs (from the CRyPTIC June 2022 release, see README.md):
   EFFECTS.csv.gz           mutations each sample has in the resistance genes for each drug,
                            plus the catalogue's R/S/U call for that mutation
   UKMYC_PHENOTYPES.csv.gz  lab-measured resistance (R/S) for each sample and drug
+  WHO_catalogue_v2.1.csv   WHO mutation catalogue, used for the list of resistance genes per drug
 
 Outputs (in --out):
   metrics.json  held-out test performance of the model and the catalogue, per drug
@@ -27,13 +32,23 @@ DRUGS = {
     "RFB": "Rifabutin", "BDQ": "Bedaquiline", "LZD": "Linezolid", "DLM": "Delamanid", "CFZ": "Clofazimine",
 }
 SEED = 42
-LOW_DATA = 200  # fewer resistant samples than this is flagged as unreliable in the report
+LOW_DATA = 200  # no model is trained with fewer resistant samples than this; models on less data learned noise
 MIN_SAMPLES = 3  # a mutation must appear in at least this many training samples to become a feature
 
 
 def new_model():
     """L1 logistic regression: keeps only informative mutations, one weight per mutation."""
     return LogisticRegression(penalty="l1", solver="liblinear", C=1.0, class_weight="balanced", max_iter=2000)
+
+
+def resistance_genes(path):
+    """Genes with at least one resistance-causing mutation in the WHO catalogue, per drug."""
+    cat = pd.read_csv(path, usecols=["DRUG", "MUTATION", "PREDICTION"])
+    cat = cat[cat.PREDICTION == "R"]
+    genes = cat.MUTATION.str.split("@").str[0]
+    out = {d: set(g) - {"MULTI"} for d, g in genes.groupby(cat.DRUG)}
+    out["RFB"] = out.get("RIF", set())  # rifabutin isn't in the WHO catalogue; it shares rifampicin's target, rpoB
+    return out
 
 
 def load_effects(path):
@@ -67,14 +82,15 @@ def sens_spec(y_true, y_pred):
     }
 
 
-def train_drug(drug, effects, pheno):
+def train_drug(drug, effects, pheno, genes):
     labels = pheno[pheno.DRUG == drug].set_index("UNIQUEID").BINARY_PHENOTYPE.eq("R").astype(int)
-    eff = effects[(effects.DRUG == drug) & effects.UNIQUEID.isin(labels.index)]
+    eff = effects[(effects.DRUG == drug) & effects.GENE.isin(genes[drug]) & effects.UNIQUEID.isin(labels.index)]
     # Only samples that were sequenced (appear somewhere in EFFECTS) can be scored
     labels = labels[labels.index.isin(effects.UNIQUEID.unique())]
     n_r = int(labels.sum())
-    if n_r < 20:
-        return None, {"drug": drug, "name": DRUGS[drug], "skipped": f"only {n_r} resistant samples"}
+    if n_r < LOW_DATA:
+        return None, {"drug": drug, "name": DRUGS[drug], "n_resistant": n_r,
+                      "skipped": f"too little data ({n_r} resistant samples, needs {LOW_DATA})"}
 
     ids = labels.index.to_numpy()
     train_ids, test_ids = train_test_split(ids, test_size=0.2, random_state=SEED, stratify=labels.values)
@@ -135,14 +151,14 @@ def write_report(metrics, path):
         cat = m["catalogue"]
         no_rules = cat["tp"] + cat["fp"] == 0
         cat_cols = "no rules | no rules" if no_rules else f"{pct(cat['sensitivity'])} | {pct(cat['specificity'])}"
-        flag = " ⚠️" if m["n_resistant"] < LOW_DATA else ""
+        flag = ""
         lines.append(
             f"| {m['name']}{flag} | {m['n_samples']:,} ({m['n_resistant']:,}) | {pct(m['model']['sensitivity'])} | "
             f"{pct(m['model']['specificity'])} | {cat_cols} |"
         )
     lines += [
         "",
-        f"⚠️ Fewer than {LOW_DATA} resistant samples to learn from. Treat these results as unreliable until more data is added.",
+        f"Drugs with fewer than {LOW_DATA} resistant samples get no model: with that little data the models learned noise.",
         "",
         "\"No rules\" means the catalogue used in this dataset makes no resistance calls for that drug, so the model is the only predictor.",
         "",
@@ -166,10 +182,11 @@ def main():
 
     print("Loading phenotypes..."); pheno = load_phenotypes(Path(args.data) / "UKMYC_PHENOTYPES.csv.gz")
     print("Loading mutations (takes a few minutes)..."); effects = load_effects(Path(args.data) / "EFFECTS.csv.gz")
+    genes = resistance_genes(Path(args.data) / "WHO_catalogue_v2.1.csv")
 
     models, metrics = {}, []
     for drug in DRUGS:
-        model, m = train_drug(drug, effects, pheno)
+        model, m = train_drug(drug, effects, pheno, genes)
         metrics.append(m)
         if model:
             models[drug] = model

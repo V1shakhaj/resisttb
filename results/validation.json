@@ -7,13 +7,13 @@
       "n": 10396,
       "n_resistant": 4334,
       "model": {
-        "sensitivity": 0.9397784956160591,
-        "specificity": 0.9691520950181458,
-        "tp": 4073,
-        "fn": 261,
-        "tn": 5875,
-        "fp": 187,
-        "auc": 0.9664597954653171
+        "sensitivity": 0.9390862944162437,
+        "specificity": 0.9696469811943254,
+        "tp": 4070,
+        "fn": 264,
+        "tn": 5878,
+        "fp": 184,
+        "auc": 0.963660635972508
       },
       "who_catalogue": {
         "sensitivity": 0.9566220581449008,
@@ -45,7 +45,7 @@
           "fn": 8,
           "tn": 201,
           "fp": 0,
-          "auc": 0.9560306575231947
+          "auc": 0.9531733225763077
         },
         "who_catalogue": {
           "sensitivity": 0.9054054054054054,
@@ -76,7 +76,7 @@
           "fn": 36,
           "tn": 739,
           "fp": 10,
-          "auc": 0.9299370114509524
+          "auc": 0.9298456032663192
         },
         "who_catalogue": {
           "sensitivity": 0.8962655601659751,
@@ -107,7 +107,7 @@
           "fn": 9,
           "tn": 444,
           "fp": 25,
-          "auc": 0.9723046259386299
+          "auc": 0.9783738527857606
         },
         "who_catalogue": {
           "sensitivity": 0.9809782608695652,
@@ -138,7 +138,7 @@
           "fn": 37,
           "tn": 565,
           "fp": 29,
-          "auc": 0.9516300940438872
+          "auc": 0.9503111575525369
         },
         "who_catalogue": {
           "sensitivity": 0.9558620689655173,
@@ -163,13 +163,13 @@
         "n": 1523,
         "n_resistant": 913,
         "model": {
-          "sensitivity": 0.9331872946330778,
+          "sensitivity": 0.9353778751369113,
           "specificity": 0.9459016393442623,
-          "tp": 852,
-          "fn": 61,
+          "tp": 854,
+          "fn": 59,
           "tn": 577,
           "fp": 33,
-          "auc": 0.961637907816063
+          "auc": 0.9669419855278042
         },
         "who_catalogue": {
           "sensitivity": 0.9529025191675794,
@@ -194,13 +194,13 @@
         "n": 2297,
         "n_resistant": 786,
         "model": {
-          "sensitivity": 0.9656488549618321,
+          "sensitivity": 0.9669211195928753,
           "specificity": 0.972203838517538,
-          "tp": 759,
-          "fn": 27,
+          "tp": 760,
+          "fn": 26,
           "tn": 1469,
           "fp": 42,
-          "auc": 0.9732024525826719
+          "auc": 0.9739943552203266
         },
         "who_catalogue": {
           "sensitivity": 0.9732824427480916,
@@ -225,13 +225,13 @@
         "n": 1645,
         "n_resistant": 627,
         "model": {
-          "sensitivity": 0.9186602870813397,
-          "specificity": 0.9833005893909627,
-          "tp": 576,
-          "fn": 51,
-          "tn": 1001,
-          "fp": 17,
-          "auc": 0.97596061953419
+          "sensitivity": 0.9090909090909091,
+          "specificity": 0.9862475442043221,
+          "tp": 570,
+          "fn": 57,
+          "tn": 1004,
+          "fp": 14,
+          "auc": 0.9680621226221474
         },
         "who_catalogue": {
           "sensitivity": 0.9521531100478469,
@@ -262,7 +262,7 @@
           "fn": 4,
           "tn": 2,
           "fp": 21,
-          "auc": 0.48968869039800345
+          "auc": 0.5062393274661763
         },
         "who_catalogue": {
           "sensitivity": 0.9879154078549849,
@@ -293,7 +293,7 @@
           "fn": 22,
           "tn": 875,
           "fp": 9,
-          "auc": 0.9535654656761924
+          "auc": 0.9475433735814358
         },
         "who_catalogue": {
           "sensitivity": 0.9090909090909091,
@@ -315,17 +315,174 @@
         }
       }
     },
+    "unseen_lineages": {
+      "n": 10201,
+      "n_resistant": 4271,
+      "model": {
+        "sensitivity": 0.9534066963240458,
+        "specificity": 0.9620573355817875,
+        "tp": 4072,
+        "fn": 199,
+        "tn": 5705,
+        "fp": 225,
+        "auc": 0.9646408599823982
+      },
+      "who_catalogue": {
+        "sensitivity": 0.966050105361742,
+        "specificity": 0.9507588532883643,
+        "tp": 4126,
+        "fn": 145,
+        "tn": 5638,
+        "fp": 292,
+        "uncertain_fraction": 0.022252720321537103
+      },
+      "cryptic_catalogue": {
+        "sensitivity": 0.9606649496605011,
+        "specificity": 0.9502529510961214,
+        "tp": 4103,
+        "fn": 168,
+        "tn": 5635,
+        "fp": 295,
+        "uncertain_fraction": 0.2231153808450152
+      }
+    },
+    "by_lineage": {
+      "Lineage 1": {
+        "n": 593,
+        "n_resistant": 129,
+        "model": {
+          "sensitivity": 0.8992248062015504,
+          "specificity": 0.9892241379310345,
+          "tp": 116,
+          "fn": 13,
+          "tn": 459,
+          "fp": 5,
+          "auc": 0.952828454958567
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9224806201550387,
+          "specificity": 0.9655172413793104,
+          "tp": 119,
+          "fn": 10,
+          "tn": 448,
+          "fp": 16,
+          "uncertain_fraction": 0.03035413153456998
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9069767441860465,
+          "specificity": 0.9655172413793104,
+          "tp": 117,
+          "fn": 12,
+          "tn": 448,
+          "fp": 16,
+          "uncertain_fraction": 0.7757166947723441
+        }
+      },
+      "Lineage 2": {
+        "n": 3823,
+        "n_resistant": 1986,
+        "model": {
+          "sensitivity": 0.9657603222557906,
+          "specificity": 0.9542732716385411,
+          "tp": 1918,
+          "fn": 68,
+          "tn": 1753,
+          "fp": 84,
+          "auc": 0.967159062813675
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9748237663645518,
+          "specificity": 0.9363091997822537,
+          "tp": 1936,
+          "fn": 50,
+          "tn": 1720,
+          "fp": 117,
+          "uncertain_fraction": 0.010462987182840701
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.972306143001007,
+          "specificity": 0.9341317365269461,
+          "tp": 1931,
+          "fn": 55,
+          "tn": 1716,
+          "fp": 121,
+          "uncertain_fraction": 0.07428720899816897
+        }
+      },
+      "Lineage 3": {
+        "n": 898,
+        "n_resistant": 455,
+        "model": {
+          "sensitivity": 0.9098901098901099,
+          "specificity": 0.9413092550790068,
+          "tp": 414,
+          "fn": 41,
+          "tn": 417,
+          "fp": 26,
+          "auc": 0.9482226577034704
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9362637362637363,
+          "specificity": 0.9029345372460497,
+          "tp": 426,
+          "fn": 29,
+          "tn": 400,
+          "fp": 43,
+          "uncertain_fraction": 0.011135857461024499
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9230769230769231,
+          "specificity": 0.9029345372460497,
+          "tp": 420,
+          "fn": 35,
+          "tn": 400,
+          "fp": 43,
+          "uncertain_fraction": 0.04899777282850779
+        }
+      },
+      "Lineage 4": {
+        "n": 4887,
+        "n_resistant": 1701,
+        "model": {
+          "sensitivity": 0.9547325102880658,
+          "specificity": 0.965473948524796,
+          "tp": 1624,
+          "fn": 77,
+          "tn": 3076,
+          "fp": 110,
+          "auc": 0.9684207768186286
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9670781893004116,
+          "specificity": 0.9635907093534212,
+          "tp": 1645,
+          "fn": 56,
+          "tn": 3070,
+          "fp": 116,
+          "uncertain_fraction": 0.032535297728667895
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9611992945326279,
+          "specificity": 0.9639045825486503,
+          "tp": 1635,
+          "fn": 66,
+          "tn": 3071,
+          "fp": 115,
+          "uncertain_fraction": 0.30448127685696746
+        }
+      }
+    },
     "other_studies": {
       "n": 25571,
       "n_resistant": 6403,
       "model": {
-        "sensitivity": 0.8980165547399657,
-        "specificity": 0.9933743739565943,
-        "tp": 5750,
-        "fn": 653,
-        "tn": 19041,
-        "fp": 127,
-        "auc": 0.9547242314485308
+        "sensitivity": 0.9000468530376387,
+        "specificity": 0.9932178631051753,
+        "tp": 5763,
+        "fn": 640,
+        "tn": 19038,
+        "fp": 130,
+        "auc": 0.9580024285947453
       },
       "who_catalogue": {
         "sensitivity": 0.9297204435420896,
@@ -351,13 +508,13 @@
         "n": 1094,
         "n_resistant": 510,
         "model": {
-          "sensitivity": 0.7274509803921568,
-          "specificity": 0.9537671232876712,
-          "tp": 371,
-          "fn": 139,
-          "tn": 557,
-          "fp": 27,
-          "auc": 0.8268818828901422
+          "sensitivity": 0.7352941176470589,
+          "specificity": 0.952054794520548,
+          "tp": 375,
+          "fn": 135,
+          "tn": 556,
+          "fp": 28,
+          "auc": 0.818132218640881
         },
         "who_catalogue": {
           "sensitivity": 0.7352941176470589,
@@ -388,7 +545,7 @@
           "fn": 39,
           "tn": 2925,
           "fp": 17,
-          "auc": 0.9514955812372536
+          "auc": 0.9582622688432049
         },
         "who_catalogue": {
           "sensitivity": 0.9392405063291139,
@@ -419,7 +576,7 @@
           "fn": 2,
           "tn": 40,
           "fp": 6,
-          "auc": 0.9152527394839165
+          "auc": 0.9407034287734181
         },
         "who_catalogue": {
           "sensitivity": 0.991869918699187,
@@ -444,13 +601,13 @@
         "n": 9497,
         "n_resistant": 2395,
         "model": {
-          "sensitivity": 0.9118997912317328,
+          "sensitivity": 0.9139874739039666,
           "specificity": 0.9942269783159673,
-          "tp": 2184,
-          "fn": 211,
+          "tp": 2189,
+          "fn": 206,
           "tn": 7061,
           "fp": 41,
-          "auc": 0.9627057919525152
+          "auc": 0.964792680940827
         },
         "who_catalogue": {
           "sensitivity": 0.9511482254697285,
@@ -476,12 +633,12 @@
         "n_resistant": 123,
         "model": {
           "sensitivity": 0.9186991869918699,
-          "specificity": 0.9994810586403736,
+          "specificity": 0.9992215879605605,
           "tp": 113,
           "fn": 10,
-          "tn": 3852,
-          "fp": 2,
-          "auc": 0.9771560325878298
+          "tn": 3851,
+          "fp": 3,
+          "auc": 0.9803055425468629
         },
         "who_catalogue": {
           "sensitivity": 0.959349593495935,
@@ -506,13 +663,13 @@
         "n": 5740,
         "n_resistant": 2480,
         "model": {
-          "sensitivity": 0.9197580645161291,
+          "sensitivity": 0.9201612903225806,
           "specificity": 0.993558282208589,
-          "tp": 2281,
-          "fn": 199,
+          "tp": 2282,
+          "fn": 198,
           "tn": 3239,
           "fp": 21,
-          "auc": 0.9633211705917276
+          "auc": 0.9658447333267367
         },
         "who_catalogue": {
           "sensitivity": 0.9455645161290323,
@@ -537,13 +694,13 @@
         "n": 1757,
         "n_resistant": 377,
         "model": {
-          "sensitivity": 0.8594164456233422,
-          "specificity": 0.9905797101449275,
-          "tp": 324,
-          "fn": 53,
-          "tn": 1367,
-          "fp": 13,
-          "auc": 0.9583400607388614
+          "sensitivity": 0.8673740053050398,
+          "specificity": 0.9898550724637681,
+          "tp": 327,
+          "fn": 50,
+          "tn": 1366,
+          "fp": 14,
+          "auc": 0.954056625533387
         },
         "who_catalogue": {
           "sensitivity": 0.9124668435013262,
@@ -574,13 +731,13 @@
       "n": 10432,
       "n_resistant": 4889,
       "model": {
-        "sensitivity": 0.9384332174268767,
-        "specificity": 0.9862890131697637,
-        "tp": 4588,
-        "fn": 301,
-        "tn": 5467,
-        "fp": 76,
-        "auc": 0.9624126287323853
+        "sensitivity": 0.9320924524442626,
+        "specificity": 0.9870106440555656,
+        "tp": 4557,
+        "fn": 332,
+        "tn": 5471,
+        "fp": 72,
+        "auc": 0.9576793338176431
       },
       "who_catalogue": {
         "sensitivity": 0.9296379627735734,
@@ -606,13 +763,13 @@
         "n": 243,
         "n_resistant": 82,
         "model": {
-          "sensitivity": 0.8780487804878049,
-          "specificity": 0.9875776397515528,
-          "tp": 72,
-          "fn": 10,
-          "tn": 159,
-          "fp": 2,
-          "auc": 0.9369413725193153
+          "sensitivity": 0.8536585365853658,
+          "specificity": 0.9937888198757764,
+          "tp": 70,
+          "fn": 12,
+          "tn": 160,
+          "fp": 1,
+          "auc": 0.9241402817754885
         },
         "who_catalogue": {
           "sensitivity": 0.8658536585365854,
@@ -637,13 +794,13 @@
         "n": 961,
         "n_resistant": 270,
         "model": {
-          "sensitivity": 0.8407407407407408,
-          "specificity": 0.9855282199710564,
-          "tp": 227,
-          "fn": 43,
-          "tn": 681,
-          "fp": 10,
-          "auc": 0.9229163316717586
+          "sensitivity": 0.7888888888888889,
+          "specificity": 0.9884225759768451,
+          "tp": 213,
+          "fn": 57,
+          "tn": 683,
+          "fp": 8,
+          "auc": 0.8891783244894678
         },
         "who_catalogue": {
           "sensitivity": 0.7962962962962963,
@@ -668,13 +825,13 @@
         "n": 1000,
         "n_resistant": 470,
         "model": {
-          "sensitivity": 0.9723404255319149,
-          "specificity": 0.9943396226415094,
-          "tp": 457,
-          "fn": 13,
-          "tn": 527,
-          "fp": 3,
-          "auc": 0.9838177438779607
+          "sensitivity": 0.9659574468085106,
+          "specificity": 0.9962264150943396,
+          "tp": 454,
+          "fn": 16,
+          "tn": 528,
+          "fp": 2,
+          "auc": 0.9857205941389002
         },
         "who_catalogue": {
           "sensitivity": 0.9723404255319149,
@@ -700,12 +857,12 @@
         "n_resistant": 720,
         "model": {
           "sensitivity": 0.9472222222222222,
-          "specificity": 0.9655172413793104,
+          "specificity": 0.9637023593466425,
           "tp": 682,
           "fn": 38,
-          "tn": 532,
-          "fp": 19,
-          "auc": 0.9583850070578745
+          "tn": 531,
+          "fp": 20,
+          "auc": 0.9555517745513209
         },
         "who_catalogue": {
           "sensitivity": 0.9458333333333333,
@@ -730,13 +887,13 @@
         "n": 1532,
         "n_resistant": 933,
         "model": {
-          "sensitivity": 0.9185423365487674,
+          "sensitivity": 0.9121114683815649,
           "specificity": 0.9849749582637729,
-          "tp": 857,
-          "fn": 76,
+          "tp": 851,
+          "fn": 82,
           "tn": 590,
           "fp": 9,
-          "auc": 0.9435804941068268
+          "auc": 0.9648923625835842
         },
         "who_catalogue": {
           "sensitivity": 0.9185423365487674,
@@ -761,13 +918,13 @@
         "n": 2242,
         "n_resistant": 933,
         "model": {
-          "sensitivity": 0.9603429796355841,
+          "sensitivity": 0.9571275455519829,
           "specificity": 0.9923605805958747,
-          "tp": 896,
-          "fn": 37,
+          "tp": 893,
+          "fn": 40,
           "tn": 1299,
           "fp": 10,
-          "auc": 0.9798365999425203
+          "auc": 0.9766457299084498
         },
         "who_catalogue": {
           "sensitivity": 0.9571275455519829,
@@ -792,13 +949,13 @@
         "n": 1699,
         "n_resistant": 618,
         "model": {
-          "sensitivity": 0.9061488673139159,
+          "sensitivity": 0.9029126213592233,
           "specificity": 0.9898242368177613,
-          "tp": 560,
-          "fn": 58,
+          "tp": 558,
+          "fn": 60,
           "tn": 1070,
           "fp": 11,
-          "auc": 0.9546019956351096
+          "auc": 0.9463369946920777
         },
         "who_catalogue": {
           "sensitivity": 0.8673139158576052,
@@ -823,13 +980,13 @@
         "n": 1035,
         "n_resistant": 421,
         "model": {
-          "sensitivity": 0.9477434679334917,
-          "specificity": 0.9804560260586319,
-          "tp": 399,
-          "fn": 22,
-          "tn": 602,
-          "fp": 12,
-          "auc": 0.9716917994228105
+          "sensitivity": 0.9429928741092637,
+          "specificity": 0.9820846905537459,
+          "tp": 397,
+          "fn": 24,
+          "tn": 603,
+          "fp": 11,
+          "auc": 0.9661500847215022
         },
         "who_catalogue": {
           "sensitivity": 0.9382422802850356,
@@ -851,17 +1008,174 @@
         }
       }
     },
+    "unseen_lineages": {
+      "n": 10232,
+      "n_resistant": 4804,
+      "model": {
+        "sensitivity": 0.9408825978351374,
+        "specificity": 0.9867354458364038,
+        "tp": 4520,
+        "fn": 284,
+        "tn": 5356,
+        "fp": 72,
+        "auc": 0.9608714481668126
+      },
+      "who_catalogue": {
+        "sensitivity": 0.9385928393005828,
+        "specificity": 0.9856300663227708,
+        "tp": 4509,
+        "fn": 295,
+        "tn": 5350,
+        "fp": 78,
+        "uncertain_fraction": 0.03117670054730258
+      },
+      "cryptic_catalogue": {
+        "sensitivity": 0.9487926727726894,
+        "specificity": 0.9832350773765659,
+        "tp": 4558,
+        "fn": 246,
+        "tn": 5337,
+        "fp": 91,
+        "uncertain_fraction": 0.2305512118842846
+      }
+    },
+    "by_lineage": {
+      "Lineage 1": {
+        "n": 582,
+        "n_resistant": 153,
+        "model": {
+          "sensitivity": 0.8888888888888888,
+          "specificity": 0.9813519813519813,
+          "tp": 136,
+          "fn": 17,
+          "tn": 421,
+          "fp": 8,
+          "auc": 0.9486570074805369
+        },
+        "who_catalogue": {
+          "sensitivity": 0.7581699346405228,
+          "specificity": 0.9743589743589743,
+          "tp": 116,
+          "fn": 37,
+          "tn": 418,
+          "fp": 11,
+          "uncertain_fraction": 0.09621993127147767
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9215686274509803,
+          "specificity": 0.9743589743589743,
+          "tp": 141,
+          "fn": 12,
+          "tn": 418,
+          "fp": 11,
+          "uncertain_fraction": 0.21993127147766323
+        }
+      },
+      "Lineage 2": {
+        "n": 3700,
+        "n_resistant": 2215,
+        "model": {
+          "sensitivity": 0.9616252821670429,
+          "specificity": 0.9777777777777777,
+          "tp": 2130,
+          "fn": 85,
+          "tn": 1452,
+          "fp": 33,
+          "auc": 0.9691299754505173
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9611738148984199,
+          "specificity": 0.9777777777777777,
+          "tp": 2129,
+          "fn": 86,
+          "tn": 1452,
+          "fp": 33,
+          "uncertain_fraction": 0.02081081081081081
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9674943566591422,
+          "specificity": 0.9737373737373738,
+          "tp": 2143,
+          "fn": 72,
+          "tn": 1446,
+          "fp": 39,
+          "uncertain_fraction": 0.39972972972972975
+        }
+      },
+      "Lineage 3": {
+        "n": 913,
+        "n_resistant": 480,
+        "model": {
+          "sensitivity": 0.8708333333333333,
+          "specificity": 0.9815242494226328,
+          "tp": 418,
+          "fn": 62,
+          "tn": 425,
+          "fp": 8,
+          "auc": 0.9191878367975368
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8770833333333333,
+          "specificity": 0.9838337182448037,
+          "tp": 421,
+          "fn": 59,
+          "tn": 426,
+          "fp": 7,
+          "uncertain_fraction": 0.05147864184008762
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.88125,
+          "specificity": 0.9815242494226328,
+          "tp": 423,
+          "fn": 57,
+          "tn": 425,
+          "fp": 8,
+          "uncertain_fraction": 0.08214676889375684
+        }
+      },
+      "Lineage 4": {
+        "n": 5037,
+        "n_resistant": 1956,
+        "model": {
+          "sensitivity": 0.9386503067484663,
+          "specificity": 0.9925348912690685,
+          "tp": 1836,
+          "fn": 120,
+          "tn": 3058,
+          "fp": 23,
+          "auc": 0.9680644579980604
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9422290388548057,
+          "specificity": 0.991236611489776,
+          "tp": 1843,
+          "fn": 113,
+          "tn": 3054,
+          "fp": 27,
+          "uncertain_fraction": 0.02759579114552313
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.946319018404908,
+          "specificity": 0.9892891918208374,
+          "tp": 1851,
+          "fn": 105,
+          "tn": 3048,
+          "fp": 33,
+          "uncertain_fraction": 0.13440540003970616
+        }
+      }
+    },
     "other_studies": {
       "n": 25469,
       "n_resistant": 7916,
       "model": {
-        "sensitivity": 0.917256189994947,
-        "specificity": 0.9888907878995044,
-        "tp": 7261,
-        "fn": 655,
-        "tn": 17358,
-        "fp": 195,
-        "auc": 0.960955335385474
+        "sensitivity": 0.9070237493683678,
+        "specificity": 0.9903720161795705,
+        "tp": 7180,
+        "fn": 736,
+        "tn": 17384,
+        "fp": 169,
+        "auc": 0.9542198474801803
       },
       "who_catalogue": {
         "sensitivity": 0.9015917129863568,
@@ -887,13 +1201,13 @@
         "n": 1094,
         "n_resistant": 585,
         "model": {
-          "sensitivity": 0.8991452991452992,
-          "specificity": 0.9214145383104125,
-          "tp": 526,
-          "fn": 59,
-          "tn": 469,
-          "fp": 40,
-          "auc": 0.9166439977834869
+          "sensitivity": 0.8974358974358975,
+          "specificity": 0.9233791748526523,
+          "tp": 525,
+          "fn": 60,
+          "tn": 470,
+          "fp": 39,
+          "auc": 0.9157993719879771
         },
         "who_catalogue": {
           "sensitivity": 0.8957264957264958,
@@ -918,13 +1232,13 @@
         "n": 3368,
         "n_resistant": 649,
         "model": {
-          "sensitivity": 0.8659476117103235,
-          "specificity": 0.9900698786318499,
-          "tp": 562,
-          "fn": 87,
-          "tn": 2692,
-          "fp": 27,
-          "auc": 0.9389628766580662
+          "sensitivity": 0.8520801232665639,
+          "specificity": 0.9915410077234277,
+          "tp": 553,
+          "fn": 96,
+          "tn": 2696,
+          "fp": 23,
+          "auc": 0.9371483329942633
         },
         "who_catalogue": {
           "sensitivity": 0.8567026194144838,
@@ -955,7 +1269,7 @@
           "fn": 4,
           "tn": 33,
           "fp": 11,
-          "auc": 0.8846358320042531
+          "auc": 0.8843035619351408
         },
         "who_catalogue": {
           "sensitivity": 0.9824561403508771,
@@ -980,13 +1294,13 @@
         "n": 9371,
         "n_resistant": 2774,
         "model": {
-          "sensitivity": 0.9188896899783706,
-          "specificity": 0.9916628770653327,
-          "tp": 2549,
-          "fn": 225,
-          "tn": 6542,
-          "fp": 55,
-          "auc": 0.9618403812267904
+          "sensitivity": 0.9098774333093006,
+          "specificity": 0.9918144611186903,
+          "tp": 2524,
+          "fn": 250,
+          "tn": 6543,
+          "fp": 54,
+          "auc": 0.9581904514286769
         },
         "who_catalogue": {
           "sensitivity": 0.8950973323720259,
@@ -1011,13 +1325,13 @@
         "n": 3964,
         "n_resistant": 565,
         "model": {
-          "sensitivity": 0.9451327433628318,
-          "specificity": 0.9952927331568108,
-          "tp": 534,
-          "fn": 31,
-          "tn": 3383,
-          "fp": 16,
-          "auc": 0.9805947610827757
+          "sensitivity": 0.9362831858407079,
+          "specificity": 0.9982347749338041,
+          "tp": 529,
+          "fn": 36,
+          "tn": 3393,
+          "fp": 6,
+          "auc": 0.9802924858170153
         },
         "who_catalogue": {
           "sensitivity": 0.9362831858407079,
@@ -1042,13 +1356,13 @@
         "n": 5700,
         "n_resistant": 2676,
         "model": {
-          "sensitivity": 0.9245142002989537,
-          "specificity": 0.9910714285714286,
-          "tp": 2474,
-          "fn": 202,
-          "tn": 2997,
-          "fp": 27,
-          "auc": 0.962519203620661
+          "sensitivity": 0.9095665171898356,
+          "specificity": 0.9930555555555556,
+          "tp": 2434,
+          "fn": 242,
+          "tn": 3003,
+          "fp": 21,
+          "auc": 0.9516378315775736
         },
         "who_catalogue": {
           "sensitivity": 0.9076980568011959,
@@ -1073,13 +1387,13 @@
         "n": 1757,
         "n_resistant": 496,
         "model": {
-          "sensitivity": 0.905241935483871,
-          "specificity": 0.9849325931800159,
-          "tp": 449,
-          "fn": 47,
-          "tn": 1242,
-          "fp": 19,
-          "auc": 0.9702768859839861
+          "sensitivity": 0.9032258064516129,
+          "specificity": 0.9881046788263284,
+          "tp": 448,
+          "fn": 48,
+          "tn": 1246,
+          "fp": 15,
+          "auc": 0.9530830306208591
         },
         "who_catalogue": {
           "sensitivity": 0.9032258064516129,
@@ -1110,13 +1424,13 @@
       "n": 7755,
       "n_resistant": 1817,
       "model": {
-        "sensitivity": 0.9152449091909741,
-        "specificity": 0.9430784776018861,
-        "tp": 1663,
-        "fn": 154,
-        "tn": 5600,
-        "fp": 338,
-        "auc": 0.9573921347966782
+        "sensitivity": 0.9229499174463401,
+        "specificity": 0.936510609632873,
+        "tp": 1677,
+        "fn": 140,
+        "tn": 5561,
+        "fp": 377,
+        "auc": 0.9469339012763146
       },
       "who_catalogue": {
         "sensitivity": 0.8855255916345625,
@@ -1148,7 +1462,7 @@
           "fn": 1,
           "tn": 179,
           "fp": 1,
-          "auc": 0.9858695652173913
+          "auc": 0.9782608695652175
         },
         "who_catalogue": {
           "sensitivity": 0.9565217391304348,
@@ -1173,13 +1487,13 @@
         "n": 845,
         "n_resistant": 146,
         "model": {
-          "sensitivity": 0.8287671232876712,
-          "specificity": 0.9914163090128756,
-          "tp": 121,
-          "fn": 25,
-          "tn": 693,
-          "fp": 6,
-          "auc": 0.9225998001058264
+          "sensitivity": 0.815068493150685,
+          "specificity": 0.9928469241773963,
+          "tp": 119,
+          "fn": 27,
+          "tn": 694,
+          "fp": 5,
+          "auc": 0.9215562349344464
         },
         "who_catalogue": {
           "sensitivity": 0.8356164383561644,
@@ -1204,13 +1518,13 @@
         "n": 620,
         "n_resistant": 84,
         "model": {
-          "sensitivity": 0.9642857142857143,
-          "specificity": 0.8917910447761194,
-          "tp": 81,
-          "fn": 3,
-          "tn": 478,
-          "fp": 58,
-          "auc": 0.9840418443496802
+          "sensitivity": 0.9523809523809523,
+          "specificity": 0.8899253731343284,
+          "tp": 80,
+          "fn": 4,
+          "tn": 477,
+          "fp": 59,
+          "auc": 0.9673063255152807
         },
         "who_catalogue": {
           "sensitivity": 0.9404761904761905,
@@ -1236,12 +1550,12 @@
         "n_resistant": 461,
         "model": {
           "sensitivity": 0.9370932754880694,
-          "specificity": 0.9122807017543859,
+          "specificity": 0.9083820662768031,
           "tp": 432,
           "fn": 29,
-          "tn": 468,
-          "fp": 45,
-          "auc": 0.9561762927443942
+          "tn": 466,
+          "fp": 47,
+          "auc": 0.9443175907954993
         },
         "who_catalogue": {
           "sensitivity": 0.8438177874186551,
@@ -1266,13 +1580,13 @@
         "n": 1016,
         "n_resistant": 216,
         "model": {
-          "sensitivity": 0.9398148148148148,
-          "specificity": 0.86875,
-          "tp": 203,
-          "fn": 13,
-          "tn": 695,
-          "fp": 105,
-          "auc": 0.9574652777777777
+          "sensitivity": 0.9351851851851852,
+          "specificity": 0.8725,
+          "tp": 202,
+          "fn": 14,
+          "tn": 698,
+          "fp": 102,
+          "auc": 0.9436255787037038
         },
         "who_catalogue": {
           "sensitivity": 0.8611111111111112,
@@ -1297,13 +1611,13 @@
         "n": 1698,
         "n_resistant": 328,
         "model": {
-          "sensitivity": 0.8810975609756098,
-          "specificity": 0.962043795620438,
-          "tp": 289,
-          "fn": 39,
-          "tn": 1318,
-          "fp": 52,
-          "auc": 0.9617166636994838
+          "sensitivity": 0.9176829268292683,
+          "specificity": 0.9569343065693431,
+          "tp": 301,
+          "fn": 27,
+          "tn": 1311,
+          "fp": 59,
+          "auc": 0.9530354281645006
         },
         "who_catalogue": {
           "sensitivity": 0.9207317073170732,
@@ -1328,13 +1642,13 @@
         "n": 1456,
         "n_resistant": 302,
         "model": {
-          "sensitivity": 0.9403973509933775,
-          "specificity": 0.9826689774696707,
-          "tp": 284,
-          "fn": 18,
-          "tn": 1134,
-          "fp": 20,
-          "auc": 0.9691040090901788
+          "sensitivity": 0.9337748344370861,
+          "specificity": 0.9835355285961872,
+          "tp": 282,
+          "fn": 20,
+          "tn": 1135,
+          "fp": 19,
+          "auc": 0.9593093989234107
         },
         "who_catalogue": {
           "sensitivity": 0.9205298013245033,
@@ -1359,13 +1673,13 @@
         "n": 239,
         "n_resistant": 170,
         "model": {
-          "sensitivity": 0.9,
-          "specificity": 0.6376811594202898,
-          "tp": 153,
-          "fn": 17,
-          "tn": 44,
-          "fp": 25,
-          "auc": 0.8555413469735722
+          "sensitivity": 0.9647058823529412,
+          "specificity": 0.08695652173913043,
+          "tp": 164,
+          "fn": 6,
+          "tn": 6,
+          "fp": 63,
+          "auc": 0.7989769820971867
         },
         "who_catalogue": {
           "sensitivity": 0.9235294117647059,
@@ -1391,12 +1705,12 @@
         "n_resistant": 25,
         "model": {
           "sensitivity": 1.0,
-          "specificity": 0.84375,
+          "specificity": 0.875,
           "tp": 25,
           "fn": 0,
-          "tn": 27,
-          "fp": 5,
-          "auc": 0.995625
+          "tn": 28,
+          "fp": 4,
+          "auc": 0.99125
         },
         "who_catalogue": {
           "sensitivity": 0.96,
@@ -1421,13 +1735,13 @@
         "n": 647,
         "n_resistant": 62,
         "model": {
-          "sensitivity": 0.8548387096774194,
-          "specificity": 0.9641025641025641,
-          "tp": 53,
-          "fn": 9,
-          "tn": 564,
-          "fp": 21,
-          "auc": 0.918513923352633
+          "sensitivity": 0.8064516129032258,
+          "specificity": 0.9692307692307692,
+          "tp": 50,
+          "fn": 12,
+          "tn": 567,
+          "fp": 18,
+          "auc": 0.8995864350703061
         },
         "who_catalogue": {
           "sensitivity": 0.8064516129032258,
@@ -1449,17 +1763,174 @@
         }
       }
     },
+    "unseen_lineages": {
+      "n": 7610,
+      "n_resistant": 1787,
+      "model": {
+        "sensitivity": 0.8421936205931729,
+        "specificity": 0.9388631289713206,
+        "tp": 1505,
+        "fn": 282,
+        "tn": 5467,
+        "fp": 356,
+        "auc": 0.9104326080482228
+      },
+      "who_catalogue": {
+        "sensitivity": 0.8970341354224958,
+        "specificity": 0.9364588699982827,
+        "tp": 1603,
+        "fn": 184,
+        "tn": 5453,
+        "fp": 370,
+        "uncertain_fraction": 0.05045992115637319
+      },
+      "cryptic_catalogue": {
+        "sensitivity": 0.8567431449356463,
+        "specificity": 0.9326807487549373,
+        "tp": 1531,
+        "fn": 256,
+        "tn": 5431,
+        "fp": 392,
+        "uncertain_fraction": 0.257161629434954
+      }
+    },
+    "by_lineage": {
+      "Lineage 1": {
+        "n": 451,
+        "n_resistant": 65,
+        "model": {
+          "sensitivity": 0.8615384615384616,
+          "specificity": 0.9715025906735751,
+          "tp": 56,
+          "fn": 9,
+          "tn": 375,
+          "fp": 11,
+          "auc": 0.9251693901952969
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8307692307692308,
+          "specificity": 0.9740932642487047,
+          "tp": 54,
+          "fn": 11,
+          "tn": 376,
+          "fp": 10,
+          "uncertain_fraction": 0.09090909090909091
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8153846153846154,
+          "specificity": 0.9715025906735751,
+          "tp": 53,
+          "fn": 12,
+          "tn": 375,
+          "fp": 11,
+          "uncertain_fraction": 0.8580931263858093
+        }
+      },
+      "Lineage 2": {
+        "n": 2714,
+        "n_resistant": 929,
+        "model": {
+          "sensitivity": 0.8945102260495156,
+          "specificity": 0.8946778711484594,
+          "tp": 831,
+          "fn": 98,
+          "tn": 1597,
+          "fp": 188,
+          "auc": 0.9162142359634919
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8902045209903121,
+          "specificity": 0.8907563025210085,
+          "tp": 827,
+          "fn": 102,
+          "tn": 1590,
+          "fp": 195,
+          "uncertain_fraction": 0.04384672070744289
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.9332615715823466,
+          "specificity": 0.8812324929971989,
+          "tp": 867,
+          "fn": 62,
+          "tn": 1573,
+          "fp": 212,
+          "uncertain_fraction": 0.1156963890935888
+        }
+      },
+      "Lineage 3": {
+        "n": 600,
+        "n_resistant": 134,
+        "model": {
+          "sensitivity": 0.8731343283582089,
+          "specificity": 0.8927038626609443,
+          "tp": 117,
+          "fn": 17,
+          "tn": 416,
+          "fp": 50,
+          "auc": 0.9134504516046378
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8582089552238806,
+          "specificity": 0.8948497854077253,
+          "tp": 115,
+          "fn": 19,
+          "tn": 417,
+          "fp": 49,
+          "uncertain_fraction": 0.058333333333333334
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8134328358208955,
+          "specificity": 0.8905579399141631,
+          "tp": 109,
+          "fn": 25,
+          "tn": 415,
+          "fp": 51,
+          "uncertain_fraction": 0.7333333333333333
+        }
+      },
+      "Lineage 4": {
+        "n": 3845,
+        "n_resistant": 659,
+        "model": {
+          "sensitivity": 0.7602427921092565,
+          "specificity": 0.9664155681104833,
+          "tp": 501,
+          "fn": 158,
+          "tn": 3079,
+          "fp": 107,
+          "auc": 0.8725219973194562
+        },
+        "who_catalogue": {
+          "sensitivity": 0.921092564491654,
+          "specificity": 0.9635907093534212,
+          "tp": 607,
+          "fn": 52,
+          "tn": 3070,
+          "fp": 116,
+          "uncertain_fraction": 0.04915474642392718
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.7617602427921093,
+          "specificity": 0.9629629629629629,
+          "tp": 502,
+          "fn": 157,
+          "tn": 3068,
+          "fp": 118,
+          "uncertain_fraction": 0.21222366710013005
+        }
+      }
+    },
     "other_studies": {
       "n": 23741,
       "n_resistant": 3161,
       "model": {
-        "sensitivity": 0.8158810503005378,
-        "specificity": 0.9551506316812439,
-        "tp": 2579,
-        "fn": 582,
-        "tn": 19657,
-        "fp": 923,
-        "auc": 0.9412964629970034
+        "sensitivity": 0.85416007592534,
+        "specificity": 0.9540816326530612,
+        "tp": 2700,
+        "fn": 461,
+        "tn": 19635,
+        "fp": 945,
+        "auc": 0.9154832385342621
       },
       "who_catalogue": {
         "sensitivity": 0.8260044289781715,
@@ -1486,12 +1957,12 @@
         "n_resistant": 239,
         "model": {
           "sensitivity": 0.8200836820083682,
-          "specificity": 0.9644344761294457,
+          "specificity": 0.9631528356296059,
           "tp": 196,
           "fn": 43,
-          "tn": 3010,
-          "fp": 111,
-          "auc": 0.9648359942567489
+          "tn": 3006,
+          "fp": 115,
+          "auc": 0.9327869379919267
         },
         "who_catalogue": {
           "sensitivity": 0.8075313807531381,
@@ -1517,12 +1988,12 @@
         "n_resistant": 43,
         "model": {
           "sensitivity": 0.9767441860465116,
-          "specificity": 0.82,
+          "specificity": 0.84,
           "tp": 42,
           "fn": 1,
-          "tn": 41,
-          "fp": 9,
-          "auc": 0.9511627906976744
+          "tn": 42,
+          "fp": 8,
+          "auc": 0.9544186046511628
         },
         "who_catalogue": {
           "sensitivity": 0.9534883720930233,
@@ -1547,13 +2018,13 @@
         "n": 9180,
         "n_resistant": 1301,
         "model": {
-          "sensitivity": 0.8693312836279785,
-          "specificity": 0.9496128950374413,
-          "tp": 1131,
-          "fn": 170,
-          "tn": 7482,
-          "fp": 397,
-          "auc": 0.9506199601017661
+          "sensitivity": 0.8823981552651806,
+          "specificity": 0.9503744129965732,
+          "tp": 1148,
+          "fn": 153,
+          "tn": 7488,
+          "fp": 391,
+          "auc": 0.9268774476056426
         },
         "who_catalogue": {
           "sensitivity": 0.8478093774019985,
@@ -1578,13 +2049,13 @@
         "n": 3952,
         "n_resistant": 101,
         "model": {
-          "sensitivity": 0.7722772277227723,
-          "specificity": 0.9942871981303557,
-          "tp": 78,
-          "fn": 23,
-          "tn": 3829,
-          "fp": 22,
-          "auc": 0.9395695087556016
+          "sensitivity": 0.8118811881188119,
+          "specificity": 0.992988834069073,
+          "tp": 82,
+          "fn": 19,
+          "tn": 3824,
+          "fp": 27,
+          "auc": 0.9147707551851004
         },
         "who_catalogue": {
           "sensitivity": 0.8415841584158416,
@@ -1609,13 +2080,13 @@
         "n": 5399,
         "n_resistant": 1229,
         "model": {
-          "sensitivity": 0.7713588283157038,
-          "specificity": 0.9258992805755396,
-          "tp": 948,
-          "fn": 281,
-          "tn": 3861,
-          "fp": 309,
-          "auc": 0.9164359318078491
+          "sensitivity": 0.8397070789259561,
+          "specificity": 0.9225419664268585,
+          "tp": 1032,
+          "fn": 197,
+          "tn": 3847,
+          "fp": 323,
+          "auc": 0.8868749426821441
         },
         "who_catalogue": {
           "sensitivity": 0.8291293734743694,
@@ -1640,13 +2111,13 @@
         "n": 1757,
         "n_resistant": 248,
         "model": {
-          "sensitivity": 0.7419354838709677,
-          "specificity": 0.9502982107355865,
-          "tp": 184,
-          "fn": 64,
-          "tn": 1434,
-          "fp": 75,
-          "auc": 0.9010560294149085
+          "sensitivity": 0.8064516129032258,
+          "specificity": 0.9463220675944334,
+          "tp": 200,
+          "fn": 48,
+          "tn": 1428,
+          "fp": 81,
+          "auc": 0.9036333076807972
         },
         "who_catalogue": {
           "sensitivity": 0.6854838709677419,
@@ -1683,7 +2154,7 @@
         "fn": 267,
         "tn": 7343,
         "fp": 216,
-        "auc": 0.8952896041337557
+        "auc": 0.8952894403038718
       },
       "who_catalogue": {
         "sensitivity": 0.8402476780185758,
@@ -1839,7 +2310,7 @@
           "fn": 47,
           "tn": 2000,
           "fp": 21,
-          "auc": 0.8127905170888156
+          "auc": 0.8127869053767557
         },
         "who_catalogue": {
           "sensitivity": 0.656934306569343,
@@ -1923,6 +2394,163 @@
         }
       }
     },
+    "unseen_lineages": {
+      "n": 8994,
+      "n_resistant": 1574,
+      "model": {
+        "sensitivity": 0.8532401524777636,
+        "specificity": 0.9098382749326146,
+        "tp": 1343,
+        "fn": 231,
+        "tn": 6751,
+        "fp": 669,
+        "auc": 0.915434820208441
+      },
+      "who_catalogue": {
+        "sensitivity": 0.8532401524777636,
+        "specificity": 0.9704851752021564,
+        "tp": 1343,
+        "fn": 231,
+        "tn": 7201,
+        "fp": 219,
+        "uncertain_fraction": 0.07404936624416278
+      },
+      "cryptic_catalogue": {
+        "sensitivity": 0.8316391359593392,
+        "specificity": 0.972911051212938,
+        "tp": 1309,
+        "fn": 265,
+        "tn": 7219,
+        "fp": 201,
+        "uncertain_fraction": 0.1318656882366022
+      }
+    },
+    "by_lineage": {
+      "Lineage 1": {
+        "n": 521,
+        "n_resistant": 38,
+        "model": {
+          "sensitivity": 0.5789473684210527,
+          "specificity": 0.9979296066252588,
+          "tp": 22,
+          "fn": 16,
+          "tn": 482,
+          "fp": 1,
+          "auc": 0.7938324071047184
+        },
+        "who_catalogue": {
+          "sensitivity": 0.5789473684210527,
+          "specificity": 1.0,
+          "tp": 22,
+          "fn": 16,
+          "tn": 483,
+          "fp": 0,
+          "uncertain_fraction": 0.19001919385796545
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.5526315789473685,
+          "specificity": 1.0,
+          "tp": 21,
+          "fn": 17,
+          "tn": 483,
+          "fp": 0,
+          "uncertain_fraction": 0.29942418426103645
+        }
+      },
+      "Lineage 2": {
+        "n": 3151,
+        "n_resistant": 902,
+        "model": {
+          "sensitivity": 0.8980044345898004,
+          "specificity": 0.9333036905291241,
+          "tp": 810,
+          "fn": 92,
+          "tn": 2099,
+          "fp": 150,
+          "auc": 0.9110232781457933
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9002217294900222,
+          "specificity": 0.9328590484659849,
+          "tp": 812,
+          "fn": 90,
+          "tn": 2098,
+          "fp": 151,
+          "uncertain_fraction": 0.02824500158679784
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8880266075388027,
+          "specificity": 0.9368608270342375,
+          "tp": 801,
+          "fn": 101,
+          "tn": 2107,
+          "fp": 142,
+          "uncertain_fraction": 0.03459219295461758
+        }
+      },
+      "Lineage 3": {
+        "n": 778,
+        "n_resistant": 203,
+        "model": {
+          "sensitivity": 0.8078817733990148,
+          "specificity": 0.9669565217391304,
+          "tp": 164,
+          "fn": 39,
+          "tn": 556,
+          "fp": 19,
+          "auc": 0.8888284429213965
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8078817733990148,
+          "specificity": 0.9669565217391304,
+          "tp": 164,
+          "fn": 39,
+          "tn": 556,
+          "fp": 19,
+          "uncertain_fraction": 0.07326478149100257
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.7980295566502463,
+          "specificity": 0.9721739130434782,
+          "tp": 162,
+          "fn": 41,
+          "tn": 559,
+          "fp": 16,
+          "uncertain_fraction": 0.10539845758354756
+        }
+      },
+      "Lineage 4": {
+        "n": 4544,
+        "n_resistant": 431,
+        "model": {
+          "sensitivity": 0.8051044083526682,
+          "specificity": 0.8786773644541697,
+          "tp": 347,
+          "fn": 84,
+          "tn": 3614,
+          "fp": 499,
+          "auc": 0.8846287279933525
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8004640371229699,
+          "specificity": 0.9880865548261609,
+          "tp": 345,
+          "fn": 86,
+          "tn": 4064,
+          "fp": 49,
+          "uncertain_fraction": 0.09264964788732394
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.7540603248259861,
+          "specificity": 0.9895453440311208,
+          "tp": 325,
+          "fn": 106,
+          "tn": 4070,
+          "fp": 43,
+          "uncertain_fraction": 0.18463908450704225
+        }
+      }
+    },
     "other_studies": {
       "n": 536,
       "n_resistant": 222,
@@ -2002,7 +2630,7 @@
         "fn": 183,
         "tn": 6432,
         "fp": 416,
-        "auc": 0.9044869519139291
+        "auc": 0.9044868426115059
       },
       "who_catalogue": {
         "sensitivity": 0.8607784431137725,
@@ -2242,6 +2870,163 @@
         }
       }
     },
+    "unseen_lineages": {
+      "n": 8031,
+      "n_resistant": 1307,
+      "model": {
+        "sensitivity": 0.8638102524866106,
+        "specificity": 0.9379833432480666,
+        "tp": 1129,
+        "fn": 178,
+        "tn": 6307,
+        "fp": 417,
+        "auc": 0.91365283807913
+      },
+      "who_catalogue": {
+        "sensitivity": 0.8714613618974751,
+        "specificity": 0.9376859012492564,
+        "tp": 1139,
+        "fn": 168,
+        "tn": 6305,
+        "fp": 419,
+        "uncertain_fraction": 0.07159755945710372
+      },
+      "cryptic_catalogue": {
+        "sensitivity": 0.8148431522570773,
+        "specificity": 0.9433372992266508,
+        "tp": 1065,
+        "fn": 242,
+        "tn": 6343,
+        "fp": 381,
+        "uncertain_fraction": 0.13298468434815092
+      }
+    },
+    "by_lineage": {
+      "Lineage 1": {
+        "n": 461,
+        "n_resistant": 21,
+        "model": {
+          "sensitivity": 0.7619047619047619,
+          "specificity": 0.9772727272727273,
+          "tp": 16,
+          "fn": 5,
+          "tn": 430,
+          "fp": 10,
+          "auc": 0.8792748917748918
+        },
+        "who_catalogue": {
+          "sensitivity": 0.7619047619047619,
+          "specificity": 0.9840909090909091,
+          "tp": 16,
+          "fn": 5,
+          "tn": 433,
+          "fp": 7,
+          "uncertain_fraction": 0.175704989154013
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.7619047619047619,
+          "specificity": 0.9863636363636363,
+          "tp": 16,
+          "fn": 5,
+          "tn": 434,
+          "fp": 6,
+          "uncertain_fraction": 0.2950108459869848
+        }
+      },
+      "Lineage 2": {
+        "n": 2966,
+        "n_resistant": 820,
+        "model": {
+          "sensitivity": 0.9036585365853659,
+          "specificity": 0.8923578751164958,
+          "tp": 741,
+          "fn": 79,
+          "tn": 1915,
+          "fp": 231,
+          "auc": 0.9129100084104289
+        },
+        "who_catalogue": {
+          "sensitivity": 0.9060975609756098,
+          "specificity": 0.8900279589934762,
+          "tp": 743,
+          "fn": 77,
+          "tn": 1910,
+          "fp": 236,
+          "uncertain_fraction": 0.02528658125421443
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8609756097560975,
+          "specificity": 0.8956197576887233,
+          "tp": 706,
+          "fn": 114,
+          "tn": 1922,
+          "fp": 224,
+          "uncertain_fraction": 0.041807147673634526
+        }
+      },
+      "Lineage 3": {
+        "n": 743,
+        "n_resistant": 76,
+        "model": {
+          "sensitivity": 0.8421052631578947,
+          "specificity": 0.8650674662668666,
+          "tp": 64,
+          "fn": 12,
+          "tn": 577,
+          "fp": 90,
+          "auc": 0.8787283989584156
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8421052631578947,
+          "specificity": 0.8650674662668666,
+          "tp": 64,
+          "fn": 12,
+          "tn": 577,
+          "fp": 90,
+          "uncertain_fraction": 0.09152086137281291
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8157894736842105,
+          "specificity": 0.881559220389805,
+          "tp": 62,
+          "fn": 14,
+          "tn": 588,
+          "fp": 79,
+          "uncertain_fraction": 0.10901749663526245
+        }
+      },
+      "Lineage 4": {
+        "n": 3861,
+        "n_resistant": 390,
+        "model": {
+          "sensitivity": 0.7897435897435897,
+          "specificity": 0.9752232785940651,
+          "tp": 308,
+          "fn": 82,
+          "tn": 3385,
+          "fp": 86,
+          "auc": 0.8871890905598772
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8102564102564103,
+          "specificity": 0.9752232785940651,
+          "tp": 316,
+          "fn": 74,
+          "tn": 3385,
+          "fp": 86,
+          "uncertain_fraction": 0.09090909090909091
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.7205128205128205,
+          "specificity": 0.9792566983578219,
+          "tp": 281,
+          "fn": 109,
+          "tn": 3399,
+          "fp": 72,
+          "uncertain_fraction": 0.18829318829318828
+        }
+      }
+    },
     "other_studies": {
       "n": 6053,
       "n_resistant": 1100,
@@ -2439,13 +3224,13 @@
       "n": 10414,
       "n_resistant": 764,
       "model": {
-        "sensitivity": 0.7892670157068062,
-        "specificity": 0.9772020725388602,
-        "tp": 603,
-        "fn": 161,
-        "tn": 9430,
-        "fp": 220,
-        "auc": 0.9030745598567669
+        "sensitivity": 0.7905759162303665,
+        "specificity": 0.9859067357512953,
+        "tp": 604,
+        "fn": 160,
+        "tn": 9514,
+        "fp": 136,
+        "auc": 0.8774498819954968
       },
       "who_catalogue": {
         "sensitivity": 0.7958115183246073,
@@ -2472,12 +3257,12 @@
         "n_resistant": 44,
         "model": {
           "sensitivity": 0.45454545454545453,
-          "specificity": 0.9893842887473461,
+          "specificity": 1.0,
           "tp": 20,
           "fn": 24,
-          "tn": 932,
-          "fp": 10,
-          "auc": 0.7319412275622466
+          "tn": 942,
+          "fp": 0,
+          "auc": 0.7328459756803706
         },
         "who_catalogue": {
           "sensitivity": 0.45454545454545453,
@@ -2503,12 +3288,12 @@
         "n_resistant": 45,
         "model": {
           "sensitivity": 0.7555555555555555,
-          "specificity": 0.939795918367347,
+          "specificity": 0.960204081632653,
           "tp": 34,
           "fn": 11,
-          "tn": 921,
-          "fp": 59,
-          "auc": 0.9080045351473922
+          "tn": 941,
+          "fp": 39,
+          "auc": 0.8741156462585032
         },
         "who_catalogue": {
           "sensitivity": 0.7555555555555555,
@@ -2534,12 +3319,12 @@
         "n_resistant": 92,
         "model": {
           "sensitivity": 0.5978260869565217,
-          "specificity": 0.9807538091419407,
+          "specificity": 0.9863672814755413,
           "tp": 55,
           "fn": 37,
-          "tn": 1223,
-          "fp": 24,
-          "auc": 0.8444396987552735
+          "tn": 1230,
+          "fp": 17,
+          "auc": 0.7962719221784457
         },
         "who_catalogue": {
           "sensitivity": 0.5978260869565217,
@@ -2564,13 +3349,13 @@
         "n": 1487,
         "n_resistant": 116,
         "model": {
-          "sensitivity": 0.8017241379310345,
-          "specificity": 0.9715536105032823,
-          "tp": 93,
-          "fn": 23,
-          "tn": 1332,
-          "fp": 39,
-          "auc": 0.9166823863779271
+          "sensitivity": 0.7931034482758621,
+          "specificity": 0.9883296863603209,
+          "tp": 92,
+          "fn": 24,
+          "tn": 1355,
+          "fp": 16,
+          "auc": 0.8932254332352424
         },
         "who_catalogue": {
           "sensitivity": 0.7931034482758621,
@@ -2595,13 +3380,13 @@
         "n": 2399,
         "n_resistant": 144,
         "model": {
-          "sensitivity": 0.875,
-          "specificity": 0.991130820399113,
-          "tp": 126,
-          "fn": 18,
-          "tn": 2235,
-          "fp": 20,
-          "auc": 0.9510516752894801
+          "sensitivity": 0.8888888888888888,
+          "specificity": 0.9924611973392461,
+          "tp": 128,
+          "fn": 16,
+          "tn": 2238,
+          "fp": 17,
+          "auc": 0.9419946415373245
         },
         "who_catalogue": {
           "sensitivity": 0.8888888888888888,
@@ -2627,12 +3412,12 @@
         "n_resistant": 220,
         "model": {
           "sensitivity": 0.9227272727272727,
-          "specificity": 0.9921507064364207,
+          "specificity": 0.9968602825745683,
           "tp": 203,
           "fn": 17,
-          "tn": 1264,
-          "fp": 10,
-          "auc": 0.9716033966033967
+          "tn": 1270,
+          "fp": 4,
+          "auc": 0.9584397745112031
         },
         "who_catalogue": {
           "sensitivity": 0.9272727272727272,
@@ -2657,13 +3442,13 @@
         "n": 354,
         "n_resistant": 82,
         "model": {
-          "sensitivity": 0.8170731707317073,
-          "specificity": 0.8455882352941176,
-          "tp": 67,
-          "fn": 15,
-          "tn": 230,
-          "fp": 42,
-          "auc": 0.8698439741750358
+          "sensitivity": 0.8292682926829268,
+          "specificity": 0.8419117647058824,
+          "tp": 68,
+          "fn": 14,
+          "tn": 229,
+          "fp": 43,
+          "auc": 0.8324964131994261
         },
         "who_catalogue": {
           "sensitivity": 0.8658536585365854,
@@ -2685,17 +3470,143 @@
         }
       }
     },
+    "unseen_lineages": {
+      "n": 10219,
+      "n_resistant": 748,
+      "model": {
+        "sensitivity": 0.8061497326203209,
+        "specificity": 0.979727589483687,
+        "tp": 603,
+        "fn": 145,
+        "tn": 9279,
+        "fp": 192,
+        "auc": 0.9119786293876551
+      },
+      "who_catalogue": {
+        "sensitivity": 0.8101604278074866,
+        "specificity": 0.9855347904128392,
+        "tp": 606,
+        "fn": 142,
+        "tn": 9334,
+        "fp": 137,
+        "uncertain_fraction": 0.05851844603190136
+      },
+      "cryptic_catalogue": {
+        "sensitivity": 0.7901069518716578,
+        "specificity": 0.9921866751135043,
+        "tp": 591,
+        "fn": 157,
+        "tn": 9397,
+        "fp": 74,
+        "uncertain_fraction": 0.932087288384382
+      }
+    },
+    "by_lineage": {
+      "Lineage 2": {
+        "n": 3639,
+        "n_resistant": 465,
+        "model": {
+          "sensitivity": 0.8516129032258064,
+          "specificity": 0.9483301827347196,
+          "tp": 396,
+          "fn": 69,
+          "tn": 3010,
+          "fp": 164,
+          "auc": 0.9130346701357128
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8559139784946237,
+          "specificity": 0.9659735349716446,
+          "tp": 398,
+          "fn": 67,
+          "tn": 3066,
+          "fp": 108,
+          "uncertain_fraction": 0.0615553723550426
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8408602150537634,
+          "specificity": 0.9817265280403277,
+          "tp": 391,
+          "fn": 74,
+          "tn": 3116,
+          "fp": 58,
+          "uncertain_fraction": 0.8766144545204727
+        }
+      },
+      "Lineage 3": {
+        "n": 938,
+        "n_resistant": 37,
+        "model": {
+          "sensitivity": 0.5945945945945946,
+          "specificity": 0.9944506104328524,
+          "tp": 22,
+          "fn": 15,
+          "tn": 896,
+          "fp": 5,
+          "auc": 0.7927527971923088
+        },
+        "who_catalogue": {
+          "sensitivity": 0.5945945945945946,
+          "specificity": 0.9944506104328524,
+          "tp": 22,
+          "fn": 15,
+          "tn": 896,
+          "fp": 5,
+          "uncertain_fraction": 0.09701492537313433
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.5945945945945946,
+          "specificity": 0.9966703662597114,
+          "tp": 22,
+          "fn": 15,
+          "tn": 898,
+          "fp": 3,
+          "uncertain_fraction": 0.9690831556503199
+        }
+      },
+      "Lineage 4": {
+        "n": 5015,
+        "n_resistant": 234,
+        "model": {
+          "sensitivity": 0.7649572649572649,
+          "specificity": 0.9953984522066514,
+          "tp": 179,
+          "fn": 55,
+          "tn": 4759,
+          "fp": 22,
+          "auc": 0.8884879964674987
+        },
+        "who_catalogue": {
+          "sensitivity": 0.7692307692307693,
+          "specificity": 0.9951892909433173,
+          "tp": 180,
+          "fn": 54,
+          "tn": 4758,
+          "fp": 23,
+          "uncertain_fraction": 0.04067796610169491
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.7350427350427351,
+          "specificity": 0.9974900648399916,
+          "tp": 172,
+          "fn": 62,
+          "tn": 4769,
+          "fp": 12,
+          "uncertain_fraction": 0.9583250249252243
+        }
+      }
+    },
     "other_studies": {
       "n": 7915,
       "n_resistant": 659,
       "model": {
-        "sensitivity": 0.6904400606980273,
-        "specificity": 0.9911797133406836,
-        "tp": 455,
-        "fn": 204,
-        "tn": 7192,
-        "fp": 64,
-        "auc": 0.8822694796666628
+        "sensitivity": 0.7465857359635811,
+        "specificity": 0.9858048511576626,
+        "tp": 492,
+        "fn": 167,
+        "tn": 7153,
+        "fp": 103,
+        "auc": 0.8736007080321158
       },
       "who_catalogue": {
         "sensitivity": 0.7465857359635811,
@@ -2721,13 +3632,13 @@
         "n": 2166,
         "n_resistant": 130,
         "model": {
-          "sensitivity": 0.5846153846153846,
-          "specificity": 0.9837917485265226,
-          "tp": 76,
-          "fn": 54,
-          "tn": 2003,
-          "fp": 33,
-          "auc": 0.8641963880912801
+          "sensitivity": 0.5923076923076923,
+          "specificity": 0.9911591355599214,
+          "tp": 77,
+          "fn": 53,
+          "tn": 2018,
+          "fp": 18,
+          "auc": 0.8038404866253589
         },
         "who_catalogue": {
           "sensitivity": 0.5923076923076923,
@@ -2752,13 +3663,13 @@
         "n": 770,
         "n_resistant": 61,
         "model": {
-          "sensitivity": 0.639344262295082,
-          "specificity": 0.998589562764457,
-          "tp": 39,
-          "fn": 22,
-          "tn": 708,
-          "fp": 1,
-          "auc": 0.884586926865361
+          "sensitivity": 0.6557377049180327,
+          "specificity": 0.9887165021156559,
+          "tp": 40,
+          "fn": 21,
+          "tn": 701,
+          "fp": 8,
+          "auc": 0.8365742560521632
         },
         "who_catalogue": {
           "sensitivity": 0.6557377049180327,
@@ -2783,13 +3694,13 @@
         "n": 2031,
         "n_resistant": 171,
         "model": {
-          "sensitivity": 0.631578947368421,
-          "specificity": 0.9946236559139785,
-          "tp": 108,
-          "fn": 63,
-          "tn": 1850,
-          "fp": 10,
-          "auc": 0.8711988304093568
+          "sensitivity": 0.695906432748538,
+          "specificity": 0.9833333333333333,
+          "tp": 119,
+          "fn": 52,
+          "tn": 1829,
+          "fp": 31,
+          "auc": 0.8534254543167955
         },
         "who_catalogue": {
           "sensitivity": 0.695906432748538,
@@ -2814,13 +3725,13 @@
         "n": 1923,
         "n_resistant": 241,
         "model": {
-          "sensitivity": 0.7468879668049793,
-          "specificity": 0.9898929845422116,
-          "tp": 180,
-          "fn": 61,
-          "tn": 1665,
-          "fp": 17,
-          "auc": 0.9100729718128489
+          "sensitivity": 0.8464730290456431,
+          "specificity": 0.9803804994054697,
+          "tp": 204,
+          "fn": 37,
+          "tn": 1649,
+          "fp": 33,
+          "auc": 0.9202108239055462
         },
         "who_catalogue": {
           "sensitivity": 0.8464730290456431,
@@ -2846,12 +3757,12 @@
         "n_resistant": 44,
         "model": {
           "sensitivity": 0.9090909090909091,
-          "specificity": 0.9962311557788944,
+          "specificity": 0.9861809045226131,
           "tp": 40,
           "fn": 4,
-          "tn": 793,
-          "fp": 3,
-          "auc": 0.9853243490178164
+          "tn": 785,
+          "fp": 11,
+          "auc": 0.9505196436729101
         },
         "who_catalogue": {
           "sensitivity": 0.9090909090909091,
@@ -2882,13 +3793,13 @@
       "n": 10793,
       "n_resistant": 990,
       "model": {
-        "sensitivity": 0.795959595959596,
-        "specificity": 0.9515454452718556,
-        "tp": 788,
-        "fn": 202,
-        "tn": 9328,
-        "fp": 475,
-        "auc": 0.8858118057036755
+        "sensitivity": 0.793939393939394,
+        "specificity": 0.951953483627461,
+        "tp": 786,
+        "fn": 204,
+        "tn": 9332,
+        "fp": 471,
+        "auc": 0.87974944796326
       },
       "who_catalogue": {
         "sensitivity": 0.7929292929292929,
@@ -2915,12 +3826,12 @@
         "n_resistant": 42,
         "model": {
           "sensitivity": 0.5714285714285714,
-          "specificity": 0.9957537154989384,
+          "specificity": 0.9978768577494692,
           "tp": 24,
           "fn": 18,
-          "tn": 938,
-          "fp": 4,
-          "auc": 0.8400692548781721
+          "tn": 940,
+          "fp": 2,
+          "auc": 0.7834268526943685
         },
         "who_catalogue": {
           "sensitivity": 0.5714285714285714,
@@ -2946,12 +3857,12 @@
         "n_resistant": 80,
         "model": {
           "sensitivity": 0.85,
-          "specificity": 0.9357997823721437,
+          "specificity": 0.9347116430903155,
           "tp": 68,
           "fn": 12,
-          "tn": 860,
-          "fp": 59,
-          "auc": 0.937227965179543
+          "tn": 859,
+          "fp": 60,
+          "auc": 0.9109834058759523
         },
         "who_catalogue": {
           "sensitivity": 0.85,
@@ -2976,13 +3887,13 @@
         "n": 1309,
         "n_resistant": 112,
         "model": {
-          "sensitivity": 0.6428571428571429,
-          "specificity": 0.985797827903091,
-          "tp": 72,
-          "fn": 40,
-          "tn": 1180,
-          "fp": 17,
-          "auc": 0.841952351115885
+          "sensitivity": 0.6517857142857143,
+          "specificity": 0.9682539682539683,
+          "tp": 73,
+          "fn": 39,
+          "tn": 1159,
+          "fp": 38,
+          "auc": 0.8124254087599952
         },
         "who_catalogue": {
           "sensitivity": 0.6517857142857143,
@@ -3007,13 +3918,13 @@
         "n": 1543,
         "n_resistant": 171,
         "model": {
-          "sensitivity": 0.8245614035087719,
-          "specificity": 0.9635568513119533,
-          "tp": 141,
-          "fn": 30,
-          "tn": 1322,
-          "fp": 50,
-          "auc": 0.9234118459413841
+          "sensitivity": 0.8187134502923976,
+          "specificity": 0.9759475218658892,
+          "tp": 140,
+          "fn": 31,
+          "tn": 1339,
+          "fp": 33,
+          "auc": 0.90009036195932
         },
         "who_catalogue": {
           "sensitivity": 0.8187134502923976,
@@ -3038,13 +3949,13 @@
         "n": 2423,
         "n_resistant": 175,
         "model": {
-          "sensitivity": 0.8571428571428571,
-          "specificity": 0.9070284697508897,
-          "tp": 150,
-          "fn": 25,
-          "tn": 2039,
-          "fp": 209,
-          "auc": 0.937591509913574
+          "sensitivity": 0.8457142857142858,
+          "specificity": 0.905693950177936,
+          "tp": 148,
+          "fn": 27,
+          "tn": 2036,
+          "fp": 212,
+          "auc": 0.9128774783934926
         },
         "who_catalogue": {
           "sensitivity": 0.84,
@@ -3070,12 +3981,12 @@
         "n_resistant": 273,
         "model": {
           "sensitivity": 0.7655677655677655,
-          "specificity": 0.9944016794961511,
+          "specificity": 0.9958012596221134,
           "tp": 209,
           "fn": 64,
-          "tn": 1421,
-          "fp": 8,
-          "auc": 0.8768113155796851
+          "tn": 1423,
+          "fp": 6,
+          "auc": 0.858138712232484
         },
         "who_catalogue": {
           "sensitivity": 0.7655677655677655,
@@ -3106,7 +4017,7 @@
           "fn": 9,
           "tn": 109,
           "fp": 118,
-          "auc": 0.8492063492063492
+          "auc": 0.8437347038668624
         },
         "who_catalogue": {
           "sensitivity": 0.9285714285714286,
@@ -3128,17 +4039,143 @@
         }
       }
     },
+    "unseen_lineages": {
+      "n": 10582,
+      "n_resistant": 968,
+      "model": {
+        "sensitivity": 0.7747933884297521,
+        "specificity": 0.9727480757229041,
+        "tp": 750,
+        "fn": 218,
+        "tn": 9352,
+        "fp": 262,
+        "auc": 0.8954526435277755
+      },
+      "who_catalogue": {
+        "sensitivity": 0.8088842975206612,
+        "specificity": 0.9711878510505513,
+        "tp": 783,
+        "fn": 185,
+        "tn": 9337,
+        "fp": 277,
+        "uncertain_fraction": 0.0618975618975619
+      },
+      "cryptic_catalogue": {
+        "sensitivity": 0.7252066115702479,
+        "specificity": 0.988558352402746,
+        "tp": 702,
+        "fn": 266,
+        "tn": 9504,
+        "fp": 110,
+        "uncertain_fraction": 0.9203364203364204
+      }
+    },
+    "by_lineage": {
+      "Lineage 2": {
+        "n": 3787,
+        "n_resistant": 559,
+        "model": {
+          "sensitivity": 0.8801431127012522,
+          "specificity": 0.9504337050805453,
+          "tp": 492,
+          "fn": 67,
+          "tn": 3068,
+          "fp": 160,
+          "auc": 0.9226313584401248
+        },
+        "who_catalogue": {
+          "sensitivity": 0.8872987477638641,
+          "specificity": 0.9491945477075588,
+          "tp": 496,
+          "fn": 63,
+          "tn": 3064,
+          "fp": 164,
+          "uncertain_fraction": 0.0625825191444415
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.8372093023255814,
+          "specificity": 0.9724287484510533,
+          "tp": 468,
+          "fn": 91,
+          "tn": 3139,
+          "fp": 89,
+          "uncertain_fraction": 0.8529178769474518
+        }
+      },
+      "Lineage 3": {
+        "n": 924,
+        "n_resistant": 44,
+        "model": {
+          "sensitivity": 0.5681818181818182,
+          "specificity": 0.9965909090909091,
+          "tp": 25,
+          "fn": 19,
+          "tn": 877,
+          "fp": 3,
+          "auc": 0.789294938016529
+        },
+        "who_catalogue": {
+          "sensitivity": 0.5681818181818182,
+          "specificity": 0.9965909090909091,
+          "tp": 25,
+          "fn": 19,
+          "tn": 877,
+          "fp": 3,
+          "uncertain_fraction": 0.09632034632034632
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.5681818181818182,
+          "specificity": 0.9965909090909091,
+          "tp": 25,
+          "fn": 19,
+          "tn": 877,
+          "fp": 3,
+          "uncertain_fraction": 0.9664502164502164
+        }
+      },
+      "Lineage 4": {
+        "n": 5252,
+        "n_resistant": 352,
+        "model": {
+          "sensitivity": 0.6448863636363636,
+          "specificity": 0.98,
+          "tp": 227,
+          "fn": 125,
+          "tn": 4802,
+          "fp": 98,
+          "auc": 0.857047193877551
+        },
+        "who_catalogue": {
+          "sensitivity": 0.7272727272727273,
+          "specificity": 0.9777551020408163,
+          "tp": 256,
+          "fn": 96,
+          "tn": 4791,
+          "fp": 109,
+          "uncertain_fraction": 0.0416984006092917
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.5767045454545454,
+          "specificity": 0.9965306122448979,
+          "tp": 203,
+          "fn": 149,
+          "tn": 4883,
+          "fp": 17,
+          "uncertain_fraction": 0.9527798933739527
+        }
+      }
+    },
     "other_studies": {
       "n": 6475,
       "n_resistant": 594,
       "model": {
-        "sensitivity": 0.6666666666666666,
-        "specificity": 0.977894915830641,
-        "tp": 396,
-        "fn": 198,
-        "tn": 5751,
-        "fp": 130,
-        "auc": 0.8828557925225159
+        "sensitivity": 0.7171717171717171,
+        "specificity": 0.9797653460295868,
+        "tp": 426,
+        "fn": 168,
+        "tn": 5762,
+        "fp": 119,
+        "auc": 0.8597572391144912
       },
       "who_catalogue": {
         "sensitivity": 0.7171717171717171,
@@ -3164,13 +4201,13 @@
         "n": 2528,
         "n_resistant": 227,
         "model": {
-          "sensitivity": 0.5198237885462555,
-          "specificity": 0.9708822251195133,
-          "tp": 118,
-          "fn": 109,
-          "tn": 2234,
-          "fp": 67,
-          "auc": 0.8256590220302608
+          "sensitivity": 0.6123348017621145,
+          "specificity": 0.963928726640591,
+          "tp": 139,
+          "fn": 88,
+          "tn": 2218,
+          "fp": 83,
+          "auc": 0.8120248426751824
         },
         "who_catalogue": {
           "sensitivity": 0.6123348017621145,
@@ -3195,13 +4232,13 @@
         "n": 1513,
         "n_resistant": 182,
         "model": {
-          "sensitivity": 0.7417582417582418,
-          "specificity": 0.9827197595792637,
-          "tp": 135,
-          "fn": 47,
-          "tn": 1308,
-          "fp": 23,
-          "auc": 0.8982236771492971
+          "sensitivity": 0.7747252747252747,
+          "specificity": 0.9932381667918858,
+          "tp": 141,
+          "fn": 41,
+          "tn": 1322,
+          "fp": 9,
+          "auc": 0.8853625713129846
         },
         "who_catalogue": {
           "sensitivity": 0.7747252747252747,
@@ -3226,13 +4263,13 @@
         "n": 598,
         "n_resistant": 59,
         "model": {
-          "sensitivity": 0.6779661016949152,
-          "specificity": 0.9628942486085343,
-          "tp": 40,
-          "fn": 19,
-          "tn": 519,
-          "fp": 20,
-          "auc": 0.8722052765636301
+          "sensitivity": 0.711864406779661,
+          "specificity": 0.974025974025974,
+          "tp": 42,
+          "fn": 17,
+          "tn": 525,
+          "fp": 14,
+          "auc": 0.8438099430835508
         },
         "who_catalogue": {
           "sensitivity": 0.711864406779661,
@@ -3257,13 +4294,13 @@
         "n": 1099,
         "n_resistant": 95,
         "model": {
-          "sensitivity": 0.8210526315789474,
-          "specificity": 0.9870517928286853,
-          "tp": 78,
-          "fn": 17,
-          "tn": 991,
-          "fp": 13,
-          "auc": 0.9473474522960788
+          "sensitivity": 0.8315789473684211,
+          "specificity": 0.9880478087649402,
+          "tp": 79,
+          "fn": 16,
+          "tn": 992,
+          "fp": 12,
+          "auc": 0.9231495072342211
         },
         "who_catalogue": {
           "sensitivity": 0.8315789473684211,
@@ -3294,13 +4331,13 @@
       "n": 9508,
       "n_resistant": 1532,
       "model": {
-        "sensitivity": 0.7460835509138382,
-        "specificity": 0.9642678034102307,
-        "tp": 1143,
-        "fn": 389,
-        "tn": 7691,
-        "fp": 285,
-        "auc": 0.8666054053151622
+        "sensitivity": 0.7473890339425587,
+        "specificity": 0.9641424272818455,
+        "tp": 1145,
+        "fn": 387,
+        "tn": 7690,
+        "fp": 286,
+        "auc": 0.8524118782587974
       },
       "who_catalogue": {
         "sensitivity": 0.685378590078329,
@@ -3332,7 +4369,7 @@
           "fn": 0,
           "tn": 210,
           "fp": 2,
-          "auc": 0.9996371552975327
+          "auc": 0.9996371552975326
         },
         "who_catalogue": {
           "sensitivity": 0.9230769230769231,
@@ -3363,7 +4400,7 @@
           "fn": 31,
           "tn": 875,
           "fp": 11,
-          "auc": 0.8172784375306703
+          "auc": 0.7670281676317597
         },
         "who_catalogue": {
           "sensitivity": 0.6231884057971014,
@@ -3389,12 +4426,12 @@
         "n_resistant": 100,
         "model": {
           "sensitivity": 0.65,
-          "specificity": 0.9781420765027322,
+          "specificity": 0.9795081967213115,
           "tp": 65,
           "fn": 35,
-          "tn": 716,
-          "fp": 16,
-          "auc": 0.9114344262295082
+          "tn": 717,
+          "fp": 15,
+          "auc": 0.8360928961748633
         },
         "who_catalogue": {
           "sensitivity": 0.54,
@@ -3420,12 +4457,12 @@
         "n_resistant": 245,
         "model": {
           "sensitivity": 0.6653061224489796,
-          "specificity": 0.8844492440604752,
+          "specificity": 0.8833693304535637,
           "tp": 163,
           "fn": 82,
-          "tn": 819,
-          "fp": 107,
-          "auc": 0.8132542865958479
+          "tn": 818,
+          "fp": 108,
+          "auc": 0.8038678538369991
         },
         "who_catalogue": {
           "sensitivity": 0.6081632653061224,
@@ -3450,13 +4487,13 @@
         "n": 1454,
         "n_resistant": 235,
         "model": {
-          "sensitivity": 0.6851063829787234,
-          "specificity": 0.9696472518457753,
-          "tp": 161,
-          "fn": 74,
-          "tn": 1182,
-          "fp": 37,
-          "auc": 0.8623217496029184
+          "sensitivity": 0.6978723404255319,
+          "specificity": 0.9688269073010665,
+          "tp": 164,
+          "fn": 71,
+          "tn": 1181,
+          "fp": 38,
+          "auc": 0.8396942034803554
         },
         "who_catalogue": {
           "sensitivity": 0.676595744680851,
@@ -3487,7 +4524,7 @@
           "fn": 71,
           "tn": 1813,
           "fp": 32,
-          "auc": 0.8631935529881615
+          "auc": 0.8673665871997065
         },
         "who_catalogue": {
           "sensitivity": 0.706766917293233,
@@ -3518,7 +4555,7 @@
           "fn": 52,
           "tn": 1216,
           "fp": 32,
-          "auc": 0.8987485779294654
+          "auc": 0.9088370744727401
         },
         "who_catalogue": {
           "sensitivity": 0.7235494880546075,
@@ -3543,13 +4580,13 @@
         "n": 244,
         "n_resistant": 179,
         "model": {
-          "sensitivity": 0.9050279329608939,
+          "sensitivity": 0.8994413407821229,
           "specificity": 0.4307692307692308,
-          "tp": 162,
-          "fn": 17,
+          "tp": 161,
+          "fn": 18,
           "tn": 28,
           "fp": 37,
-          "auc": 0.7972067039106144
+          "auc": 0.7946282767511819
         },
         "who_catalogue": {
           "sensitivity": 0.7653631284916201,
@@ -3580,7 +4617,7 @@
           "fn": 26,
           "tn": 775,
           "fp": 8,
-          "auc": 0.8033719411047988
+          "auc": 0.8620396059952145
         },
         "who_catalogue": {
           "sensitivity": 0.632183908045977,
@@ -3602,17 +4639,174 @@
         }
       }
     },
+    "unseen_lineages": {
+      "n": 9342,
+      "n_resistant": 1500,
+      "model": {
+        "sensitivity": 0.7493333333333333,
+        "specificity": 0.9746238204539658,
+        "tp": 1124,
+        "fn": 376,
+        "tn": 7643,
+        "fp": 199,
+        "auc": 0.8580056958258949
+      },
+      "who_catalogue": {
+        "sensitivity": 0.6973333333333334,
+        "specificity": 0.9695230808467228,
+        "tp": 1046,
+        "fn": 454,
+        "tn": 7603,
+        "fp": 239,
+        "uncertain_fraction": 0.1403339755940912
+      },
+      "cryptic_catalogue": {
+        "sensitivity": 0.5986666666666667,
+        "specificity": 0.9897985207855139,
+        "tp": 898,
+        "fn": 602,
+        "tn": 7762,
+        "fp": 80,
+        "uncertain_fraction": 0.5267608649111539
+      }
+    },
+    "by_lineage": {
+      "Lineage 1": {
+        "n": 532,
+        "n_resistant": 127,
+        "model": {
+          "sensitivity": 0.7795275590551181,
+          "specificity": 0.9827160493827161,
+          "tp": 99,
+          "fn": 28,
+          "tn": 398,
+          "fp": 7,
+          "auc": 0.8815689705453486
+        },
+        "who_catalogue": {
+          "sensitivity": 0.5118110236220472,
+          "specificity": 0.980246913580247,
+          "tp": 65,
+          "fn": 62,
+          "tn": 397,
+          "fp": 8,
+          "uncertain_fraction": 0.2951127819548872
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.7244094488188977,
+          "specificity": 0.9876543209876543,
+          "tp": 92,
+          "fn": 35,
+          "tn": 400,
+          "fp": 5,
+          "uncertain_fraction": 0.8157894736842105
+        }
+      },
+      "Lineage 2": {
+        "n": 3196,
+        "n_resistant": 630,
+        "model": {
+          "sensitivity": 0.746031746031746,
+          "specificity": 0.9602494154325799,
+          "tp": 470,
+          "fn": 160,
+          "tn": 2464,
+          "fp": 102,
+          "auc": 0.8576086553093567
+        },
+        "who_catalogue": {
+          "sensitivity": 0.6904761904761905,
+          "specificity": 0.95128604832424,
+          "tp": 435,
+          "fn": 195,
+          "tn": 2441,
+          "fp": 125,
+          "uncertain_fraction": 0.20150187734668334
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.5047619047619047,
+          "specificity": 0.9879189399844115,
+          "tp": 318,
+          "fn": 312,
+          "tn": 2535,
+          "fp": 31,
+          "uncertain_fraction": 0.8601376720901126
+        }
+      },
+      "Lineage 3": {
+        "n": 860,
+        "n_resistant": 49,
+        "model": {
+          "sensitivity": 0.4897959183673469,
+          "specificity": 0.9802712700369913,
+          "tp": 24,
+          "fn": 25,
+          "tn": 795,
+          "fp": 16,
+          "auc": 0.735373310853318
+        },
+        "who_catalogue": {
+          "sensitivity": 0.3877551020408163,
+          "specificity": 0.9790382244143033,
+          "tp": 19,
+          "fn": 30,
+          "tn": 794,
+          "fp": 17,
+          "uncertain_fraction": 0.08604651162790698
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.42857142857142855,
+          "specificity": 0.9926017262638718,
+          "tp": 21,
+          "fn": 28,
+          "tn": 805,
+          "fp": 6,
+          "uncertain_fraction": 0.13372093023255813
+        }
+      },
+      "Lineage 4": {
+        "n": 4754,
+        "n_resistant": 694,
+        "model": {
+          "sensitivity": 0.7651296829971181,
+          "specificity": 0.9817733990147783,
+          "tp": 531,
+          "fn": 163,
+          "tn": 3986,
+          "fp": 74,
+          "auc": 0.8792146974063401
+        },
+        "who_catalogue": {
+          "sensitivity": 0.7593659942363112,
+          "specificity": 0.9780788177339902,
+          "tp": 527,
+          "fn": 167,
+          "tn": 3971,
+          "fp": 89,
+          "uncertain_fraction": 0.09171224232225494
+        },
+        "cryptic_catalogue": {
+          "sensitivity": 0.6729106628242075,
+          "specificity": 0.99064039408867,
+          "tp": 467,
+          "fn": 227,
+          "tn": 4022,
+          "fp": 38,
+          "uncertain_fraction": 0.34139671855279763
+        }
+      }
+    },
     "other_studies": {
       "n": 2702,
       "n_resistant": 785,
       "model": {
-        "sensitivity": 0.5337579617834395,
-        "specificity": 0.8768909754825248,
-        "tp": 419,
-        "fn": 366,
-        "tn": 1681,
-        "fp": 236,
-        "auc": 0.7718323149560254
+        "sensitivity": 0.5299363057324841,
+        "specificity": 0.8779342723004695,
+        "tp": 416,
+        "fn": 369,
+        "tn": 1683,
+        "fp": 234,
+        "auc": 0.7113686127142661
       },
       "who_catalogue": {
         "sensitivity": 0.48152866242038217,
@@ -3638,13 +4832,13 @@
         "n": 2202,
         "n_resistant": 699,
         "model": {
-          "sensitivity": 0.530758226037196,
-          "specificity": 0.9434464404524284,
-          "tp": 371,
-          "fn": 328,
-          "tn": 1418,
-          "fp": 85,
-          "auc": 0.8006704759294001
+          "sensitivity": 0.5278969957081545,
+          "specificity": 0.9447771124417831,
+          "tp": 369,
+          "fn": 330,
+          "tn": 1420,
+          "fp": 83,
+          "auc": 0.7434877502981638
         },
         "who_catalogue": {
           "sensitivity": 0.4892703862660944,
@@ -3669,13 +4863,13 @@
         "n": 478,
         "n_resistant": 74,
         "model": {
-          "sensitivity": 0.5,
+          "sensitivity": 0.4864864864864865,
           "specificity": 0.6287128712871287,
-          "tp": 37,
-          "fn": 37,
+          "tp": 36,
+          "fn": 38,
           "tn": 254,
           "fp": 150,
-          "auc": 0.6462737489965212
+          "auc": 0.5648080010703772
         },
         "who_catalogue": {
           "sensitivity": 0.40540540540540543,
@@ -3706,13 +4900,13 @@
       "n": 11500,
       "n_resistant": 4069,
       "model": {
-        "sensitivity": 0.9252887687392479,
-        "specificity": 0.9535728704077513,
-        "tp": 3765,
-        "fn": 304,
-        "tn": 7086,
-        "fp": 345,
-        "auc": 0.964548458747486
+        "sensitivity": 0.9265175718849841,
+        "specificity": 0.953169156237384,
+        "tp": 3770,
+        "fn": 299,
+        "tn": 7083,
+        "fp": 348,
+        "auc": 0.9631846046625595
       },
       "who_catalogue": null,
       "cryptic_catalogue": null
@@ -3723,12 +4917,12 @@
         "n_resistant": 72,
         "model": {
           "sensitivity": 0.8472222222222222,
-          "specificity": 0.9879518072289156,
+          "specificity": 0.9959839357429718,
           "tp": 61,
           "fn": 11,
-          "tn": 246,
-          "fp": 3,
-          "auc": 0.948711512717537
+          "tn": 248,
+          "fp": 1,
+          "auc": 0.9376673360107095
         },
         "who_catalogue": null,
         "cryptic_catalogue": null
@@ -3737,13 +4931,13 @@
         "n": 1002,
         "n_resistant": 223,
         "model": {
-          "sensitivity": 0.8385650224215246,
+          "sensitivity": 0.8430493273542601,
           "specificity": 0.9833119383825417,
-          "tp": 187,
-          "fn": 36,
+          "tp": 188,
+          "fn": 35,
           "tn": 766,
           "fp": 13,
-          "auc": 0.9348020055607683
+          "auc": 0.9402044704893591
         },
         "who_catalogue": null,
         "cryptic_catalogue": null
@@ -3752,13 +4946,13 @@
         "n": 1043,
         "n_resistant": 402,
         "model": {
-          "sensitivity": 0.9776119402985075,
-          "specificity": 0.9703588143525741,
-          "tp": 393,
-          "fn": 9,
-          "tn": 622,
-          "fp": 19,
-          "auc": 0.9844634083870818
+          "sensitivity": 0.9751243781094527,
+          "specificity": 0.9750390015600624,
+          "tp": 392,
+          "fn": 10,
+          "tn": 625,
+          "fp": 16,
+          "auc": 0.9852065724420023
         },
         "who_catalogue": null,
         "cryptic_catalogue": null
@@ -3768,12 +4962,12 @@
         "n_resistant": 664,
         "model": {
           "sensitivity": 0.9518072289156626,
-          "specificity": 0.9286694101508917,
+          "specificity": 0.9231824417009602,
           "tp": 632,
           "fn": 32,
-          "tn": 677,
-          "fp": 52,
-          "auc": 0.9479223478275242
+          "tn": 673,
+          "fp": 56,
+          "auc": 0.9466146478919795
         },
         "who_catalogue": null,
         "cryptic_catalogue": null
@@ -3782,13 +4976,13 @@
         "n": 1677,
         "n_resistant": 842,
         "model": {
-          "sensitivity": 0.9156769596199525,
-          "specificity": 0.9377245508982036,
-          "tp": 771,
-          "fn": 71,
-          "tn": 783,
-          "fp": 52,
-          "auc": 0.9636074644061046
+          "sensitivity": 0.9109263657957245,
+          "specificity": 0.9497005988023952,
+          "tp": 767,
+          "fn": 75,
+          "tn": 793,
+          "fp": 42,
+          "auc": 0.9685650077517175
         },
         "who_catalogue": null,
         "cryptic_catalogue": null
@@ -3797,13 +4991,13 @@
         "n": 2448,
         "n_resistant": 604,
         "model": {
-          "sensitivity": 0.9536423841059603,
-          "specificity": 0.9105206073752712,
-          "tp": 576,
-          "fn": 28,
-          "tn": 1679,
-          "fp": 165,
-          "auc": 0.9702745435347861
+          "sensitivity": 0.956953642384106,
+          "specificity": 0.908351409978308,
+          "tp": 578,
+          "fn": 26,
+          "tn": 1675,
+          "fp": 169,
+          "auc": 0.967745309649337
         },
         "who_catalogue": null,
         "cryptic_catalogue": null
@@ -3812,13 +5006,13 @@
         "n": 1960,
         "n_resistant": 604,
         "model": {
-          "sensitivity": 0.8791390728476821,
-          "specificity": 0.9786135693215339,
-          "tp": 531,
-          "fn": 73,
-          "tn": 1327,
-          "fp": 29,
-          "auc": 0.9639253550567504
+          "sensitivity": 0.890728476821192,
+          "specificity": 0.9712389380530974,
+          "tp": 538,
+          "fn": 66,
+          "tn": 1317,
+          "fp": 39,
+          "auc": 0.9579829162515384
         },
         "who_catalogue": null,
         "cryptic_catalogue": null
@@ -3833,7 +5027,84 @@
           "fn": 26,
           "tn": 979,
           "fp": 7,
-          "auc": 0.9598518008094179
+          "auc": 0.9515610897056398
+        },
+        "who_catalogue": null,
+        "cryptic_catalogue": null
+      }
+    },
+    "unseen_lineages": {
+      "n": 11281,
+      "n_resistant": 4009,
+      "model": {
+        "sensitivity": 0.9498628086804689,
+        "specificity": 0.9323432343234324,
+        "tp": 3808,
+        "fn": 201,
+        "tn": 6780,
+        "fp": 492,
+        "auc": 0.9601560336876791
+      },
+      "who_catalogue": null,
+      "cryptic_catalogue": null
+    },
+    "by_lineage": {
+      "Lineage 1": {
+        "n": 638,
+        "n_resistant": 124,
+        "model": {
+          "sensitivity": 0.8790322580645161,
+          "specificity": 0.9766536964980544,
+          "tp": 109,
+          "fn": 15,
+          "tn": 502,
+          "fp": 12,
+          "auc": 0.9536290322580644
+        },
+        "who_catalogue": null,
+        "cryptic_catalogue": null
+      },
+      "Lineage 2": {
+        "n": 4051,
+        "n_resistant": 2014,
+        "model": {
+          "sensitivity": 0.9652432969215492,
+          "specificity": 0.9661266568483063,
+          "tp": 1944,
+          "fn": 70,
+          "tn": 1968,
+          "fp": 69,
+          "auc": 0.9732253459948257
+        },
+        "who_catalogue": null,
+        "cryptic_catalogue": null
+      },
+      "Lineage 3": {
+        "n": 990,
+        "n_resistant": 411,
+        "model": {
+          "sensitivity": 0.8905109489051095,
+          "specificity": 0.924006908462867,
+          "tp": 366,
+          "fn": 45,
+          "tn": 535,
+          "fp": 44,
+          "auc": 0.935571439977476
+        },
+        "who_catalogue": null,
+        "cryptic_catalogue": null
+      },
+      "Lineage 4": {
+        "n": 5602,
+        "n_resistant": 1460,
+        "model": {
+          "sensitivity": 0.9513698630136986,
+          "specificity": 0.9113954611298889,
+          "tp": 1389,
+          "fn": 71,
+          "tn": 3775,
+          "fp": 367,
+          "auc": 0.9610835874403869
         },
         "who_catalogue": null,
         "cryptic_catalogue": null
@@ -3843,13 +5114,13 @@
       "n": 229,
       "n_resistant": 131,
       "model": {
-        "sensitivity": 0.9694656488549618,
+        "sensitivity": 0.9618320610687023,
         "specificity": 0.8367346938775511,
-        "tp": 127,
-        "fn": 4,
+        "tp": 126,
+        "fn": 5,
         "tn": 82,
         "fp": 16,
-        "auc": 0.9520563950771148
+        "auc": 0.950771148153918
       },
       "who_catalogue": null,
       "cryptic_catalogue": null
@@ -3860,12 +5131,12 @@
         "n_resistant": 76,
         "model": {
           "sensitivity": 0.9736842105263158,
-          "specificity": 0.872093023255814,
+          "specificity": 0.8837209302325582,
           "tp": 74,
           "fn": 2,
-          "tn": 75,
-          "fp": 11,
-          "auc": 0.961750305997552
+          "tn": 76,
+          "fp": 10,
+          "auc": 0.9586138310893513
         },
         "who_catalogue": null,
         "cryptic_catalogue": null
@@ -3879,15 +5150,7 @@
     "unseen_countries": {
       "n": 9982,
       "n_resistant": 94,
-      "model": {
-        "sensitivity": 0.5106382978723404,
-        "specificity": 0.8305016181229773,
-        "tp": 48,
-        "fn": 46,
-        "tn": 8212,
-        "fp": 1676,
-        "auc": 0.6271076482131791
-      },
+      "model": null,
       "who_catalogue": {
         "sensitivity": 0.05319148936170213,
         "specificity": 0.997876213592233,
@@ -3903,15 +5166,7 @@
       "South Africa": {
         "n": 1753,
         "n_resistant": 32,
-        "model": {
-          "sensitivity": 0.5625,
-          "specificity": 0.8657757117954678,
-          "tp": 18,
-          "fn": 14,
-          "tn": 1490,
-          "fp": 231,
-          "auc": 0.7315786606624055
-        },
+        "model": null,
         "who_catalogue": {
           "sensitivity": 0.09375,
           "specificity": 0.9976757699012202,
@@ -3924,18 +5179,57 @@
         "cryptic_catalogue": null
       }
     },
+    "unseen_lineages": {
+      "n": 9801,
+      "n_resistant": 90,
+      "model": null,
+      "who_catalogue": {
+        "sensitivity": 0.05555555555555555,
+        "specificity": 0.9978375038616002,
+        "tp": 5,
+        "fn": 85,
+        "tn": 9690,
+        "fp": 21,
+        "uncertain_fraction": 0.03836343230282624
+      },
+      "cryptic_catalogue": null
+    },
+    "by_lineage": {
+      "Lineage 2": {
+        "n": 3663,
+        "n_resistant": 43,
+        "model": null,
+        "who_catalogue": {
+          "sensitivity": 0.06976744186046512,
+          "specificity": 0.9983425414364641,
+          "tp": 3,
+          "fn": 40,
+          "tn": 3614,
+          "fp": 6,
+          "uncertain_fraction": 0.02620802620802621
+        },
+        "cryptic_catalogue": null
+      },
+      "Lineage 4": {
+        "n": 4730,
+        "n_resistant": 26,
+        "model": null,
+        "who_catalogue": {
+          "sensitivity": 0.0,
+          "specificity": 0.9972363945578231,
+          "tp": 0,
+          "fn": 26,
+          "tn": 4691,
+          "fp": 13,
+          "uncertain_fraction": 0.043551797040169135
+        },
+        "cryptic_catalogue": null
+      }
+    },
     "other_studies": {
       "n": 96,
       "n_resistant": 3,
-      "model": {
-        "sensitivity": 0.3333333333333333,
-        "specificity": 0.9247311827956989,
-        "tp": 1,
-        "fn": 2,
-        "tn": 86,
-        "fp": 7,
-        "auc": 0.5985663082437276
-      },
+      "model": null,
       "who_catalogue": {
         "sensitivity": 0.0,
         "specificity": 1.0,
@@ -3956,15 +5250,7 @@
     "unseen_countries": {
       "n": 8575,
       "n_resistant": 93,
-      "model": {
-        "sensitivity": 0.34408602150537637,
-        "specificity": 0.9522518273991983,
-        "tp": 32,
-        "fn": 61,
-        "tn": 8077,
-        "fp": 405,
-        "auc": 0.6248532629502577
-      },
+      "model": null,
       "who_catalogue": {
         "sensitivity": 0.34408602150537637,
         "specificity": 0.9992926196651734,
@@ -3980,15 +5266,7 @@
       "India": {
         "n": 1112,
         "n_resistant": 20,
-        "model": {
-          "sensitivity": 0.65,
-          "specificity": 0.847985347985348,
-          "tp": 13,
-          "fn": 7,
-          "tn": 926,
-          "fp": 166,
-          "auc": 0.7886217948717948
-        },
+        "model": null,
         "who_catalogue": {
           "sensitivity": 0.55,
           "specificity": 0.9972527472527473,
@@ -4003,15 +5281,7 @@
       "South Africa": {
         "n": 1331,
         "n_resistant": 25,
-        "model": {
-          "sensitivity": 0.32,
-          "specificity": 0.9923430321592649,
-          "tp": 8,
-          "fn": 17,
-          "tn": 1296,
-          "fp": 10,
-          "auc": 0.6617304747320061
-        },
+        "model": null,
         "who_catalogue": {
           "sensitivity": 0.36,
           "specificity": 1.0,
@@ -4024,18 +5294,57 @@
         "cryptic_catalogue": null
       }
     },
+    "unseen_lineages": {
+      "n": 8427,
+      "n_resistant": 88,
+      "model": null,
+      "who_catalogue": {
+        "sensitivity": 0.36363636363636365,
+        "specificity": 0.9992804892672983,
+        "tp": 32,
+        "fn": 56,
+        "tn": 8333,
+        "fp": 6,
+        "uncertain_fraction": 0.07191171235315058
+      },
+      "cryptic_catalogue": null
+    },
+    "by_lineage": {
+      "Lineage 2": {
+        "n": 3212,
+        "n_resistant": 39,
+        "model": null,
+        "who_catalogue": {
+          "sensitivity": 0.5384615384615384,
+          "specificity": 0.9984242042231327,
+          "tp": 21,
+          "fn": 18,
+          "tn": 3168,
+          "fp": 5,
+          "uncertain_fraction": 0.0224159402241594
+        },
+        "cryptic_catalogue": null
+      },
+      "Lineage 4": {
+        "n": 3999,
+        "n_resistant": 37,
+        "model": null,
+        "who_catalogue": {
+          "sensitivity": 0.24324324324324326,
+          "specificity": 1.0,
+          "tp": 9,
+          "fn": 28,
+          "tn": 3962,
+          "fp": 0,
+          "uncertain_fraction": 0.07651912978244561
+        },
+        "cryptic_catalogue": null
+      }
+    },
     "other_studies": {
       "n": 3591,
       "n_resistant": 46,
-      "model": {
-        "sensitivity": 0.7608695652173914,
-        "specificity": 0.8770098730606488,
-        "tp": 35,
-        "fn": 11,
-        "tn": 3109,
-        "fp": 436,
-        "auc": 0.884227632305145
-      },
+      "model": null,
       "who_catalogue": {
         "sensitivity": 0.6956521739130435,
         "specificity": 0.9949224259520452,
@@ -4051,15 +5360,7 @@
       "CLIRES2020": {
         "n": 2311,
         "n_resistant": 36,
-        "model": {
-          "sensitivity": 0.8055555555555556,
-          "specificity": 0.8514285714285714,
-          "tp": 29,
-          "fn": 7,
-          "tn": 1937,
-          "fp": 338,
-          "auc": 0.9058547008547008
-        },
+        "model": null,
         "who_catalogue": {
           "sensitivity": 0.75,
           "specificity": 0.9925274725274725,
@@ -4080,15 +5381,7 @@
     "unseen_countries": {
       "n": 9496,
       "n_resistant": 99,
-      "model": {
-        "sensitivity": 0.5656565656565656,
-        "specificity": 0.612323081834628,
-        "tp": 56,
-        "fn": 43,
-        "tn": 5754,
-        "fp": 3643,
-        "auc": 0.5808999863485338
-      },
+      "model": null,
       "who_catalogue": {
         "sensitivity": 0.1111111111111111,
         "specificity": 0.9998935830584229,
@@ -4104,15 +5397,7 @@
       "China": {
         "n": 980,
         "n_resistant": 25,
-        "model": {
-          "sensitivity": 0.8,
-          "specificity": 0.22408376963350785,
-          "tp": 20,
-          "fn": 5,
-          "tn": 214,
-          "fp": 741,
-          "auc": 0.5486492146596859
-        },
+        "model": null,
         "who_catalogue": {
           "sensitivity": 0.04,
           "specificity": 1.0,
@@ -4125,18 +5410,57 @@
         "cryptic_catalogue": null
       }
     },
+    "unseen_lineages": {
+      "n": 9307,
+      "n_resistant": 94,
+      "model": null,
+      "who_catalogue": {
+        "sensitivity": 0.11702127659574468,
+        "specificity": 0.999891457722783,
+        "tp": 11,
+        "fn": 83,
+        "tn": 9212,
+        "fp": 1,
+        "uncertain_fraction": 0.23444719028688085
+      },
+      "cryptic_catalogue": null
+    },
+    "by_lineage": {
+      "Lineage 2": {
+        "n": 3570,
+        "n_resistant": 45,
+        "model": null,
+        "who_catalogue": {
+          "sensitivity": 0.17777777777777778,
+          "specificity": 0.9997163120567376,
+          "tp": 8,
+          "fn": 37,
+          "tn": 3524,
+          "fp": 1,
+          "uncertain_fraction": 0.1330532212885154
+        },
+        "cryptic_catalogue": null
+      },
+      "Lineage 4": {
+        "n": 4363,
+        "n_resistant": 33,
+        "model": null,
+        "who_catalogue": {
+          "sensitivity": 0.09090909090909091,
+          "specificity": 1.0,
+          "tp": 3,
+          "fn": 30,
+          "tn": 4330,
+          "fp": 0,
+          "uncertain_fraction": 0.29773091909236765
+        },
+        "cryptic_catalogue": null
+      }
+    },
     "other_studies": {
       "n": 97,
       "n_resistant": 2,
-      "model": {
-        "sensitivity": 0.5,
-        "specificity": 0.4105263157894737,
-        "tp": 1,
-        "fn": 1,
-        "tn": 39,
-        "fp": 56,
-        "auc": 0.3894736842105263
-      },
+      "model": null,
       "who_catalogue": {
         "sensitivity": 0.0,
         "specificity": 1.0,
@@ -4157,15 +5481,7 @@
     "unseen_countries": {
       "n": 9198,
       "n_resistant": 139,
-      "model": {
-        "sensitivity": 0.41007194244604317,
-        "specificity": 0.8757037200574015,
-        "tp": 57,
-        "fn": 82,
-        "tn": 7933,
-        "fp": 1126,
-        "auc": 0.6274022177555449
-      },
+      "model": null,
       "who_catalogue": {
         "sensitivity": 0.02158273381294964,
         "specificity": 0.9980130257202782,
@@ -4181,15 +5497,7 @@
       "China": {
         "n": 885,
         "n_resistant": 26,
-        "model": {
-          "sensitivity": 0.6923076923076923,
-          "specificity": 0.7590221187427241,
-          "tp": 18,
-          "fn": 8,
-          "tn": 652,
-          "fp": 207,
-          "auc": 0.7493731530402076
-        },
+        "model": null,
         "who_catalogue": {
           "sensitivity": 0.0,
           "specificity": 1.0,
@@ -4204,15 +5512,7 @@
       "Italy": {
         "n": 1302,
         "n_resistant": 23,
-        "model": {
-          "sensitivity": 0.08695652173913043,
-          "specificity": 0.9530883502736512,
-          "tp": 2,
-          "fn": 21,
-          "tn": 1219,
-          "fp": 60,
-          "auc": 0.6155794268620185
-        },
+        "model": null,
         "who_catalogue": {
           "sensitivity": 0.08695652173913043,
           "specificity": 0.9921813917122753,
@@ -4227,15 +5527,7 @@
       "South Africa": {
         "n": 1289,
         "n_resistant": 63,
-        "model": {
-          "sensitivity": 0.4603174603174603,
-          "specificity": 0.8939641109298532,
-          "tp": 29,
-          "fn": 34,
-          "tn": 1096,
-          "fp": 130,
-          "auc": 0.7049897718739481
-        },
+        "model": null,
         "who_catalogue": {
           "sensitivity": 0.015873015873015872,
           "specificity": 0.9975530179445351,
@@ -4248,18 +5540,57 @@
         "cryptic_catalogue": null
       }
     },
+    "unseen_lineages": {
+      "n": 9024,
+      "n_resistant": 134,
+      "model": null,
+      "who_catalogue": {
+        "sensitivity": 0.022388059701492536,
+        "specificity": 0.9979752530933633,
+        "tp": 3,
+        "fn": 131,
+        "tn": 8872,
+        "fp": 18,
+        "uncertain_fraction": 0.03568262411347518
+      },
+      "cryptic_catalogue": null
+    },
+    "by_lineage": {
+      "Lineage 2": {
+        "n": 3324,
+        "n_resistant": 72,
+        "model": null,
+        "who_catalogue": {
+          "sensitivity": 0.013888888888888888,
+          "specificity": 0.9984624846248462,
+          "tp": 1,
+          "fn": 71,
+          "tn": 3247,
+          "fp": 5,
+          "uncertain_fraction": 0.0210589651022864
+        },
+        "cryptic_catalogue": null
+      },
+      "Lineage 4": {
+        "n": 4396,
+        "n_resistant": 46,
+        "model": null,
+        "who_catalogue": {
+          "sensitivity": 0.021739130434782608,
+          "specificity": 0.9974712643678161,
+          "tp": 1,
+          "fn": 45,
+          "tn": 4339,
+          "fp": 11,
+          "uncertain_fraction": 0.04390354868061874
+        },
+        "cryptic_catalogue": null
+      }
+    },
     "other_studies": {
       "n": 2245,
       "n_resistant": 20,
-      "model": {
-        "sensitivity": 0.05,
-        "specificity": 0.64,
-        "tp": 1,
-        "fn": 19,
-        "tn": 1424,
-        "fp": 801,
-        "auc": 0.36803370786516854
-      },
+      "model": null,
       "who_catalogue": {
         "sensitivity": 0.05,
         "specificity": 0.9959550561797753,

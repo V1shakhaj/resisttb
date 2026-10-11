@@ -168,10 +168,10 @@ td.drug small { display: block; font-weight: 400; color: var(--muted); font: 11p
 
   <section class="val" id="validation" hidden>
     <h2>How well does it hold up on new data?</h2>
-    <p class="lead">Sensitivity is the share of truly resistant samples caught; specificity (smaller number) is the share of susceptible samples correctly cleared. <b>Unseen countries:</b> each country was predicted by a model trained only on the other countries. <b>Other studies:</b> samples from 7 independent studies using different lab methods. The WHO catalogue (2023) is the rule set TB-Profiler uses. It was partly built from these same datasets, so its numbers are optimistic.</p>
+    <p class="lead">Sensitivity is the share of truly resistant samples caught; specificity (smaller number) is the share of susceptible samples correctly cleared. <b>Unseen countries:</b> each country was predicted by a model trained only on the other countries. <b>Unseen lineages:</b> the same for each of the four main strain families. <b>Other studies:</b> samples from 7 independent studies using different lab methods. The WHO catalogue (2023) is the rule set TB-Profiler uses. It was partly built from these same datasets, so its numbers are optimistic.</p>
     <div class="tablewrap">
       <table>
-        <thead><tr><th>Drug</th><th>Unseen countries<br>AI model</th><th>Unseen countries<br>WHO catalogue</th><th>Other studies<br>AI model</th><th>Other studies<br>WHO catalogue</th></tr></thead>
+        <thead><tr><th>Drug</th><th>Unseen countries<br>AI model</th><th>Unseen countries<br>WHO catalogue</th><th>Unseen lineages<br>AI model</th><th>Unseen lineages<br>WHO catalogue</th><th>Other studies<br>AI model</th><th>Other studies<br>WHO catalogue</th></tr></thead>
         <tbody id="valrows"></tbody>
       </table>
     </div>
@@ -441,8 +441,9 @@ fetch("results/examples.json").then(r => r.json()).then(list => {
 const ss = r => r ? `<b>${Math.round(r.sensitivity * 100)}%</b> <span>/ ${Math.round(r.specificity * 100)}%</span>` : `<span>no rules</span>`;
 fetch("results/validation.json").then(r => r.json()).then(rows => {
   $("valrows").innerHTML = rows.filter(r => !r.low_data).map(r => {
-    const u = r.unseen_countries, o = r.other_studies;
+    const u = r.unseen_countries, o = r.other_studies, l = r.unseen_lineages;
     return `<tr><td class="drug">${r.name}</td><td class="num">${ss(u.model)}</td><td class="num">${ss(u.who_catalogue)}</td>` +
+      `<td class="num">${l ? ss(l.model) : "<span>no data</span>"}</td><td class="num">${l ? ss(l.who_catalogue) : "<span>no data</span>"}</td>` +
       `<td class="num">${o ? ss(o.model) : "<span>no data</span>"}</td><td class="num">${o ? ss(o.who_catalogue) : "<span>no data</span>"}</td></tr>`;
   }).join("");
   $("validation").hidden = false;

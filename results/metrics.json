@@ -5,16 +5,16 @@
     "n_samples": 10396,
     "n_resistant": 4334,
     "n_test": 2080,
-    "n_features": 297,
-    "n_features_used": 81,
+    "n_features": 115,
+    "n_features_used": 52,
     "model": {
       "sensitivity": 0.9504036908881199,
-      "specificity": 0.9719703215169002,
+      "specificity": 0.9703215169002474,
       "tp": 824,
       "fn": 43,
-      "tn": 1179,
-      "fp": 34,
-      "auc": 0.9723383073223468
+      "tn": 1177,
+      "fp": 36,
+      "auc": 0.9718557419573233
     },
     "catalogue": {
       "sensitivity": 0.9584775086505191,
@@ -23,48 +23,48 @@
       "fn": 36,
       "tn": 1155,
       "fp": 58,
-      "unknown_only_fraction": 0.22548076923076923
+      "unknown_only_fraction": 0.021153846153846155
     },
     "top_resistance_mutations": [
       [
-        "rpoB@H445D",
-        6.989
-      ],
-      [
         "rpoB@S450L",
-        6.727
+        6.686
       ],
       [
-        "rpoB@D435V",
-        6.624
+        "rpoB@H445D",
+        6.649
       ],
       [
         "rpoB@H445Y",
-        6.535
+        6.468
+      ],
+      [
+        "rpoB@D435V",
+        6.384
       ],
       [
         "rpoB@S450W",
-        6.04
+        5.807
       ],
       [
         "rpoB@V170F",
-        5.986
-      ],
-      [
-        "rpoB@S450F",
-        5.9
+        5.728
       ],
       [
         "rpoB@Q432P",
-        5.888
+        5.511
+      ],
+      [
+        "rpoB@S450F",
+        5.484
       ],
       [
         "rpoB@H445R",
-        5.46
+        5.429
       ],
       [
         "rpoB@Q432K",
-        5.257
+        5.217
       ]
     ]
   },
@@ -74,66 +74,66 @@
     "n_samples": 10432,
     "n_resistant": 4889,
     "n_test": 2087,
-    "n_features": 188,
-    "n_features_used": 47,
+    "n_features": 74,
+    "n_features_used": 26,
     "model": {
-      "sensitivity": 0.9314928425357873,
-      "specificity": 0.9846708746618575,
-      "tp": 911,
-      "fn": 67,
-      "tn": 1092,
-      "fp": 17,
-      "auc": 0.968679294340228
+      "sensitivity": 0.9253578732106339,
+      "specificity": 0.9837691614066727,
+      "tp": 905,
+      "fn": 73,
+      "tn": 1091,
+      "fp": 18,
+      "auc": 0.9641656570797398
     },
     "catalogue": {
-      "sensitivity": 0.9355828220858896,
-      "specificity": 0.9801623083859333,
-      "tp": 915,
-      "fn": 63,
-      "tn": 1087,
-      "fp": 22,
-      "unknown_only_fraction": 0.21082894106372785
+      "sensitivity": 0.9284253578732107,
+      "specificity": 0.981965734896303,
+      "tp": 908,
+      "fn": 70,
+      "tn": 1089,
+      "fp": 20,
+      "unknown_only_fraction": 0.02347867752755151
     },
     "top_resistance_mutations": [
       [
         "katG@S315T",
-        7.203
+        7.024
       ],
       [
         "katG@S315N",
-        5.209
-      ],
-      [
-        "ahpC@c-54t",
-        4.86
-      ],
-      [
-        "ahpC@c-57t",
-        4.786
+        5.006
       ],
       [
         "fabG1@c-15t",
-        4.711
+        4.543
       ],
       [
-        "ahpC@g-51a",
-        3.991
+        "katG@D142N",
+        3.797
       ],
       [
         "fabG1@L203L",
-        3.828
-      ],
-      [
-        "ahpC@c-52t",
-        3.773
+        3.658
       ],
       [
         "katG@P232A",
-        3.77
+        3.51
       ],
       [
-        "ahpC@c-72t",
-        3.649
+        "katG@W91R",
+        3.51
+      ],
+      [
+        "katG@S315I",
+        3.457
+      ],
+      [
+        "inhA@I194T",
+        3.297
+      ],
+      [
+        "katG@!741R",
+        2.74
       ]
     ]
   },
@@ -143,66 +143,66 @@
     "n_samples": 7755,
     "n_resistant": 1817,
     "n_test": 1551,
-    "n_features": 278,
-    "n_features_used": 86,
+    "n_features": 73,
+    "n_features_used": 33,
     "model": {
-      "sensitivity": 0.9008264462809917,
-      "specificity": 0.9503367003367004,
-      "tp": 327,
-      "fn": 36,
-      "tn": 1129,
-      "fp": 59,
-      "auc": 0.9635438406099563
+      "sensitivity": 0.90633608815427,
+      "specificity": 0.9410774410774411,
+      "tp": 329,
+      "fn": 34,
+      "tn": 1118,
+      "fp": 70,
+      "auc": 0.9495088627320032
     },
     "catalogue": {
-      "sensitivity": 0.837465564738292,
-      "specificity": 0.9368686868686869,
-      "tp": 304,
-      "fn": 59,
-      "tn": 1113,
-      "fp": 75,
-      "unknown_only_fraction": 0.2559638942617666
+      "sensitivity": 0.7741046831955923,
+      "specificity": 0.9444444444444444,
+      "tp": 281,
+      "fn": 82,
+      "tn": 1122,
+      "fp": 66,
+      "unknown_only_fraction": 0.04642166344294004
     },
     "top_resistance_mutations": [
       [
-        "embB@M306V",
-        6.065
+        "embB@Q445R",
+        6.587
       ],
       [
-        "embB@E405D",
-        5.84
+        "embB@M306V",
+        6.135
       ],
       [
         "embB@Y319S",
-        5.718
+        5.806
       ],
       [
         "embB@Q497R",
-        5.675
+        5.665
       ],
       [
-        "embB@Q445R",
-        5.486
+        "embB@Y334H",
+        5.563
       ],
       [
         "embB@M306L",
-        4.961
+        5.018
       ],
       [
         "embB@D328Y",
-        4.932
+        4.784
+      ],
+      [
+        "embB@E405D",
+        4.685
       ],
       [
         "embB@F330S",
-        4.52
+        4.652
       ],
       [
-        "embB@D354A",
-        4.443
-      ],
-      [
-        "embB@M306I",
-        4.401
+        "embB@Q497P",
+        4.634
       ]
     ]
   },
@@ -350,16 +350,16 @@
     "n_samples": 10414,
     "n_resistant": 764,
     "n_test": 2083,
-    "n_features": 393,
-    "n_features_used": 98,
+    "n_features": 52,
+    "n_features_used": 21,
     "model": {
-      "sensitivity": 0.7908496732026143,
-      "specificity": 0.9642487046632124,
-      "tp": 121,
-      "fn": 32,
-      "tn": 1861,
-      "fp": 69,
-      "auc": 0.9064716041857156
+      "sensitivity": 0.7712418300653595,
+      "specificity": 0.977720207253886,
+      "tp": 118,
+      "fn": 35,
+      "tn": 1887,
+      "fp": 43,
+      "auc": 0.8932862609637984
     },
     "catalogue": {
       "sensitivity": 0.7581699346405228,
@@ -368,48 +368,48 @@
       "fn": 37,
       "tn": 1913,
       "fp": 17,
-      "unknown_only_fraction": 0.9323091694671147
+      "unknown_only_fraction": 0.12626020163226115
     },
     "top_resistance_mutations": [
       [
         "rrs@a1401g",
-        6.265
-      ],
-      [
-        "gid@P75R",
-        3.56
-      ],
-      [
-        "eis@c-14t",
-        3.273
-      ],
-      [
-        "gid@A80P",
-        3.042
-      ],
-      [
-        "gid@L26F",
-        2.92
-      ],
-      [
-        "tlyA@464_indel",
-        2.909
+        6.337
       ],
       [
         "rrs@g1484t",
-        2.837
+        3.514
       ],
       [
-        "aftB@L266P",
-        2.689
+        "eis@c-14t",
+        3.254
       ],
       [
-        "tlyA@197_indel",
-        2.61
+        "rrs@c1402t",
+        2.733
       ],
       [
-        "fprA@564_indel",
-        2.583
+        "rrs@-26_indel",
+        1.794
+      ],
+      [
+        "eis@g-37t",
+        1.753
+      ],
+      [
+        "eis@g-10c",
+        1.421
+      ],
+      [
+        "eis@R106H",
+        1.273
+      ],
+      [
+        "eis@c-12t",
+        0.448
+      ],
+      [
+        "eis@P14P",
+        0.126
       ]
     ]
   },
@@ -419,16 +419,16 @@
     "n_samples": 10793,
     "n_resistant": 990,
     "n_test": 2159,
-    "n_features": 384,
-    "n_features_used": 97,
+    "n_features": 51,
+    "n_features_used": 24,
     "model": {
       "sensitivity": 0.797979797979798,
-      "specificity": 0.9678735339112697,
+      "specificity": 0.9811320754716981,
       "tp": 158,
       "fn": 40,
-      "tn": 1898,
-      "fp": 63,
-      "auc": 0.9288538109292825
+      "tn": 1924,
+      "fp": 37,
+      "auc": 0.897797454401228
     },
     "catalogue": {
       "sensitivity": 0.696969696969697,
@@ -437,48 +437,48 @@
       "fn": 60,
       "tn": 1946,
       "fp": 15,
-      "unknown_only_fraction": 0.9258916164891153
+      "unknown_only_fraction": 0.13524779990736452
     },
     "top_resistance_mutations": [
       [
         "rrs@a1401g",
-        6.014
+        6.246
       ],
       [
         "eis@c-14t",
-        5.049
+        4.97
       ],
       [
         "eis@g-37t",
-        4.149
+        4.283
       ],
       [
         "eis@g-10a",
-        3.897
+        3.845
       ],
       [
         "rrs@c1402t",
-        3.859
+        3.687
       ],
       [
         "rrs@g1484t",
-        3.258
-      ],
-      [
-        "whiB6@R96R",
-        3.16
+        3.493
       ],
       [
         "eis@c-12t",
-        2.701
+        2.859
       ],
       [
-        "gid@G73R",
-        2.622
+        "rrs@c1153t",
+        2.354
       ],
       [
-        "whiB7@t-57g",
-        2.616
+        "rrs@c492t",
+        1.146
+      ],
+      [
+        "eis@g-10c",
+        1.068
       ]
     ]
   },
@@ -488,16 +488,16 @@
     "n_samples": 9508,
     "n_resistant": 1532,
     "n_test": 1902,
-    "n_features": 190,
-    "n_features_used": 96,
+    "n_features": 137,
+    "n_features_used": 76,
     "model": {
-      "sensitivity": 0.7745098039215687,
-      "specificity": 0.9705513784461153,
-      "tp": 237,
-      "fn": 69,
-      "tn": 1549,
-      "fp": 47,
-      "auc": 0.9032497501924747
+      "sensitivity": 0.7679738562091504,
+      "specificity": 0.9711779448621554,
+      "tp": 235,
+      "fn": 71,
+      "tn": 1550,
+      "fp": 46,
+      "auc": 0.8771653398201386
     },
     "catalogue": {
       "sensitivity": 0.5947712418300654,
@@ -506,48 +506,48 @@
       "fn": 124,
       "tn": 1577,
       "fp": 19,
-      "unknown_only_fraction": 0.5205047318611987
+      "unknown_only_fraction": 0.16929547844374343
     },
     "top_resistance_mutations": [
       [
         "fabG1@c-15t",
-        5.869
+        5.707
       ],
       [
         "fabG1@L203L",
-        5.009
+        5.023
       ],
       [
         "ethA@L35R",
-        4.433
-      ],
-      [
-        "fabG1@c-34g",
-        4.306
+        4.645
       ],
       [
         "fabG1@V221V",
-        4.244
+        4.174
       ],
       [
         "ethA@1055_indel",
-        3.658
+        4.046
+      ],
+      [
+        "fabG1@c-34g",
+        4.045
       ],
       [
         "fabG1@t-8c",
-        3.544
+        3.758
+      ],
+      [
+        "ethA@Y147!",
+        3.501
       ],
       [
         "ethA@T88P",
-        3.523
+        3.432
       ],
       [
-        "ethA@a-11g",
-        3.474
-      ],
-      [
-        "ethA@367_indel",
-        3.448
+        "ethA@753_indel",
+        3.427
       ]
     ]
   },
@@ -557,16 +557,16 @@
     "n_samples": 11500,
     "n_resistant": 4069,
     "n_test": 2300,
-    "n_features": 319,
-    "n_features_used": 79,
+    "n_features": 123,
+    "n_features_used": 50,
     "model": {
-      "sensitivity": 0.9496314496314496,
-      "specificity": 0.9562584118438762,
-      "tp": 773,
-      "fn": 41,
-      "tn": 1421,
-      "fp": 65,
-      "auc": 0.9759317925535961
+      "sensitivity": 0.9459459459459459,
+      "specificity": 0.9582772543741588,
+      "tp": 770,
+      "fn": 44,
+      "tn": 1424,
+      "fp": 62,
+      "auc": 0.973140796492075
     },
     "catalogue": {
       "sensitivity": 0.0,
@@ -575,325 +575,73 @@
       "fn": 814,
       "tn": 1486,
       "fp": 0,
-      "unknown_only_fraction": 0.6639130434782609
+      "unknown_only_fraction": 0.4647826086956522
     },
     "top_resistance_mutations": [
       [
-        "rpoB@H445D",
-        7.458
+        "rpoB@H445Y",
+        7.034
       ],
       [
         "rpoB@S450L",
-        7.215
+        7.02
       ],
       [
-        "rpoB@H445Y",
-        7.199
+        "rpoB@H445D",
+        6.859
       ],
       [
         "rpoB@S450W",
-        6.253
-      ],
-      [
-        "rpoB@S450F",
-        6.119
+        5.97
       ],
       [
         "rpoB@Q432L",
-        5.878
+        5.689
+      ],
+      [
+        "rpoB@S450F",
+        5.638
       ],
       [
         "rpoB@V170F",
-        5.723
+        5.588
+      ],
+      [
+        "rpoB@H445R",
+        5.366
       ],
       [
         "rpoB@Q432P",
-        5.287
+        5.132
       ],
       [
         "rpoB@S450M",
-        5.014
-      ],
-      [
-        "rpoB@Q432K",
-        4.906
+        4.93
       ]
     ]
   },
   {
     "drug": "BDQ",
     "name": "Bedaquiline",
-    "n_samples": 9982,
     "n_resistant": 94,
-    "n_test": 1997,
-    "n_features": 137,
-    "n_features_used": 80,
-    "model": {
-      "sensitivity": 0.6842105263157895,
-      "specificity": 0.8099089989888777,
-      "tp": 13,
-      "fn": 6,
-      "tn": 1602,
-      "fp": 376,
-      "auc": 0.7464876802724708
-    },
-    "catalogue": {
-      "sensitivity": 0.0,
-      "specificity": 1.0,
-      "tp": 0,
-      "fn": 19,
-      "tn": 1978,
-      "fp": 0,
-      "unknown_only_fraction": 0.9969954932398598
-    },
-    "top_resistance_mutations": [
-      [
-        "atpE@E61D",
-        3.783
-      ],
-      [
-        "Rv0678@141_indel",
-        2.847
-      ],
-      [
-        "Rv0678@M139I",
-        2.578
-      ],
-      [
-        "mmpL3@L528L",
-        2.537
-      ],
-      [
-        "Rv0678@Q51R",
-        1.966
-      ],
-      [
-        "mmpL5@A298A",
-        1.757
-      ],
-      [
-        "mmpL5@T794I",
-        1.654
-      ],
-      [
-        "mmpL5@G246S",
-        1.633
-      ],
-      [
-        "pepQ@818_indel",
-        1.555
-      ],
-      [
-        "Rv1816@Q16R",
-        1.536
-      ]
-    ]
+    "skipped": "too little data (94 resistant samples, needs 200)"
   },
   {
     "drug": "LZD",
     "name": "Linezolid",
-    "n_samples": 8575,
     "n_resistant": 93,
-    "n_test": 1715,
-    "n_features": 89,
-    "n_features_used": 50,
-    "model": {
-      "sensitivity": 0.5789473684210527,
-      "specificity": 0.9457547169811321,
-      "tp": 11,
-      "fn": 8,
-      "tn": 1604,
-      "fp": 92,
-      "auc": 0.7916770109235352
-    },
-    "catalogue": {
-      "sensitivity": 0.0,
-      "specificity": 1.0,
-      "tp": 0,
-      "fn": 19,
-      "tn": 1696,
-      "fp": 0,
-      "unknown_only_fraction": 0.30029154518950435
-    },
-    "top_resistance_mutations": [
-      [
-        "rplC@C154R",
-        6.927
-      ],
-      [
-        "rrl@g2814t",
-        4.88
-      ],
-      [
-        "rrl@g2270t",
-        3.763
-      ],
-      [
-        "Rv1816@V57A",
-        1.988
-      ],
-      [
-        "mmpL3@R923R",
-        0.961
-      ],
-      [
-        "rrl@g1052t",
-        0.808
-      ],
-      [
-        "rrl@c344t",
-        0.351
-      ],
-      [
-        "mmpL3@F384I",
-        -0.031
-      ],
-      [
-        "rrl@c1822t",
-        -0.074
-      ],
-      [
-        "rrl@c1847a",
-        -0.074
-      ]
-    ]
+    "skipped": "too little data (93 resistant samples, needs 200)"
   },
   {
     "drug": "DLM",
     "name": "Delamanid",
-    "n_samples": 9496,
     "n_resistant": 99,
-    "n_test": 1900,
-    "n_features": 154,
-    "n_features_used": 86,
-    "model": {
-      "sensitivity": 0.5,
-      "specificity": 0.6398936170212766,
-      "tp": 10,
-      "fn": 10,
-      "tn": 1203,
-      "fp": 677,
-      "auc": 0.5878324468085108
-    },
-    "catalogue": {
-      "sensitivity": 0.0,
-      "specificity": 1.0,
-      "tp": 0,
-      "fn": 20,
-      "tn": 1880,
-      "fp": 0,
-      "unknown_only_fraction": 0.4321052631578947
-    },
-    "top_resistance_mutations": [
-      [
-        "ddn@362_indel",
-        5.204
-      ],
-      [
-        "ddn@L49P",
-        4.375
-      ],
-      [
-        "ddn@G34R",
-        3.901
-      ],
-      [
-        "ddn@Y65S",
-        3.393
-      ],
-      [
-        "Rv1816@V57A",
-        2.753
-      ],
-      [
-        "fbiC@V713L",
-        2.749
-      ],
-      [
-        "fbiA@L113L",
-        1.467
-      ],
-      [
-        "Rv2983@E100E",
-        1.184
-      ],
-      [
-        "Rv1816@L191R",
-        1.002
-      ],
-      [
-        "fgd1@F320F",
-        0.398
-      ]
-    ]
+    "skipped": "too little data (99 resistant samples, needs 200)"
   },
   {
     "drug": "CFZ",
     "name": "Clofazimine",
-    "n_samples": 9198,
     "n_resistant": 139,
-    "n_test": 1840,
-    "n_features": 156,
-    "n_features_used": 80,
-    "model": {
-      "sensitivity": 0.6428571428571429,
-      "specificity": 0.7985651214128036,
-      "tp": 18,
-      "fn": 10,
-      "tn": 1447,
-      "fp": 365,
-      "auc": 0.7822256385998108
-    },
-    "catalogue": {
-      "sensitivity": 0.0,
-      "specificity": 1.0,
-      "tp": 0,
-      "fn": 28,
-      "tn": 1812,
-      "fp": 0,
-      "unknown_only_fraction": 0.9983695652173913
-    },
-    "top_resistance_mutations": [
-      [
-        "mmpL3@T284A",
-        4.393
-      ],
-      [
-        "Rv3249c@A17A",
-        3.281
-      ],
-      [
-        "Rv0678@L117R",
-        2.769
-      ],
-      [
-        "pepQ@V45L",
-        2.264
-      ],
-      [
-        "mmpL5@Y300!",
-        2.048
-      ],
-      [
-        "Rv0678@192_indel",
-        1.861
-      ],
-      [
-        "Rv1979c@R409Q",
-        1.765
-      ],
-      [
-        "mmpL5@P355P",
-        1.749
-      ],
-      [
-        "Rv1816@c-53t",
-        1.667
-      ],
-      [
-        "mmpL5@T794I",
-        1.645
-      ]
-    ]
+    "skipped": "too little data (139 resistant samples, needs 200)"
   }
 ]

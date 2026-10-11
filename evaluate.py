@@ -1,17 +1,19 @@
 """Validate the models on countries and studies they were not trained on, and benchmark them against
 the WHO mutation catalogue (2023, v2.1) and the CRyPTIC catalogue on exactly the same samples.
 
-Two tests:
+Three tests:
   1. Unseen countries: for each country in the CRyPTIC plate data, train on all other countries and
      predict that country. Every sample is predicted by a model that never saw its country.
   2. Other studies: train on all CRyPTIC plate data, then predict samples from 7 other studies
      (MGIT, LJ and other lab methods, 40+ countries). Samples from patients in the training data are removed.
+  3. Unseen lineages: for each of the four main strain lineages, train on everything else and predict that
+     lineage. Lineages differ in background mutations, so this checks the model isn't relying on strain markers.
 
 The WHO catalogue is applied with piezo, the reference rule engine for this mutation grammar.
 TB-Profiler bases its resistance calls on the same WHO catalogue, so this is the catalogue-level
 equivalent of a TB-Profiler benchmark.
 
-Extra inputs (in --data, see README.md): DST_MEASUREMENTS.csv.gz, SITES.csv, WHO_catalogue_v2.1.csv
+Extra inputs (in --data, see README.md): DST_MEASUREMENTS.csv.gz, SITES.csv, MYKROBE_LINEAGE.csv.gz, WHO_catalogue_v2.1.csv
 Outputs (in --out): validation.json, validation.md
 """
 import argparse
@@ -25,9 +27,10 @@ import piezo
 from scipy.sparse import csr_matrix
 from sklearn.metrics import roc_auc_score
 
-from train import DRUGS, LOW_DATA, MIN_SAMPLES, load_effects, load_phenotypes, new_model, pct, sens_spec
+from train import DRUGS, LOW_DATA, MIN_SAMPLES, load_effects, load_phenotypes, new_model, pct, resistance_genes, sens_spec
 
 MAIN_DRUGS = ["RIF", "INH", "EMB", "LEV", "MXF", "AMI"]  # shown per country / per study in the report
+MAIN_LINEAGES = ["Lineage 1", "Lineage 2", "Lineage 3", "Lineage 4"]
 MIN_GROUP = 20  # per-country and per-study rows need at least this many resistant and susceptible samples
 
 
@@ -84,8 +87,11 @@ def fit_predict(fsets, train_ids, y_train, test_ids):
 
 def score(ids, y, prob, cryptic, who):
     out = {"n": len(ids), "n_resistant": int(y.sum())}
-    out["model"] = sens_spec(y, (prob >= 0.5).astype(int))
-    out["model"]["auc"] = float(roc_auc_score(y, prob)) if 0 < y.sum() < len(y) else None
+    if prob is None:  # no model for drugs with too little data
+        out["model"] = None
+    else:
+        out["model"] = sens_spec(y, (prob >= 0.5).astype(int))
+        out["model"]["auc"] = float(roc_auc_score(y, prob)) if 0 < y.sum() < len(y) else None
     for name, calls in (("who_catalogue", who), ("cryptic_catalogue", cryptic)):
         if calls is None:
             out[name] = None
@@ -97,9 +103,9 @@ def score(ids, y, prob, cryptic, who):
     return out
 
 
-def evaluate_drug(drug, effects, pheno, external, sites, who, all_feats):
+def evaluate_drug(drug, effects, pheno, external, sites, lineages, who, all_feats, genes):
     eff = effects[effects.DRUG == drug]
-    fsets = eff.groupby("UNIQUEID").FEATURE.agg(set).to_dict()
+    fsets = eff[eff.GENE.isin(genes[drug])].groupby("UNIQUEID").FEATURE.agg(set).to_dict()
     cryptic_sets = eff.groupby("UNIQUEID").PREDICTION.agg(set).to_dict()
     cryptic_has_rules = (eff.PREDICTION == "R").any()
     cryptic = (lambda u: cryptic_sets.get(u, set())) if cryptic_has_rules else None
@@ -109,7 +115,9 @@ def evaluate_drug(drug, effects, pheno, external, sites, who, all_feats):
     lab = pheno[(pheno.DRUG == drug) & pheno.UNIQUEID.isin(sequenced)]
     ids = lab.UNIQUEID.to_numpy()
     y = lab.BINARY_PHENOTYPE.eq("R").astype(int).to_numpy()
-    result = {"drug": drug, "name": DRUGS[drug], "low_data": int(y.sum()) < LOW_DATA}
+    low = int(y.sum()) < LOW_DATA
+    result = {"drug": drug, "name": DRUGS[drug], "low_data": low}
+    sub = lambda arr, m: None if arr is None else arr[m]
 
     # 1. Leave one country out
     countries = np.array([country_of(u, sites) for u in ids])
@@ -118,27 +126,44 @@ def evaluate_drug(drug, effects, pheno, external, sites, who, all_feats):
         test = countries == c
         if y[~test].sum() == 0:
             continue
-        prob[test] = fit_predict(fsets, ids[~test], y[~test], ids[test])
+        if not low:
+            prob[test] = fit_predict(fsets, ids[~test], y[~test], ids[test])
+    prob = None if low else prob
     result["unseen_countries"] = score(ids, y, prob, cryptic, who_fn)
     per_country = {}
     for c in np.unique(countries):
         m = countries == c
         if MIN_GROUP <= y[m].sum() <= m.sum() - MIN_GROUP:
-            per_country[c] = score(ids[m], y[m], prob[m], cryptic, who_fn)
+            per_country[c] = score(ids[m], y[m], sub(prob, m), cryptic, who_fn)
     result["by_country"] = per_country
+
+    # 3. Leave one lineage out. Samples of other or unknown lineage are only ever used for training.
+    lin = np.array([lineages.get(u, "Unknown") for u in ids])
+    held = np.isin(lin, MAIN_LINEAGES)
+    lprob = np.zeros(len(ids))
+    for l in MAIN_LINEAGES:
+        test = lin == l
+        if test.any() and y[~test].sum() and not low:
+            lprob[test] = fit_predict(fsets, ids[~test], y[~test], ids[test])
+    lprob = None if low else lprob
+    result["unseen_lineages"] = score(ids[held], y[held], sub(lprob, held), cryptic, who_fn)
+    result["by_lineage"] = {
+        l: score(ids[lin == l], y[lin == l], sub(lprob, lin == l), cryptic, who_fn)
+        for l in MAIN_LINEAGES if MIN_GROUP <= y[lin == l].sum() <= (lin == l).sum() - MIN_GROUP
+    }
 
     # 2. Other studies: train on everything from CRyPTIC plates
     ext = external[(external.DRUG == drug) & external.UNIQUEID.isin(sequenced)]
     if len(ext) and ext.PHENOTYPE.eq("R").any():
         eids = ext.UNIQUEID.to_numpy()
         ey = ext.PHENOTYPE.eq("R").astype(int).to_numpy()
-        eprob = fit_predict(fsets, ids, y, eids)
+        eprob = None if low else fit_predict(fsets, ids, y, eids)
         result["other_studies"] = score(eids, ey, eprob, cryptic, who_fn)
         by_study = {}
         for s in sorted(ext.SOURCE.unique()):
             m = ext.SOURCE.to_numpy() == s
             if MIN_GROUP <= ey[m].sum() <= m.sum() - MIN_GROUP:
-                by_study[s] = score(eids[m], ey[m], eprob[m], cryptic, who_fn)
+                by_study[s] = score(eids[m], ey[m], sub(eprob, m), cryptic, who_fn)
         result["by_study"] = by_study
     else:
         result["other_studies"], result["by_study"] = None, {}
@@ -147,7 +172,7 @@ def evaluate_drug(drug, effects, pheno, external, sites, who, all_feats):
 
 def cell(r, key):
     if r is None or r.get(key) is None:
-        return "no rules | no rules"
+        return "too little data | too little data" if key == "model" else "no rules | no rules"
     return f"{pct(r[key]['sensitivity'])} | {pct(r[key]['specificity'])}"
 
 
@@ -161,7 +186,7 @@ def comparison_table(results, test):
         if not t:
             lines.append(f"| {r['name']} | no lab results | | | | | | |")
             continue
-        flag = " ⚠️" if r["low_data"] else ""
+        flag = ""
         lines.append(f"| {r['name']}{flag} | {t['n']:,} ({t['n_resistant']:,}) | {cell(t, 'model')} | {cell(t, 'who_catalogue')} | {cell(t, 'cryptic_catalogue')} |")
     return lines
 
@@ -202,11 +227,25 @@ def write_report(results, path):
         *comparison_table(results, "other_studies"), "",
         f"### By study (at least {MIN_GROUP} resistant and {MIN_GROUP} susceptible samples)", "",
         *group_table(results, "by_study", "Study"), "",
+        "## Test 3: strain lineages the model never saw", "",
+        "TB strains fall into lineages (families) that carry different harmless background mutations. For each of the four",
+        "main lineages, the model was trained on all other samples and tested on that lineage. If it had learned strain",
+        "markers instead of real resistance mutations, it would fail here. Samples of other or unknown lineage were used",
+        "for training only.", "",
+        *comparison_table(results, "unseen_lineages"), "",
+        f"### By lineage (at least {MIN_GROUP} resistant and {MIN_GROUP} susceptible samples)", "",
+        "Lineage 2 includes the Beijing family, which is common in East Asia and often drug-resistant. Lineage 4 is the most",
+        "widespread worldwide.", "",
+        *group_table(results, "by_lineage", "Lineage"), "",
         "## Caveats", "",
+        "- The AI model only uses mutations in the genes the WHO catalogue links to each drug. An earlier version used every",
+        "  candidate gene and failed this lineage test: it had learned strain markers and mutations that merely travel with",
+        "  multidrug resistance (amikacin specificity on unseen lineages was 61%, kanamycin 35%).",
         "- **The WHO catalogue had a head start.** WHO built its 2023 catalogue from about 52,000 isolates, including the CRyPTIC data",
         "  and several of the studies tested here. The catalogue has partly seen these samples before, so its numbers here are optimistic.",
         "  The AI model never saw any test sample, so its numbers are the fairer estimate for new data.",
-        f"- ⚠️ Fewer than {LOW_DATA} resistant samples in the training data. Treat as unreliable.",
+        f"- Drugs with fewer than {LOW_DATA} resistant samples (bedaquiline, linezolid, delamanid, clofazimine) get no AI model.",
+        "  Earlier versions trained one anyway and it learned noise; the catalogue columns still show how the rules perform.",
         "- The mutation table records insertions and deletions without their exact length, so WHO rules for frameshifts cannot fire.",
         "  This mainly lowers WHO catalogue sensitivity for bedaquiline, clofazimine and delamanid.",
         "- Only mutations in genes the CRyPTIC catalogue links to a drug are available. WHO rules for other genes are missed.",
@@ -232,8 +271,11 @@ def main():
     effects = load_effects(data / "EFFECTS.csv.gz")
     sites_df = pd.read_csv(data / "SITES.csv", dtype=str)
     sites = dict(zip(sites_df.SITEID, sites_df.COUNTRY.fillna("Other")))
+    lin_df = pd.read_csv(data / "MYKROBE_LINEAGE.csv.gz", dtype=str)
+    lineages = dict(zip(lin_df.UNIQUEID, lin_df.MYKROBE_LINEAGE_NAME_1.fillna("Unknown")))
     external = load_external(data / "DST_MEASUREMENTS.csv.gz", set(pheno.UNIQUEID.map(subject)))
     who = WhoCatalogue(data / "WHO_catalogue_v2.1.csv")
+    genes = resistance_genes(data / "WHO_catalogue_v2.1.csv")
 
     needed = set(pheno.UNIQUEID) | set(external.UNIQUEID)
     all_feats = effects[effects.UNIQUEID.isin(needed)].groupby("UNIQUEID").FEATURE.agg(set).to_dict()
@@ -242,9 +284,11 @@ def main():
 
     results = []
     for drug in DRUGS:
-        r = evaluate_drug(drug, effects, pheno, external, sites, who, all_feats)
+        r = evaluate_drug(drug, effects, pheno, external, sites, lineages, who, all_feats, genes)
         results.append(r)
         u, o = r["unseen_countries"], r["other_studies"]
+        if u["model"] is None:
+            print(f"{drug}: too little data for a model"); continue
         line = f"{drug}: unseen countries model sens {pct(u['model']['sensitivity'])} spec {pct(u['model']['specificity'])}"
         if o:
             w = o["who_catalogue"]
