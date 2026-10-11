@@ -6,6 +6,7 @@ Research prototype. Not for clinical use.
 - **Live demo:** https://v1shakhaj.github.io/resisttb/ (`index.html`, served by GitHub Pages)
 - **Training code:** `train.py`
 - **Validation code:** `evaluate.py`
+- **Demo patients:** `pick_examples.py` picks real, anonymised patients the model never saw (`results/examples.json`)
 - **Latest results:** [`results/report.md`](results/report.md) (random split) and [`results/validation.md`](results/validation.md) (unseen countries, other studies, WHO catalogue benchmark)
 
 ## How it works
@@ -36,6 +37,7 @@ The workflow also runs on its own whenever `train.py` or `requirements.txt` chan
 pip install -r requirements.txt
 python train.py --data data --out results
 python evaluate.py --data data --out results
+python pick_examples.py --data data --out results
 ```
 
 The data files must be in `data/`. Download links are in `.github/workflows/train.yml`.
@@ -47,3 +49,4 @@ The data files must be in `data/`. Download links are in `.github/workflows/trai
 - Mutations are only considered in genes the CRyPTIC catalogue links to each drug.
 - The WHO catalogue was built partly from the same datasets used for testing here, so its benchmark numbers are optimistic.
 - Validation by strain lineage has not been done yet.
+- Mutations carried by only part of the bacterial population (mixed calls) are dropped, so heteroresistance can be missed.

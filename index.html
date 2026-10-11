@@ -79,6 +79,12 @@ td.drug small { display: block; font-weight: 400; color: var(--muted); font: 11p
 .pill.lr { background: var(--lr-bg); color: var(--lr); }
 .pill.u { background: var(--u-bg); color: var(--u); }
 .pill.s { background: var(--s-bg); color: var(--s); }
+.lab { display: grid; gap: 3px; justify-items: start; }
+.lab small { font: 600 11.5px var(--font-body); }
+.lab small.ok { color: var(--s); }
+.lab small.bad { color: var(--r); }
+.lab .none { color: var(--muted); font-size: 13px; }
+.agree { font-size: 14px; }
 .why { color: var(--muted); font-size: 13px; }
 .why .mut { color: var(--ink); }
 .notes { display: grid; gap: 6px; font-size: 13px; color: var(--muted); }
@@ -117,13 +123,13 @@ td.drug small { display: block; font-weight: 400; color: var(--muted); font: 11p
     <div class="eyebrow">Prototype · M. tuberculosis genomic resistance</div>
     <h1>ResistTB Predictor</h1>
     <p class="lede">Paste the mutations found when a TB sample's DNA is sequenced. Two methods check each one: a catalogue of known resistance mutations, and a machine-learning model trained on about 12,000 lab-tested TB genomes from the CRyPTIC project. The report shows which drugs are likely to fail and the evidence behind each call.</p>
-    <p class="warn">Research prototype with example patients. Not for clinical use.</p>
+    <p class="warn">Research prototype. The example patients are real, anonymised cases from published studies that the model never saw during training. Not for clinical use.</p>
   </header>
 
   <div class="grid">
     <section class="panel" aria-labelledby="in-h">
       <h2 id="in-h">1 · Sample input</h2>
-      <div class="label">Load an example patient</div>
+      <div class="label" id="samples-label">Load a real patient (named by their lab result)</div>
       <div class="samples" id="samples"></div>
       <label class="label" for="muts">Mutations detected (one per line)</label>
       <textarea id="muts" spellcheck="false"></textarea>
@@ -137,6 +143,7 @@ td.drug small { display: block; font-weight: 400; color: var(--muted); font: 11p
         <span class="mono" id="meta"></span>
       </div>
       <div class="verdict" id="verdict"></div>
+      <p class="agree" id="agree" hidden></p>
       <div class="key">
         <span class="pill r">Resistant</span>
         <span class="pill lr">Likely resistant</span>
@@ -145,7 +152,7 @@ td.drug small { display: block; font-weight: 400; color: var(--muted); font: 11p
       </div>
       <div class="tablewrap">
         <table>
-          <thead><tr><th>Drug</th><th>Prediction</th><th>AI model</th><th>Catalogue evidence</th></tr></thead>
+          <thead><tr><th>Drug</th><th>Prediction</th><th>AI model</th><th>Lab result</th><th>Catalogue evidence</th></tr></thead>
           <tbody id="rows"></tbody>
         </table>
       </div>
@@ -183,7 +190,9 @@ td.drug small { display: block; font-weight: 400; color: var(--muted); font: 11p
       <ul>
         <li><b>Resistant:</b> the catalogue lists the mutation as well established to cause resistance.</li>
         <li><b>Likely resistant:</b> the AI model gives a resistance probability of 50% or more, or the catalogue evidence is still emerging.</li>
-        <li><b>Uncertain:</b> a mutation in a resistance gene that neither method can call.</li>
+        <li><b>Uncertain:</b> a mutation in a resistance gene that isn't in the catalogue, where the AI model has too little data to rule resistance out. When the model is confident the patient is susceptible, it settles the call.</li>
+        <li>Silent mutations, which don't change the protein, are ignored.</li>
+        <li>Mutations carried by only part of the bacterial population (mixed calls) are left out, so heteroresistance can be missed.</li>
         <li>The AI model learned a weight for each mutation from CRyPTIC lab results. Drugs with fewer than 200 resistant training samples are shown for reference only and don't change the prediction.</li>
       </ul>
     </div>
@@ -231,12 +240,13 @@ const GENES = { rpob:["RIF"], katg:["INH"], inha:["INH","ETO"], fabg1:["INH","ET
 const ALIAS = { mmpr5: "rv0678" };
 const AA = {ALA:"A",ARG:"R",ASN:"N",ASP:"D",CYS:"C",GLN:"Q",GLU:"E",GLY:"G",HIS:"H",ILE:"I",LEU:"L",LYS:"K",MET:"M",PHE:"F",PRO:"P",SER:"S",THR:"T",TRP:"W",TYR:"Y",VAL:"V",TER:"*"};
 
-const SAMPLES = [
+// Illustrative fallback. Real patients are loaded from results/examples.json
+let SAMPLES = [
   { id: "P-0142", name: "Drug-susceptible", muts: ["gyrA E21Q","gyrA S95T","katG R463L"] },
   { id: "P-0207", name: "MDR-TB", muts: ["rpoB S450L","katG S315T","embB M306V","gyrA S95T"] },
   { id: "P-0318", name: "Pre-XDR", muts: ["rpoB H445Y","katG S315T","fabG1 c.-15C>T","gyrA D94G","pncA Q10P"] },
   { id: "P-0451", name: "XDR (provisional)", muts: ["rpoB S450L","katG p.Ser315Thr","gyrA A90V","Rv0678 c.141_142insC","rplC C154R","embB D1024N"] }
-];
+].map(s => ({ ...s, illustrative: true }));
 
 function parse(line) {
   const t = line.trim().replace(/^([A-Za-z0-9]+)_/, "$1 ").replace(/\s+/g, " ");
@@ -283,7 +293,7 @@ function modelProb(code, parsed) {
 const RANK = { s: 0, u: 1, lr: 2, r: 3 };
 function predict(lines) {
   const res = {}; DRUGS.forEach(([c]) => res[c] = { level: "s", ev: [] });
-  const ignored = [], unknownGene = [];
+  const ignored = [], unknownGene = [], silent = [];
   const hit = (drugs, level, text) => drugs.forEach(d => {
     if (RANK[level] > RANK[res[d].level]) res[d].level = level;
     res[d].ev.push({ level, text });
@@ -291,6 +301,7 @@ function predict(lines) {
   const parsed = lines.map(parse).filter(Boolean);
   parsed.forEach(p => {
     const label = p.gene + " " + p.change;
+    if (/^([A-Z])\d+\1$/.test(p.change)) { silent.push(label); return; }
     const entry = CAT[p.g + " " + p.change.toUpperCase()];
     if (entry) {
       if (entry.grade === 0) { ignored.push(label); return; }
@@ -307,8 +318,9 @@ function predict(lines) {
     const m = modelProb(c, parsed);
     res[c].model = m;
     if (m && !m.lowData && m.p >= 0.5 && RANK[res[c].level] < RANK.lr) res[c].level = "lr";
+    else if (m && !m.lowData && m.p < 0.5 && res[c].level === "u") res[c].level = "s";
   });
-  return { res, ignored, unknownGene, count: lines.filter(l => l.trim()).length };
+  return { res, ignored, unknownGene, silent, count: lines.filter(l => l.trim()).length };
 }
 
 function classify(res) {
@@ -330,13 +342,17 @@ function classify(res) {
 const LABEL = { r: "Resistant", lr: "Likely resistant", u: "Uncertain", s: "No resistance found" };
 const esc = s => s.replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
 const $ = id => document.getElementById(id);
-let currentId = "Custom";
+let current = null;
 
 function render() {
   const lines = $("muts").value.split(/[\n,;]+/);
-  const { res, ignored, unknownGene, count } = predict(lines);
+  const { res, ignored, unknownGene, silent, count } = predict(lines);
   const v = classify(res);
-  $("meta").textContent = `Sample ${currentId} · ${count} mutation${count === 1 ? "" : "s"}`;
+  const s = current;
+  const where = s && !s.illustrative ? ["Real patient " + s.id, s.study, s.country, s.lab_method && "lab test: " + s.lab_method].filter(Boolean).join(" · ") : `Sample ${s ? s.id : "Custom"}`;
+  $("meta").textContent = `${where} · ${count} mutation${count === 1 ? "" : "s"}`;
+  const lab = s && s.lab ? s.lab : null;
+  let agree = 0, compared = 0;
   $("verdict").className = "verdict " + v.cls;
   $("verdict").innerHTML = `<span class="big">${v.big}</span><span class="sub">${v.sub}</span>`;
   $("rows").innerHTML = DRUGS.map(([c, name, grp]) => {
@@ -349,27 +365,46 @@ function render() {
       const note = m.lowData ? "low data, reference only" : (m.used.length ? "driven by " + m.used.map(esc).join(", ") : "no informative mutations");
       mc = `<div class="prob${m.lowData ? " low" : ""}">${pc}% resistant<div class="bar"><i style="width:${pc}%"></i></div><small>${note}</small></div>`;
     }
-    return `<tr><td class="drug">${name}<small>${c} · ${grp}</small></td><td><span class="pill ${r.level}">${LABEL[r.level]}</span></td><td>${mc}</td><td class="why">${ev}</td></tr>`;
+    let lc = `<span class="lab"><span class="none">${lab ? "Not tested" : "—"}</span></span>`;
+    if (lab && lab[c]) {
+      const predR = RANK[r.level] >= 2, labR = lab[c] === "R";
+      const ok = predR === labR;
+      compared++; if (ok) agree++;
+      lc = `<span class="lab"><span class="pill ${labR ? "r" : "s"}">${labR ? "Resistant" : "Susceptible"}</span><small class="${ok ? "ok" : "bad"}">${ok ? "✓ matches" : "✗ differs"}</small></span>`;
+    }
+    return `<tr><td class="drug">${name}<small>${c} · ${grp}</small></td><td><span class="pill ${r.level}">${LABEL[r.level]}</span></td><td>${mc}</td><td>${lc}</td><td class="why">${ev}</td></tr>`;
   }).join("");
+  $("agree").hidden = !compared;
+  if (compared) $("agree").innerHTML = `<b>Prediction matches the lab on ${agree} of ${compared} drugs tested.</b> Lab tests have their own error rate, especially for borderline mutations.`;
   const notes = [];
   if (ignored.length) notes.push(`Ignored as harmless lineage markers: <span class="mut">${ignored.map(esc).join(", ")}</span>`);
+  if (silent.length) notes.push(`Ignored as silent (no change to the protein): <span class="mut">${silent.map(esc).join(", ")}</span>`);
   if (unknownGene.length) notes.push(`Not in a known resistance gene, skipped: <span class="mut">${unknownGene.map(esc).join(", ")}</span>`);
   notes.push("Confirm every result with phenotypic drug-susceptibility testing before changing treatment.");
   $("notes").innerHTML = `<ul>${notes.map(n => `<li>${n}</li>`).join("")}</ul>`;
 }
 
 function load(s) {
-  currentId = s.id;
+  current = s;
   $("muts").value = s.muts.join("\n");
   document.querySelectorAll("#samples button").forEach(b => b.setAttribute("aria-pressed", b.dataset.id === s.id));
   render();
 }
 
-$("samples").innerHTML = SAMPLES.map(s => `<button type="button" data-id="${s.id}" aria-pressed="false">${s.name}</button>`).join("");
-document.querySelectorAll("#samples button").forEach(b => b.addEventListener("click", () => load(SAMPLES.find(s => s.id === b.dataset.id))));
-$("muts").addEventListener("input", () => { currentId = "Custom"; document.querySelectorAll("#samples button").forEach(b => b.setAttribute("aria-pressed", "false")); });
+function showSamples(start) {
+  $("samples").innerHTML = SAMPLES.map(s => `<button type="button" data-id="${esc(s.id)}" aria-pressed="false">${esc(s.name)}</button>`).join("");
+  document.querySelectorAll("#samples button").forEach(b => b.addEventListener("click", () => load(SAMPLES.find(s => s.id === b.dataset.id))));
+  $("samples-label").textContent = SAMPLES[0].illustrative ? "Load an illustrative example" : "Load a real patient (named by their lab result)";
+  load(SAMPLES[start]);
+}
+$("muts").addEventListener("input", () => { current = null; document.querySelectorAll("#samples button").forEach(b => b.setAttribute("aria-pressed", "false")); });
 $("run").addEventListener("click", render);
-load(SAMPLES[1]);
+showSamples(1);
+fetch("results/examples.json").then(r => r.json()).then(list => {
+  if (!list.length) return;
+  SAMPLES = list;
+  showSamples(Math.min(1, list.length - 1));
+}).catch(() => {});
 
 const ss = r => r ? `<b>${Math.round(r.sensitivity * 100)}%</b> <span>/ ${Math.round(r.specificity * 100)}%</span>` : `<span>no rules</span>`;
 fetch("results/validation.json").then(r => r.json()).then(rows => {

@@ -8,6 +8,7 @@ on:
     paths:
       - train.py
       - evaluate.py
+      - pick_examples.py
       - requirements.txt
 
 permissions:
@@ -41,7 +42,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: data
-          key: cryptic-release-june2022-who-v2.1
+          key: cryptic-release-june2022-who-v2.1-samples
 
       - name: Download CRyPTIC data and WHO catalogue (~205 MB)
         if: steps.data-cache.outputs.cache-hit != 'true'
@@ -51,6 +52,7 @@ jobs:
           curl -fsSL --retry 3 -o data/UKMYC_PHENOTYPES.csv.gz "$BASE/UKMYC_PHENOTYPES.csv.gz"
           curl -fsSL --retry 3 -o data/EFFECTS.csv.gz "$BASE/EFFECTS.csv.gz"
           curl -fsSL --retry 3 -o data/DST_MEASUREMENTS.csv.gz "$BASE/DST_MEASUREMENTS.csv.gz"
+          curl -fsSL --retry 3 -o data/DST_SAMPLES.csv.gz "$BASE/DST_SAMPLES.csv.gz"
           curl -fsSL --retry 3 -o data/SITES.csv "$BASE/SITES.csv"
           curl -fsSL --retry 3 -o data/WHO_catalogue_v2.1.csv \
             https://raw.githubusercontent.com/oxfordmmm/tuberculosis_amr_catalogues/public/catalogues/NC_000962.3/NC_000962.3_WHO-UCN-TB-2023.5_v2.1_GARC1_RFUS.csv
@@ -60,6 +62,9 @@ jobs:
 
       - name: Validate on unseen countries and other studies, benchmark against the WHO catalogue
         run: python evaluate.py --data data --out results
+
+      - name: Pick real patients for the demo
+        run: python pick_examples.py --data data --out results
 
       - name: Show results in the run summary
         run: cat results/report.md results/validation.md >> "$GITHUB_STEP_SUMMARY"
