@@ -10,12 +10,25 @@ Research prototype. Not for clinical use.
 - **Demo patients:** `pick_examples.py` picks real, anonymised patients the model never saw (`results/examples.json`)
 - **Latest results:** [`results/report.md`](results/report.md) (random split) and [`results/validation.md`](results/validation.md) (unseen countries, other studies, WHO catalogue benchmark)
 
+## Using it with TB-Profiler
+
+ResistTB works as an add-on to [TB-Profiler](https://github.com/jodyphelan/TBProfiler). TB-Profiler turns raw sequencing reads into a list of mutations and resistance calls; ResistTB reads that output and adds:
+
+- a resistance probability for each drug, with the mutations behind it
+- calls on mutations the WHO catalogue grades as uncertain, where TB-Profiler makes no call
+- a resistance level (low or high) for isoniazid, and typical MIC ranges for each mutation
+- a flag on mutations carried by only part of the bacterial population (possible heteroresistance)
+
+On the website, choose **Choose a .results.json file** and pick `results/<sample>.results.json` from TB-Profiler's output folder, or drop the file on the page. The file is read in the browser and never uploaded. ResistTB's call and TB-Profiler's call are shown side by side for each drug. `examples/tbprofiler_example.results.json` is a made-up example in TB-Profiler's format; it is not from a real run or patient.
+
+The reader accepts results from TB-Profiler 4 to 6. Synonymous mutations and variants that failed TB-Profiler's quality checks are not used.
+
 ## How it works
 
 1. **Data:** the [CRyPTIC](https://www.crypticproject.org/) June 2022 release: about 12,000 TB isolates with whole-genome sequences and lab-measured resistance to 13 drugs (UKMYC microtitre plates).
    - `EFFECTS.csv.gz`: each sample's mutations in the genes linked to each drug, plus the catalogue's call for each mutation.
    - `UKMYC_PHENOTYPES.csv.gz`: the lab result (resistant or susceptible) per sample and drug. Only high- and medium-quality readings are used.
-2. **Model:** one logistic regression per drug with an L1 penalty, which keeps only the mutations that matter. Each mutation gets a weight, so every prediction can be explained. Each drug's model only sees mutations in the genes the WHO catalogue links to that drug; without this, the lineage test showed it learning strain markers.
+2. **Model:** one logistic regression per drug with an L1 penalty, which keeps only the mutations that matter. Each mutation gets a weight, so every prediction can be explained. Each drug's model only sees mutations in the genes the WHO catalogue links to that drug, minus mutations the catalogue grades as harmless; without this, the lineage test showed it learning strain markers.
 3. **Evaluation:** a stratified 80/20 split. The 20% test set is never used for training. Results are compared with the catalogue (known resistance mutations, with unknown mutations counted as susceptible).
 4. **Validation** (`evaluate.py`):
    - **Unseen countries:** for each country, train on all the others and test on that one.

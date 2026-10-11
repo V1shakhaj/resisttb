@@ -19,7 +19,7 @@
       "model": {
         "essential_agreement": 0.9399038461538461,
         "essential_agreement_resistant": 0.9215686274509803,
-        "exact_agreement": 0.5043269230769231,
+        "exact_agreement": 0.4971153846153846,
         "category_agreement": 0.9620192307692308,
         "very_major_error": 0.05420991926182238,
         "major_error": 0.026380873866446827
@@ -43,9 +43,9 @@
     },
     "unseen_countries": {
       "model": {
-        "essential_agreement": 0.937956906502501,
+        "essential_agreement": 0.9367064255482878,
         "essential_agreement_resistant": 0.9113982464236271,
-        "exact_agreement": 0.4735475182762601,
+        "exact_agreement": 0.4756637168141593,
         "category_agreement": 0.9565217391304348,
         "very_major_error": 0.06437471158283341,
         "major_error": 0.028538436159683274
@@ -89,7 +89,7 @@
       "model": {
         "essential_agreement": 0.941712204007286,
         "essential_agreement_resistant": 0.889604415823367,
-        "exact_agreement": 0.5081967213114754,
+        "exact_agreement": 0.5077413479052824,
         "category_agreement": 0.9512750455373407,
         "very_major_error": 0.08187672493100276,
         "major_error": 0.016230838593327322
@@ -113,12 +113,12 @@
     },
     "unseen_countries": {
       "model": {
-        "essential_agreement": 0.9269381433907261,
-        "essential_agreement_resistant": 0.8665807876334192,
-        "exact_agreement": 0.4881115058759224,
-        "category_agreement": 0.9245695545230938,
-        "very_major_error": 0.13709974236290026,
-        "major_error": 0.01497384088038968
+        "essential_agreement": 0.9278491391090462,
+        "essential_agreement_resistant": 0.8663967611336032,
+        "exact_agreement": 0.49148219003370686,
+        "category_agreement": 0.9253894506695819,
+        "very_major_error": 0.1374677953625322,
+        "major_error": 0.012989355944434422
       },
       "most_common_mic": {
         "essential_agreement": 0.3597522091646169,
@@ -158,7 +158,7 @@
       "model": {
         "essential_agreement": 0.9289709172259508,
         "essential_agreement_resistant": 0.8633333333333333,
-        "exact_agreement": 0.4759507829977629,
+        "exact_agreement": 0.4753914988814318,
         "category_agreement": 0.9239373601789709,
         "very_major_error": 0.11,
         "major_error": 0.058922558922558925
@@ -182,11 +182,11 @@
     },
     "unseen_countries": {
       "model": {
-        "essential_agreement": 0.9168903803131991,
-        "essential_agreement_resistant": 0.8471019320453032,
-        "exact_agreement": 0.4727069351230425,
-        "category_agreement": 0.9152125279642058,
-        "very_major_error": 0.13191205862758162,
+        "essential_agreement": 0.9165548098434004,
+        "essential_agreement_resistant": 0.8461025982678214,
+        "exact_agreement": 0.47259507829977626,
+        "category_agreement": 0.9142058165548098,
+        "very_major_error": 0.13491005996002664,
         "major_error": 0.06096328730212193
       },
       "most_common_mic": {
@@ -226,9 +226,9 @@
     "ecoff": "1",
     "random_split": {
       "model": {
-        "essential_agreement": 0.8866485013623978,
-        "essential_agreement_resistant": 0.6780185758513931,
-        "exact_agreement": 0.49264305177111717,
+        "essential_agreement": 0.8817438692098093,
+        "essential_agreement_resistant": 0.6501547987616099,
+        "exact_agreement": 0.4888283378746594,
         "category_agreement": 0.9460490463215259,
         "very_major_error": 0.17956656346749225,
         "major_error": 0.027116402116402115
@@ -252,12 +252,12 @@
     },
     "unseen_countries": {
       "model": {
-        "essential_agreement": 0.8884892086330936,
-        "essential_agreement_resistant": 0.7003095975232199,
-        "exact_agreement": 0.48484848484848486,
-        "category_agreement": 0.9482232395901461,
-        "very_major_error": 0.17027863777089783,
-        "major_error": 0.026458526260087312
+        "essential_agreement": 0.8839110529758012,
+        "essential_agreement_resistant": 0.6712074303405573,
+        "exact_agreement": 0.48604752561587095,
+        "category_agreement": 0.948005232177894,
+        "very_major_error": 0.17089783281733747,
+        "major_error": 0.02659081889138775
       },
       "most_common_mic": {
         "essential_agreement": 0.7841726618705036,
@@ -296,12 +296,12 @@
     "ecoff": "1",
     "random_split": {
       "model": {
-        "essential_agreement": 0.8234575442883323,
-        "essential_agreement_resistant": 0.7340823970037453,
-        "exact_agreement": 0.369578497251069,
-        "category_agreement": 0.9303604153940135,
-        "very_major_error": 0.30711610486891383,
-        "major_error": 0.02335766423357664
+        "essential_agreement": 0.8216249236408063,
+        "essential_agreement_resistant": 0.7265917602996255,
+        "exact_agreement": 0.3683567501527184,
+        "category_agreement": 0.9279169211973122,
+        "very_major_error": 0.3258426966292135,
+        "major_error": 0.022627737226277374
       },
       "most_common_mic": {
         "essential_agreement": 0.6878436163714111,
@@ -322,12 +322,12 @@
     },
     "unseen_countries": {
       "model": {
-        "essential_agreement": 0.782991202346041,
-        "essential_agreement_resistant": 0.6160179640718563,
-        "exact_agreement": 0.3505620723362659,
-        "category_agreement": 0.916544477028348,
-        "very_major_error": 0.32934131736526945,
-        "major_error": 0.03548481308411215
+        "essential_agreement": 0.7866568914956011,
+        "essential_agreement_resistant": 0.6070359281437125,
+        "exact_agreement": 0.35288367546432065,
+        "category_agreement": 0.9120234604105572,
+        "very_major_error": 0.3315868263473054,
+        "major_error": 0.040449766355140186
       },
       "most_common_mic": {
         "essential_agreement": 0.6970918866080157,
@@ -365,9 +365,9 @@
     "ecoff": "1",
     "random_split": {
       "model": {
-        "essential_agreement": 0.9558329332693231,
-        "essential_agreement_resistant": 0.7712418300653595,
-        "exact_agreement": 0.671147383581373,
+        "essential_agreement": 0.9510321651464234,
+        "essential_agreement_resistant": 0.7581699346405228,
+        "exact_agreement": 0.7109937590014402,
         "category_agreement": 0.9740758521363418,
         "very_major_error": 0.24183006535947713,
         "major_error": 0.008808290155440414
@@ -391,12 +391,12 @@
     },
     "unseen_countries": {
       "model": {
-        "essential_agreement": 0.9589014787785674,
+        "essential_agreement": 0.9571730362972921,
         "essential_agreement_resistant": 0.7709424083769634,
-        "exact_agreement": 0.6491261763011331,
-        "category_agreement": 0.9759938544267333,
+        "exact_agreement": 0.6734203956212791,
+        "category_agreement": 0.9760898790090263,
         "very_major_error": 0.22905759162303665,
-        "major_error": 0.007772020725388601
+        "major_error": 0.00766839378238342
       },
       "most_common_mic": {
         "essential_agreement": 0.9033032456308815,
@@ -435,7 +435,7 @@
       "model": {
         "essential_agreement": 0.9698934691987031,
         "essential_agreement_resistant": 0.7373737373737373,
-        "exact_agreement": 0.5428439092172302,
+        "exact_agreement": 0.5437702640111163,
         "category_agreement": 0.968040759610931,
         "very_major_error": 0.30303030303030304,
         "major_error": 0.004589495155532891
@@ -459,12 +459,12 @@
     },
     "unseen_countries": {
       "model": {
-        "essential_agreement": 0.9642360789400537,
-        "essential_agreement_resistant": 0.7474747474747475,
-        "exact_agreement": 0.5113499490410451,
-        "category_agreement": 0.9644213842305198,
-        "very_major_error": 0.296969696969697,
-        "major_error": 0.009180863001122105
+        "essential_agreement": 0.9678495321041416,
+        "essential_agreement_resistant": 0.7484848484848485,
+        "exact_agreement": 0.5271935513758917,
+        "category_agreement": 0.9646066895209858,
+        "very_major_error": 0.29393939393939394,
+        "major_error": 0.009282872590023462
       },
       "most_common_mic": {
         "essential_agreement": 0.9082738812193089,
@@ -573,7 +573,7 @@
       "model": {
         "essential_agreement": 0.94,
         "essential_agreement_resistant": 0.8771498771498771,
-        "exact_agreement": 0.8482608695652174,
+        "exact_agreement": 0.8491304347826087,
         "category_agreement": 0.9534782608695652,
         "very_major_error": 0.051597051597051594,
         "major_error": 0.04374158815612382
@@ -592,7 +592,7 @@
       "model": {
         "essential_agreement": 0.9113913043478261,
         "essential_agreement_resistant": 0.8341115753256328,
-        "exact_agreement": 0.8123478260869565,
+        "exact_agreement": 0.8127826086956522,
         "category_agreement": 0.9425217391304348,
         "very_major_error": 0.06832145490292456,
         "major_error": 0.05154084241690217
@@ -722,9 +722,9 @@
     },
     "unseen_countries": {
       "model": {
-        "essential_agreement": 0.8593586005830903,
+        "essential_agreement": 0.8538775510204082,
         "essential_agreement_resistant": 0.3010752688172043,
-        "exact_agreement": 0.3169679300291545,
+        "exact_agreement": 0.39393586005830905,
         "category_agreement": 0.9918367346938776,
         "very_major_error": 0.6989247311827957,
         "major_error": 0.0005894836123555765

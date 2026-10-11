@@ -59,6 +59,13 @@ p { margin: 0; }
 textarea { width: 100%; min-height: 190px; resize: vertical; font: 13px/1.6 var(--font-mono); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
 .hint { font-size: 13px; color: var(--muted); }
 .hint code, td code, .mut { font-family: var(--font-mono); font-size: 12.5px; }
+.tbp { display: grid; gap: 8px; border: 1px dashed var(--line); border-radius: 8px; padding: 12px; background: var(--bg); }
+.tbp.over { border-color: var(--accent); background: var(--accent-soft); }
+.tbp-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 13px; color: var(--muted); }
+.tbp-row input[type=file] { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.btn2 { font: 600 13px var(--font-body); background: var(--paper); color: var(--accent); border: 1px solid var(--accent); border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+.btn2:focus-visible, .tbp-row input[type=file]:focus-visible + label { outline: 2px solid var(--accent); outline-offset: 2px; }
+.err { color: var(--r); font-size: 13px; }
 .run { justify-self: start; font: 600 14px var(--font-body); background: var(--accent); color: var(--paper); border: 0; border-radius: 8px; padding: 10px 18px; cursor: pointer; }
 .report-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; border-bottom: 1px dashed var(--line); padding-bottom: 12px; }
 .report-head .mono { font: 12px var(--font-mono); color: var(--muted); }
@@ -127,7 +134,7 @@ td.drug small { display: block; font-weight: 400; color: var(--muted); font: 11p
   <header>
     <div class="eyebrow">Prototype · M. tuberculosis genomic resistance</div>
     <h1>ResistTB Predictor</h1>
-    <p class="lede">Paste the mutations found when a TB sample's DNA is sequenced. Two methods check each one: a catalogue of known resistance mutations, and a machine-learning model trained on about 12,000 lab-tested TB genomes from the CRyPTIC project. The report shows which drugs are likely to fail and the evidence behind each call.</p>
+    <p class="lede">Load a TB-Profiler result, or paste the mutations found when a TB sample's DNA is sequenced. Two methods check each one: a catalogue of known resistance mutations, and a machine-learning model trained on about 12,000 lab-tested TB genomes from the CRyPTIC project. The report shows which drugs are likely to fail and the evidence behind each call.</p>
     <p class="warn">Research prototype. The example patients are real, anonymised cases from published studies that the model never saw during training. Not for clinical use.</p>
   </header>
 
@@ -136,6 +143,17 @@ td.drug small { display: block; font-weight: 400; color: var(--muted); font: 11p
       <h2 id="in-h">1 · Sample input</h2>
       <div class="label" id="samples-label">Load a real patient (named by their lab result)</div>
       <div class="samples" id="samples"></div>
+      <div class="label">Or add to a TB-Profiler result</div>
+      <div class="tbp" id="tbp">
+        <div class="tbp-row">
+          <input type="file" id="tbpfile" accept=".json,application/json">
+          <label for="tbpfile" class="btn2">Choose a .results.json file</label>
+          <span>or drop it here</span>
+          <button type="button" class="btn2" id="tbpexample">Try an example file</button>
+        </div>
+        <p class="hint">Use the <code>results/&lt;sample&gt;.results.json</code> file that <a href="https://github.com/jodyphelan/TBProfiler">TB-Profiler</a> writes. The file is read in your browser and never uploaded. You can also paste its contents into the box below.</p>
+        <p class="err" id="tbperr" hidden></p>
+      </div>
       <label class="label" for="muts">Mutations detected (one per line)</label>
       <textarea id="muts" spellcheck="false"></textarea>
       <p class="hint">Format: gene then change, e.g. <code>rpoB S450L</code>, <code>katG p.Ser315Thr</code>, <code>fabG1 c.-15C&gt;T</code>, <code>pncA c.192delG</code>.</p>
@@ -157,7 +175,7 @@ td.drug small { display: block; font-weight: 400; color: var(--muted); font: 11p
       </div>
       <div class="tablewrap">
         <table>
-          <thead><tr><th>Drug</th><th>Prediction</th><th>AI model</th><th>Lab result</th><th>Catalogue evidence</th></tr></thead>
+          <thead><tr><th>Drug</th><th>Prediction</th><th>AI model</th><th id="cmpcol">Lab result</th><th>Catalogue evidence</th></tr></thead>
           <tbody id="rows"></tbody>
         </table>
       </div>
@@ -375,12 +393,64 @@ const esc = s => s.replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",
 const $ = id => document.getElementById(id);
 let current = null;
 
+// TB-Profiler drug names -> demo codes
+const TBP_DRUG = { rifampicin: "RIF", isoniazid: "INH", ethambutol: "EMB", pyrazinamide: "PZA", levofloxacin: "LFX",
+  moxifloxacin: "MFX", bedaquiline: "BDQ", linezolid: "LZD", amikacin: "AMK", ethionamide: "ETO" };
+const MINORITY = 0.9;  // variants below this read frequency come from part of the bacterial population
+
+// Turn a TB-Profiler results.json (v4 to v6 field names) into a sample
+function fromTbProfiler(json) {
+  if (!json || typeof json !== "object" || !(Array.isArray(json.dr_variants) || Array.isArray(json.other_variants)))
+    throw new Error("This doesn't look like a TB-Profiler result. Use the .results.json file from TB-Profiler's results folder.");
+  const lines = [], minority = [], calls = {}, seen = new Set();
+  const all = [...(json.dr_variants || []).map(v => ({ ...v, dr: true })), ...(json.other_variants || [])];
+  for (const v of all) {
+    const gene = v.gene_name || v.gene || v.locus_tag;
+    const type = String(v.type || "").toLowerCase();
+    if (!gene || type.includes("synonymous")) continue;
+    const ch = v.change || v.protein_change || v.nucleotide_change || "";
+    let change = ch;
+    if (v.sv || type.includes("ablation")) change = "deletion";
+    // Indels: use the nucleotide position, which is what the model was trained on
+    else if (/fs$|frameshift|inframe|ins|del|dup/i.test(ch + " " + type) && /^c\./.test(v.nucleotide_change || "")) change = v.nucleotide_change;
+    if (!change) continue;
+    const line = `${gene} ${change}`;
+    if (!seen.has(line)) { seen.add(line); lines.push(line); }
+    if (typeof v.freq === "number" && v.freq < MINORITY) minority.push(`${line} (${Math.round(v.freq * 100)}% of reads)`);
+    if (v.dr) {
+      const drugs = (v.drugs || v.annotation || []).filter(d => !d.type || d.type === "drug_resistance").map(d => String(d.drug || "").toLowerCase());
+      drugs.forEach(d => { const c = TBP_DRUG[d]; if (c) (calls[c] = calls[c] || []).push(line); });
+    }
+  }
+  const pipe = json.pipeline || {};
+  const db = pipe.db_version || json.db_version || {};
+  return {
+    id: String(json.id || "TB-Profiler sample"), name: "TB-Profiler result", muts: lines,
+    tbp: { calls, minority, lineage: json.sub_lineage || json.main_lineage || "", drtype: json.drtype || "",
+      version: pipe.software_version || json.tbprofiler_version || "", db: db.name || "",
+      qcFail: (json.qc_fail_variants || []).length, notes: Array.isArray(json.notes) ? json.notes : [] },
+  };
+}
+
+function loadTbProfiler(text) {
+  $("tbperr").hidden = true;
+  try {
+    load(fromTbProfiler(JSON.parse(text)));
+  } catch (e) {
+    $("tbperr").textContent = e instanceof SyntaxError ? "This file isn't valid JSON. Use the .results.json file from TB-Profiler's results folder." : e.message;
+    $("tbperr").hidden = false;
+  }
+}
+
 function render() {
   const lines = $("muts").value.split(/[\n,;]+/);
   const { res, ignored, unknownGene, silent, parsed, count } = predict(lines);
   const v = classify(res);
   const s = current;
-  const where = s && !s.illustrative ? ["Real patient " + s.id, s.study, s.country, s.lab_method && "lab test: " + s.lab_method].filter(Boolean).join(" · ") : `Sample ${s ? s.id : "Custom"}`;
+  const tbp = s && s.tbp;
+  const where = tbp ? ["TB-Profiler result " + s.id, tbp.lineage, tbp.version && "TB-Profiler " + tbp.version + (tbp.db ? " (" + tbp.db + ")" : "")].filter(Boolean).join(" · ")
+    : s && !s.illustrative ? ["Real patient " + s.id, s.study, s.country, s.lab_method && "lab test: " + s.lab_method].filter(Boolean).join(" · ") : `Sample ${s ? s.id : "Custom"}`;
+  $("cmpcol").textContent = tbp ? "TB-Profiler" : "Lab result";
   $("meta").textContent = `${where} · ${count} mutation${count === 1 ? "" : "s"}`;
   const lab = s && s.lab ? s.lab : null;
   let agree = 0, compared = 0;
@@ -398,7 +468,12 @@ function render() {
     }
     mc += micInfo(c, parsed, RANK[r.level] >= 2);
     let lc = `<span class="lab"><span class="none">${lab ? "Not tested" : "—"}</span></span>`;
-    if (lab && lab[c]) {
+    if (tbp) {
+      const predR = RANK[r.level] >= 2, tR = !!tbp.calls[c];
+      const ok = predR === tR;
+      compared++; if (ok) agree++;
+      lc = `<span class="lab"><span class="pill ${tR ? "r" : "s"}">${tR ? "Resistant" : "No call"}</span><small class="${ok ? "ok" : "bad"}">${ok ? "✓ same" : "✗ differs"}</small></span>`;
+    } else if (lab && lab[c]) {
       const predR = RANK[r.level] >= 2, labR = lab[c] === "R";
       const ok = predR === labR;
       compared++; if (ok) agree++;
@@ -407,11 +482,19 @@ function render() {
     return `<tr><td class="drug">${name}<small>${c} · ${grp}</small></td><td><span class="pill ${r.level}">${LABEL[r.level]}</span></td><td>${mc}</td><td>${lc}</td><td class="why">${ev}</td></tr>`;
   }).join("");
   $("agree").hidden = !compared;
-  if (compared) $("agree").innerHTML = `<b>Prediction matches the lab on ${agree} of ${compared} drugs tested.</b> Lab tests have their own error rate, especially for borderline mutations.`;
+  if (compared) $("agree").innerHTML = tbp
+    ? `<b>ResistTB agrees with TB-Profiler on ${agree} of ${compared} drugs.</b> Where they differ, the evidence column shows why.`
+    : `<b>Prediction matches the lab on ${agree} of ${compared} drugs tested.</b> Lab tests have their own error rate, especially for borderline mutations.`;
   const notes = [];
   if (ignored.length) notes.push(`Ignored as harmless lineage markers: <span class="mut">${ignored.map(esc).join(", ")}</span>`);
   if (silent.length) notes.push(`Ignored as silent (no change to the protein): <span class="mut">${silent.map(esc).join(", ")}</span>`);
   if (unknownGene.length) notes.push(`Not in a known resistance gene, skipped: <span class="mut">${unknownGene.map(esc).join(", ")}</span>`);
+  if (tbp) {
+    if (tbp.drtype) notes.push(`TB-Profiler's overall call: <b>${esc(tbp.drtype)}</b>.`);
+    if (tbp.minority.length) notes.push(`Found in only part of the bacterial population (possible heteroresistance): <span class="mut">${tbp.minority.map(esc).join(", ")}</span>. ResistTB's model was trained on majority calls, so treat its numbers for these with caution.`);
+    if (tbp.qcFail) notes.push(`TB-Profiler flagged ${tbp.qcFail} variant${tbp.qcFail === 1 ? "" : "s"} as failing quality checks. They are not used here.`);
+    tbp.notes.forEach(n => notes.push(`Note in the file: ${esc(String(n))}`));
+  }
   notes.push("Confirm every result with phenotypic drug-susceptibility testing before changing treatment.");
   $("notes").innerHTML = `<ul>${notes.map(n => `<li>${n}</li>`).join("")}</ul>`;
 }
@@ -430,7 +513,18 @@ function showSamples(start) {
   load(SAMPLES[start]);
 }
 $("muts").addEventListener("input", () => { current = null; document.querySelectorAll("#samples button").forEach(b => b.setAttribute("aria-pressed", "false")); });
-$("run").addEventListener("click", render);
+$("run").addEventListener("click", () => {
+  const text = $("muts").value.trim();
+  if (text.startsWith("{")) loadTbProfiler(text); else render();
+});
+const readFile = f => f && f.text().then(loadTbProfiler).catch(() => { $("tbperr").textContent = "Couldn't read that file."; $("tbperr").hidden = false; });
+$("tbpfile").addEventListener("change", e => { readFile(e.target.files[0]); e.target.value = ""; });
+["dragenter", "dragover"].forEach(t => $("tbp").addEventListener(t, e => { e.preventDefault(); $("tbp").classList.add("over"); }));
+["dragleave", "drop"].forEach(t => $("tbp").addEventListener(t, e => { e.preventDefault(); $("tbp").classList.remove("over"); }));
+$("tbp").addEventListener("drop", e => readFile(e.dataTransfer.files[0]));
+$("tbpexample").addEventListener("click", () =>
+  fetch("examples/tbprofiler_example.results.json").then(r => r.text()).then(loadTbProfiler)
+    .catch(() => { $("tbperr").textContent = "Couldn't load the example file."; $("tbperr").hidden = false; }));
 showSamples(1);
 fetch("results/examples.json").then(r => r.json()).then(list => {
   if (!list.length) return;

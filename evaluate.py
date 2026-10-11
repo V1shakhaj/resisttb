@@ -27,7 +27,7 @@ import piezo
 from scipy.sparse import csr_matrix
 from sklearn.metrics import roc_auc_score
 
-from train import DRUGS, LOW_DATA, MIN_SAMPLES, load_effects, load_phenotypes, new_model, pct, resistance_genes, sens_spec
+from train import DRUGS, LOW_DATA, MIN_SAMPLES, load_effects, load_phenotypes, model_filters, model_rows, new_model, pct, sens_spec
 
 MAIN_DRUGS = ["RIF", "INH", "EMB", "LEV", "MXF", "AMI"]  # shown per country / per study in the report
 MAIN_LINEAGES = ["Lineage 1", "Lineage 2", "Lineage 3", "Lineage 4"]
@@ -103,9 +103,9 @@ def score(ids, y, prob, cryptic, who):
     return out
 
 
-def evaluate_drug(drug, effects, pheno, external, sites, lineages, who, all_feats, genes):
+def evaluate_drug(drug, effects, pheno, external, sites, lineages, who, all_feats, filters):
     eff = effects[effects.DRUG == drug]
-    fsets = eff[eff.GENE.isin(genes[drug])].groupby("UNIQUEID").FEATURE.agg(set).to_dict()
+    fsets = model_rows(effects, drug, filters).groupby("UNIQUEID").FEATURE.agg(set).to_dict()
     cryptic_sets = eff.groupby("UNIQUEID").PREDICTION.agg(set).to_dict()
     cryptic_has_rules = (eff.PREDICTION == "R").any()
     cryptic = (lambda u: cryptic_sets.get(u, set())) if cryptic_has_rules else None
@@ -238,9 +238,10 @@ def write_report(results, path):
         "widespread worldwide.", "",
         *group_table(results, "by_lineage", "Lineage"), "",
         "## Caveats", "",
-        "- The AI model only uses mutations in the genes the WHO catalogue links to each drug. An earlier version used every",
-        "  candidate gene and failed this lineage test: it had learned strain markers and mutations that merely travel with",
-        "  multidrug resistance (amikacin specificity on unseen lineages was 61%, kanamycin 35%).",
+        "- The AI model only uses mutations in the genes the WHO catalogue links to each drug, minus mutations the catalogue",
+        "  grades as harmless. An earlier version used every candidate gene and failed this lineage test: it had learned strain",
+        "  markers and mutations that merely travel with multidrug resistance (amikacin specificity on unseen lineages was 61%,",
+        "  kanamycin 35%, and levofloxacin 91% because of the strain marker gyrA G668D).",
         "- **The WHO catalogue had a head start.** WHO built its 2023 catalogue from about 52,000 isolates, including the CRyPTIC data",
         "  and several of the studies tested here. The catalogue has partly seen these samples before, so its numbers here are optimistic.",
         "  The AI model never saw any test sample, so its numbers are the fairer estimate for new data.",
@@ -275,7 +276,7 @@ def main():
     lineages = dict(zip(lin_df.UNIQUEID, lin_df.MYKROBE_LINEAGE_NAME_1.fillna("Unknown")))
     external = load_external(data / "DST_MEASUREMENTS.csv.gz", set(pheno.UNIQUEID.map(subject)))
     who = WhoCatalogue(data / "WHO_catalogue_v2.1.csv")
-    genes = resistance_genes(data / "WHO_catalogue_v2.1.csv")
+    filters = model_filters(data / "WHO_catalogue_v2.1.csv")
 
     needed = set(pheno.UNIQUEID) | set(external.UNIQUEID)
     all_feats = effects[effects.UNIQUEID.isin(needed)].groupby("UNIQUEID").FEATURE.agg(set).to_dict()
@@ -284,7 +285,7 @@ def main():
 
     results = []
     for drug in DRUGS:
-        r = evaluate_drug(drug, effects, pheno, external, sites, lineages, who, all_feats, genes)
+        r = evaluate_drug(drug, effects, pheno, external, sites, lineages, who, all_feats, filters)
         results.append(r)
         u, o = r["unseen_countries"], r["other_studies"]
         if u["model"] is None:

@@ -1,0 +1,273 @@
+{
+ "schema_version": "1.0.0",
+ "id": "example-sample",
+ "timestamp": "2026-10-10T12:00:00",
+ "notes": [
+  "Example file in TB-Profiler's results format, made for the ResistTB demo. It is not from a real TB-Profiler run or a real patient."
+ ],
+ "pipeline": {
+  "software_version": "6.7.0",
+  "db_version": {
+   "name": "tbdb",
+   "commit": "example"
+  },
+  "software": []
+ },
+ "lineage": [],
+ "main_lineage": "lineage4",
+ "sub_lineage": "lineage4.3.4.2",
+ "drtype": "Pre-XDR-TB",
+ "dr_variants": [
+  {
+   "chrom": "Chromosome",
+   "pos": 761155,
+   "ref": "C",
+   "alt": "T",
+   "depth": 85,
+   "freq": 1.0,
+   "sv": false,
+   "filter": "pass",
+   "forward_reads": 42,
+   "reverse_reads": 43,
+   "gene_id": "Rv0667",
+   "gene_name": "rpoB",
+   "feature_id": "Rv0667",
+   "type": "missense_variant",
+   "change": "p.Ser450Leu",
+   "nucleotide_change": "c.1349C>T",
+   "protein_change": "p.Ser450Leu",
+   "annotation": [],
+   "consequences": [],
+   "locus_tag": "Rv0667",
+   "gene_associated_drugs": [
+    "rifampicin"
+   ],
+   "drugs": [
+    {
+     "type": "drug_resistance",
+     "drug": "rifampicin",
+     "confidence": "Assoc w R",
+     "source": "WHO catalogue v2"
+    }
+   ]
+  },
+  {
+   "chrom": "Chromosome",
+   "pos": 2155168,
+   "ref": "C",
+   "alt": "G",
+   "depth": 85,
+   "freq": 1.0,
+   "sv": false,
+   "filter": "pass",
+   "forward_reads": 42,
+   "reverse_reads": 43,
+   "gene_id": "Rv1908c",
+   "gene_name": "katG",
+   "feature_id": "Rv1908c",
+   "type": "missense_variant",
+   "change": "p.Ser315Thr",
+   "nucleotide_change": "c.944G>C",
+   "protein_change": "p.Ser315Thr",
+   "annotation": [],
+   "consequences": [],
+   "locus_tag": "Rv1908c",
+   "gene_associated_drugs": [
+    "isoniazid"
+   ],
+   "drugs": [
+    {
+     "type": "drug_resistance",
+     "drug": "isoniazid",
+     "confidence": "Assoc w R",
+     "source": "WHO catalogue v2"
+    }
+   ]
+  },
+  {
+   "chrom": "Chromosome",
+   "pos": 1673425,
+   "ref": "C",
+   "alt": "T",
+   "depth": 85,
+   "freq": 1.0,
+   "sv": false,
+   "filter": "pass",
+   "forward_reads": 42,
+   "reverse_reads": 43,
+   "gene_id": "Rv1483",
+   "gene_name": "fabG1",
+   "feature_id": "Rv1483",
+   "type": "upstream_gene_variant",
+   "change": "c.-15C>T",
+   "nucleotide_change": "c.-15C>T",
+   "protein_change": null,
+   "annotation": [],
+   "consequences": [],
+   "locus_tag": "Rv1483",
+   "gene_associated_drugs": [
+    "isoniazid",
+    "ethionamide"
+   ],
+   "drugs": [
+    {
+     "type": "drug_resistance",
+     "drug": "isoniazid",
+     "confidence": "Assoc w R",
+     "source": "WHO catalogue v2"
+    },
+    {
+     "type": "drug_resistance",
+     "drug": "ethionamide",
+     "confidence": "Assoc w R",
+     "source": "WHO catalogue v2"
+    }
+   ]
+  },
+  {
+   "chrom": "Chromosome",
+   "pos": 7582,
+   "ref": "A",
+   "alt": "G",
+   "depth": 85,
+   "freq": 0.32,
+   "sv": false,
+   "filter": "pass",
+   "forward_reads": 42,
+   "reverse_reads": 43,
+   "gene_id": "Rv0006",
+   "gene_name": "gyrA",
+   "feature_id": "Rv0006",
+   "type": "missense_variant",
+   "change": "p.Asp94Gly",
+   "nucleotide_change": "c.281A>G",
+   "protein_change": "p.Asp94Gly",
+   "annotation": [],
+   "consequences": [],
+   "locus_tag": "Rv0006",
+   "gene_associated_drugs": [
+    "levofloxacin",
+    "moxifloxacin"
+   ],
+   "drugs": [
+    {
+     "type": "drug_resistance",
+     "drug": "levofloxacin",
+     "confidence": "Assoc w R",
+     "source": "WHO catalogue v2"
+    },
+    {
+     "type": "drug_resistance",
+     "drug": "moxifloxacin",
+     "confidence": "Assoc w R",
+     "source": "WHO catalogue v2"
+    }
+   ]
+  }
+ ],
+ "other_variants": [
+  {
+   "chrom": "Chromosome",
+   "pos": 4247847,
+   "ref": "A",
+   "alt": "G",
+   "depth": 85,
+   "freq": 1.0,
+   "sv": false,
+   "filter": "pass",
+   "forward_reads": 42,
+   "reverse_reads": 43,
+   "gene_id": "Rv3795",
+   "gene_name": "embB",
+   "feature_id": "Rv3795",
+   "type": "missense_variant",
+   "change": "p.Gln445Arg",
+   "nucleotide_change": "c.1334A>G",
+   "protein_change": "p.Gln445Arg",
+   "annotation": [],
+   "consequences": [],
+   "locus_tag": "Rv3795",
+   "gene_associated_drugs": [
+    "ethambutol"
+   ]
+  },
+  {
+   "chrom": "Chromosome",
+   "pos": 7362,
+   "ref": "G",
+   "alt": "C",
+   "depth": 85,
+   "freq": 1.0,
+   "sv": false,
+   "filter": "pass",
+   "forward_reads": 42,
+   "reverse_reads": 43,
+   "gene_id": "Rv0006",
+   "gene_name": "gyrA",
+   "feature_id": "Rv0006",
+   "type": "missense_variant",
+   "change": "p.Ser95Thr",
+   "nucleotide_change": "c.284G>C",
+   "protein_change": "p.Ser95Thr",
+   "annotation": [],
+   "consequences": [],
+   "locus_tag": "Rv0006",
+   "gene_associated_drugs": [
+    "levofloxacin",
+    "moxifloxacin"
+   ]
+  },
+  {
+   "chrom": "Chromosome",
+   "pos": 2154724,
+   "ref": "C",
+   "alt": "A",
+   "depth": 85,
+   "freq": 1.0,
+   "sv": false,
+   "filter": "pass",
+   "forward_reads": 42,
+   "reverse_reads": 43,
+   "gene_id": "Rv1908c",
+   "gene_name": "katG",
+   "feature_id": "Rv1908c",
+   "type": "missense_variant",
+   "change": "p.Arg463Leu",
+   "nucleotide_change": "c.1388G>T",
+   "protein_change": "p.Arg463Leu",
+   "annotation": [],
+   "consequences": [],
+   "locus_tag": "Rv1908c",
+   "gene_associated_drugs": [
+    "isoniazid"
+   ]
+  },
+  {
+   "chrom": "Chromosome",
+   "pos": 763031,
+   "ref": "T",
+   "alt": "C",
+   "depth": 85,
+   "freq": 1.0,
+   "sv": false,
+   "filter": "pass",
+   "forward_reads": 42,
+   "reverse_reads": 43,
+   "gene_id": "Rv0667",
+   "gene_name": "rpoB",
+   "feature_id": "Rv0667",
+   "type": "synonymous_variant",
+   "change": "c.3225T>C",
+   "nucleotide_change": "c.3225T>C",
+   "protein_change": "p.Ala1075Ala",
+   "annotation": [],
+   "consequences": [],
+   "locus_tag": "Rv0667",
+   "gene_associated_drugs": [
+    "rifampicin"
+   ]
+  }
+ ],
+ "qc_fail_variants": [],
+ "qc": {}
+}

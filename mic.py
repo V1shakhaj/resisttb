@@ -32,7 +32,7 @@ from sklearn.linear_model import Ridge
 from sklearn.model_selection import train_test_split
 
 from evaluate import WhoCatalogue, country_of
-from train import DRUGS, MIN_SAMPLES, SEED, load_effects, pct, resistance_genes
+from train import DRUGS, MIN_SAMPLES, SEED, load_effects, model_filters, model_rows, pct
 
 LEVEL_DRUGS = ["INH"]  # drugs where the level model clearly beat the yes/no baseline and is still in use
 LOW_LEVEL_STEPS = 2  # up to this many doublings above the cut-off counts as low-level resistance
@@ -147,7 +147,7 @@ def mutation_mic(fsets, ids, y, labels, positive, ecoff):
     return out
 
 
-def run_drug(drug, pheno, effects, who, sites, positive, genes):
+def run_drug(drug, pheno, effects, who, sites, positive, filters):
     rows = pheno[pheno.DRUG == drug]
     y, labels = mic_scale(rows)
     ids = rows.UNIQUEID.to_numpy()
@@ -156,7 +156,7 @@ def run_drug(drug, pheno, effects, who, sites, positive, genes):
     s_frac = pd.Series(rows.BINARY_PHENOTYPE.eq("S").to_numpy()).groupby(y).mean()
     ecoff = int(max(b for b, f in s_frac.items() if f >= 0.5))
 
-    eff = effects[(effects.DRUG == drug) & effects.GENE.isin(genes[drug])]
+    eff = model_rows(effects, drug, filters)
     fsets = eff.groupby("UNIQUEID").FEATURE.agg(set).to_dict()
     all_feats = effects[effects.UNIQUEID.isin(set(ids))].groupby("UNIQUEID").FEATURE.agg(set).to_dict()
     who_r = (np.array(["R" in who.sample_calls(all_feats.get(u, ()), drug) for u in ids]) if drug in who.drugs else None)
@@ -251,13 +251,13 @@ def main():
     sites_df = pd.read_csv(data / "SITES.csv", dtype=str)
     sites = dict(zip(sites_df.SITEID, sites_df.COUNTRY.fillna("Other")))
     who = WhoCatalogue(data / "WHO_catalogue_v2.1.csv")
-    genes = resistance_genes(data / "WHO_catalogue_v2.1.csv")
+    filters = model_filters(data / "WHO_catalogue_v2.1.csv")
 
     clf = json.loads((out / "model.json").read_text())["models"]
     results, models = [], {}
     for drug in DRUGS:
         positive = {f for f, w in clf.get(drug, {}).get("weights", {}).items() if w >= STRONG_WEIGHT}
-        res, model = run_drug(drug, pheno, effects, who, sites, positive, genes)
+        res, model = run_drug(drug, pheno, effects, who, sites, positive, filters)
         results.append(res); models[drug] = model
         u = res["unseen_countries"]
         print(f"{drug}: resistant samples within one doubling (unseen countries): model "

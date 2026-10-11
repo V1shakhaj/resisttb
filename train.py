@@ -1,7 +1,8 @@
 """Train per-drug resistance models on CRyPTIC TB genomes and compare them with the catalogue.
 
-Each drug's model only uses mutations in the genes the WHO catalogue links to resistance for that drug.
-Without this, models learned strain markers and mutations that merely travel with multidrug resistance
+Each drug's model only uses mutations in the genes the WHO catalogue links to resistance for that drug,
+and leaves out mutations the catalogue grades as not associated with resistance. Without this, models
+learned strain markers (e.g. gyrA G668D) and mutations that merely travel with multidrug resistance
 (e.g. rpsL K43R for amikacin), which failed on strain lineages they had not seen.
 
 Inputs (from the CRyPTIC June 2022 release, see README.md):
@@ -41,14 +42,21 @@ def new_model():
     return LogisticRegression(penalty="l1", solver="liblinear", C=1.0, class_weight="balanced", max_iter=2000)
 
 
-def resistance_genes(path):
-    """Genes with at least one resistance-causing mutation in the WHO catalogue, per drug."""
+def model_filters(path):
+    """Per drug, from the WHO catalogue: genes with a resistance-causing mutation, and mutations graded harmless."""
     cat = pd.read_csv(path, usecols=["DRUG", "MUTATION", "PREDICTION"])
-    cat = cat[cat.PREDICTION == "R"]
-    genes = cat.MUTATION.str.split("@").str[0]
-    out = {d: set(g) - {"MULTI"} for d, g in genes.groupby(cat.DRUG)}
-    out["RFB"] = out.get("RIF", set())  # rifabutin isn't in the WHO catalogue; it shares rifampicin's target, rpoB
-    return out
+    r = cat[cat.PREDICTION == "R"]
+    genes = {d: set(g) - {"MULTI"} for d, g in r.MUTATION.str.split("@").str[0].groupby(r.DRUG)}
+    neutral = cat[cat.PREDICTION == "S"].groupby("DRUG").MUTATION.agg(set).to_dict()
+    # rifabutin isn't in the WHO catalogue; it shares rifampicin's target, rpoB
+    genes["RFB"], neutral["RFB"] = genes.get("RIF", set()), neutral.get("RIF", set())
+    return {d: (genes.get(d, set()), neutral.get(d, set())) for d in DRUGS}
+
+
+def model_rows(effects, drug, filters):
+    """The drug's mutation rows the model may learn from."""
+    genes, neutral = filters[drug]
+    return effects[(effects.DRUG == drug) & effects.GENE.isin(genes) & ~effects.FEATURE.isin(neutral)]
 
 
 def load_effects(path):
@@ -82,9 +90,11 @@ def sens_spec(y_true, y_pred):
     }
 
 
-def train_drug(drug, effects, pheno, genes):
+def train_drug(drug, effects, pheno, filters):
     labels = pheno[pheno.DRUG == drug].set_index("UNIQUEID").BINARY_PHENOTYPE.eq("R").astype(int)
-    eff = effects[(effects.DRUG == drug) & effects.GENE.isin(genes[drug]) & effects.UNIQUEID.isin(labels.index)]
+    eff = model_rows(effects, drug, filters)
+    eff = eff[eff.UNIQUEID.isin(labels.index)]
+    all_eff = effects[(effects.DRUG == drug) & effects.UNIQUEID.isin(labels.index)]  # for the catalogue baseline
     # Only samples that were sequenced (appear somewhere in EFFECTS) can be scored
     labels = labels[labels.index.isin(effects.UNIQUEID.unique())]
     n_r = int(labels.sum())
@@ -112,7 +122,7 @@ def train_drug(drug, effects, pheno, genes):
     ml["auc"] = float(roc_auc_score(y[te], prob))
 
     # Catalogue baseline: resistant if any mutation is graded R; U (unknown) counts as susceptible
-    calls = eff[eff.UNIQUEID.isin(set(test_ids))].groupby("UNIQUEID").PREDICTION.agg(set)
+    calls = all_eff[all_eff.UNIQUEID.isin(set(test_ids))].groupby("UNIQUEID").PREDICTION.agg(set)
     cat_pred = np.array([1 if "R" in calls.get(u, set()) else 0 for u in test_ids])
     has_u = np.array(["U" in calls.get(u, set()) and "R" not in calls.get(u, set()) for u in test_ids])
     cat = sens_spec(y[te], cat_pred)
@@ -182,11 +192,11 @@ def main():
 
     print("Loading phenotypes..."); pheno = load_phenotypes(Path(args.data) / "UKMYC_PHENOTYPES.csv.gz")
     print("Loading mutations (takes a few minutes)..."); effects = load_effects(Path(args.data) / "EFFECTS.csv.gz")
-    genes = resistance_genes(Path(args.data) / "WHO_catalogue_v2.1.csv")
+    filters = model_filters(Path(args.data) / "WHO_catalogue_v2.1.csv")
 
     models, metrics = {}, []
     for drug in DRUGS:
-        model, m = train_drug(drug, effects, pheno, genes)
+        model, m = train_drug(drug, effects, pheno, filters)
         metrics.append(m)
         if model:
             models[drug] = model
