@@ -105,6 +105,11 @@ td.drug small { display: block; font-weight: 400; color: var(--muted); font: 11p
 .bar i { display: block; height: 100%; background: var(--accent); }
 .prob.low { color: var(--muted); font-weight: 400; }
 .prob small { font: 400 11px var(--font-body); color: var(--muted); }
+.mic { display: grid; gap: 2px; margin-top: 4px; font: 400 11.5px var(--font-body); color: var(--muted); }
+.mic b { color: var(--ink); font-weight: 600; }
+.mic .lvl { font-weight: 600; }
+.mic .lvl.high { color: var(--r); }
+.mic .lvl.low { color: var(--lr); }
 .modelinfo { font-size: 13px; color: var(--muted); }
 .val { display: grid; gap: 12px; }
 .val .tablewrap { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; }
@@ -170,7 +175,7 @@ td.drug small { display: block; font-weight: 400; color: var(--muted); font: 11p
         <tbody id="valrows"></tbody>
       </table>
     </div>
-    <p class="modelinfo">Full results by country and by study: <a href="https://github.com/V1shakhaj/resisttb/blob/main/results/validation.md">validation report</a>.</p>
+    <p class="modelinfo">Full results by country and by study: <a href="https://github.com/V1shakhaj/resisttb/blob/main/results/validation.md">validation report</a>. Resistance-level results: <a href="https://github.com/V1shakhaj/resisttb/blob/main/results/mic_report.md">MIC report</a>.</p>
   </section>
 
   <section style="display:grid;gap:12px">
@@ -191,6 +196,8 @@ td.drug small { display: block; font-weight: 400; color: var(--muted); font: 11p
         <li><b>Resistant:</b> the catalogue lists the mutation as well established to cause resistance.</li>
         <li><b>Likely resistant:</b> the AI model gives a resistance probability of 50% or more, or the catalogue evidence is still emerging.</li>
         <li><b>Uncertain:</b> a mutation in a resistance gene that isn't in the catalogue, where the AI model has too little data to rule resistance out. When the model is confident the patient is susceptible, it settles the call.</li>
+        <li><b>Resistance level (isoniazid):</b> the AI model predicts the MIC, the lowest concentration that stops the bacteria. Low-level means up to two doublings above the resistance cut-off, often from <i>inhA</i> mutations, where higher doses may still work. High-level means further above, typically from <i>katG</i> mutations. Isoniazid is the only drug where this beat a plain yes/no call in testing.</li>
+        <li><b>Typical MIC (other drugs):</b> the MIC range measured in CRyPTIC samples where that mutation was the only resistance mutation.</li>
         <li>Silent mutations, which don't change the protein, are ignored.</li>
         <li>Mutations carried by only part of the bacterial population (mixed calls) are left out, so heteroresistance can be missed.</li>
         <li>The AI model learned a weight for each mutation from CRyPTIC lab results. Drugs with fewer than 200 resistant training samples are shown for reference only and don't change the prediction.</li>
@@ -266,7 +273,7 @@ function parse(line) {
 // Demo drug code -> CRyPTIC model code (no pyrazinamide model: not on the UKMYC plates)
 const MODEL_CODE = { RIF: "RIF", INH: "INH", EMB: "EMB", PZA: null, LFX: "LEV", MFX: "MXF", BDQ: "BDQ", LZD: "LZD", AMK: "AMI", ETO: "ETH" };
 const LOW_DATA = 200;
-let MODEL = null, METRICS = {};
+let MODEL = null, METRICS = {}, MIC = null;
 
 // Convert a mutation to the CRyPTIC (GARC) spelling the model was trained on
 function toGarc(change) {
@@ -277,13 +284,37 @@ function toGarc(change) {
   return change.replace("*", "!");
 }
 
+const featureKey = p => p.gene + "@" + toGarc(p.change);
+
+// MIC: predicted level (drugs with a level model) or typical MIC per mutation (all drugs)
+function micInfo(code, parsed, resistant) {
+  const md = MIC && MIC.drugs[MODEL_CODE[code]];
+  if (!md) return "";
+  const unit = v => `${v} mg/L`;
+  const lines = [];
+  if (md.weights && resistant) {
+    let z = md.intercept;
+    parsed.forEach(p => { z += md.weights[featureKey(p)] ?? md.weights[p.gene + "@" + p.change] ?? 0; });
+    const bin = Math.max(0, Math.min(md.bins.length - 1, Math.round(z)));
+    const steps = bin - md.ecoff_bin;
+    const [cls, word] = steps <= 0 ? ["", "near the cut-off"] : steps <= MIC.low_level_steps ? ["low", "low-level"] : ["high", "high-level"];
+    lines.push(`<span>Predicted MIC <b>${unit(md.bins[bin])}</b> · <span class="lvl ${cls}">${word}</span> (cut-off ${unit(md.bins[md.ecoff_bin])})</span>`);
+  } else {
+    parsed.forEach(p => {
+      const m = md.mutations[featureKey(p)] || md.mutations[p.gene + "@" + p.change];
+      if (m) lines.push(`<span>${esc(p.gene + " " + p.change)}: typical MIC <b>${m.low === m.high ? unit(m.median) : unit(m.low + " to " + m.high)}</b></span>`);
+    });
+  }
+  return lines.length ? `<div class="mic">${lines.join("")}</div>` : "";
+}
+
 function modelProb(code, parsed) {
   const mc = MODEL_CODE[code];
   if (!MODEL || !mc || !MODEL.models[mc]) return null;
   const md = MODEL.models[mc];
   let z = md.intercept; const used = [];
   parsed.forEach(p => {
-    const w = md.weights[p.gene + "@" + toGarc(p.change)] ?? md.weights[p.gene + "@" + p.change];
+    const w = md.weights[featureKey(p)] ?? md.weights[p.gene + "@" + p.change];
     if (w !== undefined) { z += w; if (w >= 0.5) used.push(p.gene + " " + p.change); }
   });
   const met = METRICS[mc];
@@ -320,7 +351,7 @@ function predict(lines) {
     if (m && !m.lowData && m.p >= 0.5 && RANK[res[c].level] < RANK.lr) res[c].level = "lr";
     else if (m && !m.lowData && m.p < 0.5 && res[c].level === "u") res[c].level = "s";
   });
-  return { res, ignored, unknownGene, silent, count: lines.filter(l => l.trim()).length };
+  return { res, ignored, unknownGene, silent, parsed, count: lines.filter(l => l.trim()).length };
 }
 
 function classify(res) {
@@ -346,7 +377,7 @@ let current = null;
 
 function render() {
   const lines = $("muts").value.split(/[\n,;]+/);
-  const { res, ignored, unknownGene, silent, count } = predict(lines);
+  const { res, ignored, unknownGene, silent, parsed, count } = predict(lines);
   const v = classify(res);
   const s = current;
   const where = s && !s.illustrative ? ["Real patient " + s.id, s.study, s.country, s.lab_method && "lab test: " + s.lab_method].filter(Boolean).join(" · ") : `Sample ${s ? s.id : "Custom"}`;
@@ -365,6 +396,7 @@ function render() {
       const note = m.lowData ? "low data, reference only" : (m.used.length ? "driven by " + m.used.map(esc).join(", ") : "no informative mutations");
       mc = `<div class="prob${m.lowData ? " low" : ""}">${pc}% resistant<div class="bar"><i style="width:${pc}%"></i></div><small>${note}</small></div>`;
     }
+    mc += micInfo(c, parsed, RANK[r.level] >= 2);
     let lc = `<span class="lab"><span class="none">${lab ? "Not tested" : "—"}</span></span>`;
     if (lab && lab[c]) {
       const predR = RANK[r.level] >= 2, labR = lab[c] === "R";
@@ -415,6 +447,8 @@ fetch("results/validation.json").then(r => r.json()).then(rows => {
   }).join("");
   $("validation").hidden = false;
 }).catch(() => {});
+
+fetch("results/mic_model.json").then(r => r.json()).then(m => { MIC = m; render(); }).catch(() => {});
 
 Promise.all([fetch("results/model.json").then(r => r.json()), fetch("results/metrics.json").then(r => r.json())])
   .then(([model, metrics]) => {

@@ -9,6 +9,7 @@ on:
       - train.py
       - evaluate.py
       - pick_examples.py
+      - mic.py
       - requirements.txt
 
 permissions:
@@ -63,11 +64,14 @@ jobs:
       - name: Validate on unseen countries and other studies, benchmark against the WHO catalogue
         run: python evaluate.py --data data --out results
 
+      - name: Predict resistance level (MIC)
+        run: python mic.py --data data --out results
+
       - name: Pick real patients for the demo
         run: python pick_examples.py --data data --out results
 
       - name: Show results in the run summary
-        run: cat results/report.md results/validation.md >> "$GITHUB_STEP_SUMMARY"
+        run: cat results/report.md results/validation.md results/mic_report.md >> "$GITHUB_STEP_SUMMARY"
 
       - name: Save results to the repository
         id: commit

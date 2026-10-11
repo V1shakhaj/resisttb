@@ -1,0 +1,889 @@
+[
+  {
+    "drug": "RIF",
+    "name": "Rifampicin",
+    "n": 10396,
+    "bins": [
+      "\u22640.06",
+      "0.12",
+      "0.25",
+      "0.5",
+      "1",
+      "2",
+      "4",
+      ">4"
+    ],
+    "ecoff_bin": 3,
+    "ecoff": "0.5",
+    "random_split": {
+      "model": {
+        "essential_agreement": 0.9336538461538462,
+        "essential_agreement_resistant": 0.9192618223760092,
+        "exact_agreement": 0.541826923076923,
+        "category_agreement": 0.9629807692307693,
+        "very_major_error": 0.0530565167243368,
+        "major_error": 0.025556471558120363
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.4028846153846154,
+        "essential_agreement_resistant": 0.9665513264129181,
+        "exact_agreement": 0.3956730769230769,
+        "category_agreement": 0.4168269230769231,
+        "very_major_error": 0.0,
+        "major_error": 1.0
+      },
+      "who_yes_no": {
+        "essential_agreement": 0.9009615384615385,
+        "essential_agreement_resistant": 0.9354094579008074,
+        "exact_agreement": 0.7567307692307692,
+        "category_agreement": 0.9567307692307693,
+        "very_major_error": 0.03575547866205306,
+        "major_error": 0.048639736191261336
+      }
+    },
+    "unseen_countries": {
+      "model": {
+        "essential_agreement": 0.9318968834166987,
+        "essential_agreement_resistant": 0.9065528380249193,
+        "exact_agreement": 0.5156791073489804,
+        "category_agreement": 0.9562331666025394,
+        "very_major_error": 0.0641439778495616,
+        "major_error": 0.029198284394589245
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.3274336283185841,
+        "essential_agreement_resistant": 0.5299953853253345,
+        "exact_agreement": 0.2920353982300885,
+        "category_agreement": 0.34551750673335896,
+        "very_major_error": 0.4543147208121827,
+        "major_error": 0.7975915539425932
+      },
+      "who_yes_no": {
+        "essential_agreement": 0.9052520200076952,
+        "essential_agreement_resistant": 0.9314720812182741,
+        "exact_agreement": 0.7595228934205464,
+        "category_agreement": 0.9534436321662177,
+        "very_major_error": 0.04337794185509922,
+        "major_error": 0.0488287693830419
+      }
+    },
+    "level_on_website": false
+  },
+  {
+    "drug": "INH",
+    "name": "Isoniazid",
+    "n": 10977,
+    "bins": [
+      "\u22640.025",
+      "0.05",
+      "0.1",
+      "0.2",
+      "0.4",
+      "0.8",
+      "1.6",
+      ">1.6"
+    ],
+    "ecoff_bin": 2,
+    "ecoff": "0.1",
+    "random_split": {
+      "model": {
+        "essential_agreement": 0.9339708561020036,
+        "essential_agreement_resistant": 0.8822447102115916,
+        "exact_agreement": 0.5264116575591985,
+        "category_agreement": 0.9567395264116576,
+        "very_major_error": 0.06899724011039558,
+        "major_error": 0.018034265103697024
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.41530054644808745,
+        "essential_agreement_resistant": 0.8390064397424103,
+        "exact_agreement": 0.29690346083788705,
+        "category_agreement": 0.4949908925318761,
+        "very_major_error": 0.0,
+        "major_error": 1.0
+      },
+      "who_yes_no": {
+        "essential_agreement": 0.8852459016393442,
+        "essential_agreement_resistant": 0.7838086476540939,
+        "exact_agreement": 0.5546448087431693,
+        "category_agreement": 0.9499089253187614,
+        "very_major_error": 0.08555657773689053,
+        "major_error": 0.015329125338142471
+      }
+    },
+    "unseen_countries": {
+      "model": {
+        "essential_agreement": 0.9148219003370684,
+        "essential_agreement_resistant": 0.8660287081339713,
+        "exact_agreement": 0.485560717864626,
+        "category_agreement": 0.9293978318301904,
+        "very_major_error": 0.1264262053735738,
+        "major_error": 0.01587587948764207
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.3597522091646169,
+        "essential_agreement_resistant": 0.6164887743835112,
+        "exact_agreement": 0.2345813974674319,
+        "category_agreement": 0.42680149403297807,
+        "very_major_error": 0.24806772175193229,
+        "major_error": 0.8919357748511636
+      },
+      "who_yes_no": {
+        "essential_agreement": 0.889405119795937,
+        "essential_agreement_resistant": 0.791497975708502,
+        "exact_agreement": 0.5560717864626036,
+        "category_agreement": 0.948437642343081,
+        "very_major_error": 0.08925285241074715,
+        "major_error": 0.014613025437488724
+      }
+    },
+    "level_on_website": true
+  },
+  {
+    "drug": "EMB",
+    "name": "Ethambutol",
+    "n": 8940,
+    "bins": [
+      "\u22640.25",
+      "0.5",
+      "1",
+      "2",
+      "4",
+      "8",
+      ">8"
+    ],
+    "ecoff_bin": 3,
+    "ecoff": "2",
+    "random_split": {
+      "model": {
+        "essential_agreement": 0.9368008948545862,
+        "essential_agreement_resistant": 0.8916666666666667,
+        "exact_agreement": 0.5106263982102909,
+        "category_agreement": 0.9250559284116331,
+        "very_major_error": 0.10833333333333334,
+        "major_error": 0.05808080808080808
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.6538031319910514,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.3400447427293065,
+        "category_agreement": 0.6644295302013423,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "who_yes_no": {
+        "essential_agreement": 0.8998881431767338,
+        "essential_agreement_resistant": 0.845,
+        "exact_agreement": 0.441834451901566,
+        "category_agreement": 0.9088366890380313,
+        "very_major_error": 0.155,
+        "major_error": 0.058922558922558925
+      }
+    },
+    "unseen_countries": {
+      "model": {
+        "essential_agreement": 0.9124161073825503,
+        "essential_agreement_resistant": 0.8397734843437709,
+        "exact_agreement": 0.4784116331096197,
+        "category_agreement": 0.9112975391498881,
+        "very_major_error": 0.14623584277148569,
+        "major_error": 0.05961603233411923
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.6512304250559284,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.33859060402684565,
+        "category_agreement": 0.6642058165548098,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "who_yes_no": {
+        "essential_agreement": 0.8935123042505593,
+        "essential_agreement_resistant": 0.8401065956029313,
+        "exact_agreement": 0.44082774049217,
+        "category_agreement": 0.904586129753915,
+        "very_major_error": 0.15989340439706862,
+        "major_error": 0.06281576288312563
+      }
+    },
+    "level_on_website": false
+  },
+  {
+    "drug": "LEV",
+    "name": "Levofloxacin",
+    "n": 9174,
+    "bins": [
+      "\u22640.12",
+      "0.25",
+      "0.5",
+      "1",
+      "2",
+      "4",
+      "8",
+      ">8"
+    ],
+    "ecoff_bin": 3,
+    "ecoff": "1",
+    "random_split": {
+      "model": {
+        "essential_agreement": 0.8866485013623978,
+        "essential_agreement_resistant": 0.6780185758513931,
+        "exact_agreement": 0.49264305177111717,
+        "category_agreement": 0.9460490463215259,
+        "very_major_error": 0.17956656346749225,
+        "major_error": 0.027116402116402115
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.7852861035422344,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.4452316076294278,
+        "category_agreement": 0.8239782016348773,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "who_yes_no": {
+        "essential_agreement": 0.8801089918256131,
+        "essential_agreement_resistant": 0.6656346749226006,
+        "exact_agreement": 0.48501362397820164,
+        "category_agreement": 0.9471389645776567,
+        "very_major_error": 0.16408668730650156,
+        "major_error": 0.0291005291005291
+      }
+    },
+    "unseen_countries": {
+      "model": {
+        "essential_agreement": 0.8884892086330936,
+        "essential_agreement_resistant": 0.7003095975232199,
+        "exact_agreement": 0.48484848484848486,
+        "category_agreement": 0.9482232395901461,
+        "very_major_error": 0.17027863777089783,
+        "major_error": 0.026458526260087312
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.7841726618705036,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.44767822105951605,
+        "category_agreement": 0.8239590146064967,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "who_yes_no": {
+        "essential_agreement": 0.8805319380858949,
+        "essential_agreement_resistant": 0.6755417956656347,
+        "exact_agreement": 0.48909962938739915,
+        "category_agreement": 0.948005232177894,
+        "very_major_error": 0.15975232198142414,
+        "major_error": 0.02897208625479561
+      }
+    },
+    "level_on_website": false
+  },
+  {
+    "drug": "MXF",
+    "name": "Moxifloxacin",
+    "n": 8184,
+    "bins": [
+      "\u22640.06",
+      "0.12",
+      "0.25",
+      "0.5",
+      "1",
+      "2",
+      "4",
+      ">4"
+    ],
+    "ecoff_bin": 4,
+    "ecoff": "1",
+    "random_split": {
+      "model": {
+        "essential_agreement": 0.8234575442883323,
+        "essential_agreement_resistant": 0.7340823970037453,
+        "exact_agreement": 0.369578497251069,
+        "category_agreement": 0.9303604153940135,
+        "very_major_error": 0.30711610486891383,
+        "major_error": 0.02335766423357664
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.6878436163714111,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.32620647525962126,
+        "category_agreement": 0.8368967623701894,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "who_yes_no": {
+        "essential_agreement": 0.8100183262064753,
+        "essential_agreement_resistant": 0.8913857677902621,
+        "exact_agreement": 0.3659132559560171,
+        "category_agreement": 0.9328039095907147,
+        "very_major_error": 0.10861423220973783,
+        "major_error": 0.059124087591240874
+      }
+    },
+    "unseen_countries": {
+      "model": {
+        "essential_agreement": 0.782991202346041,
+        "essential_agreement_resistant": 0.6160179640718563,
+        "exact_agreement": 0.3505620723362659,
+        "category_agreement": 0.916544477028348,
+        "very_major_error": 0.32934131736526945,
+        "major_error": 0.03548481308411215
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.6970918866080157,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.32746823069403713,
+        "category_agreement": 0.8367546432062561,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "who_yes_no": {
+        "essential_agreement": 0.8107282502443792,
+        "essential_agreement_resistant": 0.8607784431137725,
+        "exact_agreement": 0.36278103616813295,
+        "category_agreement": 0.9259530791788856,
+        "very_major_error": 0.13922155688622753,
+        "major_error": 0.06133177570093458
+      }
+    },
+    "level_on_website": false
+  },
+  {
+    "drug": "AMI",
+    "name": "Amikacin",
+    "n": 10414,
+    "bins": [
+      "\u22640.25",
+      "0.5",
+      "1",
+      "2",
+      "4",
+      "8",
+      ">8"
+    ],
+    "ecoff_bin": 2,
+    "ecoff": "1",
+    "random_split": {
+      "model": {
+        "essential_agreement": 0.9611137782045127,
+        "essential_agreement_resistant": 0.7647058823529411,
+        "exact_agreement": 0.643302928468555,
+        "category_agreement": 0.9740758521363418,
+        "very_major_error": 0.24183006535947713,
+        "major_error": 0.008808290155440414
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.9011041766682669,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.6629860777724436,
+        "category_agreement": 0.9265482477196352,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "who_yes_no": {
+        "essential_agreement": 0.9443110897743638,
+        "essential_agreement_resistant": 0.7450980392156863,
+        "exact_agreement": 0.7119539126260201,
+        "category_agreement": 0.9668746999519923,
+        "very_major_error": 0.22875816993464052,
+        "major_error": 0.017616580310880828
+      }
+    },
+    "unseen_countries": {
+      "model": {
+        "essential_agreement": 0.9636066833109276,
+        "essential_agreement_resistant": 0.7722513089005235,
+        "exact_agreement": 0.5784520837334357,
+        "category_agreement": 0.9759938544267333,
+        "very_major_error": 0.22905759162303665,
+        "major_error": 0.007772020725388601
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.9033032456308815,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.6655463798732476,
+        "category_agreement": 0.9266372191280968,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "who_yes_no": {
+        "essential_agreement": 0.9519877088534665,
+        "essential_agreement_resistant": 0.7735602094240838,
+        "exact_agreement": 0.7182638755521413,
+        "category_agreement": 0.9718647973881314,
+        "very_major_error": 0.20418848167539266,
+        "major_error": 0.014196891191709844
+      }
+    },
+    "level_on_website": false
+  },
+  {
+    "drug": "KAN",
+    "name": "Kanamycin",
+    "n": 10793,
+    "bins": [
+      "\u22641",
+      "2",
+      "4",
+      "8",
+      "16",
+      ">16"
+    ],
+    "ecoff_bin": 2,
+    "ecoff": "4",
+    "random_split": {
+      "model": {
+        "essential_agreement": 0.9671144048170449,
+        "essential_agreement_resistant": 0.7777777777777778,
+        "exact_agreement": 0.5748031496062992,
+        "category_agreement": 0.9708198239925891,
+        "very_major_error": 0.2676767676767677,
+        "major_error": 0.005099439061703213
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.9082908754052802,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.4840203798054655,
+        "category_agreement": 0.9082908754052802,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "who_yes_no": {
+        "essential_agreement": 0.9555349698934692,
+        "essential_agreement_resistant": 0.696969696969697,
+        "exact_agreement": 0.5331171838814266,
+        "category_agreement": 0.9643353404353867,
+        "very_major_error": 0.20707070707070707,
+        "major_error": 0.018357980622131564
+      }
+    },
+    "unseen_countries": {
+      "model": {
+        "essential_agreement": 0.9601593625498008,
+        "essential_agreement_resistant": 0.7616161616161616,
+        "exact_agreement": 0.5485963124247197,
+        "category_agreement": 0.9647919948114518,
+        "very_major_error": 0.29292929292929293,
+        "major_error": 0.009180863001122105
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.9082738812193089,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.47818030204762346,
+        "category_agreement": 0.9082738812193089,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "who_yes_no": {
+        "essential_agreement": 0.9458908551839155,
+        "essential_agreement_resistant": 0.6909090909090909,
+        "exact_agreement": 0.5266376355044936,
+        "category_agreement": 0.9552487723524506,
+        "very_major_error": 0.20707070707070707,
+        "major_error": 0.02835866571457717
+      }
+    },
+    "level_on_website": false
+  },
+  {
+    "drug": "ETH",
+    "name": "Ethionamide",
+    "n": 10261,
+    "bins": [
+      "\u22640.25",
+      "0.5",
+      "1",
+      "2",
+      "4",
+      "8",
+      ">8"
+    ],
+    "ecoff_bin": 3,
+    "ecoff": "2",
+    "random_split": {
+      "model": {
+        "essential_agreement": 0.8928397467121286,
+        "essential_agreement_resistant": 0.7111597374179431,
+        "exact_agreement": 0.45153433999025816,
+        "category_agreement": 0.9103750608865075,
+        "very_major_error": 0.30196936542669583,
+        "major_error": 0.02882205513784461
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.7501217730150999,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.3804188991719435,
+        "category_agreement": 0.7773989283974672,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "who_yes_no": {
+        "essential_agreement": 0.8645884072089625,
+        "essential_agreement_resistant": 0.6061269146608315,
+        "exact_agreement": 0.41354115927910373,
+        "category_agreement": 0.8889430102289333,
+        "very_major_error": 0.3938730853391685,
+        "major_error": 0.03007518796992481
+      }
+    },
+    "unseen_countries": {
+      "model": {
+        "essential_agreement": 0.881882857421304,
+        "essential_agreement_resistant": 0.6516411378555799,
+        "exact_agreement": 0.42734626254751,
+        "category_agreement": 0.9032258064516129,
+        "very_major_error": 0.33654266958424506,
+        "major_error": 0.028084252758274825
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.7543124451807816,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.3759867459311958,
+        "category_agreement": 0.7773121528116168,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "who_yes_no": {
+        "essential_agreement": 0.8697008088880226,
+        "essential_agreement_resistant": 0.6179431072210065,
+        "exact_agreement": 0.40941428710651984,
+        "category_agreement": 0.8916284962479291,
+        "very_major_error": 0.38205689277899346,
+        "major_error": 0.029964894684052158
+      }
+    },
+    "level_on_website": false
+  },
+  {
+    "drug": "RFB",
+    "name": "Rifabutin",
+    "n": 11500,
+    "bins": [
+      "\u22640.06",
+      "0.12",
+      "0.25",
+      "0.5",
+      "1",
+      "2",
+      ">2"
+    ],
+    "ecoff_bin": 1,
+    "ecoff": "0.12",
+    "random_split": {
+      "model": {
+        "essential_agreement": 0.9408695652173913,
+        "essential_agreement_resistant": 0.8820638820638821,
+        "exact_agreement": 0.808695652173913,
+        "category_agreement": 0.9526086956521739,
+        "very_major_error": 0.05036855036855037,
+        "major_error": 0.04576043068640646
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.6460869565217391,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.6186956521739131,
+        "category_agreement": 0.6460869565217391,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "who_yes_no": null
+    },
+    "unseen_countries": {
+      "model": {
+        "essential_agreement": 0.9102608695652173,
+        "essential_agreement_resistant": 0.8306709265175719,
+        "exact_agreement": 0.7709565217391304,
+        "category_agreement": 0.9420869565217391,
+        "very_major_error": 0.06905873679036618,
+        "major_error": 0.051809985197147086
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.6461739130434783,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.6148695652173913,
+        "category_agreement": 0.6461739130434783,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "who_yes_no": null
+    },
+    "level_on_website": false
+  },
+  {
+    "drug": "BDQ",
+    "name": "Bedaquiline",
+    "n": 9982,
+    "bins": [
+      "\u22640.015",
+      "0.03",
+      "0.06",
+      "0.12",
+      "0.25",
+      "0.5",
+      "1",
+      ">1"
+    ],
+    "ecoff_bin": 4,
+    "ecoff": "0.25",
+    "random_split": {
+      "model": {
+        "essential_agreement": 0.9228843264897346,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.4116174261392088,
+        "category_agreement": 0.9904857285928893,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.9198798197295944,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.3390085127691537,
+        "category_agreement": 0.9904857285928893,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "who_yes_no": {
+        "essential_agreement": 0.9223835753630446,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.3410115172759139,
+        "category_agreement": 0.9904857285928893,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      }
+    },
+    "unseen_countries": {
+      "model": {
+        "essential_agreement": 0.9124423963133641,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.40142256060909637,
+        "category_agreement": 0.9905830494890804,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.9226607894209577,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.36104988980164293,
+        "category_agreement": 0.9905830494890804,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "who_yes_no": {
+        "essential_agreement": 0.923963133640553,
+        "essential_agreement_resistant": 0.010638297872340425,
+        "exact_agreement": 0.3613504307753957,
+        "category_agreement": 0.9905830494890804,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      }
+    },
+    "level_on_website": false
+  },
+  {
+    "drug": "LZD",
+    "name": "Linezolid",
+    "n": 8575,
+    "bins": [
+      "\u22640.06",
+      "0.12",
+      "0.25",
+      "0.5",
+      "1",
+      "2",
+      ">2"
+    ],
+    "ecoff_bin": 4,
+    "ecoff": "1",
+    "random_split": {
+      "model": {
+        "essential_agreement": 0.8985422740524781,
+        "essential_agreement_resistant": 0.3157894736842105,
+        "exact_agreement": 0.47988338192419827,
+        "category_agreement": 0.9918367346938776,
+        "very_major_error": 0.6842105263157895,
+        "major_error": 0.0005896226415094339
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.885131195335277,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.4822157434402332,
+        "category_agreement": 0.9889212827988338,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "who_yes_no": {
+        "essential_agreement": 0.8880466472303207,
+        "essential_agreement_resistant": 0.3157894736842105,
+        "exact_agreement": 0.485131195335277,
+        "category_agreement": 0.9918367346938776,
+        "very_major_error": 0.6842105263157895,
+        "major_error": 0.0005896226415094339
+      }
+    },
+    "unseen_countries": {
+      "model": {
+        "essential_agreement": 0.874402332361516,
+        "essential_agreement_resistant": 0.3010752688172043,
+        "exact_agreement": 0.32583090379008744,
+        "category_agreement": 0.9918367346938776,
+        "very_major_error": 0.6989247311827957,
+        "major_error": 0.0005894836123555765
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.8802332361516035,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.4862973760932945,
+        "category_agreement": 0.9891545189504373,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "who_yes_no": {
+        "essential_agreement": 0.8833819241982507,
+        "essential_agreement_resistant": 0.34408602150537637,
+        "exact_agreement": 0.4892128279883382,
+        "category_agreement": 0.9921865889212828,
+        "very_major_error": 0.6559139784946236,
+        "major_error": 0.0007073803348266918
+      }
+    },
+    "level_on_website": false
+  },
+  {
+    "drug": "DLM",
+    "name": "Delamanid",
+    "n": 9496,
+    "bins": [
+      "\u22640.015",
+      "0.03",
+      "0.06",
+      "0.12",
+      "0.25",
+      "0.5",
+      ">0.5"
+    ],
+    "ecoff_bin": 3,
+    "ecoff": "0.12",
+    "random_split": {
+      "model": {
+        "essential_agreement": 0.9515789473684211,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.8578947368421053,
+        "category_agreement": 0.9910526315789474,
+        "very_major_error": 0.85,
+        "major_error": 0.0
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.9484210526315789,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.8689473684210526,
+        "category_agreement": 0.9894736842105263,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "who_yes_no": {
+        "essential_agreement": 0.9515789473684211,
+        "essential_agreement_resistant": 0.3,
+        "exact_agreement": 0.8721052631578947,
+        "category_agreement": 0.9926315789473684,
+        "very_major_error": 0.7,
+        "major_error": 0.0
+      }
+    },
+    "unseen_countries": {
+      "model": {
+        "essential_agreement": 0.9508213984835721,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.8123420387531592,
+        "category_agreement": 0.9896798652064027,
+        "very_major_error": 0.98989898989899,
+        "major_error": 0.0
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.9506107834877844,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.8717354675652906,
+        "category_agreement": 0.9895745577085089,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "who_yes_no": {
+        "essential_agreement": 0.9516638584667229,
+        "essential_agreement_resistant": 0.1111111111111111,
+        "exact_agreement": 0.872893850042123,
+        "category_agreement": 0.9906276326874474,
+        "very_major_error": 0.8888888888888888,
+        "major_error": 0.00010641694157709908
+      }
+    },
+    "level_on_website": false
+  },
+  {
+    "drug": "CFZ",
+    "name": "Clofazimine",
+    "n": 9198,
+    "bins": [
+      "\u22640.06",
+      "0.12",
+      "0.25",
+      "0.5",
+      "1",
+      "2",
+      ">2"
+    ],
+    "ecoff_bin": 2,
+    "ecoff": "0.25",
+    "random_split": {
+      "model": {
+        "essential_agreement": 0.9559782608695652,
+        "essential_agreement_resistant": 0.14285714285714285,
+        "exact_agreement": 0.7423913043478261,
+        "category_agreement": 0.9836956521739131,
+        "very_major_error": 1.0,
+        "major_error": 0.0011037527593818985
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.9423913043478261,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.7690217391304348,
+        "category_agreement": 0.9847826086956522,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "who_yes_no": {
+        "essential_agreement": 0.9423913043478261,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.7701086956521739,
+        "category_agreement": 0.9847826086956522,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      }
+    },
+    "unseen_countries": {
+      "model": {
+        "essential_agreement": 0.9424874972820179,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.7264622744074799,
+        "category_agreement": 0.9848880191345945,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "most_common_mic": {
+        "essential_agreement": 0.9370515329419439,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.7617960426179604,
+        "category_agreement": 0.9848880191345945,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      },
+      "who_yes_no": {
+        "essential_agreement": 0.9372689715155469,
+        "essential_agreement_resistant": 0.0,
+        "exact_agreement": 0.7622309197651663,
+        "category_agreement": 0.9848880191345945,
+        "very_major_error": 1.0,
+        "major_error": 0.0
+      }
+    },
+    "level_on_website": false
+  }
+]
