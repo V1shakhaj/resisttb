@@ -21,7 +21,7 @@ For each country, the model was trained on all other countries and then tested o
 | Levofloxacin | 9,174 (1,615) | 83.5% | 97.1% | 84.0% | 97.1% | 81.9% | 97.3% |
 | Moxifloxacin | 8,184 (1,336) | 86.3% | 93.9% | 86.1% | 93.9% | 80.5% | 94.4% |
 | Amikacin | 10,414 (764) | 78.9% | 97.7% | 79.6% | 98.6% | 77.6% | 99.2% |
-| Kanamycin | 10,793 (990) | 79.6% | 95.1% | 79.3% | 97.2% | 71.1% | 98.9% |
+| Kanamycin | 10,793 (990) | 79.6% | 95.2% | 79.3% | 97.2% | 71.1% | 98.9% |
 | Ethionamide | 9,508 (1,532) | 74.6% | 96.4% | 68.5% | 97.0% | 58.9% | 99.0% |
 | Rifabutin | 11,500 (4,069) | 92.5% | 95.4% | no rules | no rules | no rules | no rules |
 | Bedaquiline ⚠️ | 9,982 (94) | 51.1% | 83.1% | 5.3% | 99.8% | no rules | no rules |
