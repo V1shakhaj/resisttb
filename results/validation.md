@@ -77,7 +77,7 @@ For each country, the model was trained on all other countries and then tested o
 | China | Amikacin | 986 (44) | 45.5% / 98.9% | 45.5% / 100.0% |
 | Germany | Amikacin | 1,025 (45) | 75.6% / 94.0% | 75.6% / 97.1% |
 | India | Amikacin | 1,339 (92) | 59.8% / 98.1% | 59.8% / 98.8% |
-| Italy | Amikacin | 1,487 (116) | 80.2% / 97.2% | 79.3% / 98.9% |
+| Italy | Amikacin | 1,487 (116) | 80.2% / 97.1% | 79.3% / 98.9% |
 | Peru | Amikacin | 2,399 (144) | 87.5% / 99.1% | 88.9% / 99.2% |
 | South Africa | Amikacin | 1,494 (220) | 92.3% / 99.2% | 92.7% / 99.7% |
 | Sweden | Amikacin | 354 (82) | 81.7% / 84.6% | 86.6% / 79.0% |
