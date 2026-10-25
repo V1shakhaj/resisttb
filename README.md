@@ -55,7 +55,9 @@ TB-Profiler and the WHO catalogue say resistant or susceptible. `mic.py` also as
 2. Ten parallel jobs download the reads (about 35 GB in total) and run `tb-profiler profile` on each patient.
 3. `tbprofiler_benchmark.py compare` applies ResistTB's model to TB-Profiler's own mutation calls and compares TB-Profiler alone, ResistTB alone, and TB-Profiler + ResistTB with the lab results. Results go to `results/tbprofiler_benchmark.md` and appear on the website.
 
-Run it from **Actions -> End-to-end check with TB-Profiler -> Run workflow**. It takes one to two hours and does not run automatically.
+Run it from **Actions -> End-to-end check with TB-Profiler -> Run workflow**. It takes one to two hours and does not run automatically. To redo only the comparison with newer code, enter the ID of an earlier run (the number at the end of its address) in **reuse_run**; that takes a couple of minutes. TB-Profiler's results are saved in `results/tbprofiler_runs.json.gz`, and `python tbprofiler_benchmark.py compare --samples results/tbprofiler_samples.json --profiles ""` reruns the comparison locally.
+
+TB-Profiler numbers the *fabG1*-*inhA* promoter from *inhA* (e.g. `inhA c.-777C>T`), while the WHO catalogue and CRyPTIC number it from *fabG1* (`fabG1 c.-15C>T`). Both the website and the benchmark translate between the two.
 
 ## Retraining in the cloud
 

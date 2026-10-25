@@ -478,13 +478,18 @@ function fromTbProfiler(json) {
     const gene = v.gene_name || v.gene || v.locus_tag;
     const type = String(v.type || "").toLowerCase();
     if (!gene || type.includes("synonymous")) continue;
-    const ch = v.change || v.protein_change || v.nucleotide_change || "";
+    let gene2 = gene;
+    let ch = v.change || v.protein_change || v.nucleotide_change || "";
+    // TB-Profiler numbers the fabG1-inhA promoter from inhA; the catalogue and model number it from fabG1
+    // (fabG1 starts 762 bases before inhA, so inhA c.-777C>T is fabG1 c.-15C>T)
+    const prom = gene === "inhA" && ch.match(/^c\.-(\d+)([ACGT])>([ACGT])$/);
+    if (prom && +prom[1] > 762) { gene2 = "fabG1"; ch = `c.-${+prom[1] - 762}${prom[2]}>${prom[3]}`; }
     let change = ch;
     if (v.sv || type.includes("ablation")) change = "deletion";
     // Indels: use the nucleotide position, which is what the model was trained on
     else if (/fs$|frameshift|inframe|ins|del|dup/i.test(ch + " " + type) && /^c\./.test(v.nucleotide_change || "")) change = v.nucleotide_change;
     if (!change) continue;
-    const line = `${gene} ${change}`;
+    const line = `${gene2} ${change}`;
     if (!seen.has(line)) { seen.add(line); lines.push(line); }
     if (typeof v.freq === "number" && v.freq < MINORITY) minority.push(`${line} (${Math.round(v.freq * 100)}% of reads)`);
     if (v.dr) {
@@ -515,6 +520,13 @@ function loadTbProfiler(text) {
 function render() {
   const lines = $("muts").value.split(/[\n,;]+/);
   const { res, ignored, unknownGene, silent, parsed, count } = predict(lines);
+  // TB-Profiler's own calls use the full WHO catalogue, so they count as established evidence
+  const tbpCalls = (current && current.tbp && current.tbp.calls) || {};
+  Object.entries(tbpCalls).forEach(([c, ls]) => {
+    if (!res[c]) return;
+    res[c].level = "r";
+    ls.forEach(l => res[c].ev.push({ level: "r", text: l + " · TB-Profiler (WHO catalogue)" }));
+  });
   // A resistance call stands even with coverage gaps, but "nothing found" can't be trusted there
   const gaps = (current && current.tbp && current.tbp.gaps) || {};
   Object.entries(gaps).forEach(([c, why]) => {
@@ -560,7 +572,7 @@ function render() {
   }).join("");
   $("agree").hidden = !compared;
   if (compared) $("agree").innerHTML = tbp
-    ? `<b>ResistTB agrees with TB-Profiler on ${agree} of ${compared} drugs.</b> Where they differ, the evidence column shows why.`
+    ? `<b>ResistTB agrees with TB-Profiler on ${agree} of ${compared} drugs.</b> TB-Profiler's own calls are included as evidence; where ResistTB adds a call, the evidence column shows why.`
     : `<b>Prediction matches the lab on ${agree} of ${compared} drugs tested.</b> Lab tests have their own error rate, especially for borderline mutations.`;
   const notes = [];
   if (ignored.length) notes.push(`Ignored as harmless lineage markers: <span class="mut">${ignored.map(esc).join(", ")}</span>`);

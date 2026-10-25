@@ -2,10 +2,14 @@ name: End-to-end check with TB-Profiler
 
 # Downloads raw reads for ~100 patients from ENA (~35 GB in total, spread over parallel jobs), runs the real
 # TB-Profiler on each, and compares TB-Profiler alone and TB-Profiler + ResistTB with the lab results.
-# Run it by hand from the Actions tab; it takes one to two hours.
+# Run it by hand from the Actions tab; it takes one to two hours. To redo only the comparison with newer code,
+# give the ID of an earlier run (the number in its address) as "reuse_run"; that takes a couple of minutes.
 on:
   workflow_dispatch:
     inputs:
+      reuse_run:
+        description: Re-use TB-Profiler results from this earlier run ID (leave empty for a full run)
+        default: ""
       samples:
         description: Number of patients
         default: "100"
@@ -16,6 +20,7 @@ on:
 permissions:
   contents: write
   pages: write
+  actions: read
 
 concurrency:
   group: tbprofiler
@@ -23,6 +28,7 @@ concurrency:
 
 jobs:
   select:
+    if: inputs.reuse_run == ''
     runs-on: ubuntu-latest
     timeout-minutes: 30
     outputs:
@@ -67,6 +73,7 @@ jobs:
 
   profile:
     needs: select
+    if: inputs.reuse_run == ''
     runs-on: ubuntu-latest
     timeout-minutes: 330
     strategy:
@@ -118,7 +125,7 @@ jobs:
 
   compare:
     needs: profile
-    if: always() && needs.profile.result != 'skipped'
+    if: always() && (inputs.reuse_run != '' || needs.profile.result != 'skipped')
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -136,12 +143,16 @@ jobs:
         with:
           name: benchmark
           path: benchmark
+          run-id: ${{ inputs.reuse_run || github.run_id }}
+          github-token: ${{ github.token }}
 
       - uses: actions/download-artifact@v4
         with:
           pattern: tbp-*
           path: tbp_results
           merge-multiple: true
+          run-id: ${{ inputs.reuse_run || github.run_id }}
+          github-token: ${{ github.token }}
 
       - name: Compare with lab results
         run: |
@@ -153,7 +164,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add results/tbprofiler_benchmark.*
+          cp benchmark/samples.json results/tbprofiler_samples.json
+          git add results/tbprofiler_*
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else

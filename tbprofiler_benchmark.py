@@ -8,6 +8,7 @@
 TB-Profiler itself runs in .github/workflows/tbprofiler.yml between these two steps.
 """
 import argparse
+import gzip
 import json
 import math
 import re
@@ -25,6 +26,7 @@ SEED = 7
 BENCH_DRUGS = ["RIF", "INH", "EMB", "PZA", "LEV", "MXF", "AMI", "KAN", "ETH"]
 TBP_DRUG = {"rifampicin": "RIF", "isoniazid": "INH", "ethambutol": "EMB", "pyrazinamide": "PZA", "levofloxacin": "LEV",
             "moxifloxacin": "MXF", "amikacin": "AMI", "kanamycin": "KAN", "ethionamide": "ETH"}
+INHA_FROM_FABG1 = 762  # fabG1 c.1 is inhA c.-762
 MAX_FASTQ_BYTES = 1_500_000_000  # skip very deep runs to keep each job inside GitHub's limits
 ENA = "https://www.ebi.ac.uk/ena/portal/api/filereport?accession={}&result=read_run&format=json&fields=run_accession,fastq_ftp,fastq_bytes,instrument_platform,library_layout"
 ACCESSION = re.compile(r"^(SAM[NED][A-Z]?\d+|[ESD]RS\d+)$")
@@ -116,6 +118,11 @@ def to_feature(v):
         return None
     ch = v.get("change") or v.get("protein_change") or v.get("nucleotide_change") or ""
     nuc = v.get("nucleotide_change") or ""
+    # TB-Profiler numbers the fabG1-inhA promoter from inhA; the WHO catalogue and CRyPTIC number it from fabG1.
+    # fabG1 starts 762 bases before inhA, so inhA c.-777C>T is fabG1 c.-15C>T.
+    m = re.fullmatch(r"c\.-(\d+)([ACGT])>([ACGT])", ch)
+    if gene == "inhA" and m and int(m[1]) > INHA_FROM_FABG1:
+        return f"fabG1@{m[2].lower()}-{int(m[1]) - INHA_FROM_FABG1}{m[3].lower()}"
     m = re.fullmatch(r"p\.([A-Z][a-z]{2})(\d+)([A-Z][a-z]{2}|\*)", ch)
     if m and m[1] in AA3 and m[3] in AA3:
         return f"{gene}@{AA3[m[1]]}{m[2]}{AA3[m[3]]}"
@@ -146,22 +153,50 @@ def model_prob(model, drug, features):
     return 1 / (1 + math.exp(-(md["intercept"] + sum(md["weights"].get(f, 0) for f in features))))
 
 
+KEEP_VARIANT = ["gene_name", "gene", "locus_tag", "type", "change", "protein_change", "nucleotide_change", "freq", "drugs"]
+
+
+def slim(res):
+    """The parts of a TB-Profiler result the comparison needs, small enough to keep in the repository."""
+    variants = lambda vs: [{k: v.get(k) for k in KEEP_VARIANT if v.get(k) is not None} for v in vs or []]
+    return {"id": res.get("id"), "main_lineage": res.get("main_lineage"), "sub_lineage": res.get("sub_lineage"),
+            "drtype": res.get("drtype"), "pipeline": res.get("pipeline"),
+            "dr_variants": variants(res.get("dr_variants")), "other_variants": variants(res.get("other_variants"))}
+
+
+def load_runs(args):
+    """TB-Profiler results: from a folder of .results.json files, or the saved runs file."""
+    runs = {}
+    folder = Path(args.profiles) if args.profiles else None
+    if folder and folder.is_dir():
+        for path in folder.glob("*.results.json"):
+            res = json.loads(path.read_text())
+            runs[path.name.removesuffix(".results.json")] = slim(res)
+    saved = Path(args.out) / "tbprofiler_runs.json.gz"
+    if not runs and saved.exists():
+        runs = json.loads(gzip.decompress(saved.read_bytes()))
+    return runs
+
+
 def compare(args):
     samples = json.loads(Path(args.samples).read_text())
     model = json.loads(Path(args.model).read_text())
+    runs = load_runs(args)
     rows = []
     for s in samples:
-        path = Path(args.profiles) / f"{s['id']}.results.json"
-        if not path.exists():
+        res = runs.get(s["id"])
+        if res is None:
             continue
-        res = json.loads(path.read_text())
         variants = res.get("dr_variants", []) + res.get("other_variants", [])
         feats = {f for f in map(to_feature, variants) if f}
         calls = tbp_calls(res)
         for drug, lab in s["lab"].items():
             p = model_prob(model, drug, feats)
+            md = model["models"].get(drug, {}).get("weights", {})
+            drivers = sorted((f for f in feats if md.get(f, 0) >= 0.5), key=lambda f: -md[f])
             rows.append({"id": s["id"], "group": s["group"], "drug": drug, "lab": lab, "tbprofiler": bool(calls.get(drug)),
-                         "model_p": p, "lineage": res.get("sub_lineage") or res.get("main_lineage") or ""})
+                         "model_p": None if p is None else round(p, 3), "model_drivers": " ".join(drivers),
+                         "lineage": res.get("sub_lineage") or res.get("main_lineage") or ""})
     df = pd.DataFrame(rows)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
@@ -181,7 +216,8 @@ def compare(args):
             r["tbprofiler_plus_resisttb"] = sens_spec(y, np.maximum(tbp, m))
         results.append(r)
     (out / "tbprofiler_benchmark.json").write_text(json.dumps({"samples_profiled": n_done, "samples_selected": len(samples), "drugs": results}, indent=2))
-    df.to_csv(out / "tbprofiler_benchmark_calls.csv", index=False)
+    df.to_csv(out / "tbprofiler_calls.csv", index=False)
+    (out / "tbprofiler_runs.json.gz").write_bytes(gzip.compress(json.dumps(runs, separators=(",", ":")).encode(), mtime=0))
 
     def cell(x):
         return f"{pct(x['sensitivity'])} / {pct(x['specificity'])}" if x else "no model"
@@ -218,7 +254,7 @@ def main():
     s.add_argument("--out", default="benchmark")
     c = sub.add_parser("compare")
     c.add_argument("--samples", default="benchmark/samples.json")
-    c.add_argument("--profiles", default="tbp_results")
+    c.add_argument("--profiles", default="tbp_results", help="folder of TB-Profiler .results.json files; if empty, the saved runs are used")
     c.add_argument("--model", default="results/model.json")
     c.add_argument("--out", default="results")
     args = ap.parse_args()
