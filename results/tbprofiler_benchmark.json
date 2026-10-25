@@ -1,0 +1,216 @@
+{
+  "samples_profiled": 81,
+  "samples_selected": 100,
+  "drugs": [
+    {
+      "drug": "RIF",
+      "name": "Rifampicin",
+      "n": 81,
+      "n_resistant": 33,
+      "tbprofiler": {
+        "sensitivity": 0.9696969696969697,
+        "specificity": 0.9791666666666666,
+        "tp": 32,
+        "fn": 1,
+        "tn": 47,
+        "fp": 1
+      },
+      "resisttb_model": {
+        "sensitivity": 0.9393939393939394,
+        "specificity": 0.9791666666666666,
+        "tp": 31,
+        "fn": 2,
+        "tn": 47,
+        "fp": 1
+      },
+      "tbprofiler_plus_resisttb": {
+        "sensitivity": 0.9696969696969697,
+        "specificity": 0.9791666666666666,
+        "tp": 32,
+        "fn": 1,
+        "tn": 47,
+        "fp": 1
+      }
+    },
+    {
+      "drug": "INH",
+      "name": "Isoniazid",
+      "n": 81,
+      "n_resistant": 45,
+      "tbprofiler": {
+        "sensitivity": 0.9777777777777777,
+        "specificity": 1.0,
+        "tp": 44,
+        "fn": 1,
+        "tn": 36,
+        "fp": 0
+      },
+      "resisttb_model": {
+        "sensitivity": 0.8444444444444444,
+        "specificity": 1.0,
+        "tp": 38,
+        "fn": 7,
+        "tn": 36,
+        "fp": 0
+      },
+      "tbprofiler_plus_resisttb": {
+        "sensitivity": 0.9777777777777777,
+        "specificity": 1.0,
+        "tp": 44,
+        "fn": 1,
+        "tn": 36,
+        "fp": 0
+      }
+    },
+    {
+      "drug": "EMB",
+      "name": "Ethambutol",
+      "n": 80,
+      "n_resistant": 28,
+      "tbprofiler": {
+        "sensitivity": 1.0,
+        "specificity": 0.8653846153846154,
+        "tp": 28,
+        "fn": 0,
+        "tn": 45,
+        "fp": 7
+      },
+      "resisttb_model": {
+        "sensitivity": 0.9642857142857143,
+        "specificity": 0.8653846153846154,
+        "tp": 27,
+        "fn": 1,
+        "tn": 45,
+        "fp": 7
+      },
+      "tbprofiler_plus_resisttb": {
+        "sensitivity": 1.0,
+        "specificity": 0.8653846153846154,
+        "tp": 28,
+        "fn": 0,
+        "tn": 45,
+        "fp": 7
+      }
+    },
+    {
+      "drug": "LEV",
+      "name": "Levofloxacin",
+      "n": 1,
+      "n_resistant": 1,
+      "tbprofiler": {
+        "sensitivity": 1.0,
+        "specificity": null,
+        "tp": 1,
+        "fn": 0,
+        "tn": 0,
+        "fp": 0
+      },
+      "resisttb_model": {
+        "sensitivity": 1.0,
+        "specificity": null,
+        "tp": 1,
+        "fn": 0,
+        "tn": 0,
+        "fp": 0
+      },
+      "tbprofiler_plus_resisttb": {
+        "sensitivity": 1.0,
+        "specificity": null,
+        "tp": 1,
+        "fn": 0,
+        "tn": 0,
+        "fp": 0
+      }
+    },
+    {
+      "drug": "MXF",
+      "name": "Moxifloxacin",
+      "n": 31,
+      "n_resistant": 9,
+      "tbprofiler": {
+        "sensitivity": 0.8888888888888888,
+        "specificity": 0.9090909090909091,
+        "tp": 8,
+        "fn": 1,
+        "tn": 20,
+        "fp": 2
+      },
+      "resisttb_model": {
+        "sensitivity": 0.8888888888888888,
+        "specificity": 0.9545454545454546,
+        "tp": 8,
+        "fn": 1,
+        "tn": 21,
+        "fp": 1
+      },
+      "tbprofiler_plus_resisttb": {
+        "sensitivity": 0.8888888888888888,
+        "specificity": 0.9090909090909091,
+        "tp": 8,
+        "fn": 1,
+        "tn": 20,
+        "fp": 2
+      }
+    },
+    {
+      "drug": "AMI",
+      "name": "Amikacin",
+      "n": 31,
+      "n_resistant": 4,
+      "tbprofiler": {
+        "sensitivity": 1.0,
+        "specificity": 1.0,
+        "tp": 4,
+        "fn": 0,
+        "tn": 27,
+        "fp": 0
+      },
+      "resisttb_model": {
+        "sensitivity": 1.0,
+        "specificity": 0.7037037037037037,
+        "tp": 4,
+        "fn": 0,
+        "tn": 19,
+        "fp": 8
+      },
+      "tbprofiler_plus_resisttb": {
+        "sensitivity": 1.0,
+        "specificity": 0.7037037037037037,
+        "tp": 4,
+        "fn": 0,
+        "tn": 19,
+        "fp": 8
+      }
+    },
+    {
+      "drug": "KAN",
+      "name": "Kanamycin",
+      "n": 24,
+      "n_resistant": 6,
+      "tbprofiler": {
+        "sensitivity": 1.0,
+        "specificity": 1.0,
+        "tp": 6,
+        "fn": 0,
+        "tn": 18,
+        "fp": 0
+      },
+      "resisttb_model": {
+        "sensitivity": 1.0,
+        "specificity": 1.0,
+        "tp": 6,
+        "fn": 0,
+        "tn": 18,
+        "fp": 0
+      },
+      "tbprofiler_plus_resisttb": {
+        "sensitivity": 1.0,
+        "specificity": 1.0,
+        "tp": 6,
+        "fn": 0,
+        "tn": 18,
+        "fp": 0
+      }
+    }
+  ]
+}
