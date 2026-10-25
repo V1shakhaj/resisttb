@@ -21,6 +21,10 @@ ResistTB works as an add-on to [TB-Profiler](https://github.com/jodyphelan/TBPro
 
 On the website, choose **Choose a .results.json file** and pick `results/<sample>.results.json` from TB-Profiler's output folder, or drop the file on the page. The file is read in the browser and never uploaded. ResistTB's call and TB-Profiler's call are shown side by side for each drug. `examples/tbprofiler_example.results.json` is a made-up example in TB-Profiler's format; it is not from a real run or patient.
 
+**Not assessable.** If TB-Profiler reports that a drug's resistance genes are under 90% covered, or that known resistance positions had no data (`qc.target_qc`, `qc.missing_positions`), that drug is shown as "Not assessable" rather than "No resistance found".
+
+**Treatment options.** The page checks each regimen in the WHO consolidated guidelines on tuberculosis, Module 4, 2nd edition (2026) against the predicted resistance: BPaLM / BPaL / BPaLC and BDLLfxC / BDLC (6 months), the 9-month all-oral regimens (B2.1, BLMZ, BLLfxCZ, BDLLfxZ), longer individualised regimens, 6REZ-Lfx for isoniazid-resistant TB, and 2HRZE/4HR or HPMZ for drug-susceptible TB. Each drug is marked likely effective, confirm with a lab test, or likely ineffective, and each regimen is marked fits, confirm first, compromised or not eligible, with the WHO recommendation number. Pretomanid, delamanid and clofazimine are not assessed from sequencing, and bedaquiline and linezolid always need lab confirmation. This is decision support: clinical eligibility (age, severity, pregnancy, previous drug exposure) must be checked by the clinician.
+
 The reader accepts results from TB-Profiler 4 to 6. Synonymous mutations and variants that failed TB-Profiler's quality checks are not used.
 
 ## How it works

@@ -50,7 +50,7 @@ p { margin: 0; }
 .warn { font-size: 13px; color: var(--lr); background: var(--lr-bg); padding: 8px 12px; border-radius: 6px; max-width: fit-content; }
 .grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px; align-items: start; }
 @media (max-width: 860px) { .grid { grid-template-columns: minmax(0, 1fr); } }
-.panel { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 20px; display: grid; gap: 14px; min-width: 0; }
+.panel { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 20px; display: grid; gap: 14px; align-content: start; min-width: 0; }
 .label { font: 600 11px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .samples { display: flex; flex-wrap: wrap; gap: 8px; }
 .samples button { font: 500 13px var(--font-body); border: 1px solid var(--line); background: var(--bg); color: var(--ink); border-radius: 999px; padding: 6px 12px; cursor: pointer; }
@@ -85,6 +85,24 @@ td.drug small { display: block; font-weight: 400; color: var(--muted); font: 11p
 .pill.r { background: var(--r-bg); color: var(--r); }
 .pill.lr { background: var(--lr-bg); color: var(--lr); }
 .pill.u { background: var(--u-bg); color: var(--u); }
+.pill.na { background: var(--bg); color: var(--muted); border: 1px dashed var(--line); }
+.rx { display: grid; gap: 14px; }
+.rx-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; }
+.rx-head .mono { font: 12px var(--font-mono); color: var(--muted); }
+.rx-cat { font-size: 15px; }
+.rx-list { display: grid; gap: 10px; }
+.rx-item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 12px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); }
+.rx-item.best { border-color: var(--s); box-shadow: inset 3px 0 0 var(--s); }
+.rx-item h3 { margin: 0; font-size: 15px; }
+.rx-item h3 small { font: 400 12px var(--font-mono); color: var(--muted); margin-left: 6px; }
+.rx-drugs { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: 600 12px var(--font-body); border-radius: 6px; padding: 3px 8px; border: 1px solid transparent; }
+.chip.ok { background: var(--s-bg); color: var(--s); }
+.chip.confirm { background: var(--lr-bg); color: var(--lr); }
+.chip.res { background: var(--r-bg); color: var(--r); text-decoration: line-through; }
+.rx-why { grid-column: 1 / -1; font-size: 13px; color: var(--muted); display: grid; gap: 2px; }
+.rx-key { display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: 12.5px; color: var(--muted); align-items: center; }
+.rx-foot { font-size: 13px; color: var(--muted); max-width: 80ch; }
 .pill.s { background: var(--s-bg); color: var(--s); }
 .lab { display: grid; gap: 3px; justify-items: start; }
 .lab small { font: 600 11.5px var(--font-body); }
@@ -184,6 +202,21 @@ td.drug small { display: block; font-weight: 400; color: var(--muted); font: 11p
     </section>
   </div>
 
+  <section class="panel rx" aria-labelledby="rx-h" aria-live="polite">
+    <div class="rx-head">
+      <h2 id="rx-h">3 · Treatment options to discuss</h2>
+      <span class="mono">WHO Module 4, 2nd edition (2026)</span>
+    </div>
+    <p class="rx-cat" id="rx-cat"></p>
+    <div class="rx-key">
+      <span class="chip ok">Likely effective</span>
+      <span class="chip confirm">Confirm with a lab test</span>
+      <span class="chip res">Likely ineffective</span>
+    </div>
+    <div class="rx-list" id="rx-list"></div>
+    <p class="rx-foot">Decision support only. This checks each WHO-recommended regimen against the predicted resistance. The treating clinician must also check eligibility that sequencing can't see: age, disease severity and site, pregnancy, previous exposure to the drugs, and side-effect risks. Genotypic tests miss some resistance to bedaquiline, linezolid, pretomanid, delamanid and clofazimine, so WHO advises lab testing for these where available.</p>
+  </section>
+
   <section class="val" id="validation" hidden>
     <h2>How well does it hold up on new data?</h2>
     <p class="lead">Sensitivity is the share of truly resistant samples caught; specificity (smaller number) is the share of susceptible samples correctly cleared. <b>Unseen countries:</b> each country was predicted by a model trained only on the other countries. <b>Unseen lineages:</b> the same for each of the four main strain families. <b>Other studies:</b> samples from 7 independent studies using different lab methods. The WHO catalogue (2023) is the rule set TB-Profiler uses. It was partly built from these same datasets, so its numbers are optimistic.</p>
@@ -218,15 +251,17 @@ td.drug small { display: block; font-weight: 400; color: var(--muted); font: 11p
         <li><b>Typical MIC (other drugs):</b> the MIC range measured in CRyPTIC samples where that mutation was the only resistance mutation.</li>
         <li>Silent mutations, which don't change the protein, are ignored.</li>
         <li>Mutations carried by only part of the bacterial population (mixed calls) are left out, so heteroresistance can be missed.</li>
-        <li>The AI model learned a weight for each mutation from CRyPTIC lab results. Drugs with fewer than 200 resistant training samples are shown for reference only and don't change the prediction.</li>
+        <li>The AI model learned a weight for each mutation from CRyPTIC lab results, using only each drug's WHO resistance genes. Drugs with fewer than 200 resistant training samples (bedaquiline, linezolid) have no model; the catalogue rules alone are used.</li>
+        <li><b>Not assessable:</b> for TB-Profiler results, a drug whose resistance genes had too little sequencing coverage. No mutation found there is not proof of susceptibility.</li>
       </ul>
     </div>
     <div class="panel">
       <h2>Next steps</h2>
       <ul>
         <li>Done: a model trained on CRyPTIC data, about 12,000 TB genomes with lab-measured resistance to 13 drugs.</li>
-        <li>Done: tested on unseen countries and 7 other studies, and benchmarked against the WHO catalogue used by TB-Profiler.</li>
-        <li>Test by strain lineage, and on raw sequencing reads with TB-Profiler itself.</li>
+        <li>Done: tested on unseen countries, unseen strain lineages and 7 other studies, and benchmarked against the WHO catalogue used by TB-Profiler.</li>
+        <li>Done: reads TB-Profiler results and checks WHO 2026 regimens against them.</li>
+        <li>Validate end to end on raw sequencing reads processed by TB-Profiler itself.</li>
         <li>Collect more resistant samples for bedaquiline and linezolid, where the model is weakest.</li>
         <li>Add a full pipeline so users can upload raw sequencing files (FASTQ) instead of mutation lists.</li>
         <li>Plan for regulatory approval (CE-IVD / FDA) and WHO guidance before any clinical use.</li>
@@ -339,7 +374,7 @@ function modelProb(code, parsed) {
   return { p: 1 / (1 + Math.exp(-z)), used, lowData: !met || met.n_resistant < LOW_DATA, met };
 }
 
-const RANK = { s: 0, u: 1, lr: 2, r: 3 };
+const RANK = { s: 0, na: 1, u: 1, lr: 2, r: 3 };
 function predict(lines) {
   const res = {}; DRUGS.forEach(([c]) => res[c] = { level: "s", ev: [] });
   const ignored = [], unknownGene = [], silent = [];
@@ -388,7 +423,7 @@ function classify(res) {
   return { big, sub, cls };
 }
 
-const LABEL = { r: "Resistant", lr: "Likely resistant", u: "Uncertain", s: "No resistance found" };
+const LABEL = { r: "Resistant", lr: "Likely resistant", u: "Uncertain", na: "Not assessable", s: "No resistance found" };
 const esc = s => s.replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
 const $ = id => document.getElementById(id);
 let current = null;
@@ -397,6 +432,29 @@ let current = null;
 const TBP_DRUG = { rifampicin: "RIF", isoniazid: "INH", ethambutol: "EMB", pyrazinamide: "PZA", levofloxacin: "LFX",
   moxifloxacin: "MFX", bedaquiline: "BDQ", linezolid: "LZD", amikacin: "AMK", ethionamide: "ETO" };
 const MINORITY = 0.9;  // variants below this read frequency come from part of the bacterial population
+const MIN_GENE_COVERAGE = 90;  // % of a resistance gene with enough read depth before "no mutation" can be trusted
+// Genes that carry resistance for each drug (WHO catalogue), used to judge whether coverage is good enough
+const DRUG_GENES = { RIF: ["rpoB"], INH: ["katG", "fabG1", "inhA"], EMB: ["embB"], PZA: ["pncA"], LFX: ["gyrA", "gyrB"],
+  MFX: ["gyrA", "gyrB"], BDQ: ["Rv0678", "atpE", "pepQ"], LZD: ["rplC", "rrl"], AMK: ["rrs", "eis"], ETO: ["ethA", "fabG1", "inhA"] };
+
+// Drugs whose resistance can't be judged because key genes or positions had too little sequencing data
+function coverageGaps(json) {
+  const qc = json.qc || {};
+  const lt2gene = Object.fromEntries(Object.entries(json.gene_name2locus_tag || {}).map(([g, lt]) => [lt, g]));
+  const gaps = {};
+  const add = (c, why) => { (gaps[c] = gaps[c] || []).push(why); };
+  (qc.target_qc || []).forEach(t => {
+    const gene = lt2gene[t.target] || t.target, pct = Number(t.percent_depth_pass);
+    if (!Number.isFinite(pct) || pct >= MIN_GENE_COVERAGE) return;
+    Object.entries(DRUG_GENES).forEach(([c, genes]) => { if (genes.includes(gene)) add(c, `${gene} only ${Math.round(pct)}% covered`); });
+  });
+  (qc.missing_positions || []).forEach(m => (m.annotation || []).forEach(a => {
+    const c = TBP_DRUG[String(a.drug || "").toLowerCase()];
+    if (c) add(c, `no data at ${[a.gene_name, a.variant].filter(Boolean).join(" ") || "position " + m.pos}`);
+  }));
+  Object.keys(gaps).forEach(c => { gaps[c] = [...new Set(gaps[c])]; });
+  return gaps;
+}
 
 // Turn a TB-Profiler results.json (v4 to v6 field names) into a sample
 function fromTbProfiler(json) {
@@ -428,7 +486,7 @@ function fromTbProfiler(json) {
     id: String(json.id || "TB-Profiler sample"), name: "TB-Profiler result", muts: lines,
     tbp: { calls, minority, lineage: json.sub_lineage || json.main_lineage || "", drtype: json.drtype || "",
       version: pipe.software_version || json.tbprofiler_version || "", db: db.name || "",
-      qcFail: (json.qc_fail_variants || []).length, notes: Array.isArray(json.notes) ? json.notes : [] },
+      qcFail: (json.qc_fail_variants || []).length, notes: Array.isArray(json.notes) ? json.notes : [], gaps: coverageGaps(json) },
   };
 }
 
@@ -445,6 +503,13 @@ function loadTbProfiler(text) {
 function render() {
   const lines = $("muts").value.split(/[\n,;]+/);
   const { res, ignored, unknownGene, silent, parsed, count } = predict(lines);
+  // A resistance call stands even with coverage gaps, but "nothing found" can't be trusted there
+  const gaps = (current && current.tbp && current.tbp.gaps) || {};
+  Object.entries(gaps).forEach(([c, why]) => {
+    if (!res[c] || RANK[res[c].level] >= 2) return;
+    res[c].level = "na";
+    why.forEach(w => res[c].ev.push({ level: "na", text: w + " · test in the lab" }));
+  });
   const v = classify(res);
   const s = current;
   const tbp = s && s.tbp;
@@ -497,6 +562,107 @@ function render() {
   }
   notes.push("Confirm every result with phenotypic drug-susceptibility testing before changing treatment.");
   $("notes").innerHTML = `<ul>${notes.map(n => `<li>${n}</li>`).join("")}</ul>`;
+  renderRegimens(res, parsed);
+}
+
+// ---------- Treatment options (WHO consolidated guidelines, Module 4, 2nd edition, 2026)
+// Regimen drugs -> demo drug code. Rifapentine shares rifampicin's target (rpoB).
+const RX_DRUG = { H: ["INH", "isoniazid"], Hh: ["INH", "high-dose isoniazid"], R: ["RIF", "rifampicin"], Rpt: ["RIF", "rifapentine"],
+  E: ["EMB", "ethambutol"], Z: ["PZA", "pyrazinamide"], Lfx: ["LFX", "levofloxacin"], Mfx: ["MFX", "moxifloxacin"],
+  B: ["BDQ", "bedaquiline"], L: ["LZD", "linezolid"], Eto: ["ETO", "ethionamide"],
+  Pa: [null, "pretomanid"], D: [null, "delamanid"], C: [null, "clofazimine"] };
+// Drugs where a clean genotype is not enough to rule resistance out
+const CONFIRM_ALWAYS = new Set(["BDQ", "LZD"]);
+
+function drugState(res, key) {
+  const [code, name] = RX_DRUG[key];
+  if (!code) return { state: "confirm", name, why: "not assessed from sequencing here" };
+  const r = res[code];
+  if (RANK[r.level] >= 2) return { state: "res", name, why: LABEL[r.level].toLowerCase() };
+  if (r.level === "na") return { state: "confirm", name, why: "not assessable (coverage)" };
+  if (r.level === "u") return { state: "confirm", name, why: "uncertain mutation" };
+  if (CONFIRM_ALWAYS.has(code)) return { state: "confirm", name, why: "no known mutation, but genotyping misses some resistance" };
+  return { state: "ok", name };
+}
+
+// supporting: drugs whose resistance WHO does not treat as an exclusion for the regimen
+function regimenCard(res, { name, rec, months, drugs, exclude = [], notes = [], supporting = [] }) {
+  const states = drugs.map(k => ({ key: k, ...drugState(res, k) }));
+  const bad = states.filter(d => d.state === "res" && !supporting.includes(d.key));
+  const weak = states.filter(d => d.state === "res" && supporting.includes(d.key));
+  const check = states.filter(d => d.state === "confirm");
+  const verdict = exclude.length ? ["r", "Not eligible"] : bad.length ? ["r", "Compromised"] : check.length ? ["lr", "Possible, confirm first"] : ["s", "Fits the resistance profile"];
+  const why = [
+    ...exclude,
+    ...(bad.length ? [`Likely ineffective: ${bad.map(d => d.name).join(", ")}.`] : []),
+    ...(weak.length ? [`Likely to add little: ${weak.map(d => d.name).join(", ")}. This is common in MDR-TB and doesn't exclude the regimen.`] : []),
+    ...(check.length ? [`Confirm with a lab test: ${check.map(d => `${d.name} (${d.why})`).join(", ")}.`] : []),
+    ...notes,
+  ];
+  return { fits: !exclude.length && !bad.length, html: (best) => `<div class="rx-item${best ? " best" : ""}">
+    <h3>${name}<small>${months} · WHO ${rec}</small></h3>
+    <span class="pill ${verdict[0]}">${best ? (check.length ? "First option, confirm first" : "First WHO option that fits") : verdict[1]}</span>
+    <div class="rx-drugs">${states.map(d => `<span class="chip ${d.state}" title="${esc(d.name)}">${d.key}</span>`).join("")}</div>
+    ${why.length ? `<div class="rx-why">${why.map(w => `<span>${w}</span>`).join("")}</div>` : ""}
+  </div>` };
+}
+
+function inhPattern(res, parsed) {
+  const genes = new Set();
+  res.INH.ev.forEach(e => { if (RANK[e.level] >= 2) genes.add(e.text.split(" ")[0].toLowerCase()); });
+  if (res.INH.model) res.INH.model.used.forEach(u => genes.add(u.split(" ")[0].toLowerCase()));
+  return { katG: genes.has("katg"), inhA: genes.has("inha") || genes.has("fabg1") };
+}
+
+function renderRegimens(res, parsed) {
+  const R = c => RANK[res[c].level] >= 2;
+  const fq = { res: R("LFX") || R("MFX"), unknown: !R("LFX") && !R("MFX") && (res.LFX.level === "na" || res.MFX.level === "na") };
+  const inh = inhPattern(res, parsed);
+  let cat, cards = [];
+  if (res.RIF.level === "na") {
+    cat = "<b>Rifampicin resistance could not be assessed</b> because of low sequencing coverage. Get a rapid rifampicin test before choosing a regimen.";
+  } else if (R("RIF")) {
+    cat = fq.res ? "<b>Rifampicin-resistant TB with fluoroquinolone resistance (pre-XDR-TB).</b> WHO's 6-month regimens are preferred; 9-month regimens are excluded."
+      : "<b>Rifampicin-resistant TB (MDR/RR-TB).</b> WHO's 6-month regimens are preferred, then 9-month, then longer individualised regimens.";
+    if (fq.unknown) cat += " Fluoroquinolone resistance could not be assessed: WHO advises starting BPaLM and adjusting once the lab result is back.";
+    const noFq = fq.res ? ["Excluded: needs fluoroquinolone susceptibility, and resistance was detected."] : [];
+    if (!fq.res) {
+      cards.push(regimenCard(res, { name: "BPaLM", rec: "B1.1", months: "6 months", drugs: ["B", "Pa", "L", "Mfx"] }));
+      cards.push(regimenCard(res, { name: "BDLLfxC", rec: "B1.2", months: "6 months", drugs: ["B", "D", "L", "Lfx", "C"] }));
+    } else {
+      cards.push(regimenCard(res, { name: "BPaL", rec: "B1.1a", months: "6 months", drugs: ["B", "Pa", "L"], notes: ["For non-severe pulmonary pre-XDR-TB."] }));
+      cards.push(regimenCard(res, { name: "BPaLC", rec: "B1.1b", months: "6 months", drugs: ["B", "Pa", "L", "C"], notes: ["For severe pulmonary pre-XDR-TB (cavities or high bacillary load)."] }));
+      cards.push(regimenCard(res, { name: "BDLC", rec: "B1.2a", months: "6 months", drugs: ["B", "D", "L", "C"], notes: ["Only for non-severe pulmonary pre-XDR-TB; WHO advises against it in severe disease (B1.2b)."] }));
+    }
+    const both = inh.katG && inh.inhA;
+    cards.push(regimenCard(res, { name: "9-month all-oral (with ethionamide or linezolid)", rec: "B2.1", months: "9 months",
+      drugs: ["B", fq.res ? "Lfx" : (R("LFX") ? "Mfx" : "Lfx"), res.ETO && R("ETO") ? "L" : "Eto", "E", "Hh", "Z", "C"],
+      exclude: [...noFq, ...(both ? ["Excluded: mutations in both katG and inhA mean high-dose isoniazid and ethionamide are unlikely to work."] : [])],
+      supporting: ["Hh", "E"],
+      notes: R("ETO") && !both ? ["Ethionamide likely ineffective, so the linezolid version is shown."] : [] }));
+    [["BLMZ", ["B", "L", "Mfx", "Z"]], ["BLLfxCZ", ["B", "L", "Lfx", "C", "Z"]], ["BDLLfxZ", ["B", "D", "L", "Lfx", "Z"]]].forEach(([n, d]) =>
+      cards.push(regimenCard(res, { name: n, rec: "B2.2", months: "9 months", drugs: d, exclude: noFq, notes: n === "BLMZ" ? ["WHO ranks BLMZ over BLLfxCZ over BDLLfxZ."] : [] })));
+    const groupA = ["Lfx", "Mfx", "B", "L"].map(k => drugState(res, k)).filter(d => d.state !== "res").map(d => d.name);
+    cards.push({ fits: true, html: () => `<div class="rx-item"><h3>Longer individualised regimen<small>18–20 months · WHO B3</small></h3>
+      <span class="pill u">Fallback</span>
+      <div class="rx-why"><span>Built from at least four drugs likely to be effective, starting with WHO Group A (levofloxacin or moxifloxacin, bedaquiline, linezolid).</span>
+      <span>Group A drugs not predicted resistant: ${groupA.length ? groupA.join(", ") : "none"}.</span></div></div>` });
+  } else if (R("INH")) {
+    cat = "<b>Isoniazid-resistant, rifampicin-susceptible TB (Hr-TB).</b>";
+    const notes = inh.inhA && !inh.katG ? ["Only inhA-type mutations found: WHO notes that higher-dose isoniazid (up to 15 mg/kg a day) could be considered."]
+      : inh.katG ? ["katG mutation found: isoniazid is unlikely to work even at a higher dose."] : [];
+    cards.push(regimenCard(res, { name: "6REZ-Lfx", rec: "B4.1", months: "6 months", drugs: ["R", "E", "Z", "Lfx"], notes }));
+  } else {
+    cat = "<b>No rifampicin or isoniazid resistance predicted.</b> Standard first-line treatment fits, unless another resistance below suggests otherwise.";
+    cards.push(regimenCard(res, { name: "2HRZE/4HR", rec: "A1.1", months: "6 months", drugs: ["H", "R", "Z", "E"] }));
+    cards.push(regimenCard(res, { name: "HPMZ", rec: "A2", months: "4 months", drugs: ["H", "Rpt", "Mfx", "Z"], notes: ["For eligible people aged 12 and over."] }));
+  }
+  if (res.RIF.level === "u" && !R("RIF")) cat += " An uncertain rifampicin mutation was found: confirm with a rapid rifampicin test.";
+  $("rx-cat").innerHTML = cat;
+  const first = cards.findIndex(c => c.fits);
+  if (R("RIF") && first === cards.length - 1)
+    $("rx-cat").innerHTML += " <b>No 6- or 9-month regimen fits the predicted resistance,</b> so a longer individualised regimen is likely needed. Get full lab testing and specialist advice.";
+  $("rx-list").innerHTML = cards.map((c, i) => c.html(i === first && first < cards.length - (R("RIF") ? 1 : 0))).join("");
 }
 
 function load(s) {

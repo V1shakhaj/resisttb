@@ -3,7 +3,7 @@
  "id": "example-sample",
  "timestamp": "2026-10-10T12:00:00",
  "notes": [
-  "Example file in TB-Profiler's results format, made for the ResistTB demo. It is not from a real TB-Profiler run or a real patient."
+  "Example file in TB-Profiler's results format, made for the ResistTB demo. It is not from a real TB-Profiler run or a real patient. pncA coverage is deliberately low to show how gaps are handled."
  ],
  "pipeline": {
   "software_version": "6.7.0",
@@ -269,5 +269,108 @@
   }
  ],
  "qc_fail_variants": [],
- "qc": {}
+ "qc": {
+  "percent_reads_mapped": 98.7,
+  "num_reads_mapped": 1843210,
+  "target_median_depth": 84.0,
+  "genome_median_depth": 81.0,
+  "target_qc": [
+   {
+    "target": "rpoB",
+    "percent_depth_pass": 100.0,
+    "median_depth": 84.0
+   },
+   {
+    "target": "katG",
+    "percent_depth_pass": 100.0,
+    "median_depth": 84.0
+   },
+   {
+    "target": "fabG1",
+    "percent_depth_pass": 100.0,
+    "median_depth": 84.0
+   },
+   {
+    "target": "inhA",
+    "percent_depth_pass": 100.0,
+    "median_depth": 84.0
+   },
+   {
+    "target": "embB",
+    "percent_depth_pass": 100.0,
+    "median_depth": 84.0
+   },
+   {
+    "target": "pncA",
+    "percent_depth_pass": 62.0,
+    "median_depth": 9.0
+   },
+   {
+    "target": "gyrA",
+    "percent_depth_pass": 100.0,
+    "median_depth": 84.0
+   },
+   {
+    "target": "gyrB",
+    "percent_depth_pass": 100.0,
+    "median_depth": 84.0
+   },
+   {
+    "target": "Rv0678",
+    "percent_depth_pass": 100.0,
+    "median_depth": 84.0
+   },
+   {
+    "target": "atpE",
+    "percent_depth_pass": 100.0,
+    "median_depth": 84.0
+   },
+   {
+    "target": "pepQ",
+    "percent_depth_pass": 100.0,
+    "median_depth": 84.0
+   },
+   {
+    "target": "rplC",
+    "percent_depth_pass": 100.0,
+    "median_depth": 84.0
+   },
+   {
+    "target": "rrl",
+    "percent_depth_pass": 100.0,
+    "median_depth": 84.0
+   },
+   {
+    "target": "rrs",
+    "percent_depth_pass": 100.0,
+    "median_depth": 84.0
+   },
+   {
+    "target": "eis",
+    "percent_depth_pass": 100.0,
+    "median_depth": 84.0
+   },
+   {
+    "target": "ethA",
+    "percent_depth_pass": 100.0,
+    "median_depth": 84.0
+   }
+  ],
+  "missing_positions": [
+   {
+    "chrom": "Chromosome",
+    "pos": 2288912,
+    "depth": 3,
+    "annotation": [
+     {
+      "type": "drug_resistance",
+      "drug": "pyrazinamide",
+      "gene_name": "pncA",
+      "variant": "p.His57Asp",
+      "confidence": "Assoc w R"
+     }
+    ]
+   }
+  ]
+ }
 }
