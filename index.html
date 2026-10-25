@@ -229,6 +229,18 @@ td.drug small { display: block; font-weight: 400; color: var(--muted); font: 11p
     <p class="modelinfo">Full results by country and by study: <a href="https://github.com/V1shakhaj/resisttb/blob/main/results/validation.md">validation report</a>. Resistance-level results: <a href="https://github.com/V1shakhaj/resisttb/blob/main/results/mic_report.md">MIC report</a>.</p>
   </section>
 
+  <section class="val" id="e2e" hidden>
+    <h2>End to end with the real TB-Profiler</h2>
+    <p class="lead" id="e2e-lead"></p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Drug</th><th>TB-Profiler</th><th>ResistTB model</th><th>TB-Profiler + ResistTB</th></tr></thead>
+        <tbody id="e2e-rows"></tbody>
+      </table>
+    </div>
+    <p class="modelinfo">Sensitivity / specificity against the lab. About 100 patients is a small sample, so differences of a few percent are within chance. Details: <a href="https://github.com/V1shakhaj/resisttb/blob/main/results/tbprofiler_benchmark.md">TB-Profiler report</a>.</p>
+  </section>
+
   <section style="display:grid;gap:12px">
     <h2>Where this fits in a real product</h2>
     <div class="pipeline">
@@ -698,7 +710,8 @@ fetch("results/examples.json").then(r => r.json()).then(list => {
   showSamples(Math.min(1, list.length - 1));
 }).catch(() => {});
 
-const ss = r => r ? `<b>${Math.round(r.sensitivity * 100)}%</b> <span>/ ${Math.round(r.specificity * 100)}%</span>` : `<span>no rules</span>`;
+const pc0 = x => x == null ? "n/a" : Math.round(x * 100) + "%";
+const ss = r => r ? `<b>${pc0(r.sensitivity)}</b> <span>/ ${pc0(r.specificity)}</span>` : `<span>no rules</span>`;
 fetch("results/validation.json").then(r => r.json()).then(rows => {
   $("valrows").innerHTML = rows.filter(r => !r.low_data).map(r => {
     const u = r.unseen_countries, o = r.other_studies, l = r.unseen_lineages;
@@ -710,6 +723,14 @@ fetch("results/validation.json").then(r => r.json()).then(rows => {
 }).catch(() => {});
 
 fetch("results/mic_model.json").then(r => r.json()).then(m => { MIC = m; render(); }).catch(() => {});
+
+fetch("results/tbprofiler_benchmark.json").then(r => r.ok ? r.json() : Promise.reject()).then(b => {
+  if (!b.drugs || !b.drugs.length) return;
+  $("e2e-lead").textContent = `Raw sequencing reads for ${b.samples_profiled} patients the model never saw were run through TB-Profiler, and ResistTB was applied to TB-Profiler's own mutation calls.`;
+  $("e2e-rows").innerHTML = b.drugs.map(r => `<tr><td class="drug">${esc(r.name)}<small>${r.n} patients, ${r.n_resistant} resistant</small></td>` +
+    [r.tbprofiler, r.resisttb_model, r.tbprofiler_plus_resisttb].map(x => `<td class="num">${x && x.sensitivity != null ? ss(x) : "<span>no model</span>"}</td>`).join("") + "</tr>").join("");
+  $("e2e").hidden = false;
+}).catch(() => {});
 
 Promise.all([fetch("results/model.json").then(r => r.json()), fetch("results/metrics.json").then(r => r.json())])
   .then(([model, metrics]) => {

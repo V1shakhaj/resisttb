@@ -1,0 +1,171 @@
+name: End-to-end check with TB-Profiler
+
+# Downloads raw reads for ~100 patients from ENA (~35 GB in total, spread over parallel jobs), runs the real
+# TB-Profiler on each, and compares TB-Profiler alone and TB-Profiler + ResistTB with the lab results.
+# Run it by hand from the Actions tab; it takes one to two hours.
+on:
+  workflow_dispatch:
+    inputs:
+      samples:
+        description: Number of patients
+        default: "100"
+      per_shard:
+        description: Patients per parallel job
+        default: "10"
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: tbprofiler
+  cancel-in-progress: false
+
+jobs:
+  select:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      matrix: ${{ steps.pick.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - run: pip install -r requirements.txt
+
+      # Reuse the training workflow's data if it is cached; never save a partial copy under its key
+      - name: Restore CRyPTIC data
+        id: data-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: data
+          key: cryptic-release-june2022-who-v2.1-samples-lineage
+
+      - name: Download lab results if not cached
+        if: steps.data-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p data
+          BASE=https://ftp.ebi.ac.uk/pub/databases/cryptic/release_june2022/reproducibility/data_tables/cryptic-analysis-group
+          curl -fsSL --retry 3 -o data/UKMYC_PHENOTYPES.csv.gz "$BASE/UKMYC_PHENOTYPES.csv.gz"
+          curl -fsSL --retry 3 -o data/DST_MEASUREMENTS.csv.gz "$BASE/DST_MEASUREMENTS.csv.gz"
+
+      - name: Pick patients with public reads
+        id: pick
+        run: |
+          python tbprofiler_benchmark.py select --data data --n "${{ inputs.samples }}" --per-shard "${{ inputs.per_shard }}" --out benchmark
+          echo "matrix=$(cat benchmark/matrix.json)" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: benchmark
+          path: benchmark
+
+  profile:
+    needs: select
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix: ${{ fromJson(needs.select.outputs.matrix) }}
+    defaults:
+      run:
+        shell: bash -el {0}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: benchmark
+          path: benchmark
+
+      - name: Install TB-Profiler
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: tbp
+          create-args: tb-profiler=6.7.0
+          condarc: |
+            channels:
+              - conda-forge
+              - bioconda
+          cache-environment: true
+
+      - name: Run TB-Profiler on each patient
+        run: |
+          tb-profiler version || true
+          mkdir -p work && cd work
+          while IFS=$'\t' read -r id r1 r2; do
+            echo "::group::$id"
+            if curl -fsSL --retry 3 -o r1.fastq.gz "$r1" && curl -fsSL --retry 3 -o r2.fastq.gz "$r2"; then
+              tb-profiler profile -1 r1.fastq.gz -2 r2.fastq.gz -t 4 -p "$id" || echo "TB-Profiler failed for $id"
+            else
+              echo "Download failed for $id"
+            fi
+            rm -rf r1.fastq.gz r2.fastq.gz bam vcf
+            echo "::endgroup::"
+          done < "../benchmark/shard_${{ matrix.shard }}.txt"
+          ls results || true
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tbp-${{ matrix.shard }}
+          path: work/results/*.results.json
+          if-no-files-found: warn
+
+  compare:
+    needs: profile
+    if: always() && needs.profile.result != 'skipped'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - run: pip install -r requirements.txt
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: benchmark
+          path: benchmark
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: tbp-*
+          path: tbp_results
+          merge-multiple: true
+
+      - name: Compare with lab results
+        run: |
+          python tbprofiler_benchmark.py compare --samples benchmark/samples.json --profiles tbp_results --model results/model.json --out results
+          cat results/tbprofiler_benchmark.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Save results to the repository
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/tbprofiler_benchmark.*
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "Update TB-Profiler end-to-end results"
+            git pull --rebase
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Rebuild web page
+        if: steps.commit.outputs.changed == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds"

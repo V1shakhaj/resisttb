@@ -47,6 +47,16 @@ TB-Profiler and the WHO catalogue say resistant or susceptible. `mic.py` also as
 - **Isoniazid:** a ridge regression predicts the MIC and labels resistance as low-level (up to 2 doublings above the cut-off, typically *inhA*) or high-level (typically *katG*). On resistant samples from unseen countries it is within one doubling of the lab 87% of the time, against 79% for a yes/no call.
 - **Other drugs:** the model did not beat a yes/no call, so the site shows the typical MIC for each resistance mutation instead, measured in samples where it is the only resistance mutation.
 
+## End-to-end check with the real TB-Profiler
+
+`.github/workflows/tbprofiler.yml` tests the whole pipeline a lab would use: raw sequencing reads -> TB-Profiler 6.7.0 -> ResistTB.
+
+1. `tbprofiler_benchmark.py select` picks about 100 patients from the other-studies set (never used for training), mixing susceptible, isoniazid-resistant, MDR and pre-XDR cases, and finds their paired-end Illumina reads on ENA.
+2. Ten parallel jobs download the reads (about 35 GB in total) and run `tb-profiler profile` on each patient.
+3. `tbprofiler_benchmark.py compare` applies ResistTB's model to TB-Profiler's own mutation calls and compares TB-Profiler alone, ResistTB alone, and TB-Profiler + ResistTB with the lab results. Results go to `results/tbprofiler_benchmark.md` and appear on the website.
+
+Run it from **Actions -> End-to-end check with TB-Profiler -> Run workflow**. It takes one to two hours and does not run automatically.
+
 ## Retraining in the cloud
 
 Training runs on GitHub's machines through GitHub Actions. Nothing needs to be installed on your computer.
