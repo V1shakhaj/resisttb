@@ -1,4 +1,8 @@
-"""Train per-drug resistance models on CRyPTIC TB genomes and compare them with the catalogue.
+"""Train per-drug resistance models on TB genomes and compare them with the catalogue.
+
+Training data: the CRyPTIC plate results plus lab results from 7 other studies in the same release, about
+39,000 patients in all. Patients chosen for the end-to-end TB-Profiler check (results/tbprofiler_samples.json)
+are always left out, so that check stays a fair test of samples the model never saw.
 
 Each drug's model only uses mutations in the genes the WHO catalogue links to resistance for that drug,
 and leaves out mutations the catalogue grades as not associated with resistance. Without this, models
@@ -8,7 +12,8 @@ learned strain markers (e.g. gyrA G668D) and mutations that merely travel with m
 Inputs (from the CRyPTIC June 2022 release, see README.md):
   EFFECTS.csv.gz           mutations each sample has in the resistance genes for each drug,
                            plus the catalogue's R/S/U call for that mutation
-  UKMYC_PHENOTYPES.csv.gz  lab-measured resistance (R/S) for each sample and drug
+  UKMYC_PHENOTYPES.csv.gz  lab-measured resistance (R/S) for each sample and drug on CRyPTIC plates
+  DST_MEASUREMENTS.csv.gz  lab results from the other studies (MGIT, LJ and other methods)
   WHO_catalogue_v2.1.csv   WHO mutation catalogue, used for the list of resistance genes per drug
 
 Outputs (in --out):
@@ -79,6 +84,42 @@ def load_phenotypes(path):
     return p[["UNIQUEID", "DRUG", "BINARY_PHENOTYPE"]]
 
 
+def subject(uid):
+    return ".".join(uid.split(".")[:4])  # site.XX.subj.YYY: one patient
+
+
+def load_external(path, exclude_subjects):
+    """Lab results from the other studies, minus patients who are also in the CRyPTIC plate data."""
+    d = pd.read_csv(path, dtype=str)
+    d = d[(d.SOURCE != "CRyPTIC") & d.DRUG.isin(DRUGS) & d.PHENOTYPE.isin(["R", "S"])]
+    d = d[~d.UNIQUEID.map(subject).isin(exclude_subjects)]
+    # One label per sample and drug. Drop pairs where the lab results disagree.
+    g = d.groupby(["UNIQUEID", "DRUG"]).agg(N=("PHENOTYPE", "nunique"), PHENOTYPE=("PHENOTYPE", "first"), SOURCE=("SOURCE", "first"))
+    return g[g.N == 1].drop(columns="N").reset_index()
+
+
+def held_out_ids(path):
+    """Patients kept out of all training: the end-to-end TB-Profiler check."""
+    if not path:  # explicitly disabled with --held-out ""
+        return set()
+    path = Path(path)
+    if not path.exists():
+        raise SystemExit(f"{path} not found. It lists the patients held out for the TB-Profiler check; run that check first "
+                         "(see README.md), or pass --held-out \"\" to train on everyone.")
+    return {s["uniqueid"] for s in json.loads(path.read_text())}
+
+
+def training_labels(data, held_out):
+    """One row per sample and drug: UNIQUEID, DRUG, R (1 = resistant), SOURCE (CRyPTIC or the study name)."""
+    pheno = load_phenotypes(Path(data) / "UKMYC_PHENOTYPES.csv.gz")
+    plates = pd.DataFrame({"UNIQUEID": pheno.UNIQUEID, "DRUG": pheno.DRUG,
+                           "R": pheno.BINARY_PHENOTYPE.eq("R").astype(int), "SOURCE": "CRyPTIC"})
+    ext = load_external(Path(data) / "DST_MEASUREMENTS.csv.gz", set(pheno.UNIQUEID.map(subject)))
+    other = pd.DataFrame({"UNIQUEID": ext.UNIQUEID, "DRUG": ext.DRUG, "R": ext.PHENOTYPE.eq("R").astype(int), "SOURCE": ext.SOURCE})
+    labels = pd.concat([plates, other], ignore_index=True).drop_duplicates(["UNIQUEID", "DRUG"])
+    return labels[~labels.UNIQUEID.isin(held_out)]
+
+
 def sens_spec(y_true, y_pred):
     y_true, y_pred = np.asarray(y_true), np.asarray(y_pred)
     tp = int(((y_true == 1) & (y_pred == 1)).sum()); fn = int(((y_true == 1) & (y_pred == 0)).sum())
@@ -90,8 +131,8 @@ def sens_spec(y_true, y_pred):
     }
 
 
-def train_drug(drug, effects, pheno, filters):
-    labels = pheno[pheno.DRUG == drug].set_index("UNIQUEID").BINARY_PHENOTYPE.eq("R").astype(int)
+def train_drug(drug, effects, pool, filters):
+    labels = pool[pool.DRUG == drug].set_index("UNIQUEID").R
     eff = model_rows(effects, drug, filters)
     eff = eff[eff.UNIQUEID.isin(labels.index)]
     all_eff = effects[(effects.DRUG == drug) & effects.UNIQUEID.isin(labels.index)]  # for the catalogue baseline
@@ -145,7 +186,7 @@ def pct(x):
 def write_report(metrics, path):
     lines = [
         "# TB drug-resistance model: results", "",
-        "Trained on the CRyPTIC dataset (lab-tested TB isolates with whole-genome sequences).",
+        "Trained on lab-tested TB isolates with whole-genome sequences: the CRyPTIC plate data plus 7 other studies (about 39,000 patients).",
         "Each drug has its own model. 80% of samples were used for training and 20% were held back for testing.",
         "Numbers below are on the held-back 20% only.", "",
         "- **Sensitivity**: of the truly resistant samples, how many the method caught. Missing these is the dangerous error.",
@@ -187,16 +228,18 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", default="data")
     ap.add_argument("--out", default="results")
+    ap.add_argument("--held-out", default="results/tbprofiler_samples.json")
     args = ap.parse_args()
     out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
 
-    print("Loading phenotypes..."); pheno = load_phenotypes(Path(args.data) / "UKMYC_PHENOTYPES.csv.gz")
+    print("Loading lab results..."); pool = training_labels(args.data, held_out_ids(args.held_out))
+    print(f"  {pool.UNIQUEID.nunique():,} patients: " + ", ".join(f"{s} {n:,}" for s, n in pool.groupby("SOURCE").UNIQUEID.nunique().items()))
     print("Loading mutations (takes a few minutes)..."); effects = load_effects(Path(args.data) / "EFFECTS.csv.gz")
     filters = model_filters(Path(args.data) / "WHO_catalogue_v2.1.csv")
 
     models, metrics = {}, []
     for drug in DRUGS:
-        model, m = train_drug(drug, effects, pheno, filters)
+        model, m = train_drug(drug, effects, pool, filters)
         metrics.append(m)
         if model:
             models[drug] = model
