@@ -1,7 +1,7 @@
 """Pick real, anonymised patients for the web demo from the "other studies" test set.
 
-Every patient picked here comes from a study the model was not trained on, and patients who also appear
-in the CRyPTIC plate data are excluded, so the model has never seen them.
+Every patient picked here is one of the patients held out of all training for the end-to-end TB-Profiler
+check (results/tbprofiler_samples.json), so the model has never seen them.
 
 Patients are chosen by resistance profile (from the lab results) and by how many drugs the lab tested,
 never by whether the model gets them right. One extra patient is chosen where the model misses
@@ -20,7 +20,7 @@ from pathlib import Path
 import pandas as pd
 
 from evaluate import subject
-from train import load_effects, load_phenotypes
+from train import held_out_ids, load_effects, load_phenotypes
 
 # Demo drug code -> code in the lab results
 DEMO_DRUGS = {"RIF": "RIF", "INH": "INH", "EMB": "EMB", "PZA": "PZA", "LFX": "LEV", "MFX": "MXF",
@@ -49,6 +49,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", default="data")
     ap.add_argument("--out", default="results")
+    ap.add_argument("--held-out", default="results/tbprofiler_samples.json")
     args = ap.parse_args()
     data, out = Path(args.data), Path(args.out)
 
@@ -66,6 +67,9 @@ def main():
     muts = effects.drop_duplicates(["UNIQUEID", "FEATURE"]).groupby("UNIQUEID")[["GENE", "MUTATION", "FEATURE"]].agg(list)
     muts = muts[muts.FEATURE.str.len() <= MAX_MUTATIONS]
     wide = wide.loc[wide.index.intersection(muts.index)]
+    held = held_out_ids(args.held_out)
+    if held:
+        wide = wide.loc[wide.index.intersection(list(held))]
 
     col = lambda d: wide[d] if d in wide else pd.Series(index=wide.index, dtype=object)
     R, S = (lambda d: col(d).eq("R")), (lambda d: col(d).eq("S"))
@@ -75,6 +79,7 @@ def main():
 
     profiles = [
         ("Drug-susceptible", S("RIF") & S("INH") & S("EMB") & fq_s),
+        ("Isoniazid-resistant", S("RIF") & R("INH")),
         ("MDR-TB", R("RIF") & R("INH") & fq_s),
         ("Pre-XDR", R("RIF") & fq_r & ~grp_a_r),
         ("XDR", R("RIF") & fq_r & grp_a_r),
