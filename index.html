@@ -152,7 +152,7 @@ td.drug small { display: block; font-weight: 400; color: var(--muted); font: 11p
   <header>
     <div class="eyebrow">Prototype · M. tuberculosis genomic resistance</div>
     <h1>ResistTB Predictor</h1>
-    <p class="lede">Load a TB-Profiler result, or paste the mutations found when a TB sample's DNA is sequenced. Two methods check each one: a catalogue of known resistance mutations, and a machine-learning model trained on about 12,000 lab-tested TB genomes from the CRyPTIC project. The report shows which drugs are likely to fail and the evidence behind each call.</p>
+    <p class="lede">Load a TB-Profiler result, or paste the mutations found when a TB sample's DNA is sequenced. Two methods check each one: a catalogue of known resistance mutations, and a machine-learning model trained on about 39,000 lab-tested TB genomes from the CRyPTIC project and 7 other studies. The report shows which drugs are likely to fail and the evidence behind each call.</p>
     <p class="warn">Research prototype. The example patients are real, anonymised cases from published studies that the model never saw during training. Not for clinical use.</p>
   </header>
 
@@ -270,7 +270,7 @@ td.drug small { display: block; font-weight: 400; color: var(--muted); font: 11p
     <div class="panel">
       <h2>Next steps</h2>
       <ul>
-        <li>Done: a model trained on CRyPTIC data, about 12,000 TB genomes with lab-measured resistance to 13 drugs.</li>
+        <li>Done: a model trained on about 39,000 TB genomes with lab-measured resistance, from CRyPTIC and 7 other studies.</li>
         <li>Done: tested on unseen countries, unseen strain lineages and 7 other studies, and benchmarked against the WHO catalogue used by TB-Profiler.</li>
         <li>Done: reads TB-Profiler results and checks WHO 2026 regimens against them.</li>
         <li>Validate end to end on raw sequencing reads processed by TB-Profiler itself.</li>
@@ -749,7 +749,7 @@ Promise.all([fetch("results/model.json").then(r => r.json()), fetch("results/met
     MODEL = model;
     metrics.forEach(m => { METRICS[m.drug] = m; });
     const rif = METRICS.RIF;
-    $("modelinfo").textContent = `AI model: logistic regression per drug, trained on CRyPTIC data. On held-out test samples it caught ${Math.round(rif.model.sensitivity * 100)}% of rifampicin-resistant cases with ${Math.round(rif.model.specificity * 100)}% specificity.`;
+    $("modelinfo").textContent = `AI model: logistic regression per drug, trained on CRyPTIC and 7 other studies. On held-out test samples it caught ${Math.round(rif.model.sensitivity * 100)}% of rifampicin-resistant cases with ${Math.round(rif.model.specificity * 100)}% specificity.`;
     render();
   })
   .catch(() => { $("modelinfo").textContent = "AI model could not be loaded, so predictions use the catalogue only."; render(); });
