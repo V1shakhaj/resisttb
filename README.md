@@ -7,7 +7,7 @@ Research prototype. Not for clinical use.
 - **Training code:** `train.py`
 - **Validation code:** `evaluate.py`
 - **Resistance level (MIC):** `mic.py` predicts how resistant, not just whether ([`results/mic_report.md`](results/mic_report.md))
-- **Demo patients:** `pick_examples.py` picks real, anonymised patients the model never saw (`results/examples.json`)
+- **Demo patients:** `pick_examples.py` picks real, anonymised patients from the held-out TB-Profiler set, which the model never saw (`results/examples.json`)
 - **Latest results:** [`results/report.md`](results/report.md) (random split) and [`results/validation.md`](results/validation.md) (unseen countries, other studies, WHO catalogue benchmark)
 
 ## Using it with TB-Profiler
@@ -29,15 +29,16 @@ The reader accepts results from TB-Profiler 4 to 6. Synonymous mutations and var
 
 ## How it works
 
-1. **Data:** the [CRyPTIC](https://www.crypticproject.org/) June 2022 release: about 12,000 TB isolates with whole-genome sequences and lab-measured resistance to 13 drugs (UKMYC microtitre plates).
+1. **Data:** the [CRyPTIC](https://www.crypticproject.org/) June 2022 release: about 39,000 sequenced TB isolates with lab-measured resistance. About 12,000 were tested on CRyPTIC's UKMYC microtitre plates (13 drugs); the rest come from 7 other studies tested mostly by MGIT or solid media. The 100 patients in the end-to-end TB-Profiler check (`results/tbprofiler_samples.json`) are never used for training; training stops if that list is missing.
    - `EFFECTS.csv.gz`: each sample's mutations in the genes linked to each drug, plus the catalogue's call for each mutation.
-   - `UKMYC_PHENOTYPES.csv.gz`: the lab result (resistant or susceptible) per sample and drug. Only high- and medium-quality readings are used.
+   - `UKMYC_PHENOTYPES.csv.gz`: the CRyPTIC plate result (resistant or susceptible) per sample and drug. Only high- and medium-quality readings are used.
+   - `DST_MEASUREMENTS.csv.gz`: lab results from the other studies. Patients also in the plate data, and sample-drug pairs where results disagree, are dropped.
 2. **Model:** one logistic regression per drug with an L1 penalty, which keeps only the mutations that matter. Each mutation gets a weight, so every prediction can be explained. Each drug's model only sees mutations in the genes the WHO catalogue links to that drug, minus mutations the catalogue grades as harmless; without this, the lineage test showed it learning strain markers.
 3. **Evaluation:** a stratified 80/20 split. The 20% test set is never used for training. Results are compared with the catalogue (known resistance mutations, with unknown mutations counted as susceptible).
 4. **Validation** (`evaluate.py`):
-   - **Unseen countries:** for each country, train on all the others and test on that one.
-   - **Other studies:** train on all CRyPTIC plate data, then test on about 40,000 samples from 7 other studies (`DST_MEASUREMENTS.csv.gz`), which use different lab methods (MGIT, LJ) and come from over 40 countries. Patients who appear in the training data are removed.
-   - **Unseen lineages:** for each of the four main strain lineages (`MYKROBE_LINEAGE.csv.gz`), train on everything else and test on that lineage. This checks the model isn't relying on strain markers.
+   - **Unseen countries:** each country's CRyPTIC plate samples, predicted by a model trained on all other countries from every study.
+   - **Unseen studies:** each of the 7 other studies, predicted by a model trained on CRyPTIC and the other 6 studies. They use different lab methods (MGIT, LJ) and come from over 40 countries.
+   - **Unseen lineages:** each main strain lineage's CRyPTIC plate samples (`MYKROBE_LINEAGE.csv.gz`), predicted by a model trained on all other lineages. This checks the model isn't relying on strain markers.
    - **Benchmark:** every test sample is also called by the WHO mutation catalogue, 2nd edition (2023, v2.1, from [oxfordmmm/tuberculosis_amr_catalogues](https://github.com/oxfordmmm/tuberculosis_amr_catalogues), applied with [piezo](https://github.com/oxfordmmm/piezo)), and by the CRyPTIC catalogue. TB-Profiler bases its resistance calls on the WHO catalogue, so this is the catalogue-level equivalent of a TB-Profiler benchmark. A real TB-Profiler run would need the raw sequencing reads.
 
 ## Resistance level (MIC)
